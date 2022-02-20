@@ -28,10 +28,9 @@ namespace BalikProjesi
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            label1.Text = "Kullanıcı adı";
-            label2.Text = "Parola";
+            
             this.MaximizeBox = false;
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            //this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
