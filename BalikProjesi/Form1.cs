@@ -37,6 +37,7 @@ namespace BalikProjesi
         {
             string User = txtUsername.Text.Trim();
             string Pass = txtPass.Text.Trim();
+            int sayi;
 
             var result=lgn.CheckLogin(User, Pass);
             if (result == true)
