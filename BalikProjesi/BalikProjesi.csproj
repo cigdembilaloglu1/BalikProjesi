@@ -203,6 +203,7 @@
     <Content Include="Core\Compression\Snappy\lib\win\snappy64.dll" />
     <Content Include="Core\Compression\Zstandard\lib\win\libzstd.dll" />
     <Content Include="mongocrypt.dll" />
+    <Content Include="Resources\logo.jpg" />
     <None Include="Resources\fish.png" />
     <None Include="Resources\person.jfif" />
     <None Include="Resources\pass.jpg" />
