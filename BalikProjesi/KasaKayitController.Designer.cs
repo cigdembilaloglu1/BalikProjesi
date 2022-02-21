@@ -37,6 +37,9 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.label3 = new System.Windows.Forms.Label();
             this.txtKartid = new System.Windows.Forms.TextBox();
+            this.KasaUUID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.KasaKod = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.KasaTip = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // label1
@@ -93,12 +96,18 @@
             // 
             // listView1
             // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.KasaUUID,
+            this.KasaKod,
+            this.KasaTip});
+            this.listView1.FullRowSelect = true;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(238, 22);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(535, 176);
+            this.listView1.Size = new System.Drawing.Size(313, 176);
             this.listView1.TabIndex = 10;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
             // 
             // label3
             // 
@@ -115,6 +124,18 @@
             this.txtKartid.Name = "txtKartid";
             this.txtKartid.Size = new System.Drawing.Size(100, 20);
             this.txtKartid.TabIndex = 8;
+            // 
+            // KasaUUID
+            // 
+            this.KasaUUID.Text = "KasaUUID";
+            // 
+            // KasaKod
+            // 
+            this.KasaKod.Text = "KasaKod";
+            // 
+            // KasaTip
+            // 
+            this.KasaTip.Text = "Kasatip";
             // 
             // KasaKayitController
             // 
@@ -147,5 +168,8 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtKartid;
+        private System.Windows.Forms.ColumnHeader KasaUUID;
+        private System.Windows.Forms.ColumnHeader KasaKod;
+        private System.Windows.Forms.ColumnHeader KasaTip;
     }
 }

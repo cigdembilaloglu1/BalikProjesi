@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BalikProjesi.Services;
+using BalikProjesi.Enums;
 
 
 namespace BalikProjesi
@@ -37,19 +38,20 @@ namespace BalikProjesi
         {
             string User = txtUsername.Text.Trim();
             string Pass = txtPass.Text.Trim();
+            User.ToLower();
             
 
             var result=lgn.CheckLogin(User, Pass);
             if (result == true)
             {
                 var role = lgn.GetByName(User);
-                if (role.Role=="Admin")
+                if (role.Role==InputEnums.Admin)
                 {
                     frmAdmin frAdmin = new frmAdmin();
                     frAdmin.Show();
                     this.Hide();
                 }
-                if (role.Role=="User")
+                if (role.Role==InputEnums.User)
                 {
                     frmUser frUser = new frmUser();
                     frUser.Show();

@@ -43,6 +43,13 @@
             this.label6 = new System.Windows.Forms.Label();
             this.txtKartID = new System.Windows.Forms.TextBox();
             this.PersonelAd = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label5 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.PersSoyad = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PersKod = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PersGrup = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PersTur = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PersKartId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // txtPersonelAd
@@ -105,10 +112,7 @@
             // cbPersonelGrup
             // 
             this.cbPersonelGrup.FormattingEnabled = true;
-            this.cbPersonelGrup.Items.AddRange(new object[] {
-            "Fileto",
-            "Kontrol"});
-            this.cbPersonelGrup.Location = new System.Drawing.Point(189, 170);
+            this.cbPersonelGrup.Location = new System.Drawing.Point(189, 165);
             this.cbPersonelGrup.Name = "cbPersonelGrup";
             this.cbPersonelGrup.Size = new System.Drawing.Size(100, 21);
             this.cbPersonelGrup.TabIndex = 3;
@@ -116,13 +120,20 @@
             // listView1
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.PersonelAd});
+            this.PersonelAd,
+            this.PersSoyad,
+            this.PersKod,
+            this.PersGrup,
+            this.PersTur,
+            this.PersKartId});
+            this.listView1.FullRowSelect = true;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(30, 259);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(496, 126);
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
             // 
             // button1
             // 
@@ -156,15 +167,15 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(34, 208);
+            this.label6.Location = new System.Drawing.Point(41, 230);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(92, 13);
+            this.label6.Size = new System.Drawing.Size(37, 13);
             this.label6.TabIndex = 2;
-            this.label6.Text = "Kartınızı Okutunuz";
+            this.label6.Text = "Kart id";
             // 
             // txtKartID
             // 
-            this.txtKartID.Location = new System.Drawing.Point(189, 208);
+            this.txtKartID.Location = new System.Drawing.Point(189, 230);
             this.txtKartID.Name = "txtKartID";
             this.txtKartID.Size = new System.Drawing.Size(100, 20);
             this.txtKartID.TabIndex = 7;
@@ -172,6 +183,44 @@
             // PersonelAd
             // 
             this.PersonelAd.Text = "Personel İsmi";
+            this.PersonelAd.Width = 71;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(27, 198);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(76, 13);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Personel Türü:";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(189, 198);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(100, 21);
+            this.comboBox1.TabIndex = 3;
+            // 
+            // PersSoyad
+            // 
+            this.PersSoyad.Text = "Personel Soyad";
+            // 
+            // PersKod
+            // 
+            this.PersKod.Text = "PersonelKod";
+            // 
+            // PersGrup
+            // 
+            this.PersGrup.Text = "PersonelGrup";
+            // 
+            // PersTur
+            // 
+            this.PersTur.Text = "PersonelTur";
+            // 
+            // PersKartId
+            // 
+            this.PersKartId.Text = "KartId";
             // 
             // PersonlKayitController
             // 
@@ -182,8 +231,10 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.listView1);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.cbPersonelGrup);
             this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -193,6 +244,7 @@
             this.Controls.Add(this.txtPersonelAd);
             this.Name = "PersonlKayitController";
             this.Size = new System.Drawing.Size(567, 406);
+            this.Load += new System.EventHandler(this.PersonlKayitController_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -215,5 +267,12 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtKartID;
         public System.Windows.Forms.ColumnHeader PersonelAd;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ColumnHeader PersSoyad;
+        private System.Windows.Forms.ColumnHeader PersKod;
+        private System.Windows.Forms.ColumnHeader PersGrup;
+        private System.Windows.Forms.ColumnHeader PersTur;
+        private System.Windows.Forms.ColumnHeader PersKartId;
     }
 }

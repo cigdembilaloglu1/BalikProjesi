@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BalikProjesi.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -41,9 +42,15 @@ namespace BalikProjesi
                     PersonelCode=txtPersonelKod.Text.Trim(),
                     CreateDate=DateTime.Now,
                     CartId=txtKartID.Text.Trim()
-                });
+                },comboBox1.Text.Trim());
             }
 
+        }
+
+        private void PersonlKayitController_Load(object sender, EventArgs e)
+        {
+            comboBox1.Items.Add(InputEnums.Fileto);
+            comboBox1.Items.Add(InputEnums.Kontrol);
         }
     }
 }
