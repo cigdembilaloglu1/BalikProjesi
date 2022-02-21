@@ -61,6 +61,10 @@ namespace BalikProjesi
             else
             {
                 MessageBox.Show("Giriş bilgileri hatalıdır");
+                txtUsername.Text = "";
+                txtPass.Text ="";
+
+
             }
         }
     }
