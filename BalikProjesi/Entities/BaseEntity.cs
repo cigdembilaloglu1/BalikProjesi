@@ -14,8 +14,8 @@ namespace BalikProjesi.Entities
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
         public DateTime CreateDate { get; set; }
-        public int CartId { get; set; }
-        public int PersonnelId { get; set; }
+        public string CartId { get; set; }
+       // public string PersonnelId { get; set; }
         public string CartCode { get; set; }
         public string CartType { get; set; }
         public DateTime OpeningDate { get; set; }

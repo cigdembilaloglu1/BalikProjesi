@@ -17,25 +17,20 @@ namespace BalikProjesi.Services
             db = Mongo._fbox;
         }
 
-        public void Create(string Fbcode, string Fbtype, DateTime Rdate)
+        public void Create(FishBox fishbox)
         {
-            var Islem = CheckFBox(Fbcode);
+            var Islem = CheckFBox(fishbox.FishboxCartUUID);
             if (Islem)
             {
-                FishBox EklenecekVeri = new FishBox
-                {
-                    FishBoxCode = Fbcode,
-                    FishBoxType = Fbtype,
-                    RecordDate = Rdate
-                };
-                db.InsertOne(EklenecekVeri);
+                
+                db.InsertOne(fishbox);
             }
 
         }
 
-        public bool CheckFBox(string Fbcode)
+        public bool CheckFBox(string cardID)
         {
-            var result = db.Find(x => x.FishBoxCode == Fbcode).FirstOrDefault();
+            var result = db.Find(x => x.FishboxCartUUID == cardID).FirstOrDefault();
             if (result == null)
             {
                 return true;

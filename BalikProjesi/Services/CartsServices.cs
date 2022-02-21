@@ -17,18 +17,13 @@ namespace BalikProjesi.Services
             var Mongo = new DbContext();
             db = Mongo._carts;
         }
-        public void Create(string Cname)
+        public void Create(Carts Data)
         {
-            var Islem = CheckName(Cname);
+            var Islem = CheckName(Data.CartUUID);
             if (Islem)
             {
-                Carts EklenecekVeri = new Carts();
-                EklenecekVeri.CartName = Cname;
 
-                if (Cname != null)
-                {
-                    db.InsertOne(EklenecekVeri);
-                }
+                db.InsertOne(Data);
 
             }
 
@@ -37,7 +32,7 @@ namespace BalikProjesi.Services
 
         public bool CheckName(string Cname)
         {
-            var result = db.Find(x => x.CartName == Cname).FirstOrDefault();
+            var result = db.Find(x => x.CartUUID == Cname).FirstOrDefault();
             if (result == null)
             {
                 return true;

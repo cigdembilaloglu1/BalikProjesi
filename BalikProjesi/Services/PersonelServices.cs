@@ -10,41 +10,66 @@ namespace BalikProjesi.Services
 {
     public class PersonelServices : IPersonelServices
     {
-        public readonly IMongoCollection<Personel> pdb;
-        private readonly object _pid;
+        public readonly IMongoCollection<Personel> pdb, fdb;
+
+       // private readonly object _pid;
 
         public PersonelServices()
         {
             var Mongo = new DbContext();
-            pdb = Mongo._fpersonel;
+            fdb = Mongo._fpersonel;
             pdb = Mongo._cpersonel;
         }
-        public void Create(string _pname, string _psurname, string _pcode, string _pgroup)
+        public void Create(Personel personel)
         {
-            var Islem = CheckPCode(_pcode);
+            var Islem = CheckPCode(personel);
             if (Islem)
             {
-                Personel EklenecekVeri = new Personel();
-                EklenecekVeri.PersonelName = _pname;
-                EklenecekVeri.PersonelSurname = _psurname;
-                EklenecekVeri.PersonelCode = _pcode;
-                EklenecekVeri.PersonelGroup = _pgroup;
-                pdb.InsertOne(EklenecekVeri);
+                if (personel.PersonelGroup=="Fileto")
+                {
+                    fdb.InsertOne(personel);
+                }
+                else
+                {
+                    pdb.InsertOne(personel);
+                }      
             }
 
         }
 
-        public bool CheckPCode(string _pcode)
+        public bool CheckPCode(Personel pers)
         {
-            var result = pdb.Find(x => x.PersonelCode == _pcode).FirstOrDefault();
-            if (result == null)
+            
+
+            if (pers.PersonelGroup=="Fileto")
             {
-                return true;
+                var result = fdb.Find(x => x.CartId == pers.CartId).FirstOrDefault();
+                if (result == null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else if (pers.PersonelGroup == "Kontrol") { 
+                var result = pdb.Find(x => x.CartId == pers.CartId).FirstOrDefault();
+                if (result == null)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
                 return false;
             }
+            
+            
 
         }
 
@@ -64,7 +89,7 @@ namespace BalikProjesi.Services
             if (!String.IsNullOrEmpty(_pname) && !String.IsNullOrEmpty(_psurname) && !String.IsNullOrEmpty(_pcode) && !String.IsNullOrEmpty(_pgroup))
             {
                 var Filter = Builders<Personel>.Filter
-                    .Eq(x => x.Id, _pid);
+                    .Eq(x => x.Id, _id);
 
                 var Update = Builders<Personel>.Update
                     .Set(x => x.PersonelName, _pname)

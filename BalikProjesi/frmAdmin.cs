@@ -26,6 +26,42 @@ namespace BalikProjesi
 
         private void frmAdmin_Load(object sender, EventArgs e)
         {
+            var rprController = new RaporController();
+            MainPanel.Controls.Add(rprController);  
+            rprController.Show();
+            rprController.Dock = DockStyle.Fill;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void kARTKAYDIToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MainPanel.Controls.Clear();
+            var kartKayitController = new KartKayitController();
+            MainPanel.Controls.Add(kartKayitController);
+            kartKayitController.Show();
+            kartKayitController.Dock = DockStyle.Fill;  
+        }
+
+        private void pERSONELKAYDIToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MainPanel.Controls.Clear();
+            var kartKayitController = new PersonlKayitController();
+            MainPanel.Controls.Add(kartKayitController);
+            kartKayitController.Show();
+            kartKayitController.Dock = DockStyle.Fill;
+        }
+
+        private void kASAKAYDIToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MainPanel.Controls.Clear();
+            var kartKayitController = new KasaKayitController();
+            MainPanel.Controls.Add(kartKayitController);
+            kartKayitController.Show();
+            kartKayitController.Dock = DockStyle.Fill;
 
         }
     }

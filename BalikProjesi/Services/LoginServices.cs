@@ -26,7 +26,7 @@ namespace BalikProjesi.Services
             {
                 Login EklenecekVeri = new Login();
                 EklenecekVeri.UserName = _uname;
-
+                
                 EklenecekVeri.Password = _pass;
                 if (_uname !=null && _pass !=null)
                 {

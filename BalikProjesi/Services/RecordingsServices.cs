@@ -19,16 +19,17 @@ namespace BalikProjesi.Services
             db = Mongo._records;
         }
 
-        public void Create(int Fbone, int Defoo, int Knifee, int Reapingg)
-        {
-            Recordings EklenecekVeri = new Recordings();
-            EklenecekVeri.FishBone= Fbone;
-            EklenecekVeri.Defo = Defoo;
-            EklenecekVeri.Knife = Knifee;
-            EklenecekVeri.Reaping = Reapingg;
-            db.InsertOne(EklenecekVeri);
+        //public void Create(int Fbone, int Defoo, int Knifee, int Reapingg)
+        //{
+        //    Recordings EklenecekVeri = new Recordings();
+        //    EklenecekVeri.FishBone= Fbone;
+        //    EklenecekVeri.Defo = Defoo;
+        //    EklenecekVeri.Knife = Knifee;
+        //    EklenecekVeri.Reaping = Reapingg;
+        //    db.InsertOne(EklenecekVeri);
       
-        }
+        //}
+
         public Recordings Get(string _id)
         {
             var result = db.Find(x => x.Id == _id).FirstOrDefault();

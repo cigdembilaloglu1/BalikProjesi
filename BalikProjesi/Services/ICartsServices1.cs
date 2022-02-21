@@ -7,7 +7,7 @@ namespace BalikProjesi.Services
     {
         bool CheckName(string Cname);
         bool CheckUser(string Cname);
-        void Create(string Cname);
+        void Create(Carts Data);
         bool Delete(string Cname);
         List<Carts> Get();
         bool Update(string _id, string Cname = null);
