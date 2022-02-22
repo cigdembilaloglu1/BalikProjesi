@@ -5,8 +5,8 @@ namespace BalikProjesi.Services
 {
     public interface IPersonelServices
     {
-        bool CheckPCode(Personel pers);
-        void Create(Personel personel);
+        bool CheckPCode(Personel pers, string persType);
+        void Create(Personel personel,string persType);
         bool Delete(string _pid);
         List<Personel> Get();
         Personel Get(string _pid);

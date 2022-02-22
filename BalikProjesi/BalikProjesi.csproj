@@ -126,6 +126,7 @@
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Personel.cs" />
     <Compile Include="Entities\FishBox.cs" />
+    <Compile Include="Enums\InputEnums.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

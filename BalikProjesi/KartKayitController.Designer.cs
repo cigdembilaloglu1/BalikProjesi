@@ -40,6 +40,10 @@
             this.KartTipiTb = new System.Windows.Forms.TextBox();
             this.KartUUDTb = new System.Windows.Forms.TextBox();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.KartAd = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.KartKod = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.KartTip = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.KartUUID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // label2
@@ -138,12 +142,35 @@
             // 
             // listView1
             // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.KartAd,
+            this.KartKod,
+            this.KartTip,
+            this.KartUUID});
+            this.listView1.FullRowSelect = true;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(298, 16);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(525, 221);
             this.listView1.TabIndex = 12;
             this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // KartAd
+            // 
+            this.KartAd.Text = "KartAd";
+            // 
+            // KartKod
+            // 
+            this.KartKod.Text = "KartKod";
+            // 
+            // KartTip
+            // 
+            this.KartTip.Text = "KartTip";
+            // 
+            // KartUUID
+            // 
+            this.KartUUID.Text = "KartUUID";
             // 
             // KartKayitController
             // 
@@ -181,5 +208,9 @@
         private System.Windows.Forms.TextBox KartTipiTb;
         private System.Windows.Forms.TextBox KartUUDTb;
         private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader KartAd;
+        private System.Windows.Forms.ColumnHeader KartKod;
+        private System.Windows.Forms.ColumnHeader KartTip;
+        private System.Windows.Forms.ColumnHeader KartUUID;
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BalikProjesi.Enums;
 
 namespace BalikProjesi.Services
 {
@@ -20,12 +21,12 @@ namespace BalikProjesi.Services
             fdb = Mongo._fpersonel;
             pdb = Mongo._cpersonel;
         }
-        public void Create(Personel personel)
+        public void Create(Personel personel,string persType)
         {
-            var Islem = CheckPCode(personel);
+            var Islem = CheckPCode(personel, persType);
             if (Islem)
             {
-                if (personel.PersonelGroup=="Fileto")
+                if (persType==InputEnums.Fileto)
                 {
                     fdb.InsertOne(personel);
                 }
@@ -37,11 +38,11 @@ namespace BalikProjesi.Services
 
         }
 
-        public bool CheckPCode(Personel pers)
+        public bool CheckPCode(Personel pers,string persType)
         {
             
 
-            if (pers.PersonelGroup=="Fileto")
+            if (persType==InputEnums.Fileto)
             {
                 var result = fdb.Find(x => x.CartId == pers.CartId).FirstOrDefault();
                 if (result == null)
@@ -53,7 +54,7 @@ namespace BalikProjesi.Services
                     return false;
                 }
             }
-            else if (pers.PersonelGroup == "Kontrol") { 
+            else if (persType == InputEnums.Kontrol) { 
                 var result = pdb.Find(x => x.CartId == pers.CartId).FirstOrDefault();
                 if (result == null)
                 {
