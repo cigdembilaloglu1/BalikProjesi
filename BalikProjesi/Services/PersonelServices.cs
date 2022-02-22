@@ -129,12 +129,21 @@ namespace BalikProjesi.Services
                 return false;
             }
         }
-        public bool Delete(string _pid)
+        public bool Delete(string _pid, string persType)
         {
             try
             {
                 var Filter = Builders<Personel>.Filter.Eq(x => x.Id, _pid);
-                pdb.DeleteOne(Filter);
+                if (persType==InputEnums.Fileto)
+                {
+                    fdb.DeleteOne(Filter);
+                }
+                else
+                {
+                    pdb.DeleteOne(Filter);
+                }
+                
+                
                 return true;
             }
             catch

@@ -45,6 +45,9 @@
             this.PersTur = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PersKartId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PersID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.gÜNCELLEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sİLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -57,9 +60,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.gÜNCELLEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sİLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label10 = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -196,6 +197,29 @@
             // 
             this.PersID.Width = 0;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gÜNCELLEToolStripMenuItem,
+            this.sİLToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(132, 48);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // gÜNCELLEToolStripMenuItem
+            // 
+            this.gÜNCELLEToolStripMenuItem.Name = "gÜNCELLEToolStripMenuItem";
+            this.gÜNCELLEToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gÜNCELLEToolStripMenuItem.Text = "GÜNCELLE";
+            this.gÜNCELLEToolStripMenuItem.Click += new System.EventHandler(this.gÜNCELLEToolStripMenuItem_Click);
+            // 
+            // sİLToolStripMenuItem
+            // 
+            this.sİLToolStripMenuItem.Name = "sİLToolStripMenuItem";
+            this.sİLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sİLToolStripMenuItem.Text = "SİL";
+            this.sİLToolStripMenuItem.Click += new System.EventHandler(this.sİLToolStripMenuItem_Click);
+            // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.SystemColors.MenuHighlight;
@@ -323,32 +347,20 @@
             this.label9.TabIndex = 12;
             this.label9.Text = "label9";
             // 
-            // contextMenuStrip1
+            // label10
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.gÜNCELLEToolStripMenuItem,
-            this.sİLToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
-            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
-            // 
-            // gÜNCELLEToolStripMenuItem
-            // 
-            this.gÜNCELLEToolStripMenuItem.Name = "gÜNCELLEToolStripMenuItem";
-            this.gÜNCELLEToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.gÜNCELLEToolStripMenuItem.Text = "GÜNCELLE";
-            this.gÜNCELLEToolStripMenuItem.Click += new System.EventHandler(this.gÜNCELLEToolStripMenuItem_Click);
-            // 
-            // sİLToolStripMenuItem
-            // 
-            this.sİLToolStripMenuItem.Name = "sİLToolStripMenuItem";
-            this.sİLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.sİLToolStripMenuItem.Text = "SİL";
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(80, 225);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(34, 13);
+            this.label10.TabIndex = 12;
+            this.label10.Text = "asda";
             // 
             // PersonlKayitController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label8);
@@ -414,5 +426,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem gÜNCELLEToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sİLToolStripMenuItem;
+        private System.Windows.Forms.Label label10;
     }
 }

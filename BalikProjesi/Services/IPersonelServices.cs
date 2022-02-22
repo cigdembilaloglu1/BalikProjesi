@@ -7,7 +7,7 @@ namespace BalikProjesi.Services
     {
         bool CheckPCode(Personel pers, string persType);
         bool Create(Personel personel,string persType);
-        bool Delete(string _pid);
+        bool Delete(string _pid, string persType);
         List<Personel> GetControl();
         List<Personel> GetFillet();
         Personel Get(string _pid);
