@@ -55,6 +55,7 @@ namespace BalikProjesi
                 }
 
                 label9.Text = itm.SubItems[6].Text;
+                label10.Text = cbPersonelTur.Text;//düzenlenecek
 
             }
             else { }
@@ -229,6 +230,7 @@ namespace BalikProjesi
             cbListGroup.SelectedIndex = 1;
             cbPersonelTur.SelectedIndex = 1;
             label9.Visible = false;
+            label10.Visible = false;
 
 
         }
@@ -247,6 +249,7 @@ namespace BalikProjesi
         private void button2_Click(object sender, EventArgs e)
         {
             string persID = label9.Text;
+            
             string PersonelAd = txtPersonelAd.Text;
             string PersonelSoyad = txtPersonelSoyad.Text;
             string PersonelKod = txtPersonelKod.Text;
@@ -312,6 +315,12 @@ namespace BalikProjesi
             }
 
             _readerServices.closePort();
+        }
+
+        private void sİLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool chk=_perService.Delete(label9.Text, label10.Text);
+            MessageBox.Show(chk.ToString());
         }
     }
 }

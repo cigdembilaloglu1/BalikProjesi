@@ -59,6 +59,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.btnReader = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -208,6 +209,29 @@
             // gÜNCELLEToolStripMenuItem
             // 
             this.gÜNCELLEToolStripMenuItem.Name = "gÜNCELLEToolStripMenuItem";
+            this.gÜNCELLEToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gÜNCELLEToolStripMenuItem.Text = "GÜNCELLE";
+            this.gÜNCELLEToolStripMenuItem.Click += new System.EventHandler(this.gÜNCELLEToolStripMenuItem_Click);
+            // 
+            // sİLToolStripMenuItem
+            // 
+            this.sİLToolStripMenuItem.Name = "sİLToolStripMenuItem";
+            this.sİLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sİLToolStripMenuItem.Text = "SİL";
+            this.sİLToolStripMenuItem.Click += new System.EventHandler(this.sİLToolStripMenuItem_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gÜNCELLEToolStripMenuItem,
+            this.sİLToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(132, 48);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // gÜNCELLEToolStripMenuItem
+            // 
+            this.gÜNCELLEToolStripMenuItem.Name = "gÜNCELLEToolStripMenuItem";
             this.gÜNCELLEToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.gÜNCELLEToolStripMenuItem.Text = "GÜNCELLE";
             this.gÜNCELLEToolStripMenuItem.Click += new System.EventHandler(this.gÜNCELLEToolStripMenuItem_Click);
@@ -336,6 +360,7 @@
             this.label9.Text = "label9";
             // 
             // btnReader
+            // label10
             // 
             this.btnReader.Location = new System.Drawing.Point(184, 196);
             this.btnReader.Name = "btnReader";
@@ -345,11 +370,31 @@
             this.btnReader.UseVisualStyleBackColor = true;
             this.btnReader.Click += new System.EventHandler(this.btnReader_Click);
             // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(80, 225);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(34, 13);
+            this.label10.TabIndex = 12;
+            this.label10.Text = "asda";
+            // 
+            // 
+            this.gÜNCELLEToolStripMenuItem.Name = "gÜNCELLEToolStripMenuItem";
+            this.gÜNCELLEToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gÜNCELLEToolStripMenuItem.Text = "GÜNCELLE";
+            this.Controls.Add(this.btnReader);
+            this.Controls.Add(this.label10);
+            this.gÜNCELLEToolStripMenuItem.Click += new System.EventHandler(this.gÜNCELLEToolStripMenuItem_Click);
+            // 
+            // sİLToolStripMenuItem
+            // 
+            this.sİLToolStripMenuItem.Name = "sİLToolStripMenuItem";
+            this.sİLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sİLToolStripMenuItem.Text = "SİL";
+            // 
             // PersonlKayitController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnReader);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label7);
@@ -400,6 +445,9 @@
         public System.Windows.Forms.ColumnHeader PersonelAd;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cbPersonelTur;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnReader;
+        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ColumnHeader PersSoyad;
         private System.Windows.Forms.ColumnHeader PersKod;
         private System.Windows.Forms.ColumnHeader PersGrup;
@@ -412,7 +460,5 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem gÜNCELLEToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sİLToolStripMenuItem;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button btnReader;
     }
 }
