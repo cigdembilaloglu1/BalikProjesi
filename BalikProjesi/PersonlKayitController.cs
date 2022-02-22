@@ -132,8 +132,8 @@ namespace BalikProjesi
             txtPersonelAd.Clear();
             txtPersonelSoyad.Clear();
             txtPersonelKod.Clear();
-            cbPersonelGrup.SelectedIndex = 0;
-            cbPersonelTur.SelectedIndex = 0;
+            //cbPersonelGrup.SelectedIndex = 0;
+            //cbPersonelTur.SelectedIndex = 0;
 
 
         }
