@@ -20,6 +20,29 @@ namespace BalikProjesi
             _perService= new Services.PersonelServices();
         }
 
+        public void list() 
+        {
+            string PerAd, PerSoyad, PerKod, PerGrup, PerTur, PerCID;
+            PerAd = txtPersonelAd.Text;
+            PerSoyad = txtPersonelSoyad.Text;
+            PerKod = txtPersonelKod.Text;
+            PerGrup = cbPersonelGrup.Text;
+            PerTur = cbPersonelTur.Text;
+            PerCID = txtKartID.Text;
+
+            string[] data = { PerAd, PerSoyad, PerKod, PerGrup, PerTur, PerCID };
+            ListViewItem record = new ListViewItem(data);
+            listView1.Items.Add(record);
+            txtKartID.Clear();
+            txtPersonelAd.Clear();
+            txtPersonelSoyad.Clear();
+            txtPersonelKod.Clear();
+            cbPersonelGrup.Text = "";
+            cbPersonelTur.Text = "";
+
+
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
 
@@ -42,15 +65,20 @@ namespace BalikProjesi
                     PersonelCode=txtPersonelKod.Text.Trim(),
                     CreateDate=DateTime.Now,
                     CartId=txtKartID.Text.Trim()
-                },comboBox1.Text.Trim());
+              } ,cbPersonelTur.Text.Trim());
+                
+                list();
+
             }
+
 
         }
 
         private void PersonlKayitController_Load(object sender, EventArgs e)
-        {
-            comboBox1.Items.Add(InputEnums.Fileto);
-            comboBox1.Items.Add(InputEnums.Kontrol);
+        {list();
+            cbPersonelTur.Items.Add(InputEnums.Fileto);
+            cbPersonelTur.Items.Add(InputEnums.Kontrol);
+            
         }
     }
 }
