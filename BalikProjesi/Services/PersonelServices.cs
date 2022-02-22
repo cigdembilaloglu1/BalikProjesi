@@ -80,11 +80,17 @@ namespace BalikProjesi.Services
 
             return result;
         }
-        public List<Personel> Get()
+        public List<Personel> GetControl()
         {
             var result = pdb.Find(x => true).ToList();
             return result;
         }
+        public List<Personel> GetFillet()
+        {
+            var result = fdb.Find(x => true).ToList();
+            return result;
+        }
+
         public bool Update(string _id, string _pname = null, string _psurname = null, string _pcode = null, string _pgroup = null)
         {
             if (!String.IsNullOrEmpty(_pname) && !String.IsNullOrEmpty(_psurname) && !String.IsNullOrEmpty(_pcode) && !String.IsNullOrEmpty(_pgroup))

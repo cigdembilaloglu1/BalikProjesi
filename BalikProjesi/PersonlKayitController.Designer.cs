@@ -50,6 +50,7 @@
             this.txtKartID = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.cbPersonelTur = new System.Windows.Forms.ComboBox();
+            this.cbListGroup = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // txtPersonelAd
@@ -231,10 +232,20 @@
             this.cbPersonelTur.Size = new System.Drawing.Size(100, 21);
             this.cbPersonelTur.TabIndex = 3;
             // 
+            // cbListGroup
+            // 
+            this.cbListGroup.FormattingEnabled = true;
+            this.cbListGroup.Location = new System.Drawing.Point(431, 232);
+            this.cbListGroup.Name = "cbListGroup";
+            this.cbListGroup.Size = new System.Drawing.Size(121, 21);
+            this.cbListGroup.TabIndex = 8;
+            this.cbListGroup.SelectedIndexChanged += new System.EventHandler(this.cbListGroup_SelectedIndexChanged);
+            // 
             // PersonlKayitController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cbListGroup);
             this.Controls.Add(this.txtKartID);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -283,5 +294,6 @@
         private System.Windows.Forms.ColumnHeader PersGrup;
         private System.Windows.Forms.ColumnHeader PersTur;
         private System.Windows.Forms.ColumnHeader PersKartId;
+        private System.Windows.Forms.ComboBox cbListGroup;
     }
 }

@@ -20,23 +20,46 @@ namespace BalikProjesi
             _perService= new Services.PersonelServices();
         }
 
-        public void list() 
+        public void list(string group=null) 
         {
             string PerAd, PerSoyad, PerKod, PerGrup, PerTur, PerCID;
-            
-            var dt =_perService.Get();
-            foreach (var item in dt)
+
+            if (group==InputEnums.Kontrol)
             {
-                PerAd = item.PersonelName;
-                PerSoyad = item.PersonelSurname;
-                PerKod = item.PersonelCode;
-                PerGrup = item.PersonelGroup;
-                PerTur = "deneme";
-                PerCID = item.CartId;
-                string[] data = { PerAd, PerSoyad, PerKod, PerGrup, PerTur, PerCID };
-                ListViewItem record = new ListViewItem(data);
-                listView1.Items.Add(record);
+                
+                var dt = _perService.GetControl();
+                foreach (var item in dt)
+                {
+                    PerAd = item.PersonelName;
+                    PerSoyad = item.PersonelSurname;
+                    PerKod = item.PersonelCode;
+                    PerGrup = item.PersonelGroup;
+                    PerTur = group;
+                    PerCID = item.CartId;
+                    string[] data = { PerAd, PerSoyad, PerKod, PerGrup, PerTur, PerCID };
+                    ListViewItem record = new ListViewItem(data);
+                    listView1.Items.Add(record);
+                }
             }
+            else
+            {
+                
+                var dt = _perService.GetFillet();
+                foreach (var item in dt)
+                {
+                    PerAd = item.PersonelName;
+                    PerSoyad = item.PersonelSurname;
+                    PerKod = item.PersonelCode;
+                    PerGrup = item.PersonelGroup;
+                    PerTur = group;
+                    PerCID = item.CartId;
+                    string[] data = { PerAd, PerSoyad, PerKod, PerGrup, PerTur, PerCID };
+                    ListViewItem record = new ListViewItem(data);
+                    listView1.Items.Add(record);
+                }
+            }
+            
+            
             
             txtKartID.Clear();
             txtPersonelAd.Clear();
@@ -80,12 +103,21 @@ namespace BalikProjesi
         }
 
         private void PersonlKayitController_Load(object sender, EventArgs e)
-        {list();
+        {
+            list(InputEnums.Kontrol);
             cbPersonelTur.Items.Add(InputEnums.Fileto);
             cbPersonelTur.Items.Add(InputEnums.Kontrol);
-           
+            cbListGroup.Items.Add(InputEnums.Fileto);
+            cbListGroup.Items.Add(InputEnums.Kontrol);
 
 
+
+
+        }
+
+        private void cbListGroup_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            list(cbListGroup.Text);
 
         }
     }
