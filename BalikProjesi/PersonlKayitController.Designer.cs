@@ -119,6 +119,7 @@
             // 
             // listView1
             // 
+            this.listView1.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.PersonelAd,
             this.PersSoyad,
@@ -126,7 +127,10 @@
             this.PersGrup,
             this.PersTur,
             this.PersKartId});
+            this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.listView1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.listView1.FullRowSelect = true;
+            this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(55, 259);
             this.listView1.Name = "listView1";
