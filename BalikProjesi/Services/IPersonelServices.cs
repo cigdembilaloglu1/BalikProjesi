@@ -11,7 +11,7 @@ namespace BalikProjesi.Services
         List<Personel> GetControl();
         List<Personel> GetFillet();
         Personel Get(string _pid);
-        bool Update(Personel personel);
+        bool Update(Personel personel, string persType);
        
     }
 }

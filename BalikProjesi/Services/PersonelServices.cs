@@ -91,7 +91,7 @@ namespace BalikProjesi.Services
             return result;
         }
 
-        public bool Update(Personel personel)
+        public bool Update(Personel personel, string perstype)
         {
             if (!String.IsNullOrEmpty(personel.PersonelName) && !String.IsNullOrEmpty(personel.PersonelSurname) && !String.IsNullOrEmpty(personel.PersonelCode) && !String.IsNullOrEmpty(personel.PersonelGroup))
             {
@@ -107,7 +107,16 @@ namespace BalikProjesi.Services
 
                 try
                 {
-                    pdb.UpdateOne(Filter, Update);
+                    if (perstype==InputEnums.Fileto)
+                    {
+                        fdb.UpdateOne(Filter, Update);
+                    }
+                    else
+                    {
+                        pdb.UpdateOne(Filter, Update);
+
+                    }
+                    
                     return true;
                 }
                 catch

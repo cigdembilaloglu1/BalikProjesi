@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BalikProjesi.Entities;
 
 namespace BalikProjesi
 {
@@ -28,30 +29,29 @@ namespace BalikProjesi
                 txtPersonelAd.Text = itm.SubItems[0].Text;
                 txtPersonelSoyad.Text = itm.SubItems[1].Text;
                 txtPersonelKod.Text = itm.SubItems[2].Text;
-                
-               
                 txtKartID.Text = itm.SubItems[5].Text;
-                string persID = itm.SubItems[7].Text;
-                string PersonelAd = itm.SubItems[0].Text;
-                string PersonelSoyad = itm.SubItems[1].Text;
-                string PersonelKod = itm.SubItems[2].Text;
+                
                 for (int i = 0; i < cbPersonelGrup.Items.Count; i++)
                 {
-                    if (cbPersonelGrup.Items[i] == itm.SubItems[3].Text && itm.SubItems[3] != null)
+                    
+                    if (cbPersonelGrup.Items[i].ToString() == itm.SubItems[3].Text.ToUpper()&&itm.SubItems[3] != null)
                     {
-                        
-                        cbPersonelGrup.SelectedIndex = i;
+                        cbPersonelGrup.SelectedItem = itm.SubItems[3].Text.ToUpper();
+                       
                     }
+                    
                 }
                 for (int i = 0; i < cbPersonelTur.Items.Count; i++)
                 {
-                    if (cbPersonelTur.Items[i] == itm.SubItems[4].Text && itm.SubItems[3] != null)
+                    if (cbPersonelTur.Items[i].ToString() == itm.SubItems[4].Text && itm.SubItems[4] != null)
                     {
-                        cbPersonelTur.SelectedIndex = i;
+                        cbPersonelTur.SelectedItem = itm.SubItems[4].Text;
+                        
                     }
+                    
                 }
-                string PersonelTur = itm.SubItems[4].Text;
-                string KartID = itm.SubItems[5].Text;
+
+                label9.Text = itm.SubItems[6].Text;
 
             }
             else { }
@@ -132,8 +132,8 @@ namespace BalikProjesi
             txtPersonelAd.Clear();
             txtPersonelSoyad.Clear();
             txtPersonelKod.Clear();
-            cbPersonelGrup.Text = "";
-            cbPersonelTur.Text = "";
+            cbPersonelGrup.SelectedIndex = 0;
+            cbPersonelTur.SelectedIndex = 0;
 
 
         }
@@ -217,7 +217,7 @@ namespace BalikProjesi
             cbListGroup.Items.Add(InputEnums.Kontrol);
             cbListGroup.SelectedIndex = 1;
             cbPersonelTur.SelectedIndex = 1;
-
+            label9.Visible = false;
 
 
         }
@@ -231,6 +231,29 @@ namespace BalikProjesi
         private void button4_Click(object sender, EventArgs e)
         {
             listviewDataGet();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string persID = label9.Text;
+            string PersonelAd = txtPersonelAd.Text;
+            string PersonelSoyad = txtPersonelSoyad.Text;
+            string PersonelKod = txtPersonelKod.Text;
+            string PersonelGrup = cbPersonelGrup.Text;
+            string PersonelTur = cbPersonelTur.Text;
+            Personel prs = new Personel();
+            string KartID = txtKartID.Text;
+            prs.Id = persID;
+            prs.PersonelName = PersonelAd;
+            prs.PersonelSurname = PersonelSoyad;
+            prs.PersonelCode = PersonelKod;
+            prs.PersonelGroup = PersonelGrup;
+            prs.CartId = KartID;
+            bool chk=_perService.Update(prs, PersonelTur);
+            if (chk==true)
+            {
+                MessageBox.Show("Güncelleme başarılı.");
+            }
         }
     }
 }

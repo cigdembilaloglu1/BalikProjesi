@@ -52,7 +52,10 @@
             this.cbPersonelTur = new System.Windows.Forms.ComboBox();
             this.cbListGroup = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();            
+            this.label8 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.PersID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtPersonelAd
@@ -121,6 +124,7 @@
             // 
             // cbPersonelGrup
             // 
+            this.cbPersonelGrup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPersonelGrup.FormattingEnabled = true;
             this.cbPersonelGrup.Location = new System.Drawing.Point(266, 132);
             this.cbPersonelGrup.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -137,7 +141,8 @@
             this.PersKod,
             this.PersGrup,
             this.PersTur,
-            this.PersKartId});
+            this.PersKartId,
+            this.PersID});
             this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.listView1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.listView1.FullRowSelect = true;
@@ -203,6 +208,7 @@
             this.button2.TabIndex = 6;
             this.button2.Text = "GÜNCELLE";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
@@ -288,10 +294,35 @@
             this.label8.TabIndex = 10;
             this.label8.Text = "LİSTELEMEK İÇİN ";
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(401, 121);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 11;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // PersID
+            // 
+            this.PersID.Width = 0;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(35, 225);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(41, 13);
+            this.label9.TabIndex = 12;
+            this.label9.Text = "label9";
+            // 
             // PersonlKayitController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;            
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.cbListGroup);
@@ -348,5 +379,8 @@
         private System.Windows.Forms.ComboBox cbListGroup;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.ColumnHeader PersID;
+        private System.Windows.Forms.Label label9;
     }
 }
