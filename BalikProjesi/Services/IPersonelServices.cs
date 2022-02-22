@@ -10,8 +10,8 @@ namespace BalikProjesi.Services
         bool Delete(string _pid);
         List<Personel> GetControl();
         List<Personel> GetFillet();
-
         Personel Get(string _pid);
         bool Update(string _id, string _pname = null, string _psurname = null, string _pcode = null, string _pgroup = null);
+       
     }
 }

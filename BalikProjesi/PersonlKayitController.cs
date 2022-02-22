@@ -17,16 +17,16 @@ namespace BalikProjesi
         public PersonlKayitController()
         {
             InitializeComponent();
-            _perService= new Services.PersonelServices();
+            _perService = new Services.PersonelServices();
         }
 
-        public void list(string group=null) 
+        public void list(string group = null)
         {
             string PerAd, PerSoyad, PerKod, PerGrup, PerTur, PerCID;
 
-            if (group==InputEnums.Kontrol)
+            if (group == InputEnums.Kontrol)
             {
-                
+
                 var dt = _perService.GetControl();
                 foreach (var item in dt)
                 {
@@ -43,7 +43,7 @@ namespace BalikProjesi
             }
             else
             {
-                
+
                 var dt = _perService.GetFillet();
                 foreach (var item in dt)
                 {
@@ -58,9 +58,9 @@ namespace BalikProjesi
                     listView1.Items.Add(record);
                 }
             }
-            
-            
-            
+
+
+
             txtKartID.Clear();
             txtPersonelAd.Clear();
             txtPersonelSoyad.Clear();
@@ -70,9 +70,19 @@ namespace BalikProjesi
 
 
         }
+        public void SelectedClear()
+        {
 
+            foreach (var item in listView1.SelectedItems)
+            {
+                listView1.SelectedItems.Clear();
+            
+            }
+
+        }
         private void button3_Click(object sender, EventArgs e)
         {
+            SelectedClear();
 
         }
 
@@ -81,6 +91,31 @@ namespace BalikProjesi
             if (string.IsNullOrEmpty(txtKartID.Text.Trim()))
             {
                 MessageBox.Show("LÜtfen Kart UUID'nizi gösteriniz", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                txtKartID.Focus();
+            }
+            if (string.IsNullOrEmpty(txtPersonelAd.Text.Trim()))
+            {
+                MessageBox.Show("LÜtfen Adınızı Giriniz ", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                txtKartID.Focus();
+            }
+            if (string.IsNullOrEmpty(txtPersonelSoyad.Text.Trim()))
+            {
+                MessageBox.Show("LÜtfen Soyadınızı Giriniz", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                txtKartID.Focus();
+            }
+            if (string.IsNullOrEmpty(txtPersonelKod.Text.Trim()))
+            {
+                MessageBox.Show("LÜtfen Personel Kodunuzu Giriniz", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                txtKartID.Focus();
+            }
+            if (string.IsNullOrEmpty(cbPersonelGrup.Text.Trim()))
+            {
+                MessageBox.Show("LÜtfen Personel Grubunuzu Seçiniz", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                txtKartID.Focus();
+            }
+            if (string.IsNullOrEmpty(cbPersonelTur.Text.Trim()))
+            {
+                MessageBox.Show("LÜtfen Personel Türünüzü Seçiniz ", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 txtKartID.Focus();
             }
             else
