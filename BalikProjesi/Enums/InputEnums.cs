@@ -13,6 +13,10 @@ namespace BalikProjesi.Enums
         public const string Admin = "Admin";
         public const string User = "User";
         public const string Kontrol = "Kontrol";
+        public const string A = "A";
+        public const string B = "B";
+        public const string C = "C";
+
 
     }
 }

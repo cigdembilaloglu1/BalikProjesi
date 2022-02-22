@@ -21,16 +21,37 @@ namespace BalikProjesi
         }
         public void listviewDataGet()
         {
-            if (listView1.SelectedItems.Count > 0)
+            if (listView1.SelectedItems.Count != 0)
             {
                 ListViewItem itm = listView1.SelectedItems[0];
 
                 txtPersonelAd.Text = itm.SubItems[0].Text;
                 txtPersonelSoyad.Text = itm.SubItems[1].Text;
                 txtPersonelKod.Text = itm.SubItems[2].Text;
-                cbPersonelGrup.Text = itm.SubItems[3].Text;
-                cbPersonelTur.Text = itm.SubItems[4].Text;
+                
+               
                 txtKartID.Text = itm.SubItems[5].Text;
+                string persID = itm.SubItems[7].Text;
+                string PersonelAd = itm.SubItems[0].Text;
+                string PersonelSoyad = itm.SubItems[1].Text;
+                string PersonelKod = itm.SubItems[2].Text;
+                for (int i = 0; i < cbPersonelGrup.Items.Count; i++)
+                {
+                    if (cbPersonelGrup.Items[i] == itm.SubItems[3].Text && itm.SubItems[3] != null)
+                    {
+                        
+                        cbPersonelGrup.SelectedIndex = i;
+                    }
+                }
+                for (int i = 0; i < cbPersonelTur.Items.Count; i++)
+                {
+                    if (cbPersonelTur.Items[i] == itm.SubItems[4].Text && itm.SubItems[3] != null)
+                    {
+                        cbPersonelTur.SelectedIndex = i;
+                    }
+                }
+                string PersonelTur = itm.SubItems[4].Text;
+                string KartID = itm.SubItems[5].Text;
 
             }
             else { }
@@ -186,6 +207,10 @@ namespace BalikProjesi
         private void PersonlKayitController_Load(object sender, EventArgs e)
         {
             list(InputEnums.Kontrol);
+            cbPersonelGrup.Items.Add(InputEnums.A);
+            cbPersonelGrup.Items.Add(InputEnums.B);
+            cbPersonelGrup.Items.Add(InputEnums.C);
+            cbPersonelGrup.SelectedIndex = 0;
             cbPersonelTur.Items.Add(InputEnums.Fileto);
             cbPersonelTur.Items.Add(InputEnums.Kontrol);
             cbListGroup.Items.Add(InputEnums.Fileto);

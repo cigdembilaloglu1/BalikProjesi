@@ -91,18 +91,19 @@ namespace BalikProjesi.Services
             return result;
         }
 
-        public bool Update(string _id, string _pname = null, string _psurname = null, string _pcode = null, string _pgroup = null)
+        public bool Update(Personel personel)
         {
-            if (!String.IsNullOrEmpty(_pname) && !String.IsNullOrEmpty(_psurname) && !String.IsNullOrEmpty(_pcode) && !String.IsNullOrEmpty(_pgroup))
+            if (!String.IsNullOrEmpty(personel.PersonelName) && !String.IsNullOrEmpty(personel.PersonelSurname) && !String.IsNullOrEmpty(personel.PersonelCode) && !String.IsNullOrEmpty(personel.PersonelGroup))
             {
                 var Filter = Builders<Personel>.Filter
-                    .Eq(x => x.Id, _id);
+                    .Eq(x => x.Id, personel.Id);
 
                 var Update = Builders<Personel>.Update
-                    .Set(x => x.PersonelName, _pname)
-                    .Set(x => x.PersonelSurname, _psurname)
-                    .Set(x => x.PersonelCode, _pcode)
-                    .Set(x => x.PersonelGroup, _pgroup); ;
+                    .Set(x => x.PersonelName, personel.PersonelName)
+                    .Set(x => x.PersonelSurname, personel.PersonelSurname)
+                    .Set(x => x.PersonelCode, personel.PersonelCode)
+                    .Set(x => x.PersonelGroup, personel.PersonelGroup)
+                    .Set(x => x.CartId, personel.CartId); ;
 
                 try
                 {
