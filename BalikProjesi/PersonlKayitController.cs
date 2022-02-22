@@ -69,10 +69,7 @@ namespace BalikProjesi
             string PerAd, PerSoyad, PerKod, PerGrup, PerTur, PerCID,PerId;
             if (listView1.Items.Count!=0)
             {
-                for (int i = 0; i < listView1.Items.Count; i++)
-                {
-                    listView1.Items.Clear();
-                }
+                listView1.Items.Clear();
             }
 
             if (group == InputEnums.Kontrol)
@@ -207,9 +204,9 @@ namespace BalikProjesi
                 }
                 else
                 {
-                    MessageBox.Show("Personel kaydı başarısız, Girilen personel daha önceden kayıt edilmiştir.");
+                    MessageBox.Show("Personel kaydı başarısız. Girilen personel daha önceden kayıt edilmiştir.");
                 }
-                list();
+                list(cbPersonelTur.Text);
 
             }
 
@@ -248,8 +245,7 @@ namespace BalikProjesi
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string persID = label9.Text;
-            
+            string persID = label9.Text;            
             string PersonelAd = txtPersonelAd.Text;
             string PersonelSoyad = txtPersonelSoyad.Text;
             string PersonelKod = txtPersonelKod.Text;
@@ -268,6 +264,11 @@ namespace BalikProjesi
             {
                 MessageBox.Show("Güncelleme başarılı.");
             }
+            else
+            {
+                MessageBox.Show("Güncelleme başarısız. Girilen kayıt daha önce girilmiştir.");
+            }
+            list(cbPersonelTur.Text);
         }
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
@@ -321,6 +322,11 @@ namespace BalikProjesi
         {
             bool chk=_perService.Delete(label9.Text, label10.Text);
             MessageBox.Show(chk.ToString());
+        }
+
+        private void listView1_Click(object sender, EventArgs e)
+        {
+            listviewDataGet();
         }
     }
 }

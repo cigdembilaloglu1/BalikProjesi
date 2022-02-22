@@ -162,6 +162,7 @@
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.Click += new System.EventHandler(this.listView1_Click);
             // 
             // PersonelAd
             // 
@@ -209,29 +210,6 @@
             // gÜNCELLEToolStripMenuItem
             // 
             this.gÜNCELLEToolStripMenuItem.Name = "gÜNCELLEToolStripMenuItem";
-            this.gÜNCELLEToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.gÜNCELLEToolStripMenuItem.Text = "GÜNCELLE";
-            this.gÜNCELLEToolStripMenuItem.Click += new System.EventHandler(this.gÜNCELLEToolStripMenuItem_Click);
-            // 
-            // sİLToolStripMenuItem
-            // 
-            this.sİLToolStripMenuItem.Name = "sİLToolStripMenuItem";
-            this.sİLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.sİLToolStripMenuItem.Text = "SİL";
-            this.sİLToolStripMenuItem.Click += new System.EventHandler(this.sİLToolStripMenuItem_Click);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.gÜNCELLEToolStripMenuItem,
-            this.sİLToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(132, 48);
-            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
-            // 
-            // gÜNCELLEToolStripMenuItem
-            // 
-            this.gÜNCELLEToolStripMenuItem.Name = "gÜNCELLEToolStripMenuItem";
             this.gÜNCELLEToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.gÜNCELLEToolStripMenuItem.Text = "GÜNCELLE";
             this.gÜNCELLEToolStripMenuItem.Click += new System.EventHandler(this.gÜNCELLEToolStripMenuItem_Click);
@@ -241,6 +219,7 @@
             this.sİLToolStripMenuItem.Name = "sİLToolStripMenuItem";
             this.sİLToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.sİLToolStripMenuItem.Text = "SİL";
+            this.sİLToolStripMenuItem.Click += new System.EventHandler(this.sİLToolStripMenuItem_Click);
             // 
             // button1
             // 
@@ -359,8 +338,16 @@
             this.label9.TabIndex = 13;
             this.label9.Text = "label9";
             // 
-            // btnReader
             // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(80, 225);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(34, 13);
+            this.label10.TabIndex = 12;
+            this.label10.Text = "asda";
+            // 
+            // btnReader
             // 
             this.btnReader.Location = new System.Drawing.Point(184, 196);
             this.btnReader.Name = "btnReader";
@@ -370,31 +357,12 @@
             this.btnReader.UseVisualStyleBackColor = true;
             this.btnReader.Click += new System.EventHandler(this.btnReader_Click);
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(80, 225);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(34, 13);
-            this.label10.TabIndex = 12;
-            this.label10.Text = "asda";
-            // 
-            // 
-            this.gÜNCELLEToolStripMenuItem.Name = "gÜNCELLEToolStripMenuItem";
-            this.gÜNCELLEToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.gÜNCELLEToolStripMenuItem.Text = "GÜNCELLE";
-            this.Controls.Add(this.btnReader);
-            this.Controls.Add(this.label10);
-            this.gÜNCELLEToolStripMenuItem.Click += new System.EventHandler(this.gÜNCELLEToolStripMenuItem_Click);
-            // 
-            // sİLToolStripMenuItem
-            // 
-            this.sİLToolStripMenuItem.Name = "sİLToolStripMenuItem";
-            this.sİLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.sİLToolStripMenuItem.Text = "SİL";
-            // 
             // PersonlKayitController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnReader);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label7);
@@ -418,7 +386,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "PersonlKayitController";
-            this.Size = new System.Drawing.Size(756, 495);
+            this.Size = new System.Drawing.Size(779, 532);
             this.Load += new System.EventHandler(this.PersonlKayitController_Load);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
