@@ -159,6 +159,7 @@
     <Compile Include="KasaKayitController.Designer.cs">
       <DependentUpon>KasaKayitController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\ReaderResponseModel.cs" />
     <Compile Include="PersonlKayitController.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -182,6 +183,7 @@
     <Compile Include="Services\IPersonelServices.cs" />
     <Compile Include="Services\LoginServices.cs" />
     <Compile Include="Services\PersonelServices.cs" />
+    <Compile Include="Services\ReaderServices.cs" />
     <Compile Include="Services\RecordingsServices.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
