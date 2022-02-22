@@ -53,6 +53,7 @@
             this.cbListGroup = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.PersId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // txtPersonelAd
@@ -137,7 +138,8 @@
             this.PersKod,
             this.PersGrup,
             this.PersTur,
-            this.PersKartId});
+            this.PersKartId,
+            this.PersId});
             this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.listView1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.listView1.FullRowSelect = true;
@@ -146,7 +148,7 @@
             this.listView1.Location = new System.Drawing.Point(64, 259);
             this.listView1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(627, 217);
+            this.listView1.Size = new System.Drawing.Size(659, 217);
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -288,6 +290,11 @@
             this.label8.TabIndex = 10;
             this.label8.Text = "LİSTELEMEK İÇİN ";
             // 
+            // PersId
+            // 
+            this.PersId.Text = "Personel ID";
+            this.PersId.Width = 0;
+            // 
             // PersonlKayitController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -348,5 +355,6 @@
         private System.Windows.Forms.ComboBox cbListGroup;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ColumnHeader PersId;
     }
 }

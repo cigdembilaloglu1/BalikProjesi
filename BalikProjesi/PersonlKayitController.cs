@@ -22,7 +22,7 @@ namespace BalikProjesi
 
         public void list(string group = null)
         {
-            string PerAd, PerSoyad, PerKod, PerGrup, PerTur, PerCID;
+            string PerAd, PerSoyad, PerKod, PerGrup, PerTur, PerCID,PerId;
             if (listView1.Items.Count!=0)
             {
                 for (int i = 0; i < listView1.Items.Count; i++)
@@ -43,7 +43,8 @@ namespace BalikProjesi
                     PerGrup = item.PersonelGroup;
                     PerTur = group;
                     PerCID = item.CartId;
-                    string[] data = { PerAd, PerSoyad, PerKod, PerGrup, PerTur, PerCID };
+                    PerId = item.Id;
+                    string[] data = { PerAd, PerSoyad, PerKod, PerGrup, PerTur, PerCID,PerId };
                     ListViewItem record = new ListViewItem(data);
                     listView1.Items.Add(record);
                 }
@@ -69,7 +70,8 @@ namespace BalikProjesi
                     PerGrup = item.PersonelGroup;
                     PerTur = group;
                     PerCID = item.CartId;
-                    string[] data = { PerAd, PerSoyad, PerKod, PerGrup, PerTur, PerCID };
+                    PerId = item.Id;
+                    string[] data = { PerAd, PerSoyad, PerKod, PerGrup, PerTur, PerCID, PerId };
                     ListViewItem record = new ListViewItem(data);
                     listView1.Items.Add(record);
                 }
