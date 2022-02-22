@@ -247,6 +247,7 @@
             // 
             // cbPersonelTur
             // 
+            this.cbPersonelTur.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPersonelTur.FormattingEnabled = true;
             this.cbPersonelTur.Location = new System.Drawing.Point(266, 165);
             this.cbPersonelTur.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -256,6 +257,7 @@
             // 
             // cbListGroup
             // 
+            this.cbListGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbListGroup.FormattingEnabled = true;
             this.cbListGroup.Location = new System.Drawing.Point(476, 177);
             this.cbListGroup.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);

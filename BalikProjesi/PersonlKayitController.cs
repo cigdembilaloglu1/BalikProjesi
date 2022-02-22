@@ -169,7 +169,8 @@ namespace BalikProjesi
             cbPersonelTur.Items.Add(InputEnums.Kontrol);
             cbListGroup.Items.Add(InputEnums.Fileto);
             cbListGroup.Items.Add(InputEnums.Kontrol);
-
+            cbListGroup.SelectedIndex = 1;
+            cbPersonelTur.SelectedIndex = 1;
 
 
 
