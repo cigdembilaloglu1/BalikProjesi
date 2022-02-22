@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txtPersonelAd = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -56,6 +57,10 @@
             this.label8 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.gÜNCELLEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sİLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtPersonelAd
@@ -143,6 +148,7 @@
             this.PersTur,
             this.PersKartId,
             this.PersID});
+            this.listView1.ContextMenuStrip = this.contextMenuStrip1;
             this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.listView1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.listView1.FullRowSelect = true;
@@ -317,6 +323,28 @@
             this.label9.TabIndex = 12;
             this.label9.Text = "label9";
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gÜNCELLEToolStripMenuItem,
+            this.sİLToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // gÜNCELLEToolStripMenuItem
+            // 
+            this.gÜNCELLEToolStripMenuItem.Name = "gÜNCELLEToolStripMenuItem";
+            this.gÜNCELLEToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.gÜNCELLEToolStripMenuItem.Text = "GÜNCELLE";
+            this.gÜNCELLEToolStripMenuItem.Click += new System.EventHandler(this.gÜNCELLEToolStripMenuItem_Click);
+            // 
+            // sİLToolStripMenuItem
+            // 
+            this.sİLToolStripMenuItem.Name = "sİLToolStripMenuItem";
+            this.sİLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sİLToolStripMenuItem.Text = "SİL";
+            // 
             // PersonlKayitController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -347,6 +375,7 @@
             this.Name = "PersonlKayitController";
             this.Size = new System.Drawing.Size(756, 495);
             this.Load += new System.EventHandler(this.PersonlKayitController_Load);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -382,5 +411,8 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.ColumnHeader PersID;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem gÜNCELLEToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sİLToolStripMenuItem;
     }
 }

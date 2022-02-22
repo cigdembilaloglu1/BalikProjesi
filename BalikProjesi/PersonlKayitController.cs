@@ -263,5 +263,33 @@ namespace BalikProjesi
                 MessageBox.Show("Güncelleme başarılı.");
             }
         }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void gÜNCELLEToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string persID = label9.Text;
+            string PersonelAd = txtPersonelAd.Text;
+            string PersonelSoyad = txtPersonelSoyad.Text;
+            string PersonelKod = txtPersonelKod.Text;
+            string PersonelGrup = cbPersonelGrup.Text;
+            string PersonelTur = cbPersonelTur.Text;
+            Personel prs = new Personel();
+            string KartID = txtKartID.Text;
+            prs.Id = persID;
+            prs.PersonelName = PersonelAd;
+            prs.PersonelSurname = PersonelSoyad;
+            prs.PersonelCode = PersonelKod;
+            prs.PersonelGroup = PersonelGrup;
+            prs.CartId = KartID;
+            bool chk = _perService.Update(prs, PersonelTur);
+            if (chk == true)
+            {
+                MessageBox.Show("Güncelleme başarılı.");
+            }
+        }
     }
 }
