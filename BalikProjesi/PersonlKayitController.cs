@@ -26,14 +26,14 @@ namespace BalikProjesi
                 ListViewItem itm = listView1.SelectedItems[0];
 
                 txtPersonelAd.Text = itm.SubItems[0].Text;
-                txtPersonelSoyad.Text=itm.SubItems[1].Text;
+                txtPersonelSoyad.Text = itm.SubItems[1].Text;
                 txtPersonelKod.Text = itm.SubItems[2].Text;
                 cbPersonelGrup.Text = itm.SubItems[3].Text;
                 cbPersonelTur.Text = itm.SubItems[4].Text;
                 txtKartID.Text = itm.SubItems[5].Text;
-                
-            }
 
+            }
+            else { }
 
 
 
