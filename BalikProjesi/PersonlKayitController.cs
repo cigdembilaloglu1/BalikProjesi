@@ -19,6 +19,41 @@ namespace BalikProjesi
             InitializeComponent();
             _perService = new Services.PersonelServices();
         }
+        public void listviewDataGet()
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                ListViewItem itm = listView1.SelectedItems[0];
+
+                txtPersonelAd.Text = itm.SubItems[0].Text;
+                txtPersonelSoyad.Text=itm.SubItems[1].Text;
+                txtPersonelKod.Text = itm.SubItems[2].Text;
+                cbPersonelGrup.Text = itm.SubItems[3].Text;
+                cbPersonelTur.Text = itm.SubItems[4].Text;
+                txtKartID.Text = itm.SubItems[5].Text;
+                //IndexLabel.Text = itm.SubItems[1].Text;
+                //p2text.Text = itm.SubItems[2].Text;
+                //p3text.Text = itm.SubItems[3].Text;
+                //p4text.Text = itm.SubItems[4].Text;
+                //modulasyoncomb.Text = itm.SubItems[5].Text;
+                //p6text.Text = itm.SubItems[6].Text;
+                //okkcomb.Text = itm.SubItems[7].Text;
+                //p8text.Text = itm.SubItems[8].Text;
+                //if (itm.SubItems[9].Text == "ON")
+                //    onradio.Checked = true;
+                //else
+                //    offradio.Checked = true;
+                //p10text.Text = itm.SubItems[10].Text;
+                //if (itm.SubItems[11].Text == "ON")
+                //    onradiokullanim.Checked = true;
+                //else
+                //    offradiokullanim.Checked = true;
+            }
+
+
+
+
+        }
 
         public void list(string group = null)
         {
@@ -180,6 +215,11 @@ namespace BalikProjesi
         {
             list(cbListGroup.Text);
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            listviewDataGet();
         }
     }
 }
