@@ -23,16 +23,21 @@ namespace BalikProjesi
         public void list() 
         {
             string PerAd, PerSoyad, PerKod, PerGrup, PerTur, PerCID;
-            PerAd = txtPersonelAd.Text;
-            PerSoyad = txtPersonelSoyad.Text;
-            PerKod = txtPersonelKod.Text;
-            PerGrup = cbPersonelGrup.Text;
-            PerTur = cbPersonelTur.Text;
-            PerCID = txtKartID.Text;
-
-            string[] data = { PerAd, PerSoyad, PerKod, PerGrup, PerTur, PerCID };
-            ListViewItem record = new ListViewItem(data);
-            listView1.Items.Add(record);
+            
+            var dt =_perService.Get();
+            foreach (var item in dt)
+            {
+                PerAd = item.PersonelName;
+                PerSoyad = item.PersonelSurname;
+                PerKod = item.PersonelCode;
+                PerGrup = item.PersonelGroup;
+                PerTur = "deneme";
+                PerCID = item.CartId;
+                string[] data = { PerAd, PerSoyad, PerKod, PerGrup, PerTur, PerCID };
+                ListViewItem record = new ListViewItem(data);
+                listView1.Items.Add(record);
+            }
+            
             txtKartID.Clear();
             txtPersonelAd.Clear();
             txtPersonelSoyad.Clear();
@@ -75,7 +80,8 @@ namespace BalikProjesi
         }
 
         private void PersonlKayitController_Load(object sender, EventArgs e)
-        {list();
+        {
+            list();
             cbPersonelTur.Items.Add(InputEnums.Fileto);
             cbPersonelTur.Items.Add(InputEnums.Kontrol);
             
