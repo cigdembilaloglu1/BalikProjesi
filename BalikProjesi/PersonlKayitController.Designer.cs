@@ -45,6 +45,9 @@
             this.PersTur = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PersKartId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PersID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.gÜNCELLEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sİLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -54,12 +57,9 @@
             this.cbPersonelTur = new System.Windows.Forms.ComboBox();
             this.cbListGroup = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.gÜNCELLEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sİLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnReader = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -196,6 +196,28 @@
             // 
             this.PersID.Width = 0;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.gÜNCELLEToolStripMenuItem,
+            this.sİLToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(132, 48);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // gÜNCELLEToolStripMenuItem
+            // 
+            this.gÜNCELLEToolStripMenuItem.Name = "gÜNCELLEToolStripMenuItem";
+            this.gÜNCELLEToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.gÜNCELLEToolStripMenuItem.Text = "GÜNCELLE";
+            this.gÜNCELLEToolStripMenuItem.Click += new System.EventHandler(this.gÜNCELLEToolStripMenuItem_Click);
+            // 
+            // sİLToolStripMenuItem
+            // 
+            this.sİLToolStripMenuItem.Name = "sİLToolStripMenuItem";
+            this.sİLToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.sİLToolStripMenuItem.Text = "SİL";
+            // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.SystemColors.MenuHighlight;
@@ -248,7 +270,8 @@
             this.txtKartID.Location = new System.Drawing.Point(266, 197);
             this.txtKartID.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtKartID.Name = "txtKartID";
-            this.txtKartID.Size = new System.Drawing.Size(116, 20);
+            this.txtKartID.ReadOnly = true;
+            this.txtKartID.Size = new System.Drawing.Size(240, 20);
             this.txtKartID.TabIndex = 5;
             // 
             // label5
@@ -275,10 +298,10 @@
             // 
             this.cbListGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbListGroup.FormattingEnabled = true;
-            this.cbListGroup.Location = new System.Drawing.Point(476, 177);
+            this.cbListGroup.Location = new System.Drawing.Point(587, 106);
             this.cbListGroup.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbListGroup.Name = "cbListGroup";
-            this.cbListGroup.Size = new System.Drawing.Size(140, 21);
+            this.cbListGroup.Size = new System.Drawing.Size(91, 21);
             this.cbListGroup.TabIndex = 8;
             this.cbListGroup.SelectedIndexChanged += new System.EventHandler(this.cbListGroup_SelectedIndexChanged);
             // 
@@ -287,26 +310,15 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label7.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label7.Location = new System.Drawing.Point(448, 149);
+            this.label7.Location = new System.Drawing.Point(406, 107);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(275, 20);
+            this.label7.Size = new System.Drawing.Size(174, 20);
             this.label7.TabIndex = 9;
-            this.label7.Text = "PERSONEL GRUBUNU SEÇİNİZ";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label8.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label8.Location = new System.Drawing.Point(512, 135);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(116, 13);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "LİSTELEMEK İÇİN ";
+            this.label7.Text = "PERSONEL GRUBU";
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(401, 121);
+            this.button4.Location = new System.Drawing.Point(410, 132);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 11;
@@ -317,41 +329,29 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(35, 225);
+            this.label9.Location = new System.Drawing.Point(61, 233);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(41, 13);
-            this.label9.TabIndex = 12;
+            this.label9.TabIndex = 13;
             this.label9.Text = "label9";
             // 
-            // contextMenuStrip1
+            // btnReader
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.gÜNCELLEToolStripMenuItem,
-            this.sİLToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
-            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
-            // 
-            // gÜNCELLEToolStripMenuItem
-            // 
-            this.gÜNCELLEToolStripMenuItem.Name = "gÜNCELLEToolStripMenuItem";
-            this.gÜNCELLEToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.gÜNCELLEToolStripMenuItem.Text = "GÜNCELLE";
-            this.gÜNCELLEToolStripMenuItem.Click += new System.EventHandler(this.gÜNCELLEToolStripMenuItem_Click);
-            // 
-            // sİLToolStripMenuItem
-            // 
-            this.sİLToolStripMenuItem.Name = "sİLToolStripMenuItem";
-            this.sİLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.sİLToolStripMenuItem.Text = "SİL";
+            this.btnReader.Location = new System.Drawing.Point(184, 196);
+            this.btnReader.Name = "btnReader";
+            this.btnReader.Size = new System.Drawing.Size(75, 23);
+            this.btnReader.TabIndex = 14;
+            this.btnReader.Text = "Kart Oku";
+            this.btnReader.UseVisualStyleBackColor = true;
+            this.btnReader.Click += new System.EventHandler(this.btnReader_Click);
             // 
             // PersonlKayitController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnReader);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.cbListGroup);
             this.Controls.Add(this.txtKartID);
@@ -407,12 +407,12 @@
         private System.Windows.Forms.ColumnHeader PersKartId;
         private System.Windows.Forms.ComboBox cbListGroup;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.ColumnHeader PersID;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem gÜNCELLEToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sİLToolStripMenuItem;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button btnReader;
     }
 }

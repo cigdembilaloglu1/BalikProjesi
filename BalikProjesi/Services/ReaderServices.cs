@@ -6,12 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-
-
+using System.Windows.Forms;
 
 namespace BalikProjesi.Services
 {
-    public class ReaderServices
+    public class ReaderServices : Form
     {
         private static SerialPort serialPort;
         private byte[] btdata;
@@ -19,10 +18,12 @@ namespace BalikProjesi.Services
         private string tagID;
         private string tagType;
         private int status;
-        private bool _continue;
+        public bool _continue;
         private byte[] numArray;
-        private ReaderResponseModel responseModel;
-
+        private TextBox idTextbox;
+        private TextBox typeTextbox;
+        private int type;
+        private delegate void SetTextDeleg(int type);
 
         public ReaderServices()
         {
@@ -34,43 +35,86 @@ namespace BalikProjesi.Services
         }
         public void openPort(string com = "COM5")
         {
-            serialPort.PortName = com;
-            serialPort.BaudRate = 115200;
-            serialPort.DataReceived += new SerialDataReceivedEventHandler(Fun_DataReceived);
 
-            serialPort.Open();
-        }
-        public async Task<ReaderResponseModel> SendCmdToReaderAsync(string comPort, int command, int owner = 0)
-        {   
-            if(!serialPort.IsOpen){
-                openPort(comPort);
+            if (!serialPort.IsOpen)
+            {
+                serialPort.PortName = com;
+                serialPort.BaudRate = 115200;
+                serialPort.DataReceived += new SerialDataReceivedEventHandler(Fun_DataReceived);
+
+                serialPort.Open();
             }
+           
+        }
+
+        public void closePort()
+        {
+            serialPort.Close();
+        }
+
+        public async Task setTagIdAndTypeToTextboxAsync(TextBox tagIdTextbox, TextBox tagTypeTextbox)
+        {
+            idTextbox = tagIdTextbox;
+            typeTextbox = tagTypeTextbox;
+
             _continue = true;
 
             while (_continue)
             {
-                if (command == 0)//Kart oku
-                {
-                    status = 0;
-                    ReadTagMemory("TID");
-                    status = 1;
-                    ReadTagMemory("USER");
-                }
-                else if (command == 1)
-                {
-                    ChangeTagOwner(owner);
-                }
-                await Task.Delay(1000); 
 
-                if(responseModel != null)
-                {
-                    _continue = false;
-                }
+                status = 0;
+                ReadTagMemory("TID");
+                status = 1;
+                ReadTagMemory("USER");
+              
+                await Task.Delay(1000);
             }
 
-            return responseModel;
+            idTextbox.BeginInvoke(new SetTextDeleg(Fun_IsDataReceived), new object[] { type = 0 });
+            typeTextbox.BeginInvoke(new SetTextDeleg(Fun_IsDataReceived), new object[] { type = 1 });
+
         }
-    
+
+        public async Task setTagIdToTextboxAsync(TextBox tagIdTextbox)
+        {
+            idTextbox = tagIdTextbox;
+
+            _continue = true;
+
+            while (_continue)
+            {
+
+                status = 0;
+                ReadTagMemory("TID");
+
+                await Task.Delay(1000);
+            }
+
+            idTextbox.BeginInvoke(new SetTextDeleg(Fun_IsDataReceived), new object[] { type = 0 });
+        }
+        
+        public async Task<bool> checkTagIsDefined()
+        {
+            _continue = true;
+
+            while (_continue)
+            {
+                status = 0;
+                ReadTagMemory("USER");
+
+                await Task.Delay(1000);
+            }
+
+            if(tagType == "")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         private void Fun_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
 
@@ -83,7 +127,7 @@ namespace BalikProjesi.Services
                 data += str;
             }
 
-            if (numArray.Length != 6)//rfid okuyucu hata kodu dönmediyse
+            if (numArray.Length > 6)//rfid okuyucu hata kodu dönmediyse
             {
                 if (status == 0)
                 {
@@ -99,7 +143,8 @@ namespace BalikProjesi.Services
                     else if (data.IndexOf("4D 58 63 21") != -1)
                         tagType = "Kontrol Personeli";
                     else
-                        tagType = "Kartın henüz bir sahibi yok";
+                        tagType = "";
+
                 }
                 else if (status == 2)//kart sahibini değiştirdiğinde
                 {
@@ -109,21 +154,30 @@ namespace BalikProjesi.Services
                     ReadTagMemory("USER");
                 }
 
-                responseModel = new ReaderResponseModel();
-                responseModel.TagId = tagID;
-                responseModel.TagType = tagType;
-                responseModel.ErrorCode = 0;
-            }
-            else
-            {
-                responseModel = new ReaderResponseModel();
-                responseModel.TagId = "";
-                responseModel.TagType = "";
-                responseModel.ErrorCode = 1;
+                _continue = false;
             }
 
             data = string.Empty;
-            serialPort.Close();
+        }
+
+        private void Fun_IsDataReceived(int type)
+        {
+            if (numArray.Length <= 6)
+            {
+                //textBox.Text = "Okuma Hatası";
+            }
+            else
+            {
+                if (type == 0)
+                {
+                    idTextbox.Text = tagID;
+                }else if (type == 0)
+                {
+                    typeTextbox.Text = tagType;
+                }
+                
+            }
+
         }
 
         private void ReadTagMemory(string memBank)
@@ -146,38 +200,40 @@ namespace BalikProjesi.Services
             btdata[7] = CheckSum(btdata, 0, 7); //Check
 
             serialPort.Write(btdata, 0, btdata.Length);
+            Thread.Sleep(500);
         }
 
         private void ChangeTagOwner(int owner)
-    {
-        byte ownerData;
-        if (owner == 0)
-            ownerData = 11;
-        else if (owner == 1)
-            ownerData = 22;
-        else
-            ownerData = 33;
+        {
+            byte ownerData;
+            if (owner == 0)
+                ownerData = 11;
+            else if (owner == 1)
+                ownerData = 22;
+            else
+                ownerData = 33;
 
-        btdata = new byte[16];
-        btdata[0] = 0xA0;   //Head
-        btdata[1] = 14;     //Len
-        btdata[2] = 255;    //Address
-        btdata[3] = 0x82;   //Cmd
-        btdata[4] = 0;      //PassWord
-        btdata[5] = 0;      //PassWord
-        btdata[6] = 0;      //PassWord
-        btdata[7] = 0;      //PassWord
-        btdata[8] = 0x03;   //MemBank
-        btdata[9] = 0;      //WordAdd
-        btdata[10] = 2;     //WordCnt
-        btdata[11] = 77;    //Data
-        btdata[12] = 88;    //Data
-        btdata[13] = 99;    //Data
-        btdata[14] = ownerData; //Data
-        btdata[15] = CheckSum(btdata, 0, 15); //Check
+            btdata = new byte[16];
+            btdata[0] = 0xA0;   //Head
+            btdata[1] = 14;     //Len
+            btdata[2] = 255;    //Address
+            btdata[3] = 0x82;   //Cmd
+            btdata[4] = 0;      //PassWord
+            btdata[5] = 0;      //PassWord
+            btdata[6] = 0;      //PassWord
+            btdata[7] = 0;      //PassWord
+            btdata[8] = 0x03;   //MemBank
+            btdata[9] = 0;      //WordAdd
+            btdata[10] = 2;     //WordCnt
+            btdata[11] = 77;    //Data
+            btdata[12] = 88;    //Data
+            btdata[13] = 99;    //Data
+            btdata[14] = ownerData; //Data
+            btdata[15] = CheckSum(btdata, 0, 15); //Check
 
-        serialPort.Write(btdata, 0, btdata.Length);
-    }
+            serialPort.Write(btdata, 0, btdata.Length);
+            Thread.Sleep(500);
+        }
 
         private byte CheckSum(byte[] btAryBuffer, int nStartPos, int nLen)
         {
@@ -190,4 +246,4 @@ namespace BalikProjesi.Services
     }
 }
 
-        
+

@@ -9,16 +9,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BalikProjesi.Entities;
+using BalikProjesi.Services;
 
 namespace BalikProjesi
 {
     public partial class PersonlKayitController : UserControl
     {
-        private readonly Services.IPersonelServices _perService;
+        private readonly IPersonelServices _perService;
+        private readonly ReaderServices _readerServices;
         public PersonlKayitController()
         {
             InitializeComponent();
-            _perService = new Services.PersonelServices();
+            _perService = new PersonelServices();
+            _readerServices = new ReaderServices();
         }
         public void listviewDataGet()
         {
@@ -290,6 +293,25 @@ namespace BalikProjesi
             {
                 MessageBox.Show("Güncelleme başarılı.");
             }
+        }
+
+        private async void btnReader_Click(object sender, EventArgs e)
+        {
+            _readerServices.openPort();
+
+            bool tagIsDefined;
+            tagIsDefined = await _readerServices.checkTagIsDefined();
+
+            if (!tagIsDefined)
+            {
+                await _readerServices.setTagIdToTextboxAsync(txtKartID);
+            }
+            else
+            {
+                txtKartID.Text = "Bu kart daha önce tanımlandı başka bir kart deneyiniz";
+            }
+
+            _readerServices.closePort();
         }
     }
 }
