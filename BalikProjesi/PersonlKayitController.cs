@@ -187,7 +187,8 @@ namespace BalikProjesi
             }
             else
             {
-                _perService.Create(new Entities.Personel
+                bool result;
+                result =_perService.Create(new Entities.Personel
                 {
                     PersonelName=txtPersonelAd.Text.Trim(),
                     PersonelSurname=txtPersonelSoyad.Text.Trim(),
@@ -196,7 +197,14 @@ namespace BalikProjesi
                     CreateDate=DateTime.Now,
                     CartId=txtKartID.Text.Trim()
               } ,cbPersonelTur.Text.Trim());
-                
+                if (result)
+                {
+                    MessageBox.Show("Personel kaydı başarılı.");
+                }
+                else
+                {
+                    MessageBox.Show("Personel kaydı başarısız, Girilen personel daha önceden kayıt edilmiştir.");
+                }
                 list();
 
             }

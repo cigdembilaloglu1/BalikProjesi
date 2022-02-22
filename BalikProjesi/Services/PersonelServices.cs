@@ -21,7 +21,7 @@ namespace BalikProjesi.Services
             fdb = Mongo._fpersonel;
             pdb = Mongo._cpersonel;
         }
-        public void Create(Personel personel,string persType)
+        public bool  Create(Personel personel,string persType)
         {
             var Islem = CheckPCode(personel, persType);
             if (Islem)
@@ -35,7 +35,7 @@ namespace BalikProjesi.Services
                     pdb.InsertOne(personel);
                 }      
             }
-
+            return Islem;
         }
 
         public bool CheckPCode(Personel pers,string persType)

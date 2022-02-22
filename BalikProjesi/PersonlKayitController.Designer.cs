@@ -43,6 +43,7 @@
             this.PersGrup = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PersTur = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PersKartId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PersID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -54,7 +55,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
-            this.PersID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -112,7 +112,7 @@
             this.txtPersonelSoyad.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtPersonelSoyad.Name = "txtPersonelSoyad";
             this.txtPersonelSoyad.Size = new System.Drawing.Size(116, 20);
-            this.txtPersonelSoyad.TabIndex = 0;
+            this.txtPersonelSoyad.TabIndex = 1;
             // 
             // txtPersonelKod
             // 
@@ -120,7 +120,7 @@
             this.txtPersonelKod.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtPersonelKod.Name = "txtPersonelKod";
             this.txtPersonelKod.Size = new System.Drawing.Size(116, 20);
-            this.txtPersonelKod.TabIndex = 0;
+            this.txtPersonelKod.TabIndex = 2;
             // 
             // cbPersonelGrup
             // 
@@ -186,6 +186,10 @@
             this.PersKartId.Text = "Kart Id";
             this.PersKartId.Width = 100;
             // 
+            // PersID
+            // 
+            this.PersID.Width = 0;
+            // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.SystemColors.MenuHighlight;
@@ -239,7 +243,7 @@
             this.txtKartID.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtKartID.Name = "txtKartID";
             this.txtKartID.Size = new System.Drawing.Size(116, 20);
-            this.txtKartID.TabIndex = 7;
+            this.txtKartID.TabIndex = 5;
             // 
             // label5
             // 
@@ -259,7 +263,7 @@
             this.cbPersonelTur.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbPersonelTur.Name = "cbPersonelTur";
             this.cbPersonelTur.Size = new System.Drawing.Size(116, 21);
-            this.cbPersonelTur.TabIndex = 3;
+            this.cbPersonelTur.TabIndex = 4;
             // 
             // cbListGroup
             // 
@@ -303,10 +307,6 @@
             this.button4.Text = "button4";
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // PersID
-            // 
-            this.PersID.Width = 0;
             // 
             // label9
             // 
