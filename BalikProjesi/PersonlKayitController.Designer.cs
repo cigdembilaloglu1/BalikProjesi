@@ -53,6 +53,7 @@
             this.cbListGroup = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
             this.PersId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
@@ -290,15 +291,11 @@
             this.label8.TabIndex = 10;
             this.label8.Text = "LİSTELEMEK İÇİN ";
             // 
-            // PersId
-            // 
-            this.PersId.Text = "Personel ID";
-            this.PersId.Width = 0;
-            // 
             // PersonlKayitController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.cbListGroup);
@@ -355,6 +352,5 @@
         private System.Windows.Forms.ComboBox cbListGroup;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ColumnHeader PersId;
     }
 }
