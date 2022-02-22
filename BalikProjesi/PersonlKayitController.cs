@@ -115,7 +115,7 @@ namespace BalikProjesi
             }
             if (string.IsNullOrEmpty(cbPersonelTur.Text.Trim()))
             {
-                MessageBox.Show("LÜtfen Personel Türünüzü Seçiniz ", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show("LÜtfen Personel Türünü Seçiniz ", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 txtKartID.Focus();
             }
             else
