@@ -247,6 +247,7 @@
             // 
             // cbPersonelTur
             // 
+            this.cbPersonelTur.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPersonelTur.FormattingEnabled = true;
             this.cbPersonelTur.Location = new System.Drawing.Point(266, 165);
             this.cbPersonelTur.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -256,6 +257,7 @@
             // 
             // cbListGroup
             // 
+            this.cbListGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbListGroup.FormattingEnabled = true;
             this.cbListGroup.Location = new System.Drawing.Point(476, 177);
             this.cbListGroup.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -267,22 +269,22 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Adobe Heiti Std R", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label7.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.label7.Location = new System.Drawing.Point(448, 149);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(240, 20);
+            this.label7.Size = new System.Drawing.Size(275, 20);
             this.label7.TabIndex = 9;
             this.label7.Text = "PERSONEL GRUBUNU SEÇİNİZ";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Adobe Heiti Std R", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.label8.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.label8.Location = new System.Drawing.Point(512, 135);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(100, 14);
+            this.label8.Size = new System.Drawing.Size(116, 13);
             this.label8.TabIndex = 10;
             this.label8.Text = "LİSTELEMEK İÇİN ";
             // 
@@ -312,7 +314,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "PersonlKayitController";
-            this.Size = new System.Drawing.Size(757, 479);
+            this.Size = new System.Drawing.Size(756, 495);
             this.Load += new System.EventHandler(this.PersonlKayitController_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

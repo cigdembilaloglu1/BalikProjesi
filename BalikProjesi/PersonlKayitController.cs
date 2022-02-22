@@ -23,6 +23,13 @@ namespace BalikProjesi
         public void list(string group = null)
         {
             string PerAd, PerSoyad, PerKod, PerGrup, PerTur, PerCID;
+            if (listView1.Items.Count!=0)
+            {
+                for (int i = 0; i < listView1.Items.Count; i++)
+                {
+                    listView1.Items.Clear();
+                }
+            }
 
             if (group == InputEnums.Kontrol)
             {
@@ -40,6 +47,15 @@ namespace BalikProjesi
                     ListViewItem record = new ListViewItem(data);
                     listView1.Items.Add(record);
                 }
+                for (int i = 0; i < listView1.Items.Count; i++)
+                {
+                    var val = listView1.Items[i].SubItems[4].Text;
+                    if (val == InputEnums.Fileto)
+                    {
+                        listView1.Items[i].Remove();
+                        i--;
+                    }
+                }
             }
             else
             {
@@ -56,6 +72,15 @@ namespace BalikProjesi
                     string[] data = { PerAd, PerSoyad, PerKod, PerGrup, PerTur, PerCID };
                     ListViewItem record = new ListViewItem(data);
                     listView1.Items.Add(record);
+                }
+                for (int i = 0; i < listView1.Items.Count; i++)
+                {
+                    var val = listView1.Items[i].SubItems[4].Text;
+                    if (val == InputEnums.Kontrol)
+                    {
+                        listView1.Items[i].Remove();
+                        i--;
+                    }
                 }
             }
 
@@ -144,7 +169,8 @@ namespace BalikProjesi
             cbPersonelTur.Items.Add(InputEnums.Kontrol);
             cbListGroup.Items.Add(InputEnums.Fileto);
             cbListGroup.Items.Add(InputEnums.Kontrol);
-
+            cbListGroup.SelectedIndex = 1;
+            cbPersonelTur.SelectedIndex = 1;
 
 
 
