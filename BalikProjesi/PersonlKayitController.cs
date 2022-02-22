@@ -75,10 +75,13 @@ namespace BalikProjesi
         }
 
         private void PersonlKayitController_Load(object sender, EventArgs e)
-        {list();
+        {   list();
             cbPersonelTur.Items.Add(InputEnums.Fileto);
             cbPersonelTur.Items.Add(InputEnums.Kontrol);
-            
+           
+
+
+
         }
     }
 }
