@@ -52,9 +52,7 @@
             this.cbPersonelTur = new System.Windows.Forms.ComboBox();
             this.cbListGroup = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.PersId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.label8 = new System.Windows.Forms.Label();            
             this.SuspendLayout();
             // 
             // txtPersonelAd
@@ -139,8 +137,7 @@
             this.PersKod,
             this.PersGrup,
             this.PersTur,
-            this.PersKartId,
-            this.PersId});
+            this.PersKartId});
             this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.listView1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.listView1.FullRowSelect = true;
@@ -294,8 +291,7 @@
             // PersonlKayitController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.button4);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;            
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.cbListGroup);
