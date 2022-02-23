@@ -17,20 +17,20 @@ namespace BalikProjesi.Services
             db = Mongo._fbox;
         }
 
-        public void Create(FishBox fishbox)
+        public bool Create(FishBox fishbox)
         {
-            var Islem = CheckFBox(fishbox.Id);
+            var Islem = CheckFBox(fishbox.FishBoxCode);
             if (Islem)
             {
                 
                 db.InsertOne(fishbox);
             }
-
+            return Islem;
         }
 
-        public bool CheckFBox(string BoxId)
+        public bool CheckFBox(string Code)
         {
-            var result = db.Find(x => x.Id == BoxId).FirstOrDefault();
+            var result = db.Find(x => x.FishBoxCode == Code).FirstOrDefault();
             if (result == null)
             {
                 return true;
@@ -41,9 +41,9 @@ namespace BalikProjesi.Services
             }
         }
 
-        public FishBox Get(string Fbcode)
+        public FishBox Get(string ID)
         {
-            var result = db.Find(x => x.FishBoxCode == Fbcode).FirstOrDefault();
+            var result = db.Find(x => x.Id == ID).FirstOrDefault();
             return result;
         }
         public List<FishBox> Get()
@@ -64,6 +64,7 @@ namespace BalikProjesi.Services
                     .Set(x => x.FishBoxCode, fishbox.FishBoxCode)
                     .Set(x => x.FishBoxType, fishbox.FishBoxType)
                     .Set(x => x.UpdateDate, fishbox.UpdateDate)
+                    .Set(x => x.CartCode, fishbox.CartCode)
                     .Set(x => x.CartId, fishbox.CartId);
                 try
                 {
@@ -84,7 +85,7 @@ namespace BalikProjesi.Services
         {
             try
             {
-                var Filter = Builders<FishBox>.Filter.Eq(x => x.FishBoxCode, fishboxID);
+                var Filter = Builders<FishBox>.Filter.Eq(x => x.Id, fishboxID);
                 db.DeleteOne(Filter);
                 return true;
             }
