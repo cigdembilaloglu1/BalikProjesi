@@ -19,7 +19,7 @@ namespace BalikProjesi.Services
 
         public void Create(FishBox fishbox)
         {
-            var Islem = CheckFBox(fishbox.CartId);
+            var Islem = CheckFBox(fishbox.Id);
             if (Islem)
             {
                 
@@ -28,9 +28,9 @@ namespace BalikProjesi.Services
 
         }
 
-        public bool CheckFBox(string cardID)
+        public bool CheckFBox(string BoxId)
         {
-            var result = db.Find(x => x.CartId == cardID).FirstOrDefault();
+            var result = db.Find(x => x.Id == BoxId).FirstOrDefault();
             if (result == null)
             {
                 return true;
@@ -51,19 +51,20 @@ namespace BalikProjesi.Services
             var result = db.Find(x => true).ToList();
             return result;
         }
-        public bool Update(string _id, string Ftype, DateTime Rdate, string FCode = null)
+        public bool Update(FishBox fishbox)
         {
 
 
-            if (!String.IsNullOrEmpty(FCode) && !String.IsNullOrEmpty(Ftype) && Rdate != DateTime.MinValue)
+            if (!String.IsNullOrEmpty(fishbox.Id) && !String.IsNullOrEmpty(fishbox.FishBoxType) && fishbox.UpdateDate != DateTime.MinValue)
             {
                 var Filter = Builders<FishBox>.Filter
-                    .Eq(x => x.Id, _id);
+                    .Eq(x => x.Id, fishbox.Id);
 
                 var Update = Builders<FishBox>.Update
-                    .Set(x => x.FishBoxCode, FCode)
-                    .Set(x => x.FishBoxType, Ftype)
-                    .Set(x => x.UpdateDate, Rdate);
+                    .Set(x => x.FishBoxCode, fishbox.FishBoxCode)
+                    .Set(x => x.FishBoxType, fishbox.FishBoxType)
+                    .Set(x => x.UpdateDate, fishbox.UpdateDate)
+                    .Set(x => x.CartId, fishbox.CartId);
                 try
                 {
                     db.UpdateOne(Filter, Update);
@@ -79,11 +80,11 @@ namespace BalikProjesi.Services
                 return false;
             }
         }
-        public bool Delete(string Fcode)
+        public bool Delete(string fishboxID)
         {
             try
             {
-                var Filter = Builders<FishBox>.Filter.Eq(x => x.FishBoxCode, Fcode);
+                var Filter = Builders<FishBox>.Filter.Eq(x => x.FishBoxCode, fishboxID);
                 db.DeleteOne(Filter);
                 return true;
             }

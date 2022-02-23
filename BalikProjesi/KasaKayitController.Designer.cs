@@ -38,7 +38,6 @@
             this.KasaTip = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label3 = new System.Windows.Forms.Label();
             this.txtKartid = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.btnCardRead = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -125,17 +124,6 @@
             this.txtKartid.Size = new System.Drawing.Size(100, 20);
             this.txtKartid.TabIndex = 8;
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label5.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label5.Location = new System.Drawing.Point(19, 20);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(197, 20);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "KARTINIZI OKUTUNUZ";
-            // 
             // button2
             // 
             this.button2.BackColor = System.Drawing.SystemColors.MenuHighlight;
@@ -145,6 +133,7 @@
             this.button2.TabIndex = 12;
             this.button2.Text = "KAYDET";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnCardRead
             // 
@@ -161,7 +150,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnCardRead);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.txtKasatip);
             this.Controls.Add(this.txtKartid);
@@ -188,7 +176,6 @@
         private System.Windows.Forms.ColumnHeader KasaUUID;
         private System.Windows.Forms.ColumnHeader KasaKod;
         private System.Windows.Forms.ColumnHeader KasaTip;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnCardRead;
     }
