@@ -300,8 +300,7 @@ namespace BalikProjesi
         {
             _readerServices.openPort();
 
-            bool tagIsDefined;
-            tagIsDefined = await _readerServices.checkTagIsDefined();
+            bool tagIsDefined = await _readerServices.checkTagIsDefined();
 
             if (!tagIsDefined)
             {
@@ -312,7 +311,7 @@ namespace BalikProjesi
                 txtKartID.Text = "Bu kart daha önce tanımlandı başka bir kart deneyiniz";
             }
 
-            _readerServices.closePort();
+            //_readerServices.closePort();
         }
 
         private void sİLToolStripMenuItem_Click(object sender, EventArgs e)

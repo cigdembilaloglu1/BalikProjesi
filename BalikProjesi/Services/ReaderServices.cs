@@ -99,13 +99,13 @@ namespace BalikProjesi.Services
 
             while (_continue)
             {
-                status = 0;
+                status = 1;
                 ReadTagMemory("USER");
 
                 await Task.Delay(1000);
             }
 
-            if(tagType == "")
+            if(tagType != "")
             {
                 return true;
             }
@@ -200,7 +200,6 @@ namespace BalikProjesi.Services
             btdata[7] = CheckSum(btdata, 0, 7); //Check
 
             serialPort.Write(btdata, 0, btdata.Length);
-            Thread.Sleep(500);
         }
 
         private void ChangeTagOwner(int owner)
@@ -232,7 +231,6 @@ namespace BalikProjesi.Services
             btdata[15] = CheckSum(btdata, 0, 15); //Check
 
             serialPort.Write(btdata, 0, btdata.Length);
-            Thread.Sleep(500);
         }
 
         private byte CheckSum(byte[] btAryBuffer, int nStartPos, int nLen)
