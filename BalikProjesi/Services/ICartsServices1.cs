@@ -10,6 +10,7 @@ namespace BalikProjesi.Services
         void Create(Carts Data);
         bool Delete(string Cname);
         List<Carts> Get();
+        Carts GetByCardCode(string cardcode);
         bool Update(Carts card, string Cname = null);
     }
 }

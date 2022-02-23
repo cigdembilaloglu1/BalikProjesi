@@ -1,4 +1,4 @@
-﻿using BalikProjesi.Models;
+﻿using BalikProjesi.Enums;
 using System;
 using System.Collections.Generic;
 using System.IO.Ports;
@@ -22,7 +22,6 @@ namespace BalikProjesi.Services
         private byte[] numArray;
         private TextBox idTextbox;
         private TextBox typeTextbox;
-        private int type;
         private delegate void SetTextDeleg(int type);
 
         public ReaderServices()
@@ -44,7 +43,7 @@ namespace BalikProjesi.Services
 
                 serialPort.Open();
             }
-           
+
         }
 
         public void closePort()
@@ -63,15 +62,15 @@ namespace BalikProjesi.Services
             {
 
                 status = 0;
-                ReadTagMemory("TID");
+                ReadTagMemoryCmd("TID");
                 status = 1;
-                ReadTagMemory("USER");
-              
+                ReadTagMemoryCmd("USER");
+
                 await Task.Delay(1000);
             }
 
-            idTextbox.BeginInvoke(new SetTextDeleg(Fun_IsDataReceived), new object[] { type = 0 });
-            typeTextbox.BeginInvoke(new SetTextDeleg(Fun_IsDataReceived), new object[] { type = 1 });
+            idTextbox.BeginInvoke(new SetTextDeleg(Fun_IsDataReceived), new object[] { 0 });
+            typeTextbox.BeginInvoke(new SetTextDeleg(Fun_IsDataReceived), new object[] { 1 });
 
         }
 
@@ -85,14 +84,34 @@ namespace BalikProjesi.Services
             {
 
                 status = 0;
-                ReadTagMemory("TID");
+                ReadTagMemoryCmd("TID");
 
                 await Task.Delay(1000);
             }
 
-            idTextbox.BeginInvoke(new SetTextDeleg(Fun_IsDataReceived), new object[] { type = 0 });
+            idTextbox.BeginInvoke(new SetTextDeleg(Fun_IsDataReceived), new object[] { 0 });
         }
-        
+
+        //0: kasa
+        //1: fileto
+        //2: kontrol
+        public async Task setTagOwner(int owner)
+        {
+            if(owner >= 0 && owner < 3)
+            {
+                _continue = true;
+
+                while (_continue)
+                {
+                    status = 2;
+                    SetTagOwnerCmd(owner);
+
+                    await Task.Delay(1000);
+                }
+            }
+        }
+
+
         public async Task<bool> checkTagIsDefined()
         {
             _continue = true;
@@ -100,18 +119,18 @@ namespace BalikProjesi.Services
             while (_continue)
             {
                 status = 1;
-                ReadTagMemory("USER");
+                ReadTagMemoryCmd("USER");
 
                 await Task.Delay(1000);
             }
 
-            if(tagType != "")
+            if (tagType == "")
             {
-                return true;
+                return false;
             }
             else
             {
-                return false;
+                return true;
             }
         }
 
@@ -137,21 +156,18 @@ namespace BalikProjesi.Services
                 else if (status == 1)
                 {
                     if (data.IndexOf("4D 58 63 0B") != -1)//yukarıda hexe çeviridiğimiz için 77 88 99 11 olarak gözükmüyor
-                        tagType = "Kasa";
+                        tagType = InputEnums.Kasa;
                     else if (data.IndexOf("4D 58 63 16") != -1)
-                        tagType = "Fileto Personeli";
+                        tagType = InputEnums.Fileto;
                     else if (data.IndexOf("4D 58 63 21") != -1)
-                        tagType = "Kontrol Personeli";
+                        tagType = InputEnums.Kontrol;
                     else
                         tagType = "";
 
                 }
                 else if (status == 2)//kart sahibini değiştirdiğinde
                 {
-                    status = 0;
-                    ReadTagMemory("TID");
-                    status = 1;
-                    ReadTagMemory("USER");
+                    
                 }
 
                 _continue = false;
@@ -171,16 +187,17 @@ namespace BalikProjesi.Services
                 if (type == 0)
                 {
                     idTextbox.Text = tagID;
-                }else if (type == 0)
+                }
+                else if (type == 0)
                 {
                     typeTextbox.Text = tagType;
                 }
-                
+
             }
 
         }
 
-        private void ReadTagMemory(string memBank)
+        private void ReadTagMemoryCmd(string memBank)
         {
             btdata = new byte[8];
             btdata[0] = 0xA0;   //Head
@@ -202,7 +219,7 @@ namespace BalikProjesi.Services
             serialPort.Write(btdata, 0, btdata.Length);
         }
 
-        private void ChangeTagOwner(int owner)
+        private void SetTagOwnerCmd(int owner)
         {
             byte ownerData;
             if (owner == 0)
@@ -240,8 +257,5 @@ namespace BalikProjesi.Services
                 num += btAryBuffer[index];
             return Convert.ToByte((int)~num + 1 & (int)byte.MaxValue);
         }
-
     }
 }
-
-

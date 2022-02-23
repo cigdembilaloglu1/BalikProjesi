@@ -156,9 +156,14 @@ namespace BalikProjesi
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtKartID.Text.Trim()))
+            if (txtKartID.Text == "")
             {
-                MessageBox.Show("LÜtfen Kart UUID'nizi gösteriniz", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show("LÜtfen bir kart okutunuz", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                txtKartID.Focus();
+            }
+            if (txtKartID.Text == InputEnums.CardIsDefined)
+            {
+                MessageBox.Show("LÜtfen daha önce tanımlanmamış bir kart okutunuz", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 txtKartID.Focus();
             }
             if (string.IsNullOrEmpty(txtPersonelAd.Text.Trim()))
@@ -308,7 +313,7 @@ namespace BalikProjesi
             }
             else
             {
-                txtKartID.Text = "Bu kart daha önce tanımlandı başka bir kart deneyiniz";
+                txtKartID.Text = InputEnums.CardIsDefined;
             }
 
             //_readerServices.closePort();

@@ -13,10 +13,11 @@ namespace BalikProjesi.Enums
         public const string Admin = "Admin";
         public const string User = "User";
         public const string Kontrol = "Kontrol";
+        public const string Kasa = "Kasa";
         public const string A = "A";
         public const string B = "B";
         public const string C = "C";
-
+        public const string CardIsDefined = "Bu kart daha önce tanımlandı başka bir kart deneyiniz";
 
     }
 }

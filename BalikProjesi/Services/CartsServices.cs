@@ -19,7 +19,7 @@ namespace BalikProjesi.Services
         }
         public void Create(Carts Data)
         {
-            var Islem = CheckCard(Data.CartId);
+            var Islem = CheckCard(Data.CartCode);
             if (Islem)
             {
 
@@ -32,7 +32,7 @@ namespace BalikProjesi.Services
 
         public bool CheckCard(string cardID)
         {
-            var result = db.Find(x => x.CartId == cardID).FirstOrDefault();
+            var result = db.Find(x => x.CartCode == cardID).FirstOrDefault();
             if (result == null)
             {
                 return true;
@@ -47,6 +47,12 @@ namespace BalikProjesi.Services
         public List<Carts> Get()
         {
             var result = db.Find(x => true).ToList();
+            return result;
+        }
+        public Carts GetByCardCode(string cardcode)
+        {
+            
+            var result = db.Find(x => x.CartCode == cardcode).FirstOrDefault();
             return result;
         }
         public bool Update(Carts card, string Cname = null)
