@@ -51,10 +51,10 @@ namespace BalikProjesi
             {
                 _fboxService.Create(new Entities.FishBox
                 {
-                    FishboxCartUUID = txtKartid.Text.Trim(),
+                    CartId = txtKartid.Text.Trim(),
                     FishBoxCode = txtKasakod.Text.Trim(),
                     FishBoxType = txtKasatip.Text.Trim(),
-                    CreateDate=DateTime.Now
+                    CreateDate = DateTime.Now
 
 
 
