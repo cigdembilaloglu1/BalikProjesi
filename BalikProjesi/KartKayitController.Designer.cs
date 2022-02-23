@@ -43,6 +43,7 @@
             this.KartKod = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.KartTip = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.KartUUID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label2
@@ -82,7 +83,7 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.button1.Location = new System.Drawing.Point(84, 189);
+            this.button1.Location = new System.Drawing.Point(38, 188);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 35);
             this.button1.TabIndex = 4;
@@ -146,10 +147,11 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(298, 16);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(431, 221);
+            this.listView1.Size = new System.Drawing.Size(281, 221);
             this.listView1.TabIndex = 12;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.Click += new System.EventHandler(this.listView1_Click);
             // 
             // KartAd
             // 
@@ -168,13 +170,25 @@
             // 
             // KartUUID
             // 
-            this.KartUUID.Text = "KartUUID";
-            this.KartUUID.Width = 150;
+            this.KartUUID.Text = "KartID";
+            this.KartUUID.Width = 0;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.button2.Location = new System.Drawing.Point(144, 188);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(100, 35);
+            this.button2.TabIndex = 13;
+            this.button2.Text = "GÜNCELLE";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // KartKayitController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.KartUUDTb);
             this.Controls.Add(this.KartTipiTb);
@@ -187,7 +201,8 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Name = "KartKayitController";
-            this.Size = new System.Drawing.Size(748, 282);
+            this.Size = new System.Drawing.Size(594, 288);
+            this.Load += new System.EventHandler(this.KartKayitController_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -209,5 +224,6 @@
         private System.Windows.Forms.ColumnHeader KartKod;
         private System.Windows.Forms.ColumnHeader KartTip;
         private System.Windows.Forms.ColumnHeader KartUUID;
+        private System.Windows.Forms.Button button2;
     }
 }
