@@ -64,5 +64,10 @@ namespace BalikProjesi
             kartKayitController.Dock = DockStyle.Fill;
 
         }
+
+        private void rAPORToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
