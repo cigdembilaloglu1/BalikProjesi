@@ -32,7 +32,7 @@ namespace BalikProjesi.Services
 
         public bool CheckCard(string cardID)
         {
-            var result = db.Find(x => x.Id == cardID).FirstOrDefault();
+            var result = db.Find(x => x.CartId == cardID).FirstOrDefault();
             if (result == null)
             {
                 return true;

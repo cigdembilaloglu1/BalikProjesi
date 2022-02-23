@@ -14,11 +14,39 @@ namespace BalikProjesi
     public partial class KartKayitController : UserControl
     {
         private readonly ICartsServices1 _cartService;
+        
 
         public KartKayitController()
         {
             InitializeComponent();
             _cartService = new CartsServices();
+        }
+        public void liste()
+        {
+            string CartAd, CartCode, CartType, CartUUID;
+            if (listView1.Items.Count != 0)
+            {
+                listView1.Items.Clear();
+            }
+            var dt = _cartService.Get();
+            foreach (var item in dt)
+            {
+                CartAd = item.CartName;
+                CartCode = item.CartCode;
+                CartType = item.CartType;
+               // CartUUID = item.CartId;
+               
+                string[] data = { CartAd, CartCode, CartType };
+                ListViewItem record = new ListViewItem(data);
+                listView1.Items.Add(record);
+            }
+            KartNameTxt.Clear();
+            KartKoduTb.Clear();
+            KartTipiTb.Clear();
+            KartUUDTb.Clear();
+
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -43,6 +71,7 @@ namespace BalikProjesi
                     CartType = KartTipiTb.Text.Trim(),
                     CreateDate = DateTime.Now
                 });
+                liste();
             }
            
         }
