@@ -10,8 +10,8 @@ namespace BalikProjesi.Entities
     {
         public string FishBoxCode { get; set; }
         public string FishBoxType { get; set; }
-        public DateTime RecordDate { get; set; }
-        public string FishboxCartUUID { get; set; }
+        public DateTime UpdateDate { get; set; }
+        
 
     }
 }

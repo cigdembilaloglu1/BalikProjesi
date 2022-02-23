@@ -19,7 +19,7 @@ namespace BalikProjesi.Services
 
         public void Create(FishBox fishbox)
         {
-            var Islem = CheckFBox(fishbox.FishboxCartUUID);
+            var Islem = CheckFBox(fishbox.CartId);
             if (Islem)
             {
                 
@@ -30,7 +30,7 @@ namespace BalikProjesi.Services
 
         public bool CheckFBox(string cardID)
         {
-            var result = db.Find(x => x.FishboxCartUUID == cardID).FirstOrDefault();
+            var result = db.Find(x => x.CartId == cardID).FirstOrDefault();
             if (result == null)
             {
                 return true;
@@ -63,7 +63,7 @@ namespace BalikProjesi.Services
                 var Update = Builders<FishBox>.Update
                     .Set(x => x.FishBoxCode, FCode)
                     .Set(x => x.FishBoxType, Ftype)
-                    .Set(x => x.RecordDate, Rdate);
+                    .Set(x => x.UpdateDate, Rdate);
                 try
                 {
                     db.UpdateOne(Filter, Update);
