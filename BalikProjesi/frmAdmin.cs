@@ -30,6 +30,7 @@ namespace BalikProjesi
             MainPanel.Controls.Add(rprController);  
             rprController.Show();
             rprController.Dock = DockStyle.Fill;
+            
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -62,6 +63,16 @@ namespace BalikProjesi
             MainPanel.Controls.Add(kartKayitController);
             kartKayitController.Show();
             kartKayitController.Dock = DockStyle.Fill;
+
+        }
+
+        private void rAPORToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MainPanel.Controls.Clear();
+            var RaporController = new RaporController();
+            MainPanel.Controls.Add(RaporController);
+            RaporController.Show();
+            RaporController.Dock = DockStyle.Fill;
 
         }
     }

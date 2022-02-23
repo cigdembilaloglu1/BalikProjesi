@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.MainPanel = new System.Windows.Forms.Panel();
             this.kAYITToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kARTKAYDIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pERSONELKAYDIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kASAKAYDIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rAPORToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MainPanel = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,14 +48,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "adminMenu";
-            // 
-            // MainPanel
-            // 
-            this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainPanel.Location = new System.Drawing.Point(0, 24);
-            this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(800, 426);
-            this.MainPanel.TabIndex = 1;
             // 
             // kAYITToolStripMenuItem
             // 
@@ -93,6 +85,15 @@
             this.rAPORToolStripMenuItem.Name = "rAPORToolStripMenuItem";
             this.rAPORToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.rAPORToolStripMenuItem.Text = "RAPOR";
+            this.rAPORToolStripMenuItem.Click += new System.EventHandler(this.rAPORToolStripMenuItem_Click);
+            // 
+            // MainPanel
+            // 
+            this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainPanel.Location = new System.Drawing.Point(0, 24);
+            this.MainPanel.Name = "MainPanel";
+            this.MainPanel.Size = new System.Drawing.Size(800, 426);
+            this.MainPanel.TabIndex = 1;
             // 
             // frmAdmin
             // 

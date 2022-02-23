@@ -183,7 +183,9 @@
     <Compile Include="Services\IPersonelServices.cs" />
     <Compile Include="Services\LoginServices.cs" />
     <Compile Include="Services\PersonelServices.cs" />
-    <Compile Include="Services\ReaderServices.cs" />
+    <Compile Include="Services\ReaderServices.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Services\RecordingsServices.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
