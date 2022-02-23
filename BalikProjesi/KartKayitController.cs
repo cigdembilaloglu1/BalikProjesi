@@ -34,9 +34,9 @@ namespace BalikProjesi
                 CartAd = item.CartName;
                 CartCode = item.CartCode;
                 CartType = item.CartType;
-               // CartUUID = item.CartId;
+               CartUUID = item.CartId;
                
-                string[] data = { CartAd, CartCode, CartType };
+                string[] data = { CartAd, CartCode, CartType, CartUUID };
                 ListViewItem record = new ListViewItem(data);
                 listView1.Items.Add(record);
             }
