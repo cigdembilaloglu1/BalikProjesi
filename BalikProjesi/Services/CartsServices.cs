@@ -19,7 +19,7 @@ namespace BalikProjesi.Services
         }
         public void Create(Carts Data)
         {
-            var Islem = CheckName(Data.CartUUID);
+            var Islem = CheckName(Data.CartId);
             if (Islem)
             {
 
@@ -32,7 +32,7 @@ namespace BalikProjesi.Services
 
         public bool CheckName(string Cname)
         {
-            var result = db.Find(x => x.CartUUID == Cname).FirstOrDefault();
+            var result = db.Find(x => x.CartId == Cname).FirstOrDefault();
             if (result == null)
             {
                 return true;

@@ -39,7 +39,7 @@ namespace BalikProjesi
                 {
                     CartCode = KartKoduTb.Text.Trim(),
                     CartName = KartNameTxt.Text.Trim(),
-                    CartUUID = KartUUDTb.Text.Trim(),
+                    CartId = KartUUDTb.Text.Trim(),
                     CartType = KartTipiTb.Text.Trim(),
                     CreateDate = DateTime.Now
                 });
