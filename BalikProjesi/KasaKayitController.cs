@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BalikProjesi.Entities;
 
 namespace BalikProjesi
 {
@@ -60,6 +61,11 @@ namespace BalikProjesi
 
                 });
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

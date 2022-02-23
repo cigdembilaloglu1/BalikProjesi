@@ -11,6 +11,6 @@ namespace BalikProjesi.Services
         bool Delete(string Fcode);
         List<FishBox> Get();
         FishBox Get(string Fbcode);
-        bool Update(string _id, string Ftype, DateTime Rdate, string FCode = null);
+        bool Update(FishBox fishBox);
     }
 }
