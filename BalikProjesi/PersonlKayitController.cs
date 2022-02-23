@@ -228,7 +228,7 @@ namespace BalikProjesi
             cbPersonelTur.SelectedIndex = 1;
             label9.Visible = false;
             label10.Visible = false;
-
+            
 
         }
 
@@ -238,10 +238,7 @@ namespace BalikProjesi
 
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            listviewDataGet();
-        }
+        
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -327,6 +324,24 @@ namespace BalikProjesi
         private void listView1_Click(object sender, EventArgs e)
         {
             listviewDataGet();
+        }
+
+        private void PersonlKayitController_SizeChanged(object sender, EventArgs e)
+        {
+            int width = this.Width;
+            try
+            {
+                for (int i = 0; i < listView1.Columns.Count - 1; i++)
+                {
+                    listView1.Columns[i].Width = width / 6;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
         }
     }
 }
