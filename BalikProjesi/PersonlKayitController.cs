@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BalikProjesi.Entities;
 using BalikProjesi.Services;
+using MongoDB.Driver;
 
 namespace BalikProjesi
 {
@@ -64,31 +65,37 @@ namespace BalikProjesi
 
         }
 
-        public void list(string group = null)
+        public void pageListToTable(List<Personel> tableList, string perTur = null)
         {
-            string PerAd, PerSoyad, PerKod, PerGrup, PerTur, PerCID,PerId;
-            if (listView1.Items.Count!=0)
+            if (listView1.Items.Count != 0)
             {
                 listView1.Items.Clear();
             }
 
-            if (group == InputEnums.Kontrol)
-            {
+            string PerAd, PerSoyad, PerKod, PerGrup, PerTur, PerCID, PerId;
 
+            foreach (var item in tableList)
+            {
+                PerAd = item.PersonelName;
+                PerSoyad = item.PersonelSurname;
+                PerKod = item.PersonelCode;
+                PerGrup = item.PersonelGroup;
+                PerTur = perTur;
+                PerCID = item.CartCode;
+                PerId = item.Id;
+                string[] data = { PerAd, PerSoyad, PerKod, PerGrup, PerTur, PerCID, PerId };
+                ListViewItem record = new ListViewItem(data);
+                listView1.Items.Add(record);
+            }
+        }
+
+        public void list(string perTur = null)
+        {
+            if (perTur == InputEnums.Kontrol)
+            {
                 var dt = _perService.GetControl();
-                foreach (var item in dt)
-                {
-                    PerAd = item.PersonelName;
-                    PerSoyad = item.PersonelSurname;
-                    PerKod = item.PersonelCode;
-                    PerGrup = item.PersonelGroup;
-                    PerTur = group;
-                    PerCID = item.CartId;
-                    PerId = item.Id;
-                    string[] data = { PerAd, PerSoyad, PerKod, PerGrup, PerTur, PerCID,PerId };
-                    ListViewItem record = new ListViewItem(data);
-                    listView1.Items.Add(record);
-                }
+                pageListToTable(dt, perTur);
+
                 for (int i = 0; i < listView1.Items.Count; i++)
                 {
                     var val = listView1.Items[i].SubItems[4].Text;
@@ -101,21 +108,9 @@ namespace BalikProjesi
             }
             else
             {
-
                 var dt = _perService.GetFillet();
-                foreach (var item in dt)
-                {
-                    PerAd = item.PersonelName;
-                    PerSoyad = item.PersonelSurname;
-                    PerKod = item.PersonelCode;
-                    PerGrup = item.PersonelGroup;
-                    PerTur = group;
-                    PerCID = item.CartId;
-                    PerId = item.Id;
-                    string[] data = { PerAd, PerSoyad, PerKod, PerGrup, PerTur, PerCID, PerId };
-                    ListViewItem record = new ListViewItem(data);
-                    listView1.Items.Add(record);
-                }
+                pageListToTable(dt, perTur);
+
                 for (int i = 0; i < listView1.Items.Count; i++)
                 {
                     var val = listView1.Items[i].SubItems[4].Text;
@@ -127,15 +122,13 @@ namespace BalikProjesi
                 }
             }
 
+            
 
 
             txtKartID.Clear();
             txtPersonelAd.Clear();
             txtPersonelSoyad.Clear();
             txtPersonelKod.Clear();
-            //cbPersonelGrup.SelectedIndex = 0;
-            //cbPersonelTur.SelectedIndex = 0;;
-
 
         }
         public void SelectedClear()
@@ -156,53 +149,57 @@ namespace BalikProjesi
 
         private void button1_Click(object sender, EventArgs e)
         {
+            bool check = true;
+
             if (txtKartID.Text == "")
             {
                 MessageBox.Show("LÜtfen bir kart okutunuz", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                txtKartID.Focus();
+                check = false;
             }
             if (txtKartID.Text == InputEnums.CardIsDefined)
             {
                 MessageBox.Show("LÜtfen daha önce tanımlanmamış bir kart okutunuz", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                txtKartID.Focus();
+                check = false;
             }
             if (string.IsNullOrEmpty(txtPersonelAd.Text.Trim()))
             {
                 MessageBox.Show("LÜtfen Adınızı Giriniz ", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                txtKartID.Focus();
+                check = false;
             }
             if (string.IsNullOrEmpty(txtPersonelSoyad.Text.Trim()))
             {
                 MessageBox.Show("LÜtfen Soyadınızı Giriniz", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                txtKartID.Focus();
+                check = false;
             }
             if (string.IsNullOrEmpty(txtPersonelKod.Text.Trim()))
             {
                 MessageBox.Show("LÜtfen Personel Kodunuzu Giriniz", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                txtKartID.Focus();
+                check = false;
             }
             if (string.IsNullOrEmpty(cbPersonelGrup.Text.Trim()))
             {
                 MessageBox.Show("LÜtfen Personel Grubunuzu Seçiniz", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                txtKartID.Focus();
+                check = false;
             }
             if (string.IsNullOrEmpty(cbPersonelTur.Text.Trim()))
             {
                 MessageBox.Show("LÜtfen Personel Türünü Seçiniz ", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                txtKartID.Focus();
+                check = false;
             }
-            else
+            
+
+            if(check)
             {
                 bool result;
-                result =_perService.Create(new Entities.Personel
+                result =_perService.Create(new Personel
                 {
                     PersonelName=txtPersonelAd.Text.Trim(),
                     PersonelSurname=txtPersonelSoyad.Text.Trim(),
                     PersonelGroup=cbPersonelGrup.Text.Trim(),
                     PersonelCode=txtPersonelKod.Text.Trim(),
                     CreateDate=DateTime.Now,
-                    CartId=txtKartID.Text.Trim()
-              } ,cbPersonelTur.Text.Trim());
+                    CartCode=txtKartID.Text.Trim()
+                } ,cbPersonelTur.Text.Trim());
                 if (result)
                 {
                     MessageBox.Show("Personel kaydı başarılı.");
@@ -212,7 +209,6 @@ namespace BalikProjesi
                     MessageBox.Show("Personel kaydı başarısız. Girilen personel daha önceden kayıt edilmiştir.");
                 }
                 list(cbPersonelTur.Text);
-
             }
 
 
@@ -253,14 +249,16 @@ namespace BalikProjesi
             string PersonelKod = txtPersonelKod.Text;
             string PersonelGrup = cbPersonelGrup.Text;
             string PersonelTur = cbPersonelTur.Text;
-            Personel prs = new Personel();
             string KartID = txtKartID.Text;
+
+            Personel prs = new Personel();
             prs.Id = persID;
             prs.PersonelName = PersonelAd;
             prs.PersonelSurname = PersonelSoyad;
             prs.PersonelCode = PersonelKod;
             prs.PersonelGroup = PersonelGrup;
-            prs.CartId = KartID;
+            prs.CartCode = KartID;
+
             bool chk=_perService.Update(prs, PersonelTur);
             if (chk==true)
             {
@@ -346,6 +344,41 @@ namespace BalikProjesi
                 throw;
             }
             
+        }
+
+        private void mtSearch_TextChanged(object sender, EventArgs e)
+        {
+            string search = mtSearch.Text;
+            var Filter = FilterDefinition<Personel>.Empty;
+
+            if (rbName.Checked)
+            {
+                Filter = Builders<Personel>.Filter.Regex(x => x.PersonelName, new MongoDB.Bson.BsonRegularExpression(search, "i"));
+            }
+            if (rbSurname.Checked)
+            {
+                Filter = Builders<Personel>.Filter.Regex(x => x.PersonelSurname, new MongoDB.Bson.BsonRegularExpression(search, "i"));
+            }
+            if (rbCode.Checked)
+            {
+                Filter = Builders<Personel>.Filter.Regex(x => x.PersonelCode, new MongoDB.Bson.BsonRegularExpression(search, "i"));
+            }
+            if (rbGroup.Checked)
+            {
+                Filter = Builders<Personel>.Filter.Eq(x => x.PersonelGroup, new MongoDB.Bson.BsonRegularExpression(search, "i"));
+            }
+
+            List<Personel> filteredPersonelList;
+            if (cbListGroup.Text == InputEnums.Fileto)
+            {
+                 filteredPersonelList = _perService.GetFilteredFillet(Filter);
+            }
+            else 
+            {
+                filteredPersonelList = _perService.GetFilteredController(Filter);
+            }
+
+            pageListToTable(filteredPersonelList);
         }
     }
 }

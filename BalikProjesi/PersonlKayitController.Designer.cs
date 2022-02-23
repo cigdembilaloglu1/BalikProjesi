@@ -66,13 +66,22 @@
             this.button1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.rbName = new System.Windows.Forms.RadioButton();
+            this.rbSurname = new System.Windows.Forms.RadioButton();
+            this.rbCode = new System.Windows.Forms.RadioButton();
+            this.rbGroup = new System.Windows.Forms.RadioButton();
+            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
+            this.mtSearch = new System.Windows.Forms.MaskedTextBox();
             this.contextMenuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtPersonelAd
@@ -203,7 +212,7 @@
             // PersonelAd
             // 
             this.PersonelAd.Text = "Personel Ad";
-            this.PersonelAd.Width = 100;
+            this.PersonelAd.Width = 102;
             // 
             // PersSoyad
             // 
@@ -213,22 +222,22 @@
             // PersKod
             // 
             this.PersKod.Text = "Personel Kod";
-            this.PersKod.Width = 100;
+            this.PersKod.Width = 61;
             // 
             // PersGrup
             // 
             this.PersGrup.Text = "Personel Grup";
-            this.PersGrup.Width = 100;
+            this.PersGrup.Width = 62;
             // 
             // PersTur
             // 
             this.PersTur.Text = "Personel Tur";
-            this.PersTur.Width = 100;
+            this.PersTur.Width = 64;
             // 
             // PersKartId
             // 
             this.PersKartId.Text = "Kart Id";
-            this.PersKartId.Width = 100;
+            this.PersKartId.Width = 193;
             // 
             // PersID
             // 
@@ -324,13 +333,13 @@
             // 
             // cbListGroup
             // 
-            this.cbListGroup.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbListGroup.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.cbListGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbListGroup.FormattingEnabled = true;
-            this.cbListGroup.Location = new System.Drawing.Point(166, 68);
+            this.cbListGroup.Location = new System.Drawing.Point(105, 107);
             this.cbListGroup.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbListGroup.Name = "cbListGroup";
-            this.cbListGroup.Size = new System.Drawing.Size(235, 21);
+            this.cbListGroup.Size = new System.Drawing.Size(296, 21);
             this.cbListGroup.TabIndex = 8;
             this.cbListGroup.SelectedIndexChanged += new System.EventHandler(this.cbListGroup_SelectedIndexChanged);
             // 
@@ -342,9 +351,9 @@
             this.label7.ForeColor = System.Drawing.SystemColors.Control;
             this.label7.Location = new System.Drawing.Point(3, 65);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(156, 66);
+            this.label7.Size = new System.Drawing.Size(95, 66);
             this.label7.TabIndex = 9;
-            this.label7.Text = "PERSONEL GRUBU";
+            this.label7.Text = "PERSONEL TÜRÜ";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label9
@@ -494,12 +503,12 @@
             // 
             this.tableLayoutPanel7.ColumnCount = 2;
             this.tableLayoutPanel2.SetColumnSpan(this.tableLayoutPanel7, 2);
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 75F));
             this.tableLayoutPanel7.Controls.Add(this.cbListGroup, 1, 1);
             this.tableLayoutPanel7.Controls.Add(this.label7, 0, 1);
             this.tableLayoutPanel7.Controls.Add(this.label8, 0, 0);
-            this.tableLayoutPanel7.Controls.Add(this.textBox1, 1, 0);
+            this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel3, 1, 0);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel7.Location = new System.Drawing.Point(3, 115);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
@@ -518,19 +527,97 @@
             this.label8.Location = new System.Drawing.Point(4, 4);
             this.label8.Margin = new System.Windows.Forms.Padding(4);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(154, 57);
+            this.label8.Size = new System.Drawing.Size(93, 57);
             this.label8.TabIndex = 11;
             this.label8.Text = "ARAMA";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox1
+            // tableLayoutPanel3
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(165, 3);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(237, 59);
-            this.textBox1.TabIndex = 10;
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.Controls.Add(this.mtSearch, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.flowLayoutPanel2, 0, 1);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(104, 3);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(298, 59);
+            this.tableLayoutPanel3.TabIndex = 12;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.Controls.Add(this.rbName);
+            this.flowLayoutPanel2.Controls.Add(this.rbSurname);
+            this.flowLayoutPanel2.Controls.Add(this.rbCode);
+            this.flowLayoutPanel2.Controls.Add(this.rbGroup);
+            this.flowLayoutPanel2.Controls.Add(this.maskedTextBox2);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 32);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(292, 24);
+            this.flowLayoutPanel2.TabIndex = 11;
+            // 
+            // rbName
+            // 
+            this.rbName.AutoSize = true;
+            this.rbName.Checked = true;
+            this.rbName.Location = new System.Drawing.Point(3, 3);
+            this.rbName.Name = "rbName";
+            this.rbName.Size = new System.Drawing.Size(47, 17);
+            this.rbName.TabIndex = 0;
+            this.rbName.TabStop = true;
+            this.rbName.Text = "İsim";
+            this.rbName.UseVisualStyleBackColor = true;
+            // 
+            // rbSurname
+            // 
+            this.rbSurname.AutoSize = true;
+            this.rbSurname.Location = new System.Drawing.Point(56, 3);
+            this.rbSurname.Name = "rbSurname";
+            this.rbSurname.Size = new System.Drawing.Size(67, 17);
+            this.rbSurname.TabIndex = 1;
+            this.rbSurname.Text = "Soyisim";
+            this.rbSurname.UseVisualStyleBackColor = true;
+            // 
+            // rbCode
+            // 
+            this.rbCode.AutoSize = true;
+            this.rbCode.Location = new System.Drawing.Point(129, 3);
+            this.rbCode.Name = "rbCode";
+            this.rbCode.Size = new System.Drawing.Size(47, 17);
+            this.rbCode.TabIndex = 2;
+            this.rbCode.Text = "Kod";
+            this.rbCode.UseVisualStyleBackColor = true;
+            // 
+            // rbGroup
+            // 
+            this.rbGroup.AutoSize = true;
+            this.rbGroup.Location = new System.Drawing.Point(182, 3);
+            this.rbGroup.Name = "rbGroup";
+            this.rbGroup.Size = new System.Drawing.Size(52, 17);
+            this.rbGroup.TabIndex = 3;
+            this.rbGroup.Text = "Grup";
+            this.rbGroup.UseVisualStyleBackColor = true;
+            // 
+            // maskedTextBox2
+            // 
+            this.maskedTextBox2.Location = new System.Drawing.Point(3, 26);
+            this.maskedTextBox2.Name = "maskedTextBox2";
+            this.maskedTextBox2.Size = new System.Drawing.Size(100, 20);
+            this.maskedTextBox2.TabIndex = 4;
+            // 
+            // mtSearch
+            // 
+            this.mtSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mtSearch.Location = new System.Drawing.Point(3, 3);
+            this.mtSearch.Name = "mtSearch";
+            this.mtSearch.Size = new System.Drawing.Size(292, 20);
+            this.mtSearch.TabIndex = 12;
+            this.mtSearch.TextChanged += new System.EventHandler(this.mtSearch_TextChanged);
             // 
             // PersonlKayitController
             // 
@@ -553,7 +640,10 @@
             this.tableLayoutPanel5.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel7.ResumeLayout(false);
-            this.tableLayoutPanel7.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -595,9 +685,16 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.RadioButton rbName;
+        private System.Windows.Forms.RadioButton rbSurname;
+        private System.Windows.Forms.RadioButton rbCode;
+        private System.Windows.Forms.RadioButton rbGroup;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox2;
+        private System.Windows.Forms.MaskedTextBox mtSearch;
     }
 }

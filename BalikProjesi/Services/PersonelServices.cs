@@ -13,7 +13,7 @@ namespace BalikProjesi.Services
     {
         public readonly IMongoCollection<Personel> pdb, fdb;
 
-       // private readonly object _pid;
+        // private readonly object _pid;
 
         public PersonelServices()
         {
@@ -21,28 +21,28 @@ namespace BalikProjesi.Services
             fdb = Mongo._fpersonel;
             pdb = Mongo._cpersonel;
         }
-        public bool  Create(Personel personel,string persType)
+        public bool Create(Personel personel, string persType)
         {
             var Islem = CheckPCode(personel, persType);
             if (Islem)
             {
-                if (persType==InputEnums.Fileto)
+                if (persType == InputEnums.Fileto)
                 {
                     fdb.InsertOne(personel);
                 }
                 else
                 {
                     pdb.InsertOne(personel);
-                }      
+                }
             }
             return Islem;
         }
 
-        public bool CheckPCode(Personel pers,string persType)
+        public bool CheckPCode(Personel pers, string persType)
         {
-            
 
-            if (persType==InputEnums.Fileto)
+
+            if (persType == InputEnums.Fileto)
             {
                 var result = fdb.Find(x => x.CartId == pers.CartId).FirstOrDefault();
                 if (result == null)
@@ -54,7 +54,8 @@ namespace BalikProjesi.Services
                     return false;
                 }
             }
-            else if (persType == InputEnums.Kontrol) { 
+            else if (persType == InputEnums.Kontrol)
+            {
                 var result = pdb.Find(x => x.CartId == pers.CartId).FirstOrDefault();
                 if (result == null)
                 {
@@ -69,8 +70,8 @@ namespace BalikProjesi.Services
             {
                 return false;
             }
-            
-            
+
+
 
         }
 
@@ -91,6 +92,17 @@ namespace BalikProjesi.Services
             return result;
         }
 
+        public List<Personel> GetFilteredFillet(FilterDefinition<Personel> filteredPersonel)
+        {
+            var result = fdb.Find(filteredPersonel).ToList();
+            return result;
+        }
+        public List<Personel> GetFilteredController(FilterDefinition<Personel> filteredPersonel)
+        {
+            var result = pdb.Find(filteredPersonel).ToList();
+            return result;
+        }
+
         public bool Update(Personel personel, string perstype)
         {
             if (!String.IsNullOrEmpty(personel.PersonelName) && !String.IsNullOrEmpty(personel.PersonelSurname) && !String.IsNullOrEmpty(personel.PersonelCode) && !String.IsNullOrEmpty(personel.PersonelGroup))
@@ -107,7 +119,7 @@ namespace BalikProjesi.Services
 
                 try
                 {
-                    if (perstype==InputEnums.Fileto)
+                    if (perstype == InputEnums.Fileto)
                     {
                         fdb.UpdateOne(Filter, Update);
                     }
@@ -116,7 +128,7 @@ namespace BalikProjesi.Services
                         pdb.UpdateOne(Filter, Update);
 
                     }
-                    
+
                     return true;
                 }
                 catch
@@ -134,7 +146,7 @@ namespace BalikProjesi.Services
             try
             {
                 var Filter = Builders<Personel>.Filter.Eq(x => x.Id, _pid);
-                if (persType==InputEnums.Fileto)
+                if (persType == InputEnums.Fileto)
                 {
                     fdb.DeleteOne(Filter);
                 }
@@ -142,8 +154,8 @@ namespace BalikProjesi.Services
                 {
                     pdb.DeleteOne(Filter);
                 }
-                
-                
+
+
                 return true;
             }
             catch
