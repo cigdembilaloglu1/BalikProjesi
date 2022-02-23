@@ -40,6 +40,7 @@
             this.txtKartid = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
+            this.btnCardRead = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -86,7 +87,7 @@
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(238, 22);
+            this.listView1.Location = new System.Drawing.Point(438, 20);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(309, 176);
             this.listView1.TabIndex = 10;
@@ -145,10 +146,20 @@
             this.button2.Text = "KAYDET";
             this.button2.UseVisualStyleBackColor = false;
             // 
+            // btnCardRead
+            // 
+            this.btnCardRead.Location = new System.Drawing.Point(225, 59);
+            this.btnCardRead.Name = "btnCardRead";
+            this.btnCardRead.Size = new System.Drawing.Size(75, 23);
+            this.btnCardRead.TabIndex = 13;
+            this.btnCardRead.Text = "Kart Oku";
+            this.btnCardRead.UseVisualStyleBackColor = true;
+            // 
             // KasaKayitController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnCardRead);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.listView1);
@@ -159,7 +170,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "KasaKayitController";
-            this.Size = new System.Drawing.Size(578, 240);
+            this.Size = new System.Drawing.Size(922, 400);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -179,5 +190,6 @@
         private System.Windows.Forms.ColumnHeader KasaTip;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnCardRead;
     }
 }

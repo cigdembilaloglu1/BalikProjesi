@@ -19,7 +19,7 @@ namespace BalikProjesi.Services
         }
         public void Create(Carts Data)
         {
-            var Islem = CheckName(Data.CartId);
+            var Islem = CheckCard(Data.CartId);
             if (Islem)
             {
 
@@ -30,9 +30,9 @@ namespace BalikProjesi.Services
 
         }
 
-        public bool CheckName(string Cname)
+        public bool CheckCard(string cardID)
         {
-            var result = db.Find(x => x.CartId == Cname).FirstOrDefault();
+            var result = db.Find(x => x.Id == cardID).FirstOrDefault();
             if (result == null)
             {
                 return true;
@@ -49,15 +49,18 @@ namespace BalikProjesi.Services
             var result = db.Find(x => true).ToList();
             return result;
         }
-        public bool Update(string _id, string Cname = null)
+        public bool Update(Carts card, string Cname = null)
         {
             if (!String.IsNullOrEmpty(Cname))
             {
                 var Filter = Builders<Carts>.Filter
-                    .Eq(x => x.Id, _id);
+                    .Eq(x => x.Id, card.Id);
 
                 var Update = Builders<Carts>.Update
-                    .Set(x => x.CartName, Cname);
+                    .Set(x => x.CartName, Cname)
+                    .Set(x => x.UpdateDate, card.UpdateDate)
+                    .Set(x => x.CartCode, card.CartCode)
+                    .Set(x => x.CartType, card.CartType);
 
                 try
                 {
@@ -75,11 +78,11 @@ namespace BalikProjesi.Services
             }
         }
 
-        public bool Delete(string Cname)
+        public bool Delete(string cardID)
         {
             try
             {
-                var Filter = Builders<Carts>.Filter.Eq(x => x.CartName, Cname);
+                var Filter = Builders<Carts>.Filter.Eq(x => x.CartId, cardID);
                 db.DeleteOne(Filter);
                 return true;
             }
