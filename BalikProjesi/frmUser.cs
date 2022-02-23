@@ -19,7 +19,25 @@ namespace BalikProjesi
 
         private void frmUser_Load(object sender, EventArgs e)
         {
+           
+        }
 
+        private void fİLETOPERSONELİToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MainPanel.Controls.Clear();
+            var FilletUser = new FilletUser();
+            MainPanel.Controls.Add(FilletUser);
+            FilletUser.Show();
+            FilletUser.Dock = DockStyle.Fill;
+        }
+
+        private void kONTROLPERSONELİToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MainPanel.Controls.Clear();
+            var ControlUser = new ControlUser();
+            MainPanel.Controls.Add(ControlUser);
+            ControlUser.Show();
+            ControlUser.Dock = DockStyle.Fill;
         }
     }
 }
