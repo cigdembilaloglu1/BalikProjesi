@@ -11,6 +11,7 @@ namespace BalikProjesi.Services
         bool Delete(string Fcode);
         List<FishBox> Get();
         FishBox Get(string ID);
+        FishBox GetByCardID(string ID);
         bool Update(FishBox fishBox);
     }
 }

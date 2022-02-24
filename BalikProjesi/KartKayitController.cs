@@ -207,7 +207,7 @@ namespace BalikProjesi
 
         private void KartKayitController_SizeChanged(object sender, EventArgs e)
         {
-            string x = "";
+            
             int width = this.Width;
             
             try
