@@ -381,5 +381,33 @@ namespace BalikProjesi
             pageListToTable(filteredPersonelList);
         }
 
+        private void rbCode_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbCode.Checked)
+            {
+                mtSearch.Mask = "00000";
+            }
+            else
+            {
+                mtSearch.Mask = "";
+            }
+
+            mtSearch.Focus();
+        }
+
+        private void rbName_CheckedChanged(object sender, EventArgs e)
+        {
+            mtSearch.Focus();
+        }
+
+        private void rbSurname_CheckedChanged(object sender, EventArgs e)
+        {
+            mtSearch.Focus();
+        }
+
+        private void rbGroup_CheckedChanged(object sender, EventArgs e)
+        {
+            mtSearch.Focus();
+        }
     }
 }
