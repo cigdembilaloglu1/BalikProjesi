@@ -26,6 +26,11 @@ namespace BalikProjesi
             _cartService = new CartsServices();
             _readerServices = new ReaderServices();
             CardID = "";
+
+            cbCardType.Items.Add(InputEnums.Kasa);
+            cbCardType.Items.Add(InputEnums.Fileto);
+            cbCardType.Items.Add(InputEnums.Kontrol);
+            cbCardType.SelectedIndex = 1;
         }
         public void liste()
         {
@@ -48,10 +53,10 @@ namespace BalikProjesi
             }
             KartNameTxt.Clear();
             KartKoduTb.Clear();
-            KartTipiTb.Clear();
+            cbCardType.SelectedIndex = 0;
             CardID = "";
         }
-        public void listget(Carts card=null)
+        public void listget(Carts card = null)
         {
             if (listView1.SelectedItems.Count != 0)
             {
@@ -59,7 +64,14 @@ namespace BalikProjesi
 
                 KartNameTxt.Text = itm.SubItems[0].Text;
                 KartKoduTb.Text = itm.SubItems[1].Text;
-                KartTipiTb.Text = itm.SubItems[2].Text;
+
+                if(itm.SubItems[2].Text == InputEnums.Kasa)
+                    cbCardType.SelectedIndex = 0;
+                else if (itm.SubItems[2].Text == InputEnums.Fileto)
+                    cbCardType.SelectedIndex = 1;
+                else if (itm.SubItems[2].Text == InputEnums.Kontrol)
+                    cbCardType.SelectedIndex = 2;
+
                 CardID = itm.SubItems[3].Text;
 
 
@@ -68,18 +80,25 @@ namespace BalikProjesi
             {
                 KartNameTxt.Text = card.CartName;
                 KartKoduTb.Text = card.CartCode;
-                KartTipiTb.Text = card.CartType;
+
+                if (card.CartType == InputEnums.Kasa)
+                    cbCardType.SelectedIndex = 0;
+                else if (card.CartType == InputEnums.Fileto)
+                    cbCardType.SelectedIndex = 1;
+                else if (card.CartType == InputEnums.Kontrol)
+                    cbCardType.SelectedIndex = 2;
+
                 CardID = card.Id;
-                MessageBox.Show("hshhss");
             }
 
+            btnUpdate.Enabled = true;
         }
         public void dataupdate()
         {
 
             string CartName = KartNameTxt.Text.Trim();
             string CartCode = KartKoduTb.Text.Trim();
-            string CartType = KartTipiTb.Text.Trim();
+            string CartType = cbCardType.Text;
             //MessageBox.Show(CardID);
             if (!string.IsNullOrEmpty(CardID))
             {
@@ -117,23 +136,28 @@ namespace BalikProjesi
 
         private void button1_Click(object sender, EventArgs e)
         {
+            bool check = true;
+
             if (string.IsNullOrEmpty(KartNameTxt.Text))
             {
-                MessageBox.Show("Lütfen Kart Adını Doldurunuz", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                lbCardNo.Text = WarningEnums.ThisFieldMustBeFilled;
                 KartNameTxt.Focus();
+                check = false;
             }
             if (string.IsNullOrEmpty(KartKoduTb.Text))
             {
-                MessageBox.Show("Lütfen Kart Kodunu Doldurunuz", "Uyarı", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                lbCardCode.Text = WarningEnums.ThisFieldMustBeFilled;
                 KartKoduTb.Focus();
+                check = false;
             }
-            else
+
+            if(check)
             {
-                var result =_cartService.Create(new Entities.Carts
+                var result = _cartService.Create(new Entities.Carts
                 {
                     CartCode = KartKoduTb.Text.Trim(),
-                    CartName = KartNameTxt.Text.Trim(),                    
-                    CartType = KartTipiTb.Text.Trim(),
+                    CartName = KartNameTxt.Text.Trim(),
+                    CartType = cbCardType.Text,
                     CreateDate = DateTime.Now
                 });
                 if (result)
@@ -142,7 +166,9 @@ namespace BalikProjesi
                 }
                 else
                 {
-                    MessageBox.Show("Kayıt Girilememiştir.");
+                    MessageBox.Show(WarningEnums.CardIsDefined);
+                    lbCardCode.Text = "";
+                    lbCardNo.Text = "";
                 }
                 liste();
             }
@@ -162,7 +188,11 @@ namespace BalikProjesi
         private void button2_Click(object sender, EventArgs e)
         {
             dataupdate();
-            
+
+            lbCardCode.Text = "";
+            lbCardNo.Text = "";
+            btnUpdate.Enabled = false;
+
         }
 
         private void listView1_Click(object sender, EventArgs e)
@@ -184,25 +214,24 @@ namespace BalikProjesi
 
         private async void bntCardReader_Click(object sender, EventArgs e)
         {
-            string cardcodetxt = KartKoduTb.Text.Trim();
+            string cardcodetxt;
+
+            await _readerServices.WriteTagIdToTextboxAsync(KartKoduTb); 
+            await Task.Delay(200);
+
+            cardcodetxt = KartKoduTb.Text.Trim();
             var readCard = _cartService.GetByCardCode(cardcodetxt);
-            if (readCard!=null)
+            if (readCard != null)
             {
                 listget(readCard);
             }
-            //_readerServices.openPort();
+            else
+            {
+                
+            }
 
-            //bool tagIsDefined = await _readerServices.checkTagIsDefined();
-
-            //if (!tagIsDefined)
-            //{
-            //    await _readerServices.setTagIdToTextboxAsync(KartKoduTb);
-            //}
-            //else
-            //{
-            //    KartKoduTb.Text = InputEnums.CardIsDefined;
-            //}
-
+            lbCardCode.Text = "";
+            lbCardNo.Text = "";
         }
 
         private void KartKayitController_SizeChanged(object sender, EventArgs e)
@@ -236,5 +265,6 @@ namespace BalikProjesi
                 throw;
             }
         }
+
     }
 }

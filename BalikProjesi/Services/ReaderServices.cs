@@ -32,96 +32,126 @@ namespace BalikProjesi.Services
             tagType = string.Empty;
             _continue = false;
         }
-        public void openPort(string com = "COM5")
+
+        #region Public Methods
+        public async Task WriteTagIdAndTypeToTextboxAsync(TextBox tagIdTextbox, TextBox tagTypeTextbox, string com = "COM5")
         {
-
-            if (!serialPort.IsOpen)
+            try
             {
-                serialPort.PortName = com;
-                serialPort.BaudRate = 115200;
-                serialPort.DataReceived += new SerialDataReceivedEventHandler(Fun_DataReceived);
+                openPort(com);
 
-                serialPort.Open();
+                idTextbox = tagIdTextbox;
+                typeTextbox = tagTypeTextbox;
+
+                _continue = true;
+
+                while (_continue)
+                {
+
+                    status = 0;
+                    ReadTagMemoryCmd("TID");
+                    status = 1;
+                    ReadTagMemoryCmd("USER");
+
+                    await Task.Delay(1000);
+                }
+
+                idTextbox.BeginInvoke(new SetTextDeleg(Fun_IsDataReceived), new object[] { 0 });
+                typeTextbox.BeginInvoke(new SetTextDeleg(Fun_IsDataReceived), new object[] { 1 });
+
             }
+            catch (Exception)
+            {
+
+            }
+
+            closePort();
 
         }
 
-        public void closePort()
+        public async Task WriteTagIdToTextboxAsync(TextBox tagIdTextbox, string com = "COM5")
         {
-            serialPort.Close();
-        }
+            try
+            {
+                openPort(com);
 
-        public async Task setTagIdAndTypeToTextboxAsync(TextBox tagIdTextbox, TextBox tagTypeTextbox)
-        {
-            idTextbox = tagIdTextbox;
-            typeTextbox = tagTypeTextbox;
+                idTextbox = tagIdTextbox;
 
-            _continue = true;
+                _continue = true;
 
-            while (_continue)
+                while (_continue)
+                {
+
+                    status = 0;
+                    ReadTagMemoryCmd("TID");
+
+                    await Task.Delay(1000);
+                }
+
+                idTextbox.BeginInvoke(new SetTextDeleg(Fun_IsDataReceived), new object[] { 0 });
+
+            }
+            catch (Exception e)
             {
 
-                status = 0;
-                ReadTagMemoryCmd("TID");
-                status = 1;
-                ReadTagMemoryCmd("USER");
-
-                await Task.Delay(1000);
             }
 
-            idTextbox.BeginInvoke(new SetTextDeleg(Fun_IsDataReceived), new object[] { 0 });
-            typeTextbox.BeginInvoke(new SetTextDeleg(Fun_IsDataReceived), new object[] { 1 });
+            closePort();
 
-        }
-
-        public async Task setTagIdToTextboxAsync(TextBox tagIdTextbox)
-        {
-            idTextbox = tagIdTextbox;
-
-            _continue = true;
-
-            while (_continue)
-            {
-
-                status = 0;
-                ReadTagMemoryCmd("TID");
-
-                await Task.Delay(1000);
-            }
-
-            idTextbox.BeginInvoke(new SetTextDeleg(Fun_IsDataReceived), new object[] { 0 });
         }
 
         //0: kasa
         //1: fileto
         //2: kontrol
-        public async Task setTagOwner(int owner)
+        public async Task setTagOwner(int owner, string com = "COM5")
         {
-            if(owner >= 0 && owner < 3)
+            try
             {
+                openPort(com);
+
+                if (owner >= 0 && owner < 3)
+                {
+                    _continue = true;
+
+                    while (_continue)
+                    {
+                        status = 2;
+                        SetTagOwnerCmd(owner);
+
+                        await Task.Delay(1000);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+
+            closePort();
+        }
+
+        public async Task<bool> checkTagIsDefined(string com = "COM5")
+        {
+            try
+            {
+                openPort(com);
+
                 _continue = true;
 
                 while (_continue)
                 {
-                    status = 2;
-                    SetTagOwnerCmd(owner);
+                    status = 1;
+                    ReadTagMemoryCmd("USER");
 
                     await Task.Delay(1000);
                 }
+
+                closePort();
+
             }
-        }
-
-
-        public async Task<bool> checkTagIsDefined()
-        {
-            _continue = true;
-
-            while (_continue)
+            catch (Exception)
             {
-                status = 1;
-                ReadTagMemoryCmd("USER");
 
-                await Task.Delay(1000);
             }
 
             if (tagType == "")
@@ -133,7 +163,29 @@ namespace BalikProjesi.Services
                 return true;
             }
         }
+        #endregion
 
+
+        #region Private Methods
+        private void openPort(string com = "COM5")
+        {
+            if (!serialPort.IsOpen)
+            {
+                serialPort.PortName = com;
+                serialPort.BaudRate = 115200;
+                serialPort.DataReceived += new SerialDataReceivedEventHandler(Fun_DataReceived);
+
+                serialPort.Open();
+            }
+        }
+
+
+        private void closePort()
+        {
+            serialPort.Close();
+            serialPort.Dispose();
+            serialPort = new SerialPort();
+        }
         private void Fun_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
 
@@ -257,5 +309,7 @@ namespace BalikProjesi.Services
                 num += btAryBuffer[index];
             return Convert.ToByte((int)~num + 1 & (int)byte.MaxValue);
         }
+
+        #endregion
     }
 }
