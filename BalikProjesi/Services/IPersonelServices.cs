@@ -11,7 +11,9 @@ namespace BalikProjesi.Services
         bool Delete(string _pid, string persType);
         Personel Get(string _pid);
         List<Personel> GetControl();
+        Personel GetControlPersonnelByCardId(string CardID);
         List<Personel> GetFillet();
+        Personel GetFilletPersonnelByCardId(string CardID);
         List<Personel> GetFilteredController(FilterDefinition<Personel> filteredPersonel);
         List<Personel> GetFilteredFillet(FilterDefinition<Personel> filteredPersonel);
         bool Update(Personel personel, string perstype);

@@ -91,7 +91,16 @@ namespace BalikProjesi.Services
             var result = fdb.Find(x => true).ToList();
             return result;
         }
-
+        public Personel GetFilletPersonnelByCardId(string CardID)
+        {
+            var result = fdb.Find(x => x.CartId == CardID).FirstOrDefault();
+            return result;
+        }
+        public Personel GetControlPersonnelByCardId(string CardID)
+        {
+            var result = pdb.Find(x => x.CartId == CardID).FirstOrDefault();
+            return result;
+        }
         public List<Personel> GetFilteredFillet(FilterDefinition<Personel> filteredPersonel)
         {
             var result = fdb.Find(filteredPersonel).ToList();
