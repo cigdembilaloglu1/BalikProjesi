@@ -18,6 +18,8 @@ namespace BalikProjesi
         private readonly ICartsServices1 _cartService;
         private string CardID = "";
         private readonly ReaderServices _readerServices;
+        private readonly IPersonelServices _personelService;
+        private readonly IFishBoxServices _fishboxService;
 
 
         public KartKayitController()
@@ -25,6 +27,8 @@ namespace BalikProjesi
             InitializeComponent();
             _cartService = new CartsServices();
             _readerServices = new ReaderServices();
+            _personelService = new PersonelServices();
+            _fishboxService = new FishBoxServices();
             CardID = "";
         }
         public void liste()
@@ -80,17 +84,40 @@ namespace BalikProjesi
             string CartName = KartNameTxt.Text.Trim();
             string CartCode = KartKoduTb.Text.Trim();
             string CartType = KartTipiTb.Text.Trim();
-            //MessageBox.Show(CardID);
-            if (!string.IsNullOrEmpty(CardID))
+            Entities.Carts ct = new Carts();
+            var fb=_fishboxService.GetByCardID(CardID);
+            var fileto = _personelService.GetFilletPersonnelByCardId(CardID);
+            var kontrol = _personelService.GetControlPersonnelByCardId(CardID);
+            void temp()
             {
-                Entities.Carts ct = new Carts();
-
-
                 ct.CartName = CartName;
                 ct.CartCode = CartCode;
                 ct.CartType = CartType;
                 ct.Id = CardID;
                 ct.UpdateDate = DateTime.Now;
+            }
+            //MessageBox.Show(CardID);
+            if (!string.IsNullOrEmpty(CardID))
+            {
+                if (fb!=null)
+                {
+                    fb.CartCode = "";
+                    temp();
+                }
+                if (fileto!=null)
+                {
+                    fileto.CartCode = "";
+                    temp();
+                }
+                if (kontrol != null)
+                {
+                    fileto.CartCode = "";
+                    temp();
+                }
+
+
+                
+                
                 bool chk = _cartService.Update(ct, CartName);
                 if (chk == true)
                 {
