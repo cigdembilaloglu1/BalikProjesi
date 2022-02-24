@@ -21,5 +21,29 @@ namespace BalikProjesi
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FiletoTeslim Fteslim = new FiletoTeslim();
+            Fteslim.Show();
+            this.Hide();
+        }
+
+        private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FiletoKabul Fkabul = new FiletoKabul();
+            Fkabul.Show();
+            this.Hide();
+        }
+
+        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

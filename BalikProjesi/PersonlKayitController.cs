@@ -17,12 +17,14 @@ namespace BalikProjesi
     public partial class PersonlKayitController : UserControl
     {
         private readonly IPersonelServices _perService;
+        private readonly ICartsServices1 _cartsServices;
         private readonly ReaderServices _readerServices;
         public PersonlKayitController()
         {
             InitializeComponent();
             _perService = new PersonelServices();
             _readerServices = new ReaderServices();
+            _cartsServices = new CartsServices();
         }
         public void listviewDataGet()
         {
@@ -156,7 +158,7 @@ namespace BalikProjesi
                 MessageBox.Show("LÜtfen bir kart okutunuz", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 check = false;
             }
-            if (txtKartID.Text == InputEnums.CardIsDefined)
+            if (txtKartID.Text == WarningEnums.CardIsDefined)
             {
                 MessageBox.Show("LÜtfen daha önce tanımlanmamış bir kart okutunuz", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 check = false;
@@ -301,20 +303,7 @@ namespace BalikProjesi
 
         private async void btnReader_Click(object sender, EventArgs e)
         {
-            _readerServices.openPort();
-
-            bool tagIsDefined = await _readerServices.checkTagIsDefined();
-
-            if (!tagIsDefined)
-            {
-                await _readerServices.setTagIdToTextboxAsync(txtKartID);
-            }
-            else
-            {
-                txtKartID.Text = InputEnums.CardIsDefined;
-            }
-
-            //_readerServices.closePort();
+            
         }
 
         private void sİLToolStripMenuItem_Click(object sender, EventArgs e)
