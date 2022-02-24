@@ -17,7 +17,11 @@ namespace BalikProjesi.Enums
         public const string A = "A";
         public const string B = "B";
         public const string C = "C";
-        public const string CardIsDefined = "Bu kart daha önce tanımlandı başka bir kart deneyiniz";
+    }
 
+    public static class WarningEnums
+    {
+        public const string CardIsDefined = "*Bu kart daha önce tanımlandı başka bir kart deneyiniz";
+        public const string ThisFieldMustBeFilled = "*Bu Alan dolurulmak zorunda";
     }
 }
