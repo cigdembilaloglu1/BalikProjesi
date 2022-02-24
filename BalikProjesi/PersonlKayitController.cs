@@ -365,7 +365,7 @@ namespace BalikProjesi
             }
             if (rbGroup.Checked)
             {
-                Filter = Builders<Personel>.Filter.Eq(x => x.PersonelGroup, new MongoDB.Bson.BsonRegularExpression(search, "i"));
+                Filter = Builders<Personel>.Filter.Regex(x => x.PersonelGroup, new MongoDB.Bson.BsonRegularExpression(search, "i"));
             }
 
             List<Personel> filteredPersonelList;
@@ -380,5 +380,6 @@ namespace BalikProjesi
 
             pageListToTable(filteredPersonelList);
         }
+
     }
 }
