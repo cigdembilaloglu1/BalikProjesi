@@ -7,10 +7,10 @@ namespace BalikProjesi.Services
     public interface IFishBoxServices
     {
         bool CheckFBox(string Fbcode);
-        void Create(FishBox fishBox);
+        bool Create(FishBox fishBox);
         bool Delete(string Fcode);
         List<FishBox> Get();
-        FishBox Get(string Fbcode);
+        FishBox Get(string ID);
         bool Update(FishBox fishBox);
     }
 }

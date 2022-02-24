@@ -17,7 +17,7 @@ namespace BalikProjesi.Services
             var Mongo = new DbContext();
             db = Mongo._carts;
         }
-        public void Create(Carts Data)
+        public bool Create(Carts Data)
         {
             var Islem = CheckCard(Data.CartCode);
             if (Islem)
@@ -26,6 +26,7 @@ namespace BalikProjesi.Services
                 db.InsertOne(Data);
 
             }
+            return Islem;
 
 
         }
@@ -88,9 +89,17 @@ namespace BalikProjesi.Services
         {
             try
             {
-                var Filter = Builders<Carts>.Filter.Eq(x => x.CartId, cardID);
-                db.DeleteOne(Filter);
-                return true;
+                if (!string.IsNullOrEmpty(cardID))
+                {
+                    var Filter = Builders<Carts>.Filter.Eq(x => x.Id, cardID);
+                    db.DeleteOne(Filter);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+                
             }
             catch
             {

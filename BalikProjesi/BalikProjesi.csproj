@@ -122,23 +122,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ControlUser.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ControlUser.Designer.cs">
-      <DependentUpon>ControlUser.cs</DependentUpon>
-    </Compile>
     <Compile Include="Entities\Carts.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\Personel.cs" />
     <Compile Include="Entities\FishBox.cs" />
     <Compile Include="Enums\InputEnums.cs" />
-    <Compile Include="FilletUser.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FilletUser.Designer.cs">
-      <DependentUpon>FilletUser.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,12 +187,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Services\RecordingsServices.cs" />
-    <EmbeddedResource Include="ControlUser.resx">
-      <DependentUpon>ControlUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FilletUser.resx">
-      <DependentUpon>FilletUser.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

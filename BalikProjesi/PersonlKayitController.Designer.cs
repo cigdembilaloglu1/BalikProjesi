@@ -73,7 +73,6 @@
             this.rbSurname = new System.Windows.Forms.RadioButton();
             this.rbCode = new System.Windows.Forms.RadioButton();
             this.rbGroup = new System.Windows.Forms.RadioButton();
-            this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
             this.contextMenuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -563,7 +562,6 @@
             this.flowLayoutPanel2.Controls.Add(this.rbSurname);
             this.flowLayoutPanel2.Controls.Add(this.rbCode);
             this.flowLayoutPanel2.Controls.Add(this.rbGroup);
-            this.flowLayoutPanel2.Controls.Add(this.maskedTextBox2);
             this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(3, 32);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
@@ -611,13 +609,6 @@
             this.rbGroup.TabIndex = 3;
             this.rbGroup.Text = "Grup";
             this.rbGroup.UseVisualStyleBackColor = true;
-            // 
-            // maskedTextBox2
-            // 
-            this.maskedTextBox2.Location = new System.Drawing.Point(3, 26);
-            this.maskedTextBox2.Name = "maskedTextBox2";
-            this.maskedTextBox2.Size = new System.Drawing.Size(100, 20);
-            this.maskedTextBox2.TabIndex = 4;
             // 
             // PersonlKayitController
             // 
@@ -694,7 +685,6 @@
         private System.Windows.Forms.RadioButton rbSurname;
         private System.Windows.Forms.RadioButton rbCode;
         private System.Windows.Forms.RadioButton rbGroup;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox2;
         private System.Windows.Forms.MaskedTextBox mtSearch;
     }
 }
