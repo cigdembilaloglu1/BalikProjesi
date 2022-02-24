@@ -161,7 +161,7 @@ namespace BalikProjesi
             {
                 if (string.IsNullOrEmpty(CardID))
                 {
-                    MessageBox.Show("Kart okunamadı");
+                    MessageBox.Show("Kart okunamadı veya kayıtlı değil. Lütfen kontrol ediniz.");
                 }
                 else 
                 {
@@ -178,6 +178,7 @@ namespace BalikProjesi
                 }
                 
             }
+            
             CardID = "";
             list();
         }
@@ -262,12 +263,24 @@ namespace BalikProjesi
         {
             string cardcodetxt = txtKartid.Text.Trim();
             var readCard = _cartServices.GetByCardCode(cardcodetxt);
+            
             if (readCard!=null)
             {
-                CardID = readCard.Id;
-                listget(readCard);
+                var readBox = _fboxService.GetByCardID(readCard.CartId);
+                if (readBox!=null)
+                {
+                    CardID = readCard.Id;
+                    listget(readCard);
+                }
+                else
+                {
+                    MessageBox.Show("Kart kayıtlıdır");
+                }
+                
             }
-            CardID = "";
+            
+            
+            
             //_readerServices.openPort();
 
             //bool tagIsDefined = await _readerServices.checkTagIsDefined();
