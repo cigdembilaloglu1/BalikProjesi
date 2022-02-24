@@ -22,6 +22,22 @@ namespace BalikProjesi
            
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FilletUser Fillet=new FilletUser();
+            
+            Fillet.Show();
+            this.Hide();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ControlUser Control = new ControlUser();
+           
+             Control.Show();
+             this.Hide();
+        }
+
         //private void fİLETOPERSONELİToolStripMenuItem_Click(object sender, EventArgs e)
         //{
         //    MainPanel.Controls.Clear();

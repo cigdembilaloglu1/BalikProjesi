@@ -579,6 +579,7 @@
             this.rbName.TabStop = true;
             this.rbName.Text = "İsim";
             this.rbName.UseVisualStyleBackColor = true;
+            this.rbName.CheckedChanged += new System.EventHandler(this.rbName_CheckedChanged);
             // 
             // rbSurname
             // 
@@ -589,6 +590,7 @@
             this.rbSurname.TabIndex = 1;
             this.rbSurname.Text = "Soyisim";
             this.rbSurname.UseVisualStyleBackColor = true;
+            this.rbSurname.CheckedChanged += new System.EventHandler(this.rbSurname_CheckedChanged);
             // 
             // rbCode
             // 
@@ -599,6 +601,7 @@
             this.rbCode.TabIndex = 2;
             this.rbCode.Text = "Kod";
             this.rbCode.UseVisualStyleBackColor = true;
+            this.rbCode.CheckedChanged += new System.EventHandler(this.rbCode_CheckedChanged);
             // 
             // rbGroup
             // 
@@ -609,6 +612,7 @@
             this.rbGroup.TabIndex = 3;
             this.rbGroup.Text = "Grup";
             this.rbGroup.UseVisualStyleBackColor = true;
+            this.rbGroup.CheckedChanged += new System.EventHandler(this.rbGroup_CheckedChanged);
             // 
             // PersonlKayitController
             // 
