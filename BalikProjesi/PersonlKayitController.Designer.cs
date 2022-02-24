@@ -248,20 +248,20 @@
             this.gÜNCELLEToolStripMenuItem,
             this.sİLToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(132, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
             this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // gÜNCELLEToolStripMenuItem
             // 
             this.gÜNCELLEToolStripMenuItem.Name = "gÜNCELLEToolStripMenuItem";
-            this.gÜNCELLEToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.gÜNCELLEToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.gÜNCELLEToolStripMenuItem.Text = "GÜNCELLE";
             this.gÜNCELLEToolStripMenuItem.Click += new System.EventHandler(this.gÜNCELLEToolStripMenuItem_Click);
             // 
             // sİLToolStripMenuItem
             // 
             this.sİLToolStripMenuItem.Name = "sİLToolStripMenuItem";
-            this.sİLToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.sİLToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sİLToolStripMenuItem.Text = "SİL";
             this.sİLToolStripMenuItem.Click += new System.EventHandler(this.sİLToolStripMenuItem_Click);
             // 

@@ -9,18 +9,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BalikProjesi.Enums;
 
 namespace BalikProjesi
 {
     public partial class KartKayitController : UserControl
     {
         private readonly ICartsServices1 _cartService;
+        private string CardID = "";
+        private readonly ReaderServices _readerServices;
 
 
         public KartKayitController()
         {
             InitializeComponent();
             _cartService = new CartsServices();
+            _readerServices = new ReaderServices();
+            CardID = "";
         }
         public void liste()
         {
@@ -44,10 +49,7 @@ namespace BalikProjesi
             KartNameTxt.Clear();
             KartKoduTb.Clear();
             KartTipiTb.Clear();
-            KartUUDTb.Clear();
-
-
-
+            CardID = "";
         }
         public void listget()
         {
@@ -58,7 +60,7 @@ namespace BalikProjesi
                 KartNameTxt.Text = itm.SubItems[0].Text;
                 KartKoduTb.Text = itm.SubItems[1].Text;
                 KartTipiTb.Text = itm.SubItems[2].Text;
-                KartUUDTb.Text = itm.SubItems[3].Text;
+                CardID = itm.SubItems[3].Text;
 
 
             }
@@ -67,29 +69,38 @@ namespace BalikProjesi
         public void dataupdate()
         {
 
-            string CartName = KartNameTxt.Text;
-            string CartCode = KartKoduTb.Text;
-            string CartType = KartTipiTb.Text;
-            string CartUUID = KartUUDTb.Text;
-
-            Entities.Carts ct = new Carts();
-            
-
-            ct.CartName = CartName;
-            ct.CartCode = CartCode;
-            ct.CartType = CartType;
-            ct.Id = CartUUID;
-            ct.UpdateDate= DateTime.Now;
-            bool chk = _cartService.Update(ct,CartName);
-            if (chk == true)
+            string CartName = KartNameTxt.Text.Trim();
+            string CartCode = KartKoduTb.Text.Trim();
+            string CartType = KartTipiTb.Text.Trim();
+            //MessageBox.Show(CardID);
+            if (!string.IsNullOrEmpty(CardID))
             {
-                MessageBox.Show("Güncelleme başarılı.");
+                Entities.Carts ct = new Carts();
+
+
+                ct.CartName = CartName;
+                ct.CartCode = CartCode;
+                ct.CartType = CartType;
+                ct.Id = CardID;
+                ct.UpdateDate = DateTime.Now;
+                bool chk = _cartService.Update(ct, CartName);
+                if (chk == true)
+                {
+                    MessageBox.Show("Güncelleme başarılı.");
+                }
+                else
+                {
+                    MessageBox.Show("Güncelleme başarısız.");
+                }
+                
             }
             else
             {
-                MessageBox.Show("Güncelleme başarısız. Girilen kayıt daha önce girilmiştir.");
+                MessageBox.Show("Lütfen listeden güncellemek istediğiniz kaydı seçiniz veya kartınızı okutunuz");
             }
             liste();
+
+
         }
 
 
@@ -110,14 +121,21 @@ namespace BalikProjesi
             }
             else
             {
-                _cartService.Create(new Entities.Carts
+                var result =_cartService.Create(new Entities.Carts
                 {
                     CartCode = KartKoduTb.Text.Trim(),
-                    CartName = KartNameTxt.Text.Trim(),
-                    CartId = KartUUDTb.Text.Trim(),
+                    CartName = KartNameTxt.Text.Trim(),                    
                     CartType = KartTipiTb.Text.Trim(),
                     CreateDate = DateTime.Now
                 });
+                if (result)
+                {
+                    MessageBox.Show("Kayıt Başarılıyla girilmiştir.");
+                }
+                else
+                {
+                    MessageBox.Show("Kayıt Girilememiştir.");
+                }
                 liste();
             }
 
@@ -128,10 +146,6 @@ namespace BalikProjesi
             liste();
 
         }
-
-
-
-
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             listget();
@@ -151,6 +165,30 @@ namespace BalikProjesi
         private void KartKayitController_Load_1(object sender, EventArgs e)
         {
             liste();
+        }
+
+        private void DeleteMenuStrip_Click(object sender, EventArgs e)
+        {
+            var result=_cartService.Delete(CardID);
+            MessageBox.Show(result.ToString());
+            liste();
+        }
+
+        private async void bntCardReader_Click(object sender, EventArgs e)
+        {
+            _readerServices.openPort();
+
+            bool tagIsDefined = await _readerServices.checkTagIsDefined();
+
+            if (!tagIsDefined)
+            {
+                await _readerServices.setTagIdToTextboxAsync(KartKoduTb);
+            }
+            else
+            {
+                KartKoduTb.Text = InputEnums.CardIsDefined;
+            }
+
         }
     }
 }

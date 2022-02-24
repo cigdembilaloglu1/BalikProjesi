@@ -32,29 +32,29 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.KasaUUID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.KasaKod = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.KasaTip = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.KasaUUID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.KasaID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.Delete = new System.Windows.Forms.ToolStripMenuItem();
             this.label3 = new System.Windows.Forms.Label();
             this.txtKartid = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.btnCardRead = new System.Windows.Forms.Button();
-            this.KasaID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button1 = new System.Windows.Forms.Button();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.Delete = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtKasatip = new System.Windows.Forms.TextBox();
-            this.txtKasakod = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.txtKasakod = new System.Windows.Forms.TextBox();
+            this.txtKasatip = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -103,11 +103,6 @@
             this.listView1.View = System.Windows.Forms.View.Details;
             this.listView1.Click += new System.EventHandler(this.listView1_Click);
             // 
-            // KasaUUID
-            // 
-            this.KasaUUID.Text = "KASA KARTI KODU";
-            this.KasaUUID.Width = 120;
-            // 
             // KasaKod
             // 
             this.KasaKod.Text = "KASA KODU";
@@ -117,6 +112,30 @@
             // 
             this.KasaTip.Text = "KASA TİPİ";
             this.KasaTip.Width = 95;
+            // 
+            // KasaUUID
+            // 
+            this.KasaUUID.Text = "KASA KARTI KODU";
+            this.KasaUUID.Width = 120;
+            // 
+            // KasaID
+            // 
+            this.KasaID.Text = "KasaID";
+            this.KasaID.Width = 0;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Delete});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(90, 26);
+            // 
+            // Delete
+            // 
+            this.Delete.Name = "Delete";
+            this.Delete.Size = new System.Drawing.Size(89, 22);
+            this.Delete.Text = "SİL";
+            this.Delete.Click += new System.EventHandler(this.Delete_Click);
             // 
             // label3
             // 
@@ -160,11 +179,6 @@
             this.btnCardRead.UseVisualStyleBackColor = true;
             this.btnCardRead.Click += new System.EventHandler(this.btnCardRead_Click);
             // 
-            // KasaID
-            // 
-            this.KasaID.Text = "KasaID";
-            this.KasaID.Width = 0;
-            // 
             // button1
             // 
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -175,20 +189,6 @@
             this.button1.Text = "GÜNCELLE";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Delete});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(90, 26);
-            // 
-            // Delete
-            // 
-            this.Delete.Name = "Delete";
-            this.Delete.Size = new System.Drawing.Size(89, 22);
-            this.Delete.Text = "SİL";
-            this.Delete.Click += new System.EventHandler(this.Delete_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -208,6 +208,22 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1133, 579);
             this.tableLayoutPanel1.TabIndex = 16;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.button2, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.button1, 1, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(682, 3);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 203F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(448, 203);
+            this.tableLayoutPanel2.TabIndex = 17;
             // 
             // flowLayoutPanel1
             // 
@@ -240,22 +256,6 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(673, 203);
             this.tableLayoutPanel3.TabIndex = 17;
             // 
-            // txtKasatip
-            // 
-            this.txtKasatip.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtKasatip.Location = new System.Drawing.Point(272, 137);
-            this.txtKasatip.Name = "txtKasatip";
-            this.txtKasatip.Size = new System.Drawing.Size(398, 20);
-            this.txtKasatip.TabIndex = 8;
-            // 
-            // txtKasakod
-            // 
-            this.txtKasakod.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtKasakod.Location = new System.Drawing.Point(272, 70);
-            this.txtKasakod.Name = "txtKasakod";
-            this.txtKasakod.Size = new System.Drawing.Size(398, 20);
-            this.txtKasakod.TabIndex = 8;
-            // 
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 2;
@@ -271,21 +271,21 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(398, 61);
             this.tableLayoutPanel4.TabIndex = 18;
             // 
-            // tableLayoutPanel2
+            // txtKasakod
             // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.button2, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.button1, 1, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(682, 3);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(448, 203);
-            this.tableLayoutPanel2.TabIndex = 17;
+            this.txtKasakod.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtKasakod.Location = new System.Drawing.Point(272, 70);
+            this.txtKasakod.Name = "txtKasakod";
+            this.txtKasakod.Size = new System.Drawing.Size(398, 20);
+            this.txtKasakod.TabIndex = 8;
+            // 
+            // txtKasatip
+            // 
+            this.txtKasatip.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtKasatip.Location = new System.Drawing.Point(272, 137);
+            this.txtKasatip.Name = "txtKasatip";
+            this.txtKasatip.Size = new System.Drawing.Size(398, 20);
+            this.txtKasatip.TabIndex = 8;
             // 
             // KasaKayitController
             // 
@@ -297,11 +297,11 @@
             this.Load += new System.EventHandler(this.KasaKayitController_Load);
             this.contextMenuStrip1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
-            this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
