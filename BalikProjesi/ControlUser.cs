@@ -16,5 +16,19 @@ namespace BalikProjesi
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            KontrolTeslim Kteslim = new KontrolTeslim();
+            Kteslim.Show();
+            this.Hide();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            KontrolKabul Kkabul = new KontrolKabul();
+            Kkabul.Show();
+            this.Hide();
+        }
     }
 }
