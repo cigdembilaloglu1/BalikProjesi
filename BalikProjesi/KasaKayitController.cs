@@ -44,28 +44,46 @@ namespace BalikProjesi
             {
                 CardID = readCard.Id;                
             }
-            if (!string.IsNullOrEmpty(BoxID))
+            else
             {
-                Entities.FishBox fb = new FishBox();
+                MessageBox.Show("Okunan kart kayıtlı değildir. Lütfen kartı önce kayıt ediniz.");
+            }
+            if (!string.IsNullOrEmpty(BoxID)&& readCard != null)
+            {
+                if (readCard.CartType==InputEnums.Kasa)
+                {
+                    Entities.FishBox fb = new FishBox();
 
 
-                fb.FishBoxCode = boxcode;
-                fb.CartCode = CartCode;
-                fb.FishBoxType = boxtype;
-                fb.Id = BoxID;
-                fb.UpdateDate = DateTime.Now;
-                bool chk = _fboxService.Update(fb);
-                if (chk == true)
-                {
-                    MessageBox.Show("Güncelleme başarılı.");
+                    fb.FishBoxCode = boxcode;
+                    fb.CartCode = CartCode;
+                    fb.CartId = CardID;
+                    fb.FishBoxType = boxtype;
+                    fb.Id = BoxID;
+                    fb.UpdateDate = DateTime.Now;
+                    bool chk = _fboxService.Update(fb);
+                    if (chk == true)
+                    {
+                        MessageBox.Show("Güncelleme başarılı.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Güncelleme başarısız.");
+                    }
                 }
-                else
+                else if (readCard.CartType == InputEnums.Fileto)
                 {
-                    MessageBox.Show("Güncelleme başarısız.");
+                    MessageBox.Show("Okunan kart Fileto personeli kartıdır. Lüften farklı bir kartla tekrar deneyin veya kartı güncelleyin.");
                 }
+                else if (readCard.CartType == InputEnums.Kontrol)
+                {
+                    MessageBox.Show("Okunan kart Kontrol personeli kartıdır. Lüften farklı bir kartla tekrar deneyin veya kartı güncelleyin.");
+                }
+
+
 
             }
-            else
+            else if(string.IsNullOrEmpty(BoxID))
             {
                 MessageBox.Show("Lütfen listeden güncellemek istediğiniz kaydı seçiniz veya kartınızı okutunuz");
             }
@@ -81,33 +99,86 @@ namespace BalikProjesi
 
         private void button2_Click(object sender, EventArgs e)
         {
+            string cardCode = txtKartid.Text.Trim();
             bool check = true;
-
-            if (check)
+            if (string.IsNullOrEmpty(txtKartid.Text))
             {
-                //var readCard = _cartServices.GetByCardCode(CartCode);
-                if (readCard != null)
+                MessageBox.Show("LÜtfen bir kart okutunuz", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                check = false;
+            }
+            if (string.IsNullOrEmpty(txtKasakod.Text))
+            {
+                MessageBox.Show("LÜtfen bir kasakodu giriniz", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                check = false;
+            }
+            if (string.IsNullOrEmpty(txtKasatip.Text))
+            {
+                MessageBox.Show("LÜtfen bir kasa tipi seçiniz", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                check = false;
+            }
+            var readCard = _cartServices.GetByCardCode(cardCode);
+            if (readCard != null)
+            {
+                CardID = readCard.Id;
+            }
+            if (!string.IsNullOrEmpty(CardID))
+            {
+                if (check)
                 {
-                    CardID = readCard.Id;
-                }
-                var result = _fboxService.Create(new FishBox
-                {
-                    CreateDate = DateTime.Now,
-                    FishBoxCode = txtKasakod.Text.Trim(),
-                    FishBoxType = txtKasatip.Text.Trim(),
-                    CartCode = txtKartid.Text.Trim(),
-                    CartId = CardID
-                });
-                switch (result)
-                {
-                    case true:
-                        MessageBox.Show("Kasa kaydı başarılı.");
-                        break;                        
-                    case false:
-                        MessageBox.Show("Kasa kaydı başarısız. Girilen kasa daha önceden kayıt edilmiştir.");
-                        break;
+                    
+                    if (readCard.CartType == InputEnums.Kasa)
+                    {
+                        var result = _fboxService.Create(new FishBox
+                        {
+                            CreateDate = DateTime.Now,
+                            FishBoxCode = txtKasakod.Text.Trim(),
+                            FishBoxType = txtKasatip.Text.Trim(),
+                            CartCode = cardCode,
+                            CartId = CardID
+                        });
+                        switch (result)
+                        {
+                            case true:
+                                MessageBox.Show("Kasa kaydı başarılı.");
+                                break;
+                            case false:
+                                MessageBox.Show("Kasa kaydı başarısız. Girilen kasa daha önceden kayıt edilmiştir.");
+                                break;
+                        }
+                    }
+                    else if (readCard.CartType == InputEnums.Fileto)
+                    {
+                        MessageBox.Show("Okunan kart Fileto personeli kartıdır. Lüften farklı bir kartla tekrar deneyin veya kartı güncelleyin.");
+                    }
+                    else if (readCard.CartType == InputEnums.Kontrol)
+                    {
+                        MessageBox.Show("Okunan kart Kontrol personeli kartıdır. Lüften farklı bir kartla tekrar deneyin veya kartı güncelleyin.");
+                    }
+                    
                 }
             }
+            else
+            {
+                if (string.IsNullOrEmpty(CardID))
+                {
+                    MessageBox.Show("Kart okunamadı");
+                }
+                else 
+                {
+                    var result = _fboxService.GetByCardID(CardID);
+                    if (result.CartType==InputEnums.Kontrol)
+                    {
+                        MessageBox.Show("Okunan kart " + result.CartType + " kartıdır. Lütfen başka bir kart giriniz veya kartı güncelleyiniz");
+                    }                    
+                    else if (result.CartType==InputEnums.Fileto)
+                    {
+                        MessageBox.Show("Okunan kart " + result.CartType + " kartıdır. Lütfen başka bir kart giriniz veya kartı güncelleyiniz");
+                    }
+
+                }
+                
+            }
+            CardID = "";
             list();
         }
         void list()
@@ -148,9 +219,15 @@ namespace BalikProjesi
             }
             else
             {
+                
                 ListViewItem itm = listView1.SelectedItems[0];
                 if (listView1.SelectedItems.Count != 0)
                 {
+                    var result = _cartServices.GetByCardCode(CardID);
+                    if (result!=null)
+                    {
+                        CardID = result.Id;
+                    }
                     txtKasakod.Text = itm.SubItems[0].Text;
                     txtKasatip.Text = itm.SubItems[1].Text;
                     txtKartid.Text = itm.SubItems[2].Text;
@@ -190,6 +267,7 @@ namespace BalikProjesi
                 CardID = readCard.Id;
                 listget(readCard);
             }
+            CardID = "";
             //_readerServices.openPort();
 
             //bool tagIsDefined = await _readerServices.checkTagIsDefined();
