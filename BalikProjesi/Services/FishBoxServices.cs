@@ -51,6 +51,11 @@ namespace BalikProjesi.Services
             var result = db.Find(x => true).ToList();
             return result;
         }
+        public FishBox GetByCardID(string ID)
+        {
+            var result = db.Find(x => x.CartId == ID).FirstOrDefault();
+            return result;
+        }
         public bool Update(FishBox fishbox)
         {
 
