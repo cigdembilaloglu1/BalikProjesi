@@ -41,20 +41,20 @@
             this.KartKod = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.KartTip = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.KartUUID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.DeleteMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.button2 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.bntCardReader = new System.Windows.Forms.Button();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.DeleteMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.bntCardReader = new System.Windows.Forms.Button();
+            this.contextMenuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
@@ -141,6 +141,7 @@
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(3, 194);
             this.listView1.Name = "listView1";
+            this.listView1.Scrollable = false;
             this.listView1.Size = new System.Drawing.Size(1192, 233);
             this.listView1.TabIndex = 12;
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -166,6 +167,20 @@
             // 
             this.KartUUID.Text = "KartID";
             this.KartUUID.Width = 0;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DeleteMenuStrip});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 26);
+            // 
+            // DeleteMenuStrip
+            // 
+            this.DeleteMenuStrip.Name = "DeleteMenuStrip";
+            this.DeleteMenuStrip.Size = new System.Drawing.Size(124, 22);
+            this.DeleteMenuStrip.Text = "KAYDI SİL";
+            this.DeleteMenuStrip.Click += new System.EventHandler(this.DeleteMenuStrip_Click);
             // 
             // button2
             // 
@@ -210,7 +225,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 185F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(593, 185);
             this.tableLayoutPanel2.TabIndex = 15;
             // 
@@ -222,32 +237,6 @@
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1192, 43);
             this.flowLayoutPanel1.TabIndex = 16;
-            // 
-            // bntCardReader
-            // 
-            this.bntCardReader.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bntCardReader.Location = new System.Drawing.Point(378, 3);
-            this.bntCardReader.Name = "bntCardReader";
-            this.bntCardReader.Size = new System.Drawing.Size(88, 62);
-            this.bntCardReader.TabIndex = 15;
-            this.bntCardReader.Text = "KART\r\nOKU";
-            this.bntCardReader.UseVisualStyleBackColor = true;
-            this.bntCardReader.Click += new System.EventHandler(this.bntCardReader_Click);
-            // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel3.Controls.Add(this.bntCardReader, 1, 0);
-            this.tableLayoutPanel3.Controls.Add(this.KartKoduTb, 0, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(121, 3);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(469, 68);
-            this.tableLayoutPanel3.TabIndex = 16;
             // 
             // tableLayoutPanel4
             // 
@@ -270,19 +259,31 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(593, 185);
             this.tableLayoutPanel4.TabIndex = 17;
             // 
-            // contextMenuStrip1
+            // tableLayoutPanel3
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.DeleteMenuStrip});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 26);
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel3.Controls.Add(this.bntCardReader, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.KartKoduTb, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(121, 3);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(469, 68);
+            this.tableLayoutPanel3.TabIndex = 16;
             // 
-            // DeleteMenuStrip
+            // bntCardReader
             // 
-            this.DeleteMenuStrip.Name = "DeleteMenuStrip";
-            this.DeleteMenuStrip.Size = new System.Drawing.Size(180, 22);
-            this.DeleteMenuStrip.Text = "KAYDI SİL";
-            this.DeleteMenuStrip.Click += new System.EventHandler(this.DeleteMenuStrip_Click);
+            this.bntCardReader.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.bntCardReader.Location = new System.Drawing.Point(378, 3);
+            this.bntCardReader.Name = "bntCardReader";
+            this.bntCardReader.Size = new System.Drawing.Size(88, 62);
+            this.bntCardReader.TabIndex = 15;
+            this.bntCardReader.Text = "KART\r\nOKU";
+            this.bntCardReader.UseVisualStyleBackColor = true;
+            this.bntCardReader.Click += new System.EventHandler(this.bntCardReader_Click);
             // 
             // KartKayitController
             // 
@@ -292,13 +293,14 @@
             this.Name = "KartKayitController";
             this.Size = new System.Drawing.Size(1198, 479);
             this.Load += new System.EventHandler(this.KartKayitController_Load);
+            this.SizeChanged += new System.EventHandler(this.KartKayitController_SizeChanged);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
-            this.contextMenuStrip1.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
 
         }

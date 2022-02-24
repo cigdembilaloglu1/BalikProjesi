@@ -204,5 +204,37 @@ namespace BalikProjesi
             //}
 
         }
+
+        private void KartKayitController_SizeChanged(object sender, EventArgs e)
+        {
+            string x = "";
+            int width = this.Width;
+            
+            try
+            {
+                for (int i = 0; i < listView1.Columns.Count-1; i++)
+                {
+                    
+                    switch (i)
+                    {
+                        case 0:
+                            listView1.Columns[i].Width = Convert.ToInt32(width*0.25);
+                         break;
+                        case 1:
+                            listView1.Columns[i].Width = Convert.ToInt32(width * 0.5);
+                            break;
+                        case 2:
+                            listView1.Columns[i].Width = Convert.ToInt32(width * 0.25);
+                            break;
+                        
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

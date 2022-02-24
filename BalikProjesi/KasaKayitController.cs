@@ -57,7 +57,7 @@ namespace BalikProjesi
                         break;
                 }
             }
-            
+            list();
         }
         void list()
         {
