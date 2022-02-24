@@ -51,7 +51,7 @@ namespace BalikProjesi
             KartTipiTb.Clear();
             CardID = "";
         }
-        public void listget()
+        public void listget(Carts card=null)
         {
             if (listView1.SelectedItems.Count != 0)
             {
@@ -63,6 +63,14 @@ namespace BalikProjesi
                 CardID = itm.SubItems[3].Text;
 
 
+            }
+            else
+            {
+                KartNameTxt.Text = card.CartName;
+                KartKoduTb.Text = card.CartCode;
+                KartTipiTb.Text = card.CartType;
+                CardID = card.Id;
+                MessageBox.Show("hshhss");
             }
 
         }
@@ -176,18 +184,24 @@ namespace BalikProjesi
 
         private async void bntCardReader_Click(object sender, EventArgs e)
         {
-            _readerServices.openPort();
-
-            bool tagIsDefined = await _readerServices.checkTagIsDefined();
-
-            if (!tagIsDefined)
+            string cardcodetxt = KartKoduTb.Text.Trim();
+            var readCard = _cartService.GetByCardCode(cardcodetxt);
+            if (readCard!=null)
             {
-                await _readerServices.setTagIdToTextboxAsync(KartKoduTb);
+                listget(readCard);
             }
-            else
-            {
-                KartKoduTb.Text = InputEnums.CardIsDefined;
-            }
+            //_readerServices.openPort();
+
+            //bool tagIsDefined = await _readerServices.checkTagIsDefined();
+
+            //if (!tagIsDefined)
+            //{
+            //    await _readerServices.setTagIdToTextboxAsync(KartKoduTb);
+            //}
+            //else
+            //{
+            //    KartKoduTb.Text = InputEnums.CardIsDefined;
+            //}
 
         }
     }
