@@ -153,14 +153,23 @@ namespace BalikProjesi
         {
             bool check = true;
             string cardCode = txtKartID.Text;
-            bool result = _perService.PCardCodeExist(cardCode);
+            bool personalCollecitonsResult = _perService.PCardCodeExist(cardCode);
+            int cardCollectionResult = _cartsServices.CheckCardTypeResult(cardCode);
 
 
             if (txtKartID.Text == "" || txtPersonelAd.Text == "" || txtPersonelSoyad.Text == "" || txtPersonelKod.Text == "")
             {
                 MessageBox.Show(WarningEnums.PleaseFillAllFields, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 check = false;
-            }else if (result)
+            }else if (cardCollectionResult == -1)//Kart Carts Collection'da kayıtlı değilse
+            {
+                MessageBox.Show(WarningEnums.DefineToCardCollection, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                check = false;
+            }else if(cardCollectionResult == 1)//CardType Personal değil
+            {
+                MessageBox.Show(WarningEnums.CardTypeIsNotPersonal, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                check = false;
+            }else if (personalCollecitonsResult)//Kart başka bir personele kayıtlımı
             {
                 MessageBox.Show(WarningEnums.CardIsDefined, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 check = false;
@@ -168,7 +177,7 @@ namespace BalikProjesi
 
             if (check)
             {
-                result =_perService.Create(new Personel
+                var result =_perService.Create(new Personel
                 {
                     PersonelName=txtPersonelAd.Text.Trim(),
                     PersonelSurname=txtPersonelSoyad.Text.Trim(),

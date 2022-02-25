@@ -24,9 +24,11 @@ namespace BalikProjesi.Enums
     {
         public const string Space = " ";
         public const string Uyarı = "Uyarı";
-        public const string CardIsDefined = "Bu kart daha önce tanımlanmıştır. Lütfen başka bir kart deneyiniz.";
+        public const string CardIsDefined = "Bu kart daha önce başka bir kullanıcıya tanımlanmıştır. Lütfen başka bir kart deneyiniz.";
+        public const string DefineToCardCollection = "Kart sisteme kayıtlı değil, lütfen bu kartı KAYIT -> KART KAYDI panelinde sisteme kaydedin";
         public const string ThisFieldMustBeFilled = "Bu Alan doldurulmak zorunda";
         public const string PleaseFillAllFields = "Lütfen tüm alanları doldurunuz";
+        public const string CardTypeIsNotPersonal = "Kart Türü Fileto ya da Kontrol Personeli değil, lütfen kartı KAYIT -> KART KAYDI panelinde güncelleyin ya da başka bir kart seçin";
 
 
         #region Essential

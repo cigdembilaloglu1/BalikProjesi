@@ -6,6 +6,7 @@ namespace BalikProjesi.Services
     public interface ICartsServices1
     {
         bool CheckCard(string cardID);
+        int CheckCardTypeResult(string cardCode);
         bool CheckUser(string Cname);
         bool Create(Carts Data);
         bool Delete(string cardID);
