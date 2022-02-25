@@ -57,6 +57,9 @@
             this.btnReader = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtPersonelAd = new System.Windows.Forms.TextBox();
+            this.txtPersonelSoyad = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -64,15 +67,12 @@
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.label8 = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.mtSearch = new System.Windows.Forms.MaskedTextBox();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.rbName = new System.Windows.Forms.RadioButton();
             this.rbSurname = new System.Windows.Forms.RadioButton();
             this.rbCode = new System.Windows.Forms.RadioButton();
             this.rbGroup = new System.Windows.Forms.RadioButton();
-            this.txtPersonelSoyad = new System.Windows.Forms.TextBox();
-            this.txtPersonelAd = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.mtSearch = new System.Windows.Forms.MaskedTextBox();
             this.contextMenuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -269,6 +269,7 @@
             this.txtKartID.Name = "txtKartID";
             this.txtKartID.Size = new System.Drawing.Size(333, 47);
             this.txtKartID.TabIndex = 5;
+            this.txtKartID.TextChanged += new System.EventHandler(this.txtKartID_TextChanged);
             // 
             // label5
             // 
@@ -404,6 +405,40 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(610, 243);
             this.tableLayoutPanel4.TabIndex = 16;
             // 
+            // label4
+            // 
+            this.label4.BackColor = System.Drawing.SystemColors.Control;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(4, 4);
+            this.label4.Margin = new System.Windows.Forms.Padding(4);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(175, 30);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Personel Grup:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtPersonelAd
+            // 
+            this.txtPersonelAd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtPersonelAd.Location = new System.Drawing.Point(187, 79);
+            this.txtPersonelAd.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtPersonelAd.Multiline = true;
+            this.txtPersonelAd.Name = "txtPersonelAd";
+            this.txtPersonelAd.Size = new System.Drawing.Size(419, 32);
+            this.txtPersonelAd.TabIndex = 0;
+            // 
+            // txtPersonelSoyad
+            // 
+            this.txtPersonelSoyad.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtPersonelSoyad.Location = new System.Drawing.Point(187, 117);
+            this.txtPersonelSoyad.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtPersonelSoyad.Multiline = true;
+            this.txtPersonelSoyad.Name = "txtPersonelSoyad";
+            this.txtPersonelSoyad.Size = new System.Drawing.Size(419, 32);
+            this.txtPersonelSoyad.TabIndex = 1;
+            // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 2;
@@ -512,6 +547,16 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(298, 59);
             this.tableLayoutPanel3.TabIndex = 12;
             // 
+            // mtSearch
+            // 
+            this.mtSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mtSearch.Location = new System.Drawing.Point(0, 0);
+            this.mtSearch.Margin = new System.Windows.Forms.Padding(0);
+            this.mtSearch.Name = "mtSearch";
+            this.mtSearch.Size = new System.Drawing.Size(298, 20);
+            this.mtSearch.TabIndex = 12;
+            this.mtSearch.TextChanged += new System.EventHandler(this.mtSearch_TextChanged);
+            // 
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.Controls.Add(this.rbName);
@@ -569,50 +614,6 @@
             this.rbGroup.Text = "Grup";
             this.rbGroup.UseVisualStyleBackColor = true;
             this.rbGroup.CheckedChanged += new System.EventHandler(this.rbGroup_CheckedChanged);
-            // 
-            // txtPersonelSoyad
-            // 
-            this.txtPersonelSoyad.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPersonelSoyad.Location = new System.Drawing.Point(187, 117);
-            this.txtPersonelSoyad.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtPersonelSoyad.Multiline = true;
-            this.txtPersonelSoyad.Name = "txtPersonelSoyad";
-            this.txtPersonelSoyad.Size = new System.Drawing.Size(419, 32);
-            this.txtPersonelSoyad.TabIndex = 1;
-            // 
-            // txtPersonelAd
-            // 
-            this.txtPersonelAd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPersonelAd.Location = new System.Drawing.Point(187, 79);
-            this.txtPersonelAd.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtPersonelAd.Multiline = true;
-            this.txtPersonelAd.Name = "txtPersonelAd";
-            this.txtPersonelAd.Size = new System.Drawing.Size(419, 32);
-            this.txtPersonelAd.TabIndex = 0;
-            // 
-            // label4
-            // 
-            this.label4.BackColor = System.Drawing.SystemColors.Control;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(4, 4);
-            this.label4.Margin = new System.Windows.Forms.Padding(4);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(154, 27);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Personel Grup:";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // mtSearch
-            // 
-            this.mtSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mtSearch.Location = new System.Drawing.Point(0, 0);
-            this.mtSearch.Margin = new System.Windows.Forms.Padding(0);
-            this.mtSearch.Name = "mtSearch";
-            this.mtSearch.Size = new System.Drawing.Size(298, 20);
-            this.mtSearch.TabIndex = 12;
-            this.mtSearch.TextChanged += new System.EventHandler(this.mtSearch_TextChanged);
             // 
             // PersonlKayitController
             // 

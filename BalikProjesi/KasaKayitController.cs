@@ -266,7 +266,7 @@ namespace BalikProjesi
             
             if (readCard!=null)
             {
-                var readBox = _fboxService.GetByCardID(readCard.CartId);
+                var readBox = _fboxService.GetByCardID(readCard.Id);
                 if (readBox!=null)
                 {
                     CardID = readCard.Id;

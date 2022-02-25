@@ -38,10 +38,11 @@ namespace BalikProjesi.Enums
         public const string ThisFieldMustBeFilled = "Bu Alan doldurulmak zorunda";
         public const string PleaseFillAllFields = "Lütfen tüm alanları doldurunuz";
         public const string CardTypeIsNotPersonal = "Kart Türü Fileto ya da Kontrol Personeli değil, lütfen kartı KAYIT -> KART KAYDI panelinde güncelleyin ya da başka bir kart seçin";
-
-
-
+        public const string CardTypeIsNotFillet = "Kart Türü Fileto Personeli değil, lütfen kartı KAYIT -> KART KAYDI panelinde güncelleyin ya da başka bir kart seçin";
+        public const string CardTypeIsNotControl = "Kart Türü Kontrol Personeli değil, lütfen kartı KAYIT -> KART KAYDI panelinde güncelleyin ya da başka bir kart seçin";
         #endregion
+
+
         #region Card Warnings Messages        
         public const string DataLoss = "Bu işlem veri kaybına sebep verebilir. Devam etmek istiyor musunuz?";
         public const string DataLossConfirm = "Eşleşen bir kayıt bulunursa eşleşen kaydın kart verileri güncellenecek veya silinecektir. Devam etmek istiyor musunuz?";
