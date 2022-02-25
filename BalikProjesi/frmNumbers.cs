@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace BalikProjesi
 {
-    public partial class frmNunbers : Form
+    public partial class frmNumbers : Form
     {
-        public frmNunbers()
+        public frmNumbers()
         {
             InitializeComponent();
         }

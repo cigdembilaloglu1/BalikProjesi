@@ -180,11 +180,11 @@
     <Compile Include="frmAdmin.Designer.cs">
       <DependentUpon>frmAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmNunbers.cs">
+    <Compile Include="frmNumbers.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmNunbers.Designer.cs">
-      <DependentUpon>frmNunbers.cs</DependentUpon>
+    <Compile Include="frmNumbers.Designer.cs">
+      <DependentUpon>frmNumbers.cs</DependentUpon>
     </Compile>
     <Compile Include="frmUser.cs">
       <SubType>Form</SubType>
@@ -268,8 +268,8 @@
     <EmbeddedResource Include="frmAdmin.resx">
       <DependentUpon>frmAdmin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmNunbers.resx">
-      <DependentUpon>frmNunbers.cs</DependentUpon>
+    <EmbeddedResource Include="frmNumbers.resx">
+      <DependentUpon>frmNumbers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUser.resx">
       <DependentUpon>frmUser.cs</DependentUpon>

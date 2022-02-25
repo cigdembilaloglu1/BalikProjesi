@@ -1,7 +1,7 @@
 ﻿
 namespace BalikProjesi
 {
-    partial class frmNunbers
+    partial class frmNumbers
     {
         /// <summary>
         /// Required designer variable.
