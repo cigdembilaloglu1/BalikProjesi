@@ -274,7 +274,7 @@ namespace BalikProjesi
                 }
                 else
                 {
-                    MessageBox.Show("Kart kayıtlıdır");
+                    
                 }
                 
             }

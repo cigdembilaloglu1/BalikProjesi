@@ -118,7 +118,6 @@
             this.KartKoduTb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.KartKoduTb.Location = new System.Drawing.Point(3, 3);
             this.KartKoduTb.Name = "KartKoduTb";
-            this.KartKoduTb.ReadOnly = true;
             this.KartKoduTb.Size = new System.Drawing.Size(363, 20);
             this.KartKoduTb.TabIndex = 9;
             // 
