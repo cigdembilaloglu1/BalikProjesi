@@ -167,11 +167,12 @@
             // button2
             // 
             this.button2.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button2.Font = new System.Drawing.Font("Bahnschrift SemiBold", 15.75F, System.Drawing.FontStyle.Bold);
             this.button2.ForeColor = System.Drawing.SystemColors.Control;
             this.button2.Location = new System.Drawing.Point(3, 3);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(195, 92);
+            this.button2.Size = new System.Drawing.Size(230, 95);
             this.button2.TabIndex = 12;
             this.button2.Text = "KAYDET";
             this.button2.UseVisualStyleBackColor = false;
@@ -195,11 +196,12 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.button1.Font = new System.Drawing.Font("Bahnschrift SemiBold", 15.75F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.SystemColors.Control;
             this.button1.Location = new System.Drawing.Point(239, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(202, 92);
+            this.button1.Size = new System.Drawing.Size(231, 95);
             this.button1.TabIndex = 14;
             this.button1.Text = "GÜNCELLE";
             this.button1.UseVisualStyleBackColor = false;
