@@ -45,5 +45,12 @@ namespace BalikProjesi
         {
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            frmUser Fuser = new frmUser();
+            Fuser.Show();
+            this.Hide();
+        }
     }
 }
