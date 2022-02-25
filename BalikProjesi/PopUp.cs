@@ -62,5 +62,12 @@ namespace BalikProjesi
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            KontrolKabul Kkabul = new KontrolKabul();
+            Kkabul.Show();
+            this.Hide();
+        }
     }
 }

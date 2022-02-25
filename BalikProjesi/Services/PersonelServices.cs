@@ -75,6 +75,17 @@ namespace BalikProjesi.Services
 
         }
 
+        public bool PCardCodeExist(string code)
+        {
+            var fResult = fdb.Find(x => x.CartCode == code).FirstOrDefault();
+            var cResult = pdb.Find(x => x.CartCode == code).FirstOrDefault();
+
+            if (fResult == null && cResult == null)
+                return false;
+            else
+                return true;
+        }
+
         public Personel Get(string _pid)
         {
             var result = pdb.Find(x => x.Id == _pid).FirstOrDefault();

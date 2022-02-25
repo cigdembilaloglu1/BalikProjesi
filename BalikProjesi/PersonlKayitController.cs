@@ -152,47 +152,22 @@ namespace BalikProjesi
         private void button1_Click(object sender, EventArgs e)
         {
             bool check = true;
+            string cardCode = txtKartID.Text;
+            bool result = _perService.PCardCodeExist(cardCode);
 
-            if (txtKartID.Text == "")
-            {
-                MessageBox.Show("LÜtfen bir kart okutunuz", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                check = false;
-            }
-            if (txtKartID.Text == WarningEnums.CardIsDefined)
-            {
-                MessageBox.Show("LÜtfen daha önce tanımlanmamış bir kart okutunuz", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                check = false;
-            }
-            if (string.IsNullOrEmpty(txtPersonelAd.Text.Trim()))
-            {
-                MessageBox.Show("LÜtfen Adınızı Giriniz ", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                check = false;
-            }
-            if (string.IsNullOrEmpty(txtPersonelSoyad.Text.Trim()))
-            {
-                MessageBox.Show("LÜtfen Soyadınızı Giriniz", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                check = false;
-            }
-            if (string.IsNullOrEmpty(txtPersonelKod.Text.Trim()))
-            {
-                MessageBox.Show("LÜtfen Personel Kodunuzu Giriniz", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                check = false;
-            }
-            if (string.IsNullOrEmpty(cbPersonelGrup.Text.Trim()))
-            {
-                MessageBox.Show("LÜtfen Personel Grubunuzu Seçiniz", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                check = false;
-            }
-            if (string.IsNullOrEmpty(cbPersonelTur.Text.Trim()))
-            {
-                MessageBox.Show("LÜtfen Personel Türünü Seçiniz ", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                check = false;
-            }
-            
 
-            if(check)
+            if (txtKartID.Text == "" || txtPersonelAd.Text == "" || txtPersonelSoyad.Text == "" || txtPersonelKod.Text == "")
             {
-                bool result;
+                MessageBox.Show(WarningEnums.PleaseFillAllFields, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                check = false;
+            }else if (result)
+            {
+                MessageBox.Show(WarningEnums.CardIsDefined, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                check = false;
+            }
+
+            if (check)
+            {
                 result =_perService.Create(new Personel
                 {
                     PersonelName=txtPersonelAd.Text.Trim(),
@@ -303,7 +278,7 @@ namespace BalikProjesi
 
         private async void btnReader_Click(object sender, EventArgs e)
         {
-            
+            await _readerServices.WriteTagIdToTextboxAsync(txtKartID);
         }
 
         private void sİLToolStripMenuItem_Click(object sender, EventArgs e)

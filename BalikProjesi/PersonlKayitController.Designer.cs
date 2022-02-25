@@ -29,12 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.txtPersonelAd = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtPersonelSoyad = new System.Windows.Forms.TextBox();
             this.txtPersonelKod = new System.Windows.Forms.TextBox();
             this.cbPersonelGrup = new System.Windows.Forms.ComboBox();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -67,12 +64,15 @@
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.label8 = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.mtSearch = new System.Windows.Forms.MaskedTextBox();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.rbName = new System.Windows.Forms.RadioButton();
             this.rbSurname = new System.Windows.Forms.RadioButton();
             this.rbCode = new System.Windows.Forms.RadioButton();
             this.rbGroup = new System.Windows.Forms.RadioButton();
+            this.txtPersonelSoyad = new System.Windows.Forms.TextBox();
+            this.txtPersonelAd = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.mtSearch = new System.Windows.Forms.MaskedTextBox();
             this.contextMenuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -83,26 +83,16 @@
             this.flowLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // txtPersonelAd
-            // 
-            this.txtPersonelAd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPersonelAd.Location = new System.Drawing.Point(187, 73);
-            this.txtPersonelAd.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtPersonelAd.Multiline = true;
-            this.txtPersonelAd.Name = "txtPersonelAd";
-            this.txtPersonelAd.Size = new System.Drawing.Size(419, 34);
-            this.txtPersonelAd.TabIndex = 0;
-            // 
             // label1
             // 
             this.label1.BackColor = System.Drawing.SystemColors.Control;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Bahnschrift SemiBold SemiConden", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(4, 74);
+            this.label1.Location = new System.Drawing.Point(4, 80);
             this.label1.Margin = new System.Windows.Forms.Padding(4);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(175, 32);
+            this.label1.Size = new System.Drawing.Size(175, 30);
             this.label1.TabIndex = 1;
             this.label1.Text = "Personel Ad:\r\n";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -113,10 +103,10 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(4, 114);
+            this.label2.Location = new System.Drawing.Point(4, 118);
             this.label2.Margin = new System.Windows.Forms.Padding(4);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(175, 32);
+            this.label2.Size = new System.Drawing.Size(175, 30);
             this.label2.TabIndex = 2;
             this.label2.Text = "Personel Soyad:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -127,45 +117,22 @@
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(4, 154);
+            this.label3.Location = new System.Drawing.Point(4, 156);
             this.label3.Margin = new System.Windows.Forms.Padding(4);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(175, 32);
+            this.label3.Size = new System.Drawing.Size(175, 30);
             this.label3.TabIndex = 2;
             this.label3.Text = "Personel Kod:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label4
-            // 
-            this.label4.BackColor = System.Drawing.SystemColors.Control;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(4, 4);
-            this.label4.Margin = new System.Windows.Forms.Padding(4);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(175, 27);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Personel Grup:";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtPersonelSoyad
-            // 
-            this.txtPersonelSoyad.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPersonelSoyad.Location = new System.Drawing.Point(187, 113);
-            this.txtPersonelSoyad.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtPersonelSoyad.Multiline = true;
-            this.txtPersonelSoyad.Name = "txtPersonelSoyad";
-            this.txtPersonelSoyad.Size = new System.Drawing.Size(419, 34);
-            this.txtPersonelSoyad.TabIndex = 1;
-            // 
             // txtPersonelKod
             // 
             this.txtPersonelKod.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtPersonelKod.Location = new System.Drawing.Point(187, 153);
+            this.txtPersonelKod.Location = new System.Drawing.Point(187, 155);
             this.txtPersonelKod.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtPersonelKod.Multiline = true;
             this.txtPersonelKod.Name = "txtPersonelKod";
-            this.txtPersonelKod.Size = new System.Drawing.Size(419, 34);
+            this.txtPersonelKod.Size = new System.Drawing.Size(419, 32);
             this.txtPersonelKod.TabIndex = 2;
             // 
             // cbPersonelGrup
@@ -309,10 +276,10 @@
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(4, 39);
+            this.label5.Location = new System.Drawing.Point(4, 42);
             this.label5.Margin = new System.Windows.Forms.Padding(4);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(175, 27);
+            this.label5.Size = new System.Drawing.Size(175, 30);
             this.label5.TabIndex = 2;
             this.label5.Text = "Personel Tür:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -322,7 +289,7 @@
             this.cbPersonelTur.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbPersonelTur.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPersonelTur.FormattingEnabled = true;
-            this.cbPersonelTur.Location = new System.Drawing.Point(187, 38);
+            this.cbPersonelTur.Location = new System.Drawing.Point(187, 41);
             this.cbPersonelTur.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.cbPersonelTur.Name = "cbPersonelTur";
             this.cbPersonelTur.Size = new System.Drawing.Size(419, 21);
@@ -427,12 +394,13 @@
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 6;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.58333F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.58333F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.83333F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(610, 243);
             this.tableLayoutPanel4.TabIndex = 16;
             // 
@@ -544,15 +512,6 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(298, 59);
             this.tableLayoutPanel3.TabIndex = 12;
             // 
-            // mtSearch
-            // 
-            this.mtSearch.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mtSearch.Location = new System.Drawing.Point(3, 3);
-            this.mtSearch.Name = "mtSearch";
-            this.mtSearch.Size = new System.Drawing.Size(292, 20);
-            this.mtSearch.TabIndex = 12;
-            this.mtSearch.TextChanged += new System.EventHandler(this.mtSearch_TextChanged);
-            // 
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.Controls.Add(this.rbName);
@@ -611,6 +570,50 @@
             this.rbGroup.UseVisualStyleBackColor = true;
             this.rbGroup.CheckedChanged += new System.EventHandler(this.rbGroup_CheckedChanged);
             // 
+            // txtPersonelSoyad
+            // 
+            this.txtPersonelSoyad.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtPersonelSoyad.Location = new System.Drawing.Point(187, 117);
+            this.txtPersonelSoyad.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtPersonelSoyad.Multiline = true;
+            this.txtPersonelSoyad.Name = "txtPersonelSoyad";
+            this.txtPersonelSoyad.Size = new System.Drawing.Size(419, 32);
+            this.txtPersonelSoyad.TabIndex = 1;
+            // 
+            // txtPersonelAd
+            // 
+            this.txtPersonelAd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtPersonelAd.Location = new System.Drawing.Point(187, 79);
+            this.txtPersonelAd.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtPersonelAd.Multiline = true;
+            this.txtPersonelAd.Name = "txtPersonelAd";
+            this.txtPersonelAd.Size = new System.Drawing.Size(419, 32);
+            this.txtPersonelAd.TabIndex = 0;
+            // 
+            // label4
+            // 
+            this.label4.BackColor = System.Drawing.SystemColors.Control;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(4, 4);
+            this.label4.Margin = new System.Windows.Forms.Padding(4);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(154, 27);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Personel Grup:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // mtSearch
+            // 
+            this.mtSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mtSearch.Location = new System.Drawing.Point(0, 0);
+            this.mtSearch.Margin = new System.Windows.Forms.Padding(0);
+            this.mtSearch.Name = "mtSearch";
+            this.mtSearch.Size = new System.Drawing.Size(298, 20);
+            this.mtSearch.TabIndex = 12;
+            this.mtSearch.TextChanged += new System.EventHandler(this.mtSearch_TextChanged);
+            // 
             // PersonlKayitController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -642,13 +645,9 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtPersonelAd;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtPersonelSoyad;
         private System.Windows.Forms.TextBox txtPersonelKod;
         private System.Windows.Forms.ComboBox cbPersonelGrup;
         private System.Windows.Forms.ListView listView1;
@@ -686,6 +685,9 @@
         private System.Windows.Forms.RadioButton rbSurname;
         private System.Windows.Forms.RadioButton rbCode;
         private System.Windows.Forms.RadioButton rbGroup;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtPersonelAd;
+        private System.Windows.Forms.TextBox txtPersonelSoyad;
         private System.Windows.Forms.MaskedTextBox mtSearch;
     }
 }
