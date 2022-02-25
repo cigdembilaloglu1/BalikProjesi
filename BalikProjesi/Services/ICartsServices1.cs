@@ -11,6 +11,7 @@ namespace BalikProjesi.Services
         bool Delete(string cardID);
         List<Carts> Get();
         Carts GetByCardCode(string cardcode);
+        Carts GetByCardID(string CardId);
         bool Update(Carts card, string Cname = null);
     }
 }

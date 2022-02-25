@@ -50,6 +50,12 @@ namespace BalikProjesi.Services
             var result = db.Find(x => true).ToList();
             return result;
         }
+        public Carts GetByCardID(string CardId)
+        {
+
+            var result = db.Find(x => x.Id == CardId).FirstOrDefault();
+            return result;
+        }
         public Carts GetByCardCode(string cardcode)
         {
             
