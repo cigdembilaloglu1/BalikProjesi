@@ -283,7 +283,7 @@
             this.bntCardReader.BackColor = System.Drawing.Color.IndianRed;
             this.bntCardReader.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bntCardReader.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.bntCardReader.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.bntCardReader.Font = new System.Drawing.Font("Bahnschrift SemiBold SemiConden", 10F, System.Drawing.FontStyle.Bold);
             this.bntCardReader.ForeColor = System.Drawing.SystemColors.Control;
             this.bntCardReader.Location = new System.Drawing.Point(378, 3);
             this.bntCardReader.Name = "bntCardReader";
