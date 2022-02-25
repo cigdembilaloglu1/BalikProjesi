@@ -137,7 +137,7 @@
             this.button3.BackColor = System.Drawing.Color.IndianRed;
             this.button3.Location = new System.Drawing.Point(3, 3);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(56, 32);
+            this.button3.Size = new System.Drawing.Size(56, 44);
             this.button3.TabIndex = 0;
             this.button3.Text = "GERİ";
             this.button3.UseVisualStyleBackColor = false;
