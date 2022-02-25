@@ -17,5 +17,7 @@ namespace BalikProjesi.Services
         List<Personel> GetFilteredController(FilterDefinition<Personel> filteredPersonel);
         List<Personel> GetFilteredFillet(FilterDefinition<Personel> filteredPersonel);
         bool Update(Personel personel, string perstype);
+        bool UpdateControllerCardInfo(Personel personel);
+        bool UpdateFilletCardInfo(Personel personel);
     }
 }

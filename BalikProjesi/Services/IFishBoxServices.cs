@@ -13,5 +13,6 @@ namespace BalikProjesi.Services
         FishBox Get(string ID);
         FishBox GetByCardID(string ID);
         bool Update(FishBox fishBox);
+        bool UpdateCardInfo(FishBox fishbox);
     }
 }

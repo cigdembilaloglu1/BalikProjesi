@@ -56,6 +56,32 @@ namespace BalikProjesi.Services
             var result = db.Find(x => x.CartId == ID).FirstOrDefault();
             return result;
         }
+        public bool UpdateCardInfo(FishBox fishbox)
+        {
+
+            if (!String.IsNullOrEmpty(fishbox.Id) && !String.IsNullOrEmpty(fishbox.FishBoxType) && fishbox.UpdateDate != DateTime.MinValue)
+            {
+                var Filter = Builders<FishBox>.Filter.Eq(x => x.Id, fishbox.Id);
+                var Update = Builders<FishBox>.Update
+                    .Set(x => x.CartId, fishbox.CartId)
+                    .Set(x => x.CartCode, fishbox.CartCode);
+                try
+                {
+                    db.UpdateOne(Filter, Update);
+                    return true;
+                }
+                catch (Exception)
+                {
+
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
         public bool Update(FishBox fishbox)
         {
 
