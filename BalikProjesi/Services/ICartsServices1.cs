@@ -1,4 +1,5 @@
 ﻿using BalikProjesi.Entities;
+using MongoDB.Driver;
 using System.Collections.Generic;
 
 namespace BalikProjesi.Services
@@ -13,6 +14,7 @@ namespace BalikProjesi.Services
         List<Carts> Get();
         Carts GetByCardCode(string cardcode);
         Carts GetByCardID(string CardId);
+        List<Carts> GetFilteredCards(FilterDefinition<Carts> filteredCards);
         bool Update(Carts card, string Cname = null);
     }
 }

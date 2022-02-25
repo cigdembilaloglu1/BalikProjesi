@@ -9,22 +9,25 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BalikProjesi.Entities;
 using BalikProjesi.Enums;
+using BalikProjesi.Services;
+using MongoDB.Driver;
 
 namespace BalikProjesi
 {
     public partial class KasaKayitController : UserControl
     {
-        private readonly Services.IFishBoxServices _fboxService;
-        private readonly Services.ReaderServices _readerServices;
-        private readonly Services.ICartsServices1 _cartServices;
+        private readonly IFishBoxServices _fboxService;
+        private readonly ReaderServices _readerServices;
+        private readonly ICartsServices1 _cartServices;
 
         private string BoxID;
         private string CardID;
         public KasaKayitController()
         {
             InitializeComponent();
-            _fboxService = new Services.FishBoxServices();
-            _cartServices = new Services.CartsServices();
+            _fboxService = new FishBoxServices();
+            _readerServices = new ReaderServices();
+            _cartServices = new CartsServices();
             BoxID = "";
             CardID = "";
         }
@@ -182,6 +185,26 @@ namespace BalikProjesi
             CardID = "";
             list();
         }
+        public void PageFilteredFishBoxToTable(List<FishBox> tableList)
+        {
+            if (listView1.Items.Count != 0)
+            {
+                listView1.Items.Clear();
+            }
+
+            string boxcode, boxtype, boxcardid;
+
+            foreach (var item in tableList)
+            {
+                boxcode = item.FishBoxCode;
+                boxtype = item.FishBoxType;
+                boxcardid = item.CartCode;
+                string[] data = { boxcode, boxtype, boxcardid };
+                ListViewItem record = new ListViewItem(data);
+                listView1.Items.Add(record);
+            }
+        }
+
         void list()
         {
             listView1.Items.Clear();
@@ -261,38 +284,71 @@ namespace BalikProjesi
 
         private async void btnCardRead_Click(object sender, EventArgs e)
         {
+            await _readerServices.WriteTagIdToTextboxAsync(txtKartid);
+        }
+
+        private void rnBoxType_CheckedChanged(object sender, EventArgs e)
+        {
+            tbSearch.Focus();
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            tbSearch.Focus();
+        }
+
+        private void tbSearch_TextChanged(object sender, EventArgs e)
+        {
+            string search = tbSearch.Text;
+            List<FishBox> FilteredFishBox;
+            var Filter = FilterDefinition<FishBox>.Empty;
+
+            if (rbBoxType.Checked)
+            {
+                Filter = Builders<FishBox>.Filter.Regex(x => x.FishBoxType, new MongoDB.Bson.BsonRegularExpression(search, "i"));
+            }
+            if (rbCardCode.Checked)
+            {
+                Filter = Builders<FishBox>.Filter.Regex(x => x.FishBoxCode, new MongoDB.Bson.BsonRegularExpression(search, "i"));
+            }
+
+            FilteredFishBox = _fboxService.GetFilteredFishBox(Filter);
+            if(FilteredFishBox != null)
+            {
+                PageFilteredFishBoxToTable(FilteredFishBox);
+            }
+
+        }
+
+        private void rbCardCode_CheckedChanged(object sender, EventArgs e)
+        {
+            tbSearch.Focus();
+        }
+
+        private void rbBoxType_CheckedChanged(object sender, EventArgs e)
+        {
+            tbSearch.Focus();
+        }
+
+        private void txtKartid_TextChanged(object sender, EventArgs e)
+        {
             string cardcodetxt = txtKartid.Text.Trim();
             var readCard = _cartServices.GetByCardCode(cardcodetxt);
-            
-            if (readCard!=null)
+
+            if (readCard != null)
             {
-                var readBox = _fboxService.GetByCardID(readCard.CartId);
-                if (readBox!=null)
+                var readBox = _fboxService.GetByCardID(readCard.Id);
+                if (readBox != null)
                 {
                     CardID = readCard.Id;
                     listget(readCard);
                 }
                 else
                 {
-                    
+
                 }
-                
+
             }
-            
-            
-            
-            //_readerServices.openPort();
-
-            //bool tagIsDefined = await _readerServices.checkTagIsDefined();
-
-            //if (!tagIsDefined)
-            //{
-            //    await _readerServices.setTagIdToTextboxAsync(txtKartid);
-            //}
-            //else
-            //{
-            //    txtKartid.Text = InputEnums.CardIsDefined;
-            //}
         }
     }
 }

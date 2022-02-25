@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BalikProjesi.Enums;
+using MongoDB.Driver;
 
 namespace BalikProjesi
 {
@@ -602,28 +603,11 @@ namespace BalikProjesi
             
             
             liste();
-        }
+           }
 
         private async void bntCardReader_Click(object sender, EventArgs e)
         {
-            string cardcodetxt;
-
             await _readerServices.WriteTagIdToTextboxAsync(KartKoduTb); 
-            await Task.Delay(200);
-
-            cardcodetxt = KartKoduTb.Text.Trim();
-            var readCard = _cartService.GetByCardCode(cardcodetxt);
-            if (readCard != null)
-            {
-                listget(readCard);
-            }
-            else
-            {
-                
-            }
-
-            lbCardCode.Text = "";
-            lbCardNo.Text = "";
         }
 
         private void KartKayitController_SizeChanged(object sender, EventArgs e)
@@ -658,5 +642,75 @@ namespace BalikProjesi
             }
         }
 
+        private void rbCardNo_CheckedChanged(object sender, EventArgs e)
+        {
+            tbSearch.Focus();
+        }
+
+        private void rbCardType_CheckedChanged(object sender, EventArgs e)
+        {
+            tbSearch.Focus();
+        }
+
+        private void tbSearch_TextChanged(object sender, EventArgs e)
+        {
+            string search = tbSearch.Text;
+            List<Carts> FilteredCards;
+            var Filter = FilterDefinition<Carts>.Empty;
+
+            if (rbCardNo.Checked)
+            {
+                Filter = Builders<Carts>.Filter.Regex(x => x.CartName, new MongoDB.Bson.BsonRegularExpression(search, "i"));
+            }
+            if (rbCardType.Checked)
+            {
+                Filter = Builders<Carts>.Filter.Regex(x => x.CartType, new MongoDB.Bson.BsonRegularExpression(search, "i"));
+            }
+
+            FilteredCards = _cartService.GetFilteredCards(Filter);
+            if (FilteredCards != null)
+            {
+                PageFilteredCardsToTable(FilteredCards);
+            }
+        }
+
+        public void PageFilteredCardsToTable(List<Carts> tableList)
+        {
+            string CartAd, CartCode, CartType, CartUUID;
+            if (listView1.Items.Count != 0)
+            {
+                listView1.Items.Clear();
+            }
+
+            foreach (var item in tableList)
+            {
+                CartAd = item.CartName;
+                CartCode = item.CartCode;
+                CartType = item.CartType;
+                CartUUID = item.Id;
+
+                string[] data = { CartAd, CartCode, CartType, CartUUID };
+                ListViewItem record = new ListViewItem(data);
+                listView1.Items.Add(record);
+            }
+        }
+
+        private void KartKoduTb_TextChanged(object sender, EventArgs e)
+        {
+            string cardcodetxt = KartKoduTb.Text.Trim();
+            var readCard = _cartService.GetByCardCode(cardcodetxt);
+            if (readCard != null)
+            {
+                listget(readCard);
+            }
+            else
+            {
+
+            }
+
+            lbCardCode.Text = "";
+            lbCardNo.Text = "";
+        }
     }
 }
+

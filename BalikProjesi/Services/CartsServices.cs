@@ -49,6 +49,12 @@ namespace BalikProjesi.Services
             var result = db.Find(x => x.CartCode == cardcode).FirstOrDefault();
             return result;
         }
+
+        public List<Carts> GetFilteredCards(FilterDefinition<Carts> filteredCards)
+        {
+            var result = db.Find(filteredCards).ToList();
+            return result;
+        }
         public bool Update(Carts card, string Cname = null)
         {
             if (!String.IsNullOrEmpty(Cname))
