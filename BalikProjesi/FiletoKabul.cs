@@ -16,5 +16,12 @@ namespace BalikProjesi
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FilletUser FillUs=new FilletUser();
+            FillUs.Show();
+            this.Hide();
+        }
     }
 }

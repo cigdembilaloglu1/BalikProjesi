@@ -35,6 +35,12 @@ namespace BalikProjesi
                  popup.Show();
 
         }
-      
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            ControlUser ContUs = new ControlUser();
+            ContUs.Show();
+            this.Hide();
+        }
     }
 }
