@@ -38,7 +38,7 @@ namespace BalikProjesi.Enums
         #endregion
         #region Card update Warnings Messages        
         public const string DataLoss = "Bu işlem veri kaybına sebep verebilir. Devam etmek istiyor musunuz?";
-        public const string DataLossConfirm = "Eşleşen bir kayıt bulunursa eşleşen veriler güncellenecektir. Devam etmek istiyor musunuz?";
+        public const string DataLossConfirm = "Eşleşen bir kayıt bulunursa eşleşen kaydın kart verileri güncellenecek veya silinecektir. Devam etmek istiyor musunuz?";
         public const string CardMatchedAnotherRecord = "Bu kart başka bir kayıtla eşleşmiştir.";
         public const string CardMatchedAnotherRecordAskUpdate = "Kartı eşleşmiş olan kaydı güncellemek ister misiniz?";
         public const string CardRecordUpdate = "Bu kart başka bir kayıtla eşleşmiştir.";
