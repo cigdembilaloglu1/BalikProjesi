@@ -22,32 +22,37 @@ namespace BalikProjesi.Enums
 
     public static class WarningEnums
     {
+        
+
+
+        #region Essentials
+        public const string InvalidSelection = "Lütfen listeden bir kart seçiniz veya kartınızı okutunuz.";
+        public const string UpdateSuccess = "Güncelleme işlemi başarılı.";
+        public const string UpdateFailed = "Güncelleme işlemi başarısız.";
+        public const string DeleteSuccess= "Silme işlemi başarılı.";
+        public const string DeleteFailed = "Silme işlemi başarısız.";
         public const string Space = " ";
-        public const string Uyarı = "Uyarı";
+        public const string Uyarı = "UYARI";
         public const string CardIsDefined = "Bu kart daha önce tanımlanmıştır. Lütfen başka bir kart deneyiniz.";
         public const string ThisFieldMustBeFilled = "Bu Alan doldurulmak zorunda";
         public const string PleaseFillAllFields = "Lütfen tüm alanları doldurunuz";
 
 
-        #region Essential
-        public const string InvalidSelection = "Lütfen listeden bir kart seçiniz veya kartınızı okutunuz.";
-        public const string UpdateSuccess = "Güncelleme başarılı.";
-        public const string UpdateFailed = "Güncelleme başarısız.";
-
-
 
         #endregion
-        #region Card update Warnings Messages        
+        #region Card Warnings Messages        
         public const string DataLoss = "Bu işlem veri kaybına sebep verebilir. Devam etmek istiyor musunuz?";
         public const string DataLossConfirm = "Eşleşen bir kayıt bulunursa eşleşen kaydın kart verileri güncellenecek veya silinecektir. Devam etmek istiyor musunuz?";
         public const string CardMatchedAnotherRecord = "Bu kart başka bir kayıtla eşleşmiştir.";
-        public const string CardMatchedAnotherRecordAskUpdate = "Kartı eşleşmiş olan kaydı güncellemek ister misiniz?";
+        public const string CardMatchedAnotherRecordAskUpdate = "Kart bilgileri eşleşen kaydı güncellemek ister misiniz?";
         public const string CardRecordUpdate = "Bu kart başka bir kayıtla eşleşmiştir.";
         public const string MacthedRecordUpdateSuccess = "Eşleşen kaydın güncellemesi başarılı.";
 
+        #endregion
 
-
-
+        #region Fishbox Warnings Messages
+        public const string FishboxCodeIsEmpty = "Lütfen bir kasa kodu seçiniz.";
+        public const string FishboxTypeIsEmpty = "Lütfen bir kasa tipi seçiniz.";
         #endregion
     }
 }
