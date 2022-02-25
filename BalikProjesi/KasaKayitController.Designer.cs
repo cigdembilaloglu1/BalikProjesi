@@ -178,7 +178,7 @@
             this.btnCardRead.BackColor = System.Drawing.Color.IndianRed;
             this.btnCardRead.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnCardRead.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnCardRead.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.btnCardRead.Font = new System.Drawing.Font("Bahnschrift SemiBold SemiConden", 10F, System.Drawing.FontStyle.Bold);
             this.btnCardRead.ForeColor = System.Drawing.SystemColors.Control;
             this.btnCardRead.Location = new System.Drawing.Point(375, 3);
             this.btnCardRead.Name = "btnCardRead";
