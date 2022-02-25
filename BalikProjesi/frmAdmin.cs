@@ -67,10 +67,11 @@ namespace BalikProjesi
 
         private void rAPORToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var rapor = new RaporController();
-            MainPanel.Controls.Add(rapor);
-            rapor.Show();
-            rapor.Dock = DockStyle.Fill;
+            MainPanel.Controls.Clear();
+            var rprController = new RaporController();
+            MainPanel.Controls.Add(rprController);
+            rprController.Show();
+            rprController.Dock = DockStyle.Fill;
         }
 
         private void kAYITToolStripMenuItem_Click(object sender, EventArgs e)
