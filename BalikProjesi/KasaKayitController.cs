@@ -103,17 +103,17 @@ namespace BalikProjesi
             bool check = true;
             if (string.IsNullOrEmpty(txtKartid.Text))
             {
-                MessageBox.Show("LÜtfen bir kart okutunuz", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show(WarningEnums.InvalidSelection, WarningEnums.Uyarı, MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 check = false;
             }
             if (string.IsNullOrEmpty(txtKasakod.Text))
             {
-                MessageBox.Show("LÜtfen bir kasakodu giriniz", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show(WarningEnums.FishboxCodeIsEmpty, WarningEnums.Uyarı, MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 check = false;
             }
             if (string.IsNullOrEmpty(txtKasatip.Text))
             {
-                MessageBox.Show("LÜtfen bir kasa tipi seçiniz", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show(WarningEnums.FishboxTypeIsEmpty, WarningEnums.Uyarı, MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 check = false;
             }
             var readCard = _cartServices.GetByCardCode(cardCode);
@@ -161,7 +161,7 @@ namespace BalikProjesi
             {
                 if (string.IsNullOrEmpty(CardID))
                 {
-                    MessageBox.Show("Kart okunamadı veya kayıtlı değil. Lütfen kontrol ediniz.");
+                    MessageBox.Show(WarningEnums.InvalidSelection);
                 }
                 else 
                 {
