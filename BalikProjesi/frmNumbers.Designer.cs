@@ -31,13 +31,13 @@ namespace BalikProjesi
         {
             this.SuspendLayout();
             // 
-            // frmNunbers
+            // frmNumbers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(520, 448);
-            this.Name = "frmNunbers";
-            this.Text = "frmNunbers";
+            this.Name = "frmNumbers";
+            this.Text = "frmNumbers";
             this.ResumeLayout(false);
 
         }

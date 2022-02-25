@@ -16,5 +16,12 @@ namespace BalikProjesi
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ControlUser ContUs = new ControlUser();
+            ContUs.Show();
+            this.Hide();
+        }
     }
 }

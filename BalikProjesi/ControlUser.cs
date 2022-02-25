@@ -30,5 +30,13 @@ namespace BalikProjesi
             Kkabul.Show();
             this.Hide();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            frmUser fuser = new frmUser();
+            fuser.Show();
+            this.Hide();
+
+        }
     }
 }
