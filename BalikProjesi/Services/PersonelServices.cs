@@ -111,7 +111,54 @@ namespace BalikProjesi.Services
             var result = pdb.Find(filteredPersonel).ToList();
             return result;
         }
+        public bool UpdateControllerCardInfo(Personel personel)
+        {
+            if (!String.IsNullOrEmpty(personel.PersonelName) && !String.IsNullOrEmpty(personel.PersonelSurname) && !String.IsNullOrEmpty(personel.PersonelCode) && !String.IsNullOrEmpty(personel.PersonelGroup))
+            {
+                var Filter = Builders<Personel>.Filter.Eq(x => x.Id, personel.Id);
+                var Update = Builders<Personel>.Update
+                    .Set(x => x.CartId, personel.CartId)
+                    .Set(x => x.CartCode, personel.CartCode);
+                try
+                {
+                    pdb.UpdateOne(Filter, Update);
+                    return true;
+                }
+                catch (Exception)
+                {
 
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool UpdateFilletCardInfo(Personel personel)
+        {
+            if (!String.IsNullOrEmpty(personel.PersonelName) && !String.IsNullOrEmpty(personel.PersonelSurname) && !String.IsNullOrEmpty(personel.PersonelCode) && !String.IsNullOrEmpty(personel.PersonelGroup))
+            {
+                var Filter = Builders<Personel>.Filter.Eq(x => x.Id, personel.Id);
+                var Update = Builders<Personel>.Update
+                    .Set(x => x.CartId, personel.CartId)
+                    .Set(x => x.CartCode, personel.CartCode);
+                try
+                {
+                    fdb.UpdateOne(Filter, Update);
+                    return true;
+                }
+                catch (Exception)
+                {
+
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
         public bool Update(Personel personel, string perstype)
         {
             if (!String.IsNullOrEmpty(personel.PersonelName) && !String.IsNullOrEmpty(personel.PersonelSurname) && !String.IsNullOrEmpty(personel.PersonelCode) && !String.IsNullOrEmpty(personel.PersonelGroup))
