@@ -26,6 +26,9 @@ namespace BalikProjesi
 
         private void frmAdmin_Load(object sender, EventArgs e)
         {
+            this.Height = 600;
+            this.Width = 980;
+            this.MinimumSize = new Size(980, 600);
             var rprController = new RaporController();
             MainPanel.Controls.Add(rprController);  
             rprController.Show();

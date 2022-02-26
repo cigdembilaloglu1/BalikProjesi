@@ -310,7 +310,7 @@ namespace BalikProjesi
             }
             else
             {
-                MessageBox.Show(WarningEnums.InvalidSelection);
+                //MessageBox.Show(WarningEnums.InvalidSelection);
             }
             liste();
 
@@ -349,7 +349,7 @@ namespace BalikProjesi
                 });
                 if (result)
                 {
-                    MessageBox.Show("Kayıt Başarılıyla girilmiştir.");
+                    MessageBox.Show(WarningEnums.CreateSuccess);
                 }
                 else
                 {
@@ -589,11 +589,7 @@ namespace BalikProjesi
                             onlyDelete();
                         }
                     }
-
-
-
                 }
-
             }
             else
             {

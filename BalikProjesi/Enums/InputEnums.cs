@@ -40,6 +40,9 @@ namespace BalikProjesi.Enums
         public const string CardTypeIsNotPersonal = "Kart Türü Fileto ya da Kontrol Personeli değil, lütfen kartı KAYIT -> KART KAYDI panelinde güncelleyin ya da başka bir kart seçin";
         public const string CardTypeIsNotFillet = "Kart Türü Fileto Personeli değil, lütfen kartı KAYIT -> KART KAYDI panelinde güncelleyin ya da başka bir kart seçin";
         public const string CardTypeIsNotControl = "Kart Türü Kontrol Personeli değil, lütfen kartı KAYIT -> KART KAYDI panelinde güncelleyin ya da başka bir kart seçin";
+        public const string CreateSuccess = "Kaydetme işlemi başarılı.";
+        public const string CreateFailed = "Kaydetme işlemi başarısız. Girilen kayıt zaten kayıtlı.";
+
         #endregion
 
 
