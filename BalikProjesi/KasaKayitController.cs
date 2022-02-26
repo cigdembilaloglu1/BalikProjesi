@@ -184,7 +184,7 @@ namespace BalikProjesi
         {
             if (button2.Text=="KAYDET")
             {
-                BoxID = "";
+                //BoxID = "";
             }
             if (string.IsNullOrEmpty(BoxID))
             {
@@ -240,7 +240,7 @@ namespace BalikProjesi
         }
         void listget(Carts card=null)
         {
-            button2.Text = "GÜNCELLE";//button text-güncelle
+            //button2.Text = "GÜNCELLE";//button text-güncelle
             if (card!=null)
             {
                 var fb = _fboxService.GetByCardID(card.Id);
@@ -260,15 +260,15 @@ namespace BalikProjesi
                 ListViewItem itm = listView1.SelectedItems[0];
                 if (listView1.SelectedItems.Count != 0)
                 {
-                    var result = _cartServices.GetByCardCode(CardID);
+                    var result = _cartServices.GetByCardCode(itm.SubItems[2].Text);
                     if (result!=null)
                     {
                         CardID = result.Id;
                     }
                     txtKasakod.Text = itm.SubItems[0].Text;
-                    txtKasatip.Text = itm.SubItems[1].Text;
-                    txtKartid.Text = itm.SubItems[2].Text;
+                    txtKasatip.Text = itm.SubItems[1].Text;                    
                     BoxID = itm.SubItems[3].Text;
+                    txtKartid.Text = itm.SubItems[2].Text;
                 }
                 
             }
@@ -303,6 +303,8 @@ namespace BalikProjesi
 
         private async void btnCardRead_Click(object sender, EventArgs e)
         {
+            CardID = "";
+            BoxID = "";
             await _readerServices.WriteTagIdToTextboxAsync(txtKartid);
         }
 
@@ -351,27 +353,67 @@ namespace BalikProjesi
 
         private void txtKartid_TextChanged(object sender, EventArgs e)
         {
-            button2.Text = "KAYDET";
+            //button2.Text = "KAYDET";
             string cardcodetxt = txtKartid.Text.Trim();
-            var readCard = _cartServices.GetByCardCode(cardcodetxt);
-            if (readCard != null)
+            if (!string.IsNullOrEmpty(cardcodetxt))
             {
-                if (readCard.CartType!=InputEnums.Kasa)
+                var readCard = _cartServices.GetByCardCode(cardcodetxt);
+                if (readCard!=null)
                 {
-                    button2.Text = "KAYDET";
+                    try
+                    {
+                        var readBox = _fboxService.GetByCardID(readCard.Id);
+                        var fb = _fboxService.Get(BoxID);
+                        if (readBox != null)
+                        {
+                            if (readCard.CartType == InputEnums.Kasa)
+                            {
+                                if (string.IsNullOrEmpty(readBox.CartId))
+                                {
+                                    button2.Text = "GÜNCELLE";
+                                }
+                                if (readBox.CartId != readCard.Id)
+                                {
+                                    button2.Text = "KAYDET";
+                                }
+                                if (readBox.CartId == readCard.Id)
+                                {
+                                    button2.Text = "GÜNCELLE";
+                                    listget(readCard);
+                                }
+
+                            }
+                        }
+                        else if (string.IsNullOrEmpty(fb.CartId))
+                        {
+                            if (readCard.CartType == InputEnums.Kasa)
+                            {
+                                if (string.IsNullOrEmpty(fb.CartId))
+                                {
+                                    button2.Text = "GÜNCELLE";
+                                    listget(readCard);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            button2.Text = "KAYDET";
+                        }
+
+                    }
+                    catch (Exception)
+                    {
+
+                        throw;
+                    }
+
                 }
-                var readBox = _fboxService.GetByCardID(readCard.Id);
-                if (readBox != null&&readBox.CartId!=CardID)
-                {
-                    button2.Text = "GÜNCELLE";
-                    CardID = readCard.Id;
-                    listget(readCard);
-                }
-            }
-            else
-            {
                 
             }
+            
+            
+            
+            
         }
     }
 }
