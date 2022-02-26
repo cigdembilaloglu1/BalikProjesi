@@ -237,19 +237,19 @@ namespace BalikProjesi
             var cardInfo = _cartsServices.GetByCardCode(txtKartID.Text);
             if (string.IsNullOrEmpty(txtKartID.Text) || string.IsNullOrEmpty(txtPersonelAd.Text)|| string.IsNullOrEmpty(txtPersonelSoyad.Text) || string.IsNullOrEmpty(txtPersonelKod.Text))
             {
-                MessageBox.Show(WarningEnums.PleaseFillAllFields, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show(WarningEnums.PleaseFillAllFields, WarningEnums.Uyarı, MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 check = false;
             }else if (cardCollectionResult == -1)//Kart Carts Collection'da kayıtlı değilse
             {
-                MessageBox.Show(WarningEnums.DefineToCardCollection, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show(WarningEnums.DefineToCardCollection, WarningEnums.Uyarı, MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 check = false;
             }else if(cardCollectionResult == 1)//CardType Personal değil
             {
-                MessageBox.Show(WarningEnums.CardTypeIsNotPersonal, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show(WarningEnums.CardTypeIsNotPersonal, WarningEnums.Uyarı, MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 check = false;
             }else if (personalCollecitonsResult)//Kart başka bir personele kayıtlımı
             {
-                MessageBox.Show(WarningEnums.CardIsDefined, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show(WarningEnums.CardIsDefined, WarningEnums.Uyarı, MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 check = false;
             }
             else if (perTur!=cardInfo.CartType)
@@ -272,11 +272,11 @@ namespace BalikProjesi
                 } ,cbPersonelTur.Text.Trim());
                 if (result)
                 {
-                    MessageBox.Show("Personel kaydı başarılı.");
+                    MessageBox.Show(WarningEnums.CreateSuccess, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Personel kaydı başarısız. Girilen personel daha önceden kayıt edilmiştir.");
+                    MessageBox.Show(WarningEnums.CreateFailed,WarningEnums.Uyarı, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 list(cbPersonelTur.Text);
             }
@@ -295,6 +295,7 @@ namespace BalikProjesi
             cbListGroup.Items.Add(InputEnums.Kontrol);
             cbListGroup.SelectedIndex = 1;
             cbPersonelTur.SelectedIndex = 1;
+            
         }
 
         private void cbListGroup_SelectedIndexChanged(object sender, EventArgs e)
@@ -392,8 +393,17 @@ namespace BalikProjesi
 
         private void sİLToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            bool chk=_perService.Delete(persID, PersTuru);
-            MessageBox.Show(chk.ToString());
+            
+            
+            //Veri kaybı için bilgilendirme
+            if (MessageBox.Show(WarningEnums.DataLoss, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                bool chk = _perService.Delete(persID, PersTuru);
+                if (chk)
+                {
+                    MessageBox.Show(WarningEnums.DeleteSuccess, "", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                }
+            }
         }
 
         private void listView1_Click(object sender, EventArgs e)

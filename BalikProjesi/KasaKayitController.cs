@@ -49,7 +49,7 @@ namespace BalikProjesi
             }
             else
             {
-                MessageBox.Show("Okunan kart kayıtlı değildir. Lütfen kartı önce kayıt ediniz.");
+                MessageBox.Show(WarningEnums.DefineToCardCollection);
             }
             if (!string.IsNullOrEmpty(BoxID)&& readCard != null)
             {
@@ -67,11 +67,11 @@ namespace BalikProjesi
                     bool chk = _fboxService.Update(fb);
                     if (chk == true)
                     {
-                        MessageBox.Show("Güncelleme başarılı.");
+                        MessageBox.Show(WarningEnums.UpdateSuccess);
                     }
                     else
                     {
-                        MessageBox.Show("Güncelleme başarısız.");
+                        MessageBox.Show(WarningEnums.UpdateFailed);
                     }
                 }
                 else if (readCard.CartType == InputEnums.Fileto)
@@ -142,20 +142,16 @@ namespace BalikProjesi
                         switch (result)
                         {
                             case true:
-                                MessageBox.Show("Kasa kaydı başarılı.");
+                                MessageBox.Show(WarningEnums.CreateSuccess);
                                 break;
                             case false:
-                                MessageBox.Show("Kasa kaydı başarısız. Girilen kasa daha önceden kayıt edilmiştir.");
+                                MessageBox.Show(WarningEnums.CreateFailed);
                                 break;
                         }
                     }
-                    else if (readCard.CartType == InputEnums.Fileto)
+                    else
                     {
-                        MessageBox.Show("Okunan kart Fileto personeli kartıdır. Lüften farklı bir kartla tekrar deneyin veya kartı güncelleyin.");
-                    }
-                    else if (readCard.CartType == InputEnums.Kontrol)
-                    {
-                        MessageBox.Show("Okunan kart Kontrol personeli kartıdır. Lüften farklı bir kartla tekrar deneyin veya kartı güncelleyin.");
+                        MessageBox.Show("Okunan kart " + readCard.CartType + " kartıdır. Kaydı yapabilmeniz için " + InputEnums.Kasa + " tipinde bir kart gerekmektedir.", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     }
                     
                 }
@@ -256,12 +252,8 @@ namespace BalikProjesi
                     txtKasatip.Text = itm.SubItems[1].Text;
                     txtKartid.Text = itm.SubItems[2].Text;
                     BoxID = itm.SubItems[3].Text;
-                    
                 }
-                else
-                {
-
-                }
+                
             }
         }
 
@@ -277,8 +269,17 @@ namespace BalikProjesi
 
         private void Delete_Click(object sender, EventArgs e)
         {
-            bool chk = _fboxService.Delete(BoxID);
-            MessageBox.Show(chk.ToString());
+            
+            //Veri kaybı için bilgilendirme
+            if (MessageBox.Show(WarningEnums.DataLoss, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                bool chk = _fboxService.Delete(BoxID);
+                if (chk)
+                {
+                    MessageBox.Show(WarningEnums.DeleteSuccess, "", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                }
+            }
+                
             list();
         }
 
@@ -343,11 +344,6 @@ namespace BalikProjesi
                     CardID = readCard.Id;
                     listget(readCard);
                 }
-                else
-                {
-
-                }
-
             }
         }
     }
