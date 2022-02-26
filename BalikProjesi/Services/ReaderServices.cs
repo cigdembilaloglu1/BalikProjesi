@@ -103,7 +103,7 @@ namespace BalikProjesi.Services
         //0: kasa
         //1: fileto
         //2: kontrol
-        public async Task setTagOwner(int owner, string com = "COM5")
+        public async Task<bool> setTagOwner(int owner, string com = "COM5")
         {
             try
             {
@@ -120,11 +120,16 @@ namespace BalikProjesi.Services
 
                         await Task.Delay(1000);
                     }
+                    return true;
+                }
+                else
+                {
+                    return false;
                 }
             }
             catch (Exception)
             {
-
+                return false;
             }
 
             closePort();
