@@ -16,12 +16,6 @@ namespace BalikProjesi
         {
             InitializeComponent();
         }
-
-        private void KontrolKabul_Load(object sender, EventArgs e)
-        {
-
-        }
-
         //private void button1_Click(object sender, EventArgs e)
         //{
         //    PopUp popup=new PopUp();
@@ -33,8 +27,41 @@ namespace BalikProjesi
         {
                  PopUp popup = new PopUp();
                  popup.Show();
-
         }
-      
+
+        private void selections(object sender, EventArgs e)
+        {
+            frmNumbers frm = new frmNumbers();
+
+            if (((Button)sender).Text == "HASAT  DEFO")
+            {
+                frm.formValue = textBox1.Text;
+                frm.screenLabel.Text = textBox1.Text;
+                frm.ShowDialog();
+                textBox1.Text = frm.formValue;
+            }
+            else if (((Button)sender).Text == "KILÇIK")
+            {
+                frm.formValue = textBox2.Text;
+                frm.screenLabel.Text = textBox2.Text;
+                frm.ShowDialog();
+                textBox2.Text = frm.formValue;
+            }
+            else if (((Button)sender).Text == "BIÇAK DEFO")
+            {
+                frm.formValue = textBox3.Text;
+                frm.screenLabel.Text = textBox3.Text;
+                frm.ShowDialog();
+                textBox3.Text = frm.formValue;
+            }
+            else if (((Button)sender).Text == "+")
+            {
+                frm.formValue = textBox4.Text;
+                frm.screenLabel.Text = textBox4.Text;
+                frm.ShowDialog();
+                textBox4.Text = frm.formValue;
+
+            }
+        }
     }
 }
