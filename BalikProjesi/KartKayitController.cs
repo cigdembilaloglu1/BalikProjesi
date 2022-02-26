@@ -37,6 +37,7 @@ namespace BalikProjesi
         }
         public void liste()
         {
+            
             string CartAd, CartCode, CartType, CartUUID;
             if (listView1.Items.Count != 0)
             {
@@ -58,29 +59,13 @@ namespace BalikProjesi
             KartKoduTb.Clear();
             cbCardType.SelectedIndex = 0;
             CardID = "";
+            button1.Text = "KAYDET";
         }
         public void listget(Carts card = null)
         {
-            if (listView1.SelectedItems.Count != 0)
+            if (card != null)
             {
-                ListViewItem itm = listView1.SelectedItems[0];
-
-                KartNameTxt.Text = itm.SubItems[0].Text;
-                KartKoduTb.Text = itm.SubItems[1].Text;
-
-                if(itm.SubItems[2].Text == InputEnums.Kasa)
-                    cbCardType.SelectedIndex = 0;
-                else if (itm.SubItems[2].Text == InputEnums.Fileto)
-                    cbCardType.SelectedIndex = 1;
-                else if (itm.SubItems[2].Text == InputEnums.Kontrol)
-                    cbCardType.SelectedIndex = 2;
-
-                CardID = itm.SubItems[3].Text;
-
-
-            }
-            else
-            {
+                button1.Text = "GÜNCELLE";
                 KartNameTxt.Text = card.CartName;
                 KartKoduTb.Text = card.CartCode;
 
@@ -93,8 +78,28 @@ namespace BalikProjesi
 
                 CardID = card.Id;
             }
+            else
+            {
+                button1.Text = "GÜNCELLE";
+                if (listView1.SelectedItems.Count != 0)
+                {
+                    ListViewItem itm = listView1.SelectedItems[0];
+                    CardID = itm.SubItems[3].Text;
+                    KartNameTxt.Text = itm.SubItems[0].Text;
+                    KartKoduTb.Text = itm.SubItems[1].Text;
 
-            btnUpdate.Enabled = true;
+                    if (itm.SubItems[2].Text == InputEnums.Kasa)
+                        cbCardType.SelectedIndex = 0;
+                    else if (itm.SubItems[2].Text == InputEnums.Fileto)
+                        cbCardType.SelectedIndex = 1;
+                    else if (itm.SubItems[2].Text == InputEnums.Kontrol)
+                        cbCardType.SelectedIndex = 2;
+
+                    
+
+
+                }
+            }
         }
         public void dataupdate()
         {
@@ -217,21 +222,15 @@ namespace BalikProjesi
             }
             else
             {
-                //MessageBox.Show(WarningEnums.InvalidSelection);
+                
             }
             liste();
 
 
         }
-
-
-
-
-
-        private void button1_Click(object sender, EventArgs e)
+        void Create()
         {
             bool check = true;
-
             if (string.IsNullOrEmpty(KartNameTxt.Text))
             {
                 lbCardNo.Text = WarningEnums.ThisFieldMustBeFilled;
@@ -244,8 +243,7 @@ namespace BalikProjesi
                 KartKoduTb.Focus();
                 check = false;
             }
-
-            if(check)
+            if (check)
             {
                 var result = _cartService.Create(new Entities.Carts
                 {
@@ -266,6 +264,22 @@ namespace BalikProjesi
                 }
                 liste();
             }
+        }
+
+
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (button1.Text=="KAYDET")
+            {
+                Create();
+
+            }
+            else if(button1.Text=="GÜNCELLE")
+            {
+                dataupdate();
+            }
 
         }
 
@@ -285,7 +299,7 @@ namespace BalikProjesi
 
             lbCardCode.Text = "";
             lbCardNo.Text = "";
-            btnUpdate.Enabled = false;
+            
 
         }
 
@@ -508,15 +522,24 @@ namespace BalikProjesi
         private void KartKoduTb_TextChanged(object sender, EventArgs e)
         {
             string cardcodetxt = KartKoduTb.Text.Trim();
-            var readCard = _cartService.GetByCardCode(cardcodetxt);
-            if (readCard != null)
+            if (!string.IsNullOrEmpty(cardcodetxt))
             {
-                listget(readCard);
+                var readCard = _cartService.GetByCardCode(cardcodetxt);
+                if (readCard != null && !string.IsNullOrEmpty(cardcodetxt))
+                {
+                    listget(readCard);
+                }
+                else
+                {
+                    button1.Text = "KAYDET";
+                }
+
             }
             else
             {
-
+                button1.Text = "KAYDET";
             }
+            
 
             lbCardCode.Text = "";
             lbCardNo.Text = "";
