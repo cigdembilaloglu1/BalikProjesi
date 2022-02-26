@@ -213,11 +213,7 @@ namespace BalikProjesi
                             updateOnlyCard();
                         }
                     }
-                    
-                    
-
                 }
-                
             }
             else
             {
