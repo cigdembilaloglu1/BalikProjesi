@@ -182,7 +182,7 @@ namespace BalikProjesi
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            if (button2.Text=="KAYDET")
+            if (button2.Text=="Kaydet")
             {
                 //BoxID = "";
             }
@@ -236,7 +236,7 @@ namespace BalikProjesi
             txtKasatip.Clear();
             BoxID = "";
             CardID = "";
-            button2.Text = "KAYDET";//button text-kaydet
+            button2.Text = "Kaydet";//button text-kaydet
         }
         void listget(Carts card=null)
         {
@@ -276,7 +276,7 @@ namespace BalikProjesi
 
         private void KasaKayitController_Load(object sender, EventArgs e)
         {
-            button2.Text = "KAYDET";
+            button2.Text = "Kaydet";
             list();
         }
 
@@ -353,7 +353,7 @@ namespace BalikProjesi
 
         private void txtKartid_TextChanged(object sender, EventArgs e)
         {
-            //button2.Text = "KAYDET";
+            //button2.Text = "Kaydet";
             string cardcodetxt = txtKartid.Text.Trim();
             if (!string.IsNullOrEmpty(cardcodetxt))
             {
@@ -374,7 +374,7 @@ namespace BalikProjesi
                                 }
                                 if (readBox.CartId != readCard.Id)
                                 {
-                                    button2.Text = "KAYDET";
+                                    button2.Text = "Kaydet";
                                 }
                                 if (readBox.CartId == readCard.Id)
                                 {
@@ -397,7 +397,7 @@ namespace BalikProjesi
                         }
                         else
                         {
-                            button2.Text = "KAYDET";
+                            button2.Text = "Kaydet";
                         }
 
                     }

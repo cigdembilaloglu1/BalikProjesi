@@ -100,7 +100,7 @@ namespace BalikProjesi
                     }
 
                 }
-                button1.Text = "GÜNCELLE";
+                //button1.Text = "GÜNCELLE";
             }
             else
             {
@@ -163,7 +163,10 @@ namespace BalikProjesi
                 PerSoyad = item.PersonelSurname;
                 PerKod = item.PersonelCode;
                 PerGrup = item.PersonelGroup;
-                PerTur = perTur;
+                if(perTur == null)
+                    PerTur = item.CartType;
+                else
+                    PerTur = perTur;
                 PerCID = item.CartCode;
                 PerId = item.Id;
                 string[] data = { PerAd, PerSoyad, PerKod, PerGrup, PerTur, PerCID, PerId };
@@ -177,36 +180,24 @@ namespace BalikProjesi
             if (perTur == InputEnums.Kontrol)
             {
                 var dt = _perService.GetControl();
-                pageListToTable(dt, perTur);
 
-                for (int i = 0; i < listView1.Items.Count; i++)
-                {
-                    var val = listView1.Items[i].SubItems[4].Text;
-                    if (val == InputEnums.Fileto)
-                    {
-                        listView1.Items[i].Remove();
-                        i--;
-                    }
-                }
+                listView1.Items.Clear();
+                pageListToTable(dt, perTur);
             }
-            else
+            else if (perTur == InputEnums.Fileto)
             {
                 var dt = _perService.GetFillet();
+
+                listView1.Items.Clear();
                 pageListToTable(dt, perTur);
-
-                for (int i = 0; i < listView1.Items.Count; i++)
-                {
-                    var val = listView1.Items[i].SubItems[4].Text;
-                    if (val == InputEnums.Kontrol)
-                    {
-                        listView1.Items[i].Remove();
-                        i--;
-                    }
-                }
             }
+            else//tümü
+            {
+                var dt = _perService.GetAll();
 
-
-
+                listView1.Items.Clear();
+                pageListToTable(dt);
+            }
 
             txtKartID.Clear();
             txtPersonelAd.Clear();
@@ -214,9 +205,9 @@ namespace BalikProjesi
             txtPersonelKod.Clear();
             CardID = "";
             persID = "";
-            button1.Text = "KAYDET";
-
+            button1.Text = "Kaydet";
         }
+
         public void SelectedClear()
         {
 
@@ -282,7 +273,8 @@ namespace BalikProjesi
                     PersonelCode = txtPersonelKod.Text.Trim(),
                     CreateDate = DateTime.Now,
                     CartCode = txtKartID.Text.Trim(),
-                    CartId = CardID
+                    CartId = CardID,
+                    CartType = cbPersonelTur.Text
                 }, cbPersonelTur.Text.Trim());
                 if (result)
                 {
@@ -353,7 +345,7 @@ namespace BalikProjesi
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            if (button1.Text=="KAYDET")
+            if (button1.Text=="Kaydet")
             {
                 Create();
             }
@@ -372,9 +364,10 @@ namespace BalikProjesi
             cbPersonelGrup.SelectedIndex = 0;
             cbPersonelTur.Items.Add(InputEnums.Fileto);
             cbPersonelTur.Items.Add(InputEnums.Kontrol);
+            cbListGroup.Items.Add(InputEnums.Tumu);
             cbListGroup.Items.Add(InputEnums.Fileto);
             cbListGroup.Items.Add(InputEnums.Kontrol);
-            cbListGroup.SelectedIndex = 1;
+            cbListGroup.SelectedIndex = 0;
             cbPersonelTur.SelectedIndex = 1;
 
         }
@@ -474,6 +467,7 @@ namespace BalikProjesi
                 {
                     MessageBox.Show(WarningEnums.DeleteSuccess, "", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
                 }
+                list();
             }
         }
 
@@ -532,7 +526,7 @@ namespace BalikProjesi
                 filteredPersonelList = _perService.GetFilteredController(Filter);
             }
 
-            pageListToTable(filteredPersonelList);
+            pageListToTable(filteredPersonelList, cbPersonelTur.Text);
         }
 
         private void rbCode_CheckedChanged(object sender, EventArgs e)
@@ -566,44 +560,45 @@ namespace BalikProjesi
 
         private void txtKartID_TextChanged(object sender, EventArgs e)
         {
-            string cardcodetxt = txtKartID.Text.Trim();
-            if (!string.IsNullOrEmpty(cardcodetxt))
-            {
-                var readCard = _cartsServices.GetByCardCode(cardcodetxt);
-                if (readCard != null)
-                {
-                    CardID = readCard.Id;
-                    listviewDataGet(readCard);
-                }
-                else
-                {
-
-                }
-            }
-            else
-            {
-                if (!string.IsNullOrEmpty(persID))
-                {
-                    button1.Text = "GÜNCELLE";
-                }
-                else
-                {
-                    button1.Text = "KAYDET";
-                }
-
-            }
-            
             //string cardcodetxt = txtKartID.Text.Trim();
-            //var readCard = _cartsServices.GetByCardCode(cardcodetxt);
-            //if (readCard != null)
+            //if (!string.IsNullOrEmpty(cardcodetxt))
             //{
-            //    CardID = readCard.Id;
-            //    listviewDataGet(readCard);
+            //    var readCard = _cartsServices.GetByCardCode(cardcodetxt);
+            //    if (readCard != null)
+            //    {
+            //        CardID = readCard.Id;
+            //        listviewDataGet(readCard);
+
+            //    }
+            //    else
+            //    {
+
+            //    }
             //}
             //else
             //{
+            //    if (!string.IsNullOrEmpty(persID))
+            //    {
+            //        button1.Text = "GÜNCELLE";
+            //    }
+            //    else
+            //    {
+            //        button1.Text = "Kaydet";
+            //    }
 
             //}
+
+            string cardcodetxt = txtKartID.Text.Trim();
+            var readCard = _cartsServices.GetByCardCode(cardcodetxt);
+            if (readCard != null)
+            {
+                CardID = readCard.Id;
+                listviewDataGet(readCard);
+            }
+            else
+            {
+
+            }
         }
     }
 }

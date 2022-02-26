@@ -9,6 +9,7 @@ namespace BalikProjesi.Enums
     public static class InputEnums
     {
 
+        public const string Tumu = "Tümü";
         public const string Fileto = "Fileto";
         public const string Admin = "Admin";
         public const string User = "User";
@@ -17,8 +18,8 @@ namespace BalikProjesi.Enums
         public const string A = "A";
         public const string B = "B";
         public const string C = "C";
-        public const string KAYDET = "KAYDET";
-        public const string GÜNCELLE = "KAYDET";
+        public const string Kaydet = "Kaydet";
+        public const string Guncelle = "GÜNCELLE";
 
     }
 

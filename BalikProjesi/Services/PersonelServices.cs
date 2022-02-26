@@ -11,7 +11,7 @@ namespace BalikProjesi.Services
 {
     public class PersonelServices : IPersonelServices
     {
-        public readonly IMongoCollection<Personel> pdb, fdb;
+        public readonly IMongoCollection<Personel> cdb, fdb;
 
         // private readonly object _pid;
 
@@ -19,7 +19,7 @@ namespace BalikProjesi.Services
         {
             var Mongo = new DbContext();
             fdb = Mongo._fpersonel;
-            pdb = Mongo._cpersonel;
+            cdb = Mongo._cpersonel;
         }
         public bool Create(Personel personel, string persType)
         {
@@ -32,7 +32,7 @@ namespace BalikProjesi.Services
                 }
                 else
                 {
-                    pdb.InsertOne(personel);
+                    cdb.InsertOne(personel);
                 }
             }
             return Islem;
@@ -56,7 +56,7 @@ namespace BalikProjesi.Services
             }
             else if (persType == InputEnums.Kontrol)
             {
-                var result = pdb.Find(x => x.PersonelCode == pers.PersonelCode).FirstOrDefault();
+                var result = cdb.Find(x => x.PersonelCode == pers.PersonelCode).FirstOrDefault();
                 if (result == null)
                 {
                     return true;
@@ -78,7 +78,7 @@ namespace BalikProjesi.Services
         public bool PCardCodeExist(string code)
         {
             var fResult = fdb.Find(x => x.CartCode == code).FirstOrDefault();
-            var cResult = pdb.Find(x => x.CartCode == code).FirstOrDefault();
+            var cResult = cdb.Find(x => x.CartCode == code).FirstOrDefault();
 
             if (fResult == null && cResult == null)
                 return false;
@@ -86,20 +86,37 @@ namespace BalikProjesi.Services
                 return true;
         }
 
-        public Personel Get(string _pid)
+        public List<Personel> GetAll()
         {
-            var result = pdb.Find(x => x.Id == _pid).FirstOrDefault();
+            List<Personel> result;
+            result = fdb.Find(x => true).ToList();
+            result.AddRange(cdb.Find(x => true).ToList());
 
             return result;
         }
         public List<Personel> GetControl()
         {
-            var result = pdb.Find(x => true).ToList();
+            var result = cdb.Find(x => true).ToList();
             return result;
         }
         public List<Personel> GetFillet()
         {
             var result = fdb.Find(x => true).ToList();
+            return result;
+        }
+        public Personel GetPersonalByCardCode(string cardCode)
+        {
+            Personel result;
+            result = fdb.Find(x => x.CartCode == cardCode).FirstOrDefault();
+            if(result != null)
+            {
+                return result;
+            }
+            else
+            {
+                result = cdb.Find(x => x.CartCode == cardCode).FirstOrDefault();
+            }
+
             return result;
         }
         public Personel GetFilletPersonnelByCardId(string CardID)
@@ -109,7 +126,7 @@ namespace BalikProjesi.Services
         }
         public Personel GetControlPersonnelByCardId(string CardID)
         {
-            var result = pdb.Find(x => x.CartId == CardID).FirstOrDefault();
+            var result = cdb.Find(x => x.CartId == CardID).FirstOrDefault();
             return result;
         }
         public List<Personel> GetFilteredFillet(FilterDefinition<Personel> filteredPersonel)
@@ -119,7 +136,7 @@ namespace BalikProjesi.Services
         }
         public List<Personel> GetFilteredController(FilterDefinition<Personel> filteredPersonel)
         {
-            var result = pdb.Find(filteredPersonel).ToList();
+            var result = cdb.Find(filteredPersonel).ToList();
             return result;
         }
         public bool UpdateControllerCardInfo(Personel personel)
@@ -132,7 +149,7 @@ namespace BalikProjesi.Services
                     .Set(x => x.CartCode, personel.CartCode);
                 try
                 {
-                    pdb.UpdateOne(Filter, Update);
+                    cdb.UpdateOne(Filter, Update);
                     return true;
                 }
                 catch (Exception)
@@ -193,7 +210,7 @@ namespace BalikProjesi.Services
                     }
                     else
                     {
-                        pdb.UpdateOne(Filter, Update);
+                        cdb.UpdateOne(Filter, Update);
 
                     }
 
@@ -220,7 +237,7 @@ namespace BalikProjesi.Services
                 }
                 else
                 {
-                    pdb.DeleteOne(Filter);
+                    cdb.DeleteOne(Filter);
                 }
 
 
