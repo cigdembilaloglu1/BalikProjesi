@@ -99,8 +99,7 @@ namespace BalikProjesi
         {
             dataupdate();
         }
-
-        private void button2_Click(object sender, EventArgs e)
+        void create()
         {
             string cardCode = txtKartid.Text.Trim();
             bool check = true;
@@ -128,7 +127,7 @@ namespace BalikProjesi
             {
                 if (check)
                 {
-                    
+
                     if (readCard.CartType == InputEnums.Kasa)
                     {
                         var result = _fboxService.Create(new FishBox
@@ -153,7 +152,7 @@ namespace BalikProjesi
                     {
                         MessageBox.Show("Okunan kart " + readCard.CartType + " kartıdır. Kaydı yapabilmeniz için " + InputEnums.Kasa + " tipinde bir kart gerekmektedir.", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     }
-                    
+
                 }
             }
             else
@@ -162,24 +161,40 @@ namespace BalikProjesi
                 {
                     MessageBox.Show(WarningEnums.InvalidSelection);
                 }
-                else 
+                else
                 {
                     var result = _fboxService.GetByCardID(CardID);
-                    if (result.CartType==InputEnums.Kontrol)
+                    if (result.CartType == InputEnums.Kontrol)
                     {
                         MessageBox.Show("Okunan kart " + result.CartType + " kartıdır. Lütfen başka bir kart giriniz veya kartı güncelleyiniz");
-                    }                    
-                    else if (result.CartType==InputEnums.Fileto)
+                    }
+                    else if (result.CartType == InputEnums.Fileto)
                     {
                         MessageBox.Show("Okunan kart " + result.CartType + " kartıdır. Lütfen başka bir kart giriniz veya kartı güncelleyiniz");
                     }
 
                 }
-                
+
             }
-            
+
             CardID = "";
             list();
+        }
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (button2.Text=="KAYDET")
+            {
+                BoxID = "";
+            }
+            if (string.IsNullOrEmpty(BoxID))
+            {
+                create();
+            }
+            else if(!string.IsNullOrEmpty(BoxID))
+            {
+                dataupdate();
+            }
+            
         }
         public void PageFilteredFishBoxToTable(List<FishBox> tableList)
         {
@@ -221,9 +236,11 @@ namespace BalikProjesi
             txtKasatip.Clear();
             BoxID = "";
             CardID = "";
+            button2.Text = "KAYDET";//button text-kaydet
         }
         void listget(Carts card=null)
         {
+            button2.Text = "GÜNCELLE";//button text-güncelle
             if (card!=null)
             {
                 var fb = _fboxService.GetByCardID(card.Id);
@@ -259,6 +276,7 @@ namespace BalikProjesi
 
         private void KasaKayitController_Load(object sender, EventArgs e)
         {
+            button2.Text = "KAYDET";
             list();
         }
 
@@ -333,17 +351,26 @@ namespace BalikProjesi
 
         private void txtKartid_TextChanged(object sender, EventArgs e)
         {
+            button2.Text = "KAYDET";
             string cardcodetxt = txtKartid.Text.Trim();
             var readCard = _cartServices.GetByCardCode(cardcodetxt);
-
             if (readCard != null)
             {
+                if (readCard.CartType!=InputEnums.Kasa)
+                {
+                    button2.Text = "KAYDET";
+                }
                 var readBox = _fboxService.GetByCardID(readCard.Id);
                 if (readBox != null)
                 {
+                    button2.Text = "GÜNCELLE";
                     CardID = readCard.Id;
                     listget(readCard);
                 }
+            }
+            else
+            {
+                
             }
         }
     }
