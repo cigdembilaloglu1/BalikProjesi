@@ -44,7 +44,7 @@ namespace BalikProjesi.Services
 
             if (persType == InputEnums.Fileto)
             {
-                var result = fdb.Find(x => x.CartId == pers.CartId).FirstOrDefault();
+                var result = fdb.Find(x => x.PersonelCode == pers.PersonelCode).FirstOrDefault();
                 if (result == null)
                 {
                     return true;
@@ -56,7 +56,7 @@ namespace BalikProjesi.Services
             }
             else if (persType == InputEnums.Kontrol)
             {
-                var result = pdb.Find(x => x.CartId == pers.CartId).FirstOrDefault();
+                var result = pdb.Find(x => x.PersonelCode == pers.PersonelCode).FirstOrDefault();
                 if (result == null)
                 {
                     return true;

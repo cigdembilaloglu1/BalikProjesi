@@ -102,7 +102,7 @@ namespace BalikProjesi
             string CartName = KartNameTxt.Text.Trim();
             string CartCode = KartKoduTb.Text.Trim();
             string CartType = cbCardType.Text.Trim();
-            void updateOnlyCard()
+            void updateOnlyCard()//Kart güncellemesi
             {
                 Entities.Carts ct = new Carts();
                 ct.CartName = CartName;
@@ -139,7 +139,7 @@ namespace BalikProjesi
                             var chkfillet = _personelService.GetFilletPersonnelByCardId(CardID);
                             var chkkontrol = _personelService.GetControlPersonnelByCardId(CardID);
                             //okunan kart hangi collectiondaysa o kısmı güncelliyoruz
-                            if (CartType==InputEnums.Kontrol)
+                            void updatecardinfo()//Okunan kartı her bir collectionda sorguluyoruz ve eşleşen kayıttaki kart bilgilerini siliyoruz.eğer bulunmaz ise sadece kartı siliyoruz.
                             {
                                 if (chkfb != null)
                                 {
@@ -194,106 +194,17 @@ namespace BalikProjesi
                                     updateOnlyCard();
                                 }
                             }
+                            if (CartType==InputEnums.Kontrol)
+                            {
+                                updatecardinfo();
+                            }
                             else if (CartType==InputEnums.Fileto)
                             {
-                                if (chkfb != null)
-                                {
-
-                                    if (MessageBox.Show(WarningEnums.CardMatchedAnotherRecord + WarningEnums.Space + WarningEnums.CardMatchedAnotherRecordAskUpdate, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                                    {
-                                        chkfb.CartId = "";
-                                        chkfb.CartCode = "";
-                                        var result = _fboxService.UpdateCardInfo(chkfb);
-                                        if (result)
-                                        {
-                                            updateOnlyCard();
-                                            MessageBox.Show(WarningEnums.MacthedRecordUpdateSuccess);
-                                        }
-                                    }
-
-                                }
-                                else if (chkfillet != null)
-                                {
-                                    if (MessageBox.Show(WarningEnums.CardMatchedAnotherRecord + WarningEnums.Space + WarningEnums.CardMatchedAnotherRecordAskUpdate, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                                    {
-                                        chkfillet.CartId = "";
-                                        chkfillet.CartCode = "";
-                                        var result = _personelService.UpdateFilletCardInfo(chkfillet);
-                                        if (result)
-                                        {
-                                            updateOnlyCard();
-                                            MessageBox.Show(WarningEnums.MacthedRecordUpdateSuccess);
-                                        }
-                                    }
-                                }
-                                else if (chkkontrol != null)
-                                {
-                                    if (MessageBox.Show(WarningEnums.CardMatchedAnotherRecord + WarningEnums.Space + WarningEnums.CardMatchedAnotherRecordAskUpdate, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                                    {
-                                        chkkontrol.CartId = "";
-                                        chkkontrol.CartCode = "";
-                                        var result = _personelService.UpdateControllerCardInfo(chkkontrol);
-                                        if (result)
-                                        {
-                                            updateOnlyCard();
-                                            MessageBox.Show(WarningEnums.MacthedRecordUpdateSuccess);
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    updateOnlyCard();
-                                }
+                                updatecardinfo();
                             }
                             else if (CartType==InputEnums.Kasa)
                             {
-                                if (chkfb != null)
-                                {
-                                    chkfb.CartId = "";
-                                    chkfb.CartCode = "";
-                                    if (MessageBox.Show(WarningEnums.CardMatchedAnotherRecord + WarningEnums.Space + WarningEnums.CardMatchedAnotherRecordAskUpdate, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                                    {
-                                        var result = _fboxService.UpdateCardInfo(chkfb);
-                                        if (result)
-                                        {
-                                            updateOnlyCard();
-                                            MessageBox.Show(WarningEnums.MacthedRecordUpdateSuccess);
-                                        }
-                                    }
-
-                                }
-                                else if (chkfillet != null)
-                                {
-                                    if (MessageBox.Show(WarningEnums.CardMatchedAnotherRecord + WarningEnums.Space + WarningEnums.CardMatchedAnotherRecordAskUpdate, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                                    {
-                                        chkfillet.CartId = "";
-                                        chkfillet.CartCode = "";
-                                        var result = _personelService.UpdateFilletCardInfo(chkfillet);
-                                        if (result)
-                                        {
-                                            updateOnlyCard();
-                                            MessageBox.Show(WarningEnums.MacthedRecordUpdateSuccess);
-                                        }
-                                    }
-                                }
-                                else if (chkkontrol != null)
-                                {
-                                    if (MessageBox.Show(WarningEnums.CardMatchedAnotherRecord + WarningEnums.Space + WarningEnums.CardMatchedAnotherRecordAskUpdate, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                                    {
-                                        chkkontrol.CartId = "";
-                                        chkkontrol.CartCode = "";
-                                        var result = _personelService.UpdateControllerCardInfo(chkkontrol);
-                                        if (result)
-                                        {
-                                            updateOnlyCard();
-                                            MessageBox.Show(WarningEnums.MacthedRecordUpdateSuccess);
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    updateOnlyCard();
-                                }
+                                updatecardinfo();
                             }
                             
                         }
@@ -394,10 +305,11 @@ namespace BalikProjesi
 
         private void DeleteMenuStrip_Click(object sender, EventArgs e)
         {
+            //Kartı güncellerken diğer kayıtlara da bakıp oradan işilişiğini kesmemiz gerekiyor.
             string CartName = KartNameTxt.Text.Trim();
             string CartCode = KartKoduTb.Text.Trim();
             string CartType = cbCardType.Text.Trim();
-            void onlyDelete()
+            void onlyDelete()//Kartın eşleşen bir kaydı yoksa bu kısım çalışıyor.
             {
                 var result = _cartService.Delete(CardID);
                 if (result)
@@ -409,7 +321,7 @@ namespace BalikProjesi
                     MessageBox.Show(WarningEnums.DeleteFailed);
                 }
             }
-            if (!string.IsNullOrEmpty(CardID))
+            if (!string.IsNullOrEmpty(CardID))//bu kısımda karta ait veriler olup olmadığını kontrol ediyoruz
             {
                 //Veri kaybı için bilgilendirme
                 if (MessageBox.Show(WarningEnums.DataLoss, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -421,118 +333,12 @@ namespace BalikProjesi
                         var chkcard = _cartService.GetByCardID(CardID);
                         if (chkcard != null)
                         {
-                            //Okunan kartı her bir collectionda sorguluyoruz
+                            
                             var chkfb = _fboxService.GetByCardID(CardID);
                             var chkfillet = _personelService.GetFilletPersonnelByCardId(CardID);
                             var chkkontrol = _personelService.GetControlPersonnelByCardId(CardID);
-                            //okunan kart hangi collectiondaysa o kısmı güncelliyoruz
-                            if (CartType == InputEnums.Kontrol)
-                            {
-                                if (chkfb != null)
-                                {
-                                    if (MessageBox.Show(WarningEnums.CardMatchedAnotherRecord + WarningEnums.Space + WarningEnums.CardMatchedAnotherRecordAskUpdate, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                                    {
-                                        chkfb.CartId = "";
-                                        chkfb.CartCode = "";
-                                        var result = _fboxService.UpdateCardInfo(chkfb);
-                                        if (result)
-                                        {
-                                            onlyDelete();
-                                            MessageBox.Show(WarningEnums.MacthedRecordUpdateSuccess);
-                                        }
-                                    }
-                                    else
-                                    {
-                                        onlyDelete();
-                                    }
-
-                                }
-                                else if (chkfillet != null)
-                                {
-                                    if (MessageBox.Show(WarningEnums.CardMatchedAnotherRecord + WarningEnums.Space + WarningEnums.CardMatchedAnotherRecordAskUpdate, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                                    {
-                                        chkfillet.CartId = "";
-                                        chkfillet.CartCode = "";
-                                        var result = _personelService.UpdateFilletCardInfo(chkfillet);
-                                        if (result)
-                                        {
-                                            onlyDelete();
-                                            MessageBox.Show(WarningEnums.MacthedRecordUpdateSuccess);
-                                        }
-
-                                    }
-                                }
-                                else if (chkkontrol != null)
-                                {
-                                    if (MessageBox.Show(WarningEnums.CardMatchedAnotherRecord + WarningEnums.Space + WarningEnums.CardMatchedAnotherRecordAskUpdate, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                                    {
-                                        chkkontrol.CartId = "";
-                                        chkkontrol.CartCode = "";
-                                        var result = _personelService.UpdateControllerCardInfo(chkkontrol);
-                                        if (result)
-                                        {
-                                            onlyDelete();
-                                            MessageBox.Show(WarningEnums.MacthedRecordUpdateSuccess);
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    onlyDelete();
-                                }
-                            }
-                            else if (CartType == InputEnums.Fileto)
-                            {
-                                if (chkfb != null)
-                                {
-
-                                    if (MessageBox.Show(WarningEnums.CardMatchedAnotherRecord + WarningEnums.Space + WarningEnums.CardMatchedAnotherRecordAskUpdate, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                                    {
-                                        chkfb.CartId = "";
-                                        chkfb.CartCode = "";
-                                        var result = _fboxService.UpdateCardInfo(chkfb);
-                                        if (result)
-                                        {
-                                            onlyDelete();
-                                            MessageBox.Show(WarningEnums.MacthedRecordUpdateSuccess);
-                                        }
-                                    }
-
-                                }
-                                else if (chkfillet != null)
-                                {
-                                    if (MessageBox.Show(WarningEnums.CardMatchedAnotherRecord + WarningEnums.Space + WarningEnums.CardMatchedAnotherRecordAskUpdate, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                                    {
-                                        chkfillet.CartId = "";
-                                        chkfillet.CartCode = "";
-                                        var result = _personelService.UpdateFilletCardInfo(chkfillet);
-                                        if (result)
-                                        {
-                                            onlyDelete();
-                                            MessageBox.Show(WarningEnums.MacthedRecordUpdateSuccess);
-                                        }
-                                    }
-                                }
-                                else if (chkkontrol != null)
-                                {
-                                    if (MessageBox.Show(WarningEnums.CardMatchedAnotherRecord + WarningEnums.Space + WarningEnums.CardMatchedAnotherRecordAskUpdate, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                                    {
-                                        chkkontrol.CartId = "";
-                                        chkkontrol.CartCode = "";
-                                        var result = _personelService.UpdateControllerCardInfo(chkkontrol);
-                                        if (result)
-                                        {
-                                            onlyDelete();
-                                            MessageBox.Show(WarningEnums.MacthedRecordUpdateSuccess);
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    onlyDelete();
-                                }
-                            }
-                            else if (CartType == InputEnums.Kasa)
+                            //Okunan kartı her bir collectionda sorguluyoruz ve eşleşen kayıttaki kart bilgilerini siliyoruz.eğer bulunmaz ise sadece kartı siliyoruz.
+                            void updatecardinfo()
                             {
                                 if (chkfb != null)
                                 {
@@ -582,6 +388,18 @@ namespace BalikProjesi
                                     onlyDelete();
                                 }
                             }
+                            if (CartType == InputEnums.Kontrol)
+                            {
+                                updatecardinfo();
+                            }
+                            else if (CartType == InputEnums.Fileto)
+                            {
+                                updatecardinfo();
+                            }
+                            else if (CartType == InputEnums.Kasa)
+                            {
+                                updatecardinfo();
+                            }
 
                         }
                         else
@@ -593,7 +411,7 @@ namespace BalikProjesi
             }
             else
             {
-                MessageBox.Show(WarningEnums.InvalidSelection);
+                //MessageBox.Show(WarningEnums.InvalidSelection);
             }
 
             
