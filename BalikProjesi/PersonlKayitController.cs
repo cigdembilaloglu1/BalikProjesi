@@ -328,7 +328,7 @@ namespace BalikProjesi
                 }
                 else
                 {
-                    MessageBox.Show(WarningEnums.InvalidSelection);
+                    MessageBox.Show(WarningEnums.DefineToCardCollection);
                 }
                 
             }
@@ -343,7 +343,7 @@ namespace BalikProjesi
                     prs.PersonelCode = PersonelKod;
                     prs.PersonelGroup = PersonelGrup;
                     prs.CartCode = KartID;
-
+                    prs.CartId = CardID;
                     bool chk = _perService.Update(prs, PersonelTur);
                     if (chk == true)
                     {

@@ -361,7 +361,7 @@ namespace BalikProjesi
                     button2.Text = "KAYDET";
                 }
                 var readBox = _fboxService.GetByCardID(readCard.Id);
-                if (readBox != null)
+                if (readBox != null&&readBox.CartId!=CardID)
                 {
                     button2.Text = "GÜNCELLE";
                     CardID = readCard.Id;
