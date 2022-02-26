@@ -250,7 +250,7 @@ namespace BalikProjesi
             string PersonelGrup = cbPersonelGrup.Text;
             string PersonelTur = cbPersonelTur.Text;
             string KartID = txtKartID.Text;
-            var readCard = _cartsServices.GetByCardCode(KartID);
+            var readCard = _cartsServices.GetByCardCode(KartID);//
             if (readCard != null)
             {
                 CardID = readCard.Id;
