@@ -141,10 +141,12 @@ namespace BalikProjesi.Services
             if(card != null)
             {
                 string cardType = card.CartType;
-                if (cardType == InputEnums.Kontrol || cardType == InputEnums.Fileto)
-                    return 0;//CartType Personal
+                if (cardType == InputEnums.Fileto)
+                    return 0;//CartType Filetocu
+                else if (cardType == InputEnums.Kontrol)
+                    return 1;//CartType Kontrolcu
                 else
-                    return 1;//CartType Personal Değil
+                    return 2;//CartType Kasa
             }
             else
             {

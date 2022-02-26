@@ -25,119 +25,46 @@ namespace BalikProjesi
             _perService = new PersonelServices();
             _readerServices = new ReaderServices();
             _cartsServices = new CartsServices();
-            persID = "";
-            CardID = "";
-            PersTuru = "";
         }
-        public void listviewDataGet(Carts card=null)
+        public void listviewDataGet()
         {
-            
-            if (card!=null)
-            {
-                var prsFillet = _perService.GetFilletPersonnelByCardId(card.Id);
-                var prsControl = _perService.GetControlPersonnelByCardId(card.Id);
-
-                if (card.CartType==InputEnums.Fileto&&prsFillet!=null)
-                {
-                    
-                    if (prsFillet!=null)
-                    {
-                        txtPersonelAd.Text = prsFillet.PersonelName;
-                        txtPersonelSoyad.Text = prsFillet.PersonelSurname;
-                        txtPersonelKod.Text = prsFillet.PersonelCode;
-                        txtKartID.Text = prsFillet.CartCode;
-                        for (int i = 0; i < cbPersonelGrup.Items.Count; i++)
-                        {
-
-                            if (cbPersonelGrup.Items[i].ToString() == prsFillet.PersonelGroup.ToUpper() && prsFillet.PersonelGroup != null)
-                            {
-                                cbPersonelGrup.SelectedItem = prsFillet.PersonelGroup.ToUpper();
-
-                            }
-
-                        }
-                        for (int i = 0; i < cbPersonelTur.Items.Count; i++)
-                        {
-                            cbPersonelTur.SelectedItem = InputEnums.Fileto;
-                        }
-                        persID = prsFillet.Id;
-                        PersTuru = cbPersonelTur.Text;
-                        CardID = prsFillet.CartId;
-
-                    }
-                                       
-                }
-                else if (card.CartType == InputEnums.Kontrol&&prsControl!=null)
-                {
-                    if (prsControl != null)
-                    {
-                        txtPersonelAd.Text = prsControl.PersonelName;
-                        txtPersonelSoyad.Text = prsControl.PersonelSurname;
-                        txtPersonelKod.Text = prsControl.PersonelCode;
-                        txtKartID.Text = prsControl.CartCode;
-                        for (int i = 0; i < cbPersonelGrup.Items.Count; i++)
-                        {
-
-                            if (cbPersonelGrup.Items[i].ToString() == prsControl.PersonelGroup.ToUpper() && prsControl.PersonelGroup != null)
-                            {
-                                cbPersonelGrup.SelectedItem = prsControl.PersonelGroup.ToUpper();
-
-                            }
-
-                        }
-                        for (int i = 0; i < cbPersonelTur.Items.Count; i++)
-                        {
-                            cbPersonelTur.SelectedItem = InputEnums.Kontrol;
-                        }
-                        persID = prsControl.Id;
-                        PersTuru = cbPersonelTur.Text;
-                        CardID = prsControl.CartId;
-
-
-                    }
-                    
-                }
-            }
-            else
+            if (listView1.SelectedItems.Count != 0)
             {
                 ListViewItem itm = listView1.SelectedItems[0];
-                if (listView1.SelectedItems.Count != 0)
+
+                txtPersonelAd.Text = itm.SubItems[0].Text;
+                txtPersonelSoyad.Text = itm.SubItems[1].Text;
+                txtPersonelKod.Text = itm.SubItems[2].Text;
+                txtKartID.Text = itm.SubItems[5].Text;
+
+                for (int i = 0; i < cbPersonelGrup.Items.Count; i++)
                 {
 
-                    txtPersonelAd.Text = itm.SubItems[0].Text;
-                    txtPersonelSoyad.Text = itm.SubItems[1].Text;
-                    txtPersonelKod.Text = itm.SubItems[2].Text;
-                    txtKartID.Text = itm.SubItems[5].Text;
-
-                    for (int i = 0; i < cbPersonelGrup.Items.Count; i++)
+                    if (cbPersonelGrup.Items[i].ToString() == itm.SubItems[3].Text.ToUpper() && itm.SubItems[3] != null)
                     {
-
-                        if (cbPersonelGrup.Items[i].ToString() == itm.SubItems[3].Text.ToUpper() && itm.SubItems[3] != null)
-                        {
-                            cbPersonelGrup.SelectedItem = itm.SubItems[3].Text.ToUpper();
-
-                        }
+                        cbPersonelGrup.SelectedItem = itm.SubItems[3].Text.ToUpper();
 
                     }
-                    for (int i = 0; i < cbPersonelTur.Items.Count; i++)
-                    {
-                        if (cbPersonelTur.Items[i].ToString() == itm.SubItems[4].Text && itm.SubItems[4] != null)
-                        {
-                            cbPersonelTur.SelectedItem = itm.SubItems[4].Text;
 
-                        }
-
-                    }
-                    var result = _cartsServices.GetByCardCode(itm.SubItems[5].Text);
-                    if (result != null)
-                    {
-                        CardID = result.Id;
-                    }
-                    persID = itm.SubItems[6].Text;
-                    PersTuru = cbPersonelTur.Text;
                 }
-                
+                for (int i = 0; i < cbPersonelTur.Items.Count; i++)
+                {
+                    if (cbPersonelTur.Items[i].ToString() == itm.SubItems[4].Text && itm.SubItems[4] != null)
+                    {
+                        cbPersonelTur.SelectedItem = itm.SubItems[4].Text;
+
+                    }
+
+                }
+
+                label9.Text = itm.SubItems[6].Text;
+                label10.Text = cbPersonelTur.Text;//düzenlenecek
+
             }
+            else { }
+
+
+
         }
 
         public void pageListToTable(List<Personel> tableList, string perTur = null)
@@ -197,15 +124,13 @@ namespace BalikProjesi
                 }
             }
 
-            
+
 
 
             txtKartID.Clear();
             txtPersonelAd.Clear();
             txtPersonelSoyad.Clear();
             txtPersonelKod.Clear();
-            CardID = "";
-            persID = "";
 
         }
         public void SelectedClear()
@@ -214,7 +139,7 @@ namespace BalikProjesi
             foreach (var item in listView1.SelectedItems)
             {
                 listView1.SelectedItems.Clear();
-            
+
             }
 
         }
@@ -228,55 +153,65 @@ namespace BalikProjesi
         {
             bool check = true;
             string cardCode = txtKartID.Text;
+            int cardType;
+            if (cbPersonelTur.Text == InputEnums.Fileto)
+                cardType = 0;
+            else
+                cardType = 1;
+
             bool personalCollecitonsResult = _perService.PCardCodeExist(cardCode);
             int cardCollectionResult = _cartsServices.CheckCardTypeResult(cardCode);
-            string perTur = cbPersonelTur.Text.Trim();
-            var cardInfo = _cartsServices.GetByCardCode(txtKartID.Text);
-            if (string.IsNullOrEmpty(txtKartID.Text) || string.IsNullOrEmpty(txtPersonelAd.Text)|| string.IsNullOrEmpty(txtPersonelSoyad.Text) || string.IsNullOrEmpty(txtPersonelKod.Text))
+
+
+            if (txtKartID.Text == "" || txtPersonelAd.Text == "" || txtPersonelSoyad.Text == "" || txtPersonelKod.Text == "")
             {
-                MessageBox.Show(WarningEnums.PleaseFillAllFields, WarningEnums.Uyarı, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                check = false;
-            }else if (cardCollectionResult == -1)//Kart Carts Collection'da kayıtlı değilse
-            {
-                MessageBox.Show(WarningEnums.DefineToCardCollection, WarningEnums.Uyarı, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                check = false;
-            }else if(cardCollectionResult == 1)//CardType Personal değil
-            {
-                MessageBox.Show(WarningEnums.CardTypeIsNotPersonal, WarningEnums.Uyarı, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                check = false;
-            }else if (personalCollecitonsResult)//Kart başka bir personele kayıtlımı
-            {
-                MessageBox.Show(WarningEnums.CardIsDefined, WarningEnums.Uyarı, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show(WarningEnums.PleaseFillAllFields, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 check = false;
             }
-            else if (perTur!=cardInfo.CartType)
+            else if (cardCollectionResult == -1)//Kart Carts Collection'da kayıtlı değilse
             {
-                MessageBox.Show("Okunan kart "+cardInfo.CartType+" kartıdır. Kaydı yapabilmeniz için "+perTur+" tipinde bir kart gerekmektedir.", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show(WarningEnums.DefineToCardCollection, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                check = false;
+            }
+            else if (cardCollectionResult == 2)//CardType Kasa İse
+            {
+                MessageBox.Show(WarningEnums.CardTypeIsNotPersonal, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                check = false;
+            }
+            else if (cardCollectionResult != cardType)//CardType cbPersonelTurdaki değere eşit değilse
+            {
+                MessageBox.Show(WarningEnums.CardTypeIsNotValid, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                check = false;
+            }
+            else if (personalCollecitonsResult)//Kart başka bir personele kayıtlımı
+            {
+                MessageBox.Show(WarningEnums.CardIsDefined, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 check = false;
             }
 
             if (check)
             {
-                var result =_perService.Create(new Personel
+                var result = _perService.Create(new Personel
                 {
-                    PersonelName=txtPersonelAd.Text.Trim(),
-                    PersonelSurname=txtPersonelSoyad.Text.Trim(),
-                    PersonelGroup=cbPersonelGrup.Text.Trim(),
-                    PersonelCode=txtPersonelKod.Text.Trim(),
-                    CreateDate=DateTime.Now,
-                    CartCode=txtKartID.Text.Trim(),
-                    CartId=CardID
-                } ,cbPersonelTur.Text.Trim());
+                    PersonelName = txtPersonelAd.Text.Trim(),
+                    PersonelSurname = txtPersonelSoyad.Text.Trim(),
+                    PersonelGroup = cbPersonelGrup.Text.Trim(),
+                    PersonelCode = txtPersonelKod.Text.Trim(),
+                    CreateDate = DateTime.Now,
+                    CartCode = txtKartID.Text.Trim()
+                }, cbPersonelTur.Text.Trim());
                 if (result)
                 {
-                    MessageBox.Show(WarningEnums.CreateSuccess, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Personel kaydı başarılı.");
                 }
                 else
                 {
-                    MessageBox.Show(WarningEnums.CreateFailed,WarningEnums.Uyarı, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Personel kaydı başarısız. Girilen personel daha önceden kayıt edilmiştir.");
                 }
                 list(cbPersonelTur.Text);
             }
+
+
         }
 
         private void PersonlKayitController_Load(object sender, EventArgs e)
@@ -292,7 +227,10 @@ namespace BalikProjesi
             cbListGroup.Items.Add(InputEnums.Kontrol);
             cbListGroup.SelectedIndex = 1;
             cbPersonelTur.SelectedIndex = 1;
-            
+            label9.Visible = false;
+            label10.Visible = false;
+
+
         }
 
         private void cbListGroup_SelectedIndexChanged(object sender, EventArgs e)
@@ -301,62 +239,35 @@ namespace BalikProjesi
 
         }
 
-        
+
 
         private void button2_Click(object sender, EventArgs e)
         {
-                        
-            string PersonelAd = txtPersonelAd.Text.Trim();
-            string PersonelSoyad = txtPersonelSoyad.Text.Trim();
-            string PersonelKod = txtPersonelKod.Text.Trim();
-            string PersonelGrup = cbPersonelGrup.Text.Trim();
-            string PersonelTur = cbPersonelTur.Text.Trim();
+            string persID = label9.Text;
+            string PersonelAd = txtPersonelAd.Text;
+            string PersonelSoyad = txtPersonelSoyad.Text;
+            string PersonelKod = txtPersonelKod.Text;
+            string PersonelGrup = cbPersonelGrup.Text;
+            string PersonelTur = cbPersonelTur.Text;
             string KartID = txtKartID.Text;
-            var readCard = _cartsServices.GetByCardCode(KartID);
-            if (readCard != null)
+
+            Personel prs = new Personel();
+            prs.Id = persID;
+            prs.PersonelName = PersonelAd;
+            prs.PersonelSurname = PersonelSoyad;
+            prs.PersonelCode = PersonelKod;
+            prs.PersonelGroup = PersonelGrup;
+            prs.CartCode = KartID;
+
+            bool chk = _perService.Update(prs, PersonelTur);
+            if (chk == true)
             {
-                CardID = readCard.Id;
+                MessageBox.Show("Güncelleme başarılı.");
             }
             else
             {
-                if (KartID=="")
-                {
-                    MessageBox.Show(WarningEnums.InvalidSelection);
-                }
-                else
-                {
-                    MessageBox.Show(WarningEnums.InvalidSelection);
-                }
-                
+                MessageBox.Show("Güncelleme başarısız. Girilen kayıt daha önce girilmiştir.");
             }
-            if (!string.IsNullOrEmpty(persID) && readCard != null)
-            {
-                if (PersonelTur==readCard.CartType)
-                {
-                    Personel prs = new Personel();
-                    prs.Id = persID;
-                    prs.PersonelName = PersonelAd;
-                    prs.PersonelSurname = PersonelSoyad;
-                    prs.PersonelCode = PersonelKod;
-                    prs.PersonelGroup = PersonelGrup;
-                    prs.CartCode = KartID;
-
-                    bool chk = _perService.Update(prs, PersonelTur);
-                    if (chk == true)
-                    {
-                        MessageBox.Show(WarningEnums.UpdateSuccess);
-                    }
-                    else
-                    {
-                        MessageBox.Show(WarningEnums.UpdateFailed);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Okunan kart " + readCard.CartType + " kartıdır. Kaydı yapabilmeniz için " + PersonelTur + " tipinde bir kart gerekmektedir.", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                }
-            }
-            
             list(cbPersonelTur.Text);
         }
 
@@ -367,40 +278,36 @@ namespace BalikProjesi
 
         private void gÜNCELLEToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
-            
+            string persID = label9.Text;
+            string PersonelAd = txtPersonelAd.Text;
+            string PersonelSoyad = txtPersonelSoyad.Text;
+            string PersonelKod = txtPersonelKod.Text;
+            string PersonelGrup = cbPersonelGrup.Text;
+            string PersonelTur = cbPersonelTur.Text;
+            Personel prs = new Personel();
+            string KartID = txtKartID.Text;
+            prs.Id = persID;
+            prs.PersonelName = PersonelAd;
+            prs.PersonelSurname = PersonelSoyad;
+            prs.PersonelCode = PersonelKod;
+            prs.PersonelGroup = PersonelGrup;
+            prs.CartId = KartID;
+            bool chk = _perService.Update(prs, PersonelTur);
+            if (chk == true)
+            {
+                MessageBox.Show("Güncelleme başarılı.");
+            }
         }
-        
+
         private async void btnReader_Click(object sender, EventArgs e)
         {
             await _readerServices.WriteTagIdToTextboxAsync(txtKartID);
-            string cardcodetxt = txtKartID.Text.Trim();
-            var readCard = _cartsServices.GetByCardCode(cardcodetxt);
-            if (readCard != null)
-            {
-                CardID = readCard.Id;
-                listviewDataGet(readCard);
-            }
-            else
-            {
-
-            }
-
         }
 
         private void sİLToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
-            
-            //Veri kaybı için bilgilendirme
-            if (MessageBox.Show(WarningEnums.DataLoss, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                bool chk = _perService.Delete(persID, PersTuru);
-                if (chk)
-                {
-                    MessageBox.Show(WarningEnums.DeleteSuccess, "", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                }
-            }
+            bool chk = _perService.Delete(label9.Text, label10.Text);
+            MessageBox.Show(chk.ToString());
         }
 
         private void listView1_Click(object sender, EventArgs e)
@@ -423,7 +330,7 @@ namespace BalikProjesi
 
                 throw;
             }
-            
+
         }
 
         private void mtSearch_TextChanged(object sender, EventArgs e)
@@ -451,9 +358,9 @@ namespace BalikProjesi
             List<Personel> filteredPersonelList;
             if (cbListGroup.Text == InputEnums.Fileto)
             {
-                 filteredPersonelList = _perService.GetFilteredFillet(Filter);
+                filteredPersonelList = _perService.GetFilteredFillet(Filter);
             }
-            else 
+            else
             {
                 filteredPersonelList = _perService.GetFilteredController(Filter);
             }
@@ -488,21 +395,6 @@ namespace BalikProjesi
         private void rbGroup_CheckedChanged(object sender, EventArgs e)
         {
             mtSearch.Focus();
-        }
-
-        private void txtKartID_TextChanged(object sender, EventArgs e)
-        {
-            //string cardcodetxt = txtKartID.Text.Trim();
-            //var readCard = _cartsServices.GetByCardCode(cardcodetxt);
-            //if (readCard != null)
-            //{
-            //    CardID = readCard.Id;
-            //    listviewDataGet(readCard);
-            //}
-            //else
-            //{
-
-            //}
         }
     }
 }
