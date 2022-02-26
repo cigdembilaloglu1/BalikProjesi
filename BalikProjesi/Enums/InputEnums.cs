@@ -17,7 +17,9 @@ namespace BalikProjesi.Enums
         public const string A = "A";
         public const string B = "B";
         public const string C = "C";
-        
+        public const string KAYDET = "KAYDET";
+        public const string GÜNCELLE = "KAYDET";
+
     }
 
     public static class WarningEnums
