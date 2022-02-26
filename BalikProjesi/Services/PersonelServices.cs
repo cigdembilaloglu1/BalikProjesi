@@ -182,7 +182,8 @@ namespace BalikProjesi.Services
                     .Set(x => x.PersonelSurname, personel.PersonelSurname)
                     .Set(x => x.PersonelCode, personel.PersonelCode)
                     .Set(x => x.PersonelGroup, personel.PersonelGroup)
-                    .Set(x => x.CartId, personel.CartId); ;
+                    .Set(x => x.CartId, personel.CartId)
+                    .Set(x => x.CartCode, personel.CartCode);
 
                 try
                 {

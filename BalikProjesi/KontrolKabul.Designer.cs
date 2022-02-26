@@ -80,6 +80,7 @@
             this.button2.TabIndex = 0;
             this.button2.Text = "HASAT  DEFO";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.selections);
             // 
             // button3
             // 
@@ -91,6 +92,7 @@
             this.button3.TabIndex = 1;
             this.button3.Text = "KILÇIK";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.selections);
             // 
             // textBox1
             // 
@@ -99,6 +101,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(220, 20);
             this.textBox1.TabIndex = 4;
+            this.textBox1.Text = "0";
             // 
             // textBox2
             // 
@@ -107,6 +110,7 @@
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(222, 20);
             this.textBox2.TabIndex = 5;
+            this.textBox2.Text = "0";
             // 
             // textBox3
             // 
@@ -115,6 +119,7 @@
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(220, 20);
             this.textBox3.TabIndex = 6;
+            this.textBox3.Text = "0";
             // 
             // textBox4
             // 
@@ -123,6 +128,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(222, 20);
             this.textBox4.TabIndex = 7;
+            this.textBox4.Text = "0";
             // 
             // button4
             // 
@@ -134,6 +140,7 @@
             this.button4.TabIndex = 8;
             this.button4.Text = "BIÇAK DEFO";
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.selections);
             // 
             // button5
             // 
@@ -143,8 +150,9 @@
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(222, 27);
             this.button5.TabIndex = 9;
-            this.button5.Text = "DİĞER";
+            this.button5.Text = "+";
             this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.selections);
             // 
             // button1
             // 
@@ -201,7 +209,6 @@
             this.Controls.Add(this.tableLayoutPanel2);
             this.Name = "KontrolKabul";
             this.Text = "KontrolKabul";
-            this.Load += new System.EventHandler(this.KontrolKabul_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -214,7 +221,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox4;
@@ -223,5 +229,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button button6;
+        public System.Windows.Forms.TextBox textBox1;
     }
 }

@@ -250,23 +250,49 @@ namespace BalikProjesi
             string PersonelGrup = cbPersonelGrup.Text;
             string PersonelTur = cbPersonelTur.Text;
             string KartID = txtKartID.Text;
-
-            Personel prs = new Personel();
-            prs.Id = persID;
-            prs.PersonelName = PersonelAd;
-            prs.PersonelSurname = PersonelSoyad;
-            prs.PersonelCode = PersonelKod;
-            prs.PersonelGroup = PersonelGrup;
-            prs.CartCode = KartID;
-
-            bool chk = _perService.Update(prs, PersonelTur);
-            if (chk == true)
+            var readCard = _cartsServices.GetByCardCode(KartID);
+            if (readCard != null)
             {
-                MessageBox.Show("Güncelleme başarılı.");
+                CardID = readCard.Id;
             }
             else
             {
-                MessageBox.Show("Güncelleme başarısız. Girilen kayıt daha önce girilmiştir.");
+                if (KartID=="")
+                {
+                    MessageBox.Show(WarningEnums.InvalidSelection);
+                }
+                else
+                {
+                    MessageBox.Show(WarningEnums.DefineToCardCollection);
+                }
+                
+            }
+            if (!string.IsNullOrEmpty(persID) && readCard != null)
+            {
+                if (PersonelTur==readCard.CartType)
+                {
+                    Personel prs = new Personel();
+                    prs.Id = persID;
+                    prs.PersonelName = PersonelAd;
+                    prs.PersonelSurname = PersonelSoyad;
+                    prs.PersonelCode = PersonelKod;
+                    prs.PersonelGroup = PersonelGrup;
+                    prs.CartCode = KartID;
+                    prs.CartId = CardID;
+                    bool chk = _perService.Update(prs, PersonelTur);
+                    if (chk == true)
+                    {
+                        MessageBox.Show(WarningEnums.UpdateSuccess);
+                    }
+                    else
+                    {
+                        MessageBox.Show(WarningEnums.UpdateFailed);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Okunan kart " + readCard.CartType + " kartıdır. Kaydı yapabilmeniz için " + PersonelTur + " tipinde bir kart gerekmektedir.", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                }
             }
             list(cbPersonelTur.Text);
         }
