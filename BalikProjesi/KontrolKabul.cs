@@ -66,7 +66,9 @@ namespace BalikProjesi
 
         private void button6_Click(object sender, EventArgs e)
         {
-
+            ControlUser fuser = new ControlUser();
+            fuser.Show();
+            this.Close();
         }
     }
 }
