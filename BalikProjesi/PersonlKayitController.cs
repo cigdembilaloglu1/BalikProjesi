@@ -233,8 +233,8 @@ namespace BalikProjesi
             string cardCode = txtKartID.Text;
             bool personalCollecitonsResult = _perService.PCardCodeExist(cardCode);
             int cardCollectionResult = _cartsServices.CheckCardTypeResult(cardCode);
-
-
+            string perTur = cbPersonelTur.Text.Trim();
+            var cardInfo = _cartsServices.GetByCardCode(txtKartID.Text);
             if (string.IsNullOrEmpty(txtKartID.Text) || string.IsNullOrEmpty(txtPersonelAd.Text)|| string.IsNullOrEmpty(txtPersonelSoyad.Text) || string.IsNullOrEmpty(txtPersonelKod.Text))
             {
                 MessageBox.Show(WarningEnums.PleaseFillAllFields, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
@@ -250,6 +250,11 @@ namespace BalikProjesi
             }else if (personalCollecitonsResult)//Kart başka bir personele kayıtlımı
             {
                 MessageBox.Show(WarningEnums.CardIsDefined, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                check = false;
+            }
+            else if (perTur!=cardInfo.CartType)
+            {
+                MessageBox.Show("Okunan kart "+cardInfo.CartType+" kartıdır. Kaydı yapabilmeniz için "+perTur+" tipinde bir kart gerekmektedir.", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 check = false;
             }
 
@@ -316,25 +321,44 @@ namespace BalikProjesi
             }
             else
             {
-                MessageBox.Show("Okunan kart kayıtlı değildir. Lütfen kartı önce kayıt ediniz.");
+                if (KartID=="")
+                {
+                    MessageBox.Show(WarningEnums.InvalidSelection);
+                }
+                else
+                {
+                    MessageBox.Show(WarningEnums.InvalidSelection);
+                }
+                
             }
-            Personel prs = new Personel();
-            prs.Id = persID;
-            prs.PersonelName = PersonelAd;
-            prs.PersonelSurname = PersonelSoyad;
-            prs.PersonelCode = PersonelKod;
-            prs.PersonelGroup = PersonelGrup;
-            prs.CartCode = KartID;
+            if (!string.IsNullOrEmpty(persID) && readCard != null)
+            {
+                if (PersonelTur==readCard.CartType)
+                {
+                    Personel prs = new Personel();
+                    prs.Id = persID;
+                    prs.PersonelName = PersonelAd;
+                    prs.PersonelSurname = PersonelSoyad;
+                    prs.PersonelCode = PersonelKod;
+                    prs.PersonelGroup = PersonelGrup;
+                    prs.CartCode = KartID;
 
-            bool chk=_perService.Update(prs, PersonelTur);
-            if (chk==true)
-            {
-                MessageBox.Show("Güncelleme başarılı.");
+                    bool chk = _perService.Update(prs, PersonelTur);
+                    if (chk == true)
+                    {
+                        MessageBox.Show(WarningEnums.UpdateSuccess);
+                    }
+                    else
+                    {
+                        MessageBox.Show(WarningEnums.UpdateFailed);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Okunan kart " + readCard.CartType + " kartıdır. Kaydı yapabilmeniz için " + PersonelTur + " tipinde bir kart gerekmektedir.", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                }
             }
-            else
-            {
-                MessageBox.Show("Güncelleme başarısız. Girilen kayıt daha önce girilmiştir.");
-            }
+            
             list(cbPersonelTur.Text);
         }
 
