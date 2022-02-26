@@ -9,22 +9,25 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BalikProjesi.Entities;
 using BalikProjesi.Enums;
+using BalikProjesi.Services;
+using MongoDB.Driver;
 
 namespace BalikProjesi
 {
     public partial class KasaKayitController : UserControl
     {
-        private readonly Services.IFishBoxServices _fboxService;
-        private readonly Services.ReaderServices _readerServices;
-        private readonly Services.ICartsServices1 _cartServices;
+        private readonly IFishBoxServices _fboxService;
+        private readonly ReaderServices _readerServices;
+        private readonly ICartsServices1 _cartServices;
 
         private string BoxID;
         private string CardID;
         public KasaKayitController()
         {
             InitializeComponent();
-            _fboxService = new Services.FishBoxServices();
-            _cartServices = new Services.CartsServices();
+            _fboxService = new FishBoxServices();
+            _readerServices = new ReaderServices();
+            _cartServices = new CartsServices();
             BoxID = "";
             CardID = "";
         }
@@ -46,7 +49,7 @@ namespace BalikProjesi
             }
             else
             {
-                MessageBox.Show("Okunan kart kayıtlı değildir. Lütfen kartı önce kayıt ediniz.");
+                MessageBox.Show(WarningEnums.DefineToCardCollection);
             }
             if (!string.IsNullOrEmpty(BoxID)&& readCard != null)
             {
@@ -64,11 +67,11 @@ namespace BalikProjesi
                     bool chk = _fboxService.Update(fb);
                     if (chk == true)
                     {
-                        MessageBox.Show("Güncelleme başarılı.");
+                        MessageBox.Show(WarningEnums.UpdateSuccess);
                     }
                     else
                     {
-                        MessageBox.Show("Güncelleme başarısız.");
+                        MessageBox.Show(WarningEnums.UpdateFailed);
                     }
                 }
                 else if (readCard.CartType == InputEnums.Fileto)
@@ -103,17 +106,17 @@ namespace BalikProjesi
             bool check = true;
             if (string.IsNullOrEmpty(txtKartid.Text))
             {
-                MessageBox.Show("LÜtfen bir kart okutunuz", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show(WarningEnums.InvalidSelection, WarningEnums.Uyarı, MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 check = false;
             }
             if (string.IsNullOrEmpty(txtKasakod.Text))
             {
-                MessageBox.Show("LÜtfen bir kasakodu giriniz", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show(WarningEnums.FishboxCodeIsEmpty, WarningEnums.Uyarı, MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 check = false;
             }
             if (string.IsNullOrEmpty(txtKasatip.Text))
             {
-                MessageBox.Show("LÜtfen bir kasa tipi seçiniz", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show(WarningEnums.FishboxTypeIsEmpty, WarningEnums.Uyarı, MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 check = false;
             }
             var readCard = _cartServices.GetByCardCode(cardCode);
@@ -139,20 +142,16 @@ namespace BalikProjesi
                         switch (result)
                         {
                             case true:
-                                MessageBox.Show("Kasa kaydı başarılı.");
+                                MessageBox.Show(WarningEnums.CreateSuccess);
                                 break;
                             case false:
-                                MessageBox.Show("Kasa kaydı başarısız. Girilen kasa daha önceden kayıt edilmiştir.");
+                                MessageBox.Show(WarningEnums.CreateFailed);
                                 break;
                         }
                     }
-                    else if (readCard.CartType == InputEnums.Fileto)
+                    else
                     {
-                        MessageBox.Show("Okunan kart Fileto personeli kartıdır. Lüften farklı bir kartla tekrar deneyin veya kartı güncelleyin.");
-                    }
-                    else if (readCard.CartType == InputEnums.Kontrol)
-                    {
-                        MessageBox.Show("Okunan kart Kontrol personeli kartıdır. Lüften farklı bir kartla tekrar deneyin veya kartı güncelleyin.");
+                        MessageBox.Show("Okunan kart " + readCard.CartType + " kartıdır. Kaydı yapabilmeniz için " + InputEnums.Kasa + " tipinde bir kart gerekmektedir.", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     }
                     
                 }
@@ -161,7 +160,7 @@ namespace BalikProjesi
             {
                 if (string.IsNullOrEmpty(CardID))
                 {
-                    MessageBox.Show("Kart okunamadı veya kayıtlı değil. Lütfen kontrol ediniz.");
+                    MessageBox.Show(WarningEnums.InvalidSelection);
                 }
                 else 
                 {
@@ -182,6 +181,26 @@ namespace BalikProjesi
             CardID = "";
             list();
         }
+        public void PageFilteredFishBoxToTable(List<FishBox> tableList)
+        {
+            if (listView1.Items.Count != 0)
+            {
+                listView1.Items.Clear();
+            }
+
+            string boxcode, boxtype, boxcardid;
+
+            foreach (var item in tableList)
+            {
+                boxcode = item.FishBoxCode;
+                boxtype = item.FishBoxType;
+                boxcardid = item.CartCode;
+                string[] data = { boxcode, boxtype, boxcardid };
+                ListViewItem record = new ListViewItem(data);
+                listView1.Items.Add(record);
+            }
+        }
+
         void list()
         {
             listView1.Items.Clear();
@@ -233,12 +252,8 @@ namespace BalikProjesi
                     txtKasatip.Text = itm.SubItems[1].Text;
                     txtKartid.Text = itm.SubItems[2].Text;
                     BoxID = itm.SubItems[3].Text;
-                    
                 }
-                else
-                {
-
-                }
+                
             }
         }
 
@@ -254,45 +269,82 @@ namespace BalikProjesi
 
         private void Delete_Click(object sender, EventArgs e)
         {
-            bool chk = _fboxService.Delete(BoxID);
-            MessageBox.Show(chk.ToString());
+            
+            //Veri kaybı için bilgilendirme
+            if (MessageBox.Show(WarningEnums.DataLoss, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                bool chk = _fboxService.Delete(BoxID);
+                if (chk)
+                {
+                    MessageBox.Show(WarningEnums.DeleteSuccess, "", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                }
+            }
+                
             list();
         }
 
         private async void btnCardRead_Click(object sender, EventArgs e)
         {
+            await _readerServices.WriteTagIdToTextboxAsync(txtKartid);
+        }
+
+        private void rnBoxType_CheckedChanged(object sender, EventArgs e)
+        {
+            tbSearch.Focus();
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            tbSearch.Focus();
+        }
+
+        private void tbSearch_TextChanged(object sender, EventArgs e)
+        {
+            string search = tbSearch.Text;
+            List<FishBox> FilteredFishBox;
+            var Filter = FilterDefinition<FishBox>.Empty;
+
+            if (rbBoxType.Checked)
+            {
+                Filter = Builders<FishBox>.Filter.Regex(x => x.FishBoxType, new MongoDB.Bson.BsonRegularExpression(search, "i"));
+            }
+            if (rbCardCode.Checked)
+            {
+                Filter = Builders<FishBox>.Filter.Regex(x => x.FishBoxCode, new MongoDB.Bson.BsonRegularExpression(search, "i"));
+            }
+
+            FilteredFishBox = _fboxService.GetFilteredFishBox(Filter);
+            if(FilteredFishBox != null)
+            {
+                PageFilteredFishBoxToTable(FilteredFishBox);
+            }
+
+        }
+
+        private void rbCardCode_CheckedChanged(object sender, EventArgs e)
+        {
+            tbSearch.Focus();
+        }
+
+        private void rbBoxType_CheckedChanged(object sender, EventArgs e)
+        {
+            tbSearch.Focus();
+        }
+
+        private void txtKartid_TextChanged(object sender, EventArgs e)
+        {
             string cardcodetxt = txtKartid.Text.Trim();
             var readCard = _cartServices.GetByCardCode(cardcodetxt);
-            
-            if (readCard!=null)
+
+            if (readCard != null)
             {
-                var readBox = _fboxService.GetByCardID(readCard.CartId);
-                if (readBox!=null)
+                var readBox = _fboxService.GetByCardID(readCard.Id);
+                if (readBox != null)
                 {
                     CardID = readCard.Id;
                     listget(readCard);
                 }
-                else
-                {
-                    MessageBox.Show("Kart kayıtlıdır");
-                }
-                
             }
-            
-            
-            
-            //_readerServices.openPort();
-
-            //bool tagIsDefined = await _readerServices.checkTagIsDefined();
-
-            //if (!tagIsDefined)
-            //{
-            //    await _readerServices.setTagIdToTextboxAsync(txtKartid);
-            //}
-            //else
-            //{
-            //    txtKartid.Text = InputEnums.CardIsDefined;
-            //}
         }
     }
 }

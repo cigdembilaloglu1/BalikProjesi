@@ -58,25 +58,26 @@
             this.kAYITToolStripMenuItem.Name = "kAYITToolStripMenuItem";
             this.kAYITToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
             this.kAYITToolStripMenuItem.Text = "KAYIT";
+            this.kAYITToolStripMenuItem.Click += new System.EventHandler(this.kAYITToolStripMenuItem_Click);
             // 
             // kARTKAYDIToolStripMenuItem
             // 
             this.kARTKAYDIToolStripMenuItem.Name = "kARTKAYDIToolStripMenuItem";
-            this.kARTKAYDIToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.kARTKAYDIToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.kARTKAYDIToolStripMenuItem.Text = "KART KAYDI";
             this.kARTKAYDIToolStripMenuItem.Click += new System.EventHandler(this.kARTKAYDIToolStripMenuItem_Click);
             // 
             // pERSONELKAYDIToolStripMenuItem
             // 
             this.pERSONELKAYDIToolStripMenuItem.Name = "pERSONELKAYDIToolStripMenuItem";
-            this.pERSONELKAYDIToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.pERSONELKAYDIToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.pERSONELKAYDIToolStripMenuItem.Text = "PERSONEL KAYDI";
             this.pERSONELKAYDIToolStripMenuItem.Click += new System.EventHandler(this.pERSONELKAYDIToolStripMenuItem_Click);
             // 
             // kASAKAYDIToolStripMenuItem
             // 
             this.kASAKAYDIToolStripMenuItem.Name = "kASAKAYDIToolStripMenuItem";
-            this.kASAKAYDIToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.kASAKAYDIToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.kASAKAYDIToolStripMenuItem.Text = "KASA KAYDI";
             this.kASAKAYDIToolStripMenuItem.Click += new System.EventHandler(this.kASAKAYDIToolStripMenuItem_Click);
             // 

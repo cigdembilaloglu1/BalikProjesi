@@ -202,8 +202,8 @@ namespace BalikProjesi.Services
             {
                 if (status == 0)
                 {
-                    data = data.Substring(69);
-                    tagID = data.Substring(0, 36);
+                    data = data.Substring(70);
+                    tagID = data.Substring(0, 35);
                 }
                 else if (status == 1)
                 {
@@ -240,7 +240,7 @@ namespace BalikProjesi.Services
                 {
                     idTextbox.Text = tagID;
                 }
-                else if (type == 0)
+                else if (type == 1)
                 {
                     typeTextbox.Text = tagType;
                 }

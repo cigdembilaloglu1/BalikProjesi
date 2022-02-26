@@ -44,7 +44,7 @@ namespace BalikProjesi.Services
 
             if (persType == InputEnums.Fileto)
             {
-                var result = fdb.Find(x => x.CartId == pers.CartId).FirstOrDefault();
+                var result = fdb.Find(x => x.PersonelCode == pers.PersonelCode).FirstOrDefault();
                 if (result == null)
                 {
                     return true;
@@ -56,7 +56,7 @@ namespace BalikProjesi.Services
             }
             else if (persType == InputEnums.Kontrol)
             {
-                var result = pdb.Find(x => x.CartId == pers.CartId).FirstOrDefault();
+                var result = pdb.Find(x => x.PersonelCode == pers.PersonelCode).FirstOrDefault();
                 if (result == null)
                 {
                     return true;
@@ -73,6 +73,17 @@ namespace BalikProjesi.Services
 
 
 
+        }
+
+        public bool PCardCodeExist(string code)
+        {
+            var fResult = fdb.Find(x => x.CartCode == code).FirstOrDefault();
+            var cResult = pdb.Find(x => x.CartCode == code).FirstOrDefault();
+
+            if (fResult == null && cResult == null)
+                return false;
+            else
+                return true;
         }
 
         public Personel Get(string _pid)

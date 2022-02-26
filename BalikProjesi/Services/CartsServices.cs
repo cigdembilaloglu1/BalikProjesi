@@ -1,4 +1,5 @@
 ﻿using BalikProjesi.Entities;
+using BalikProjesi.Enums;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -31,29 +32,27 @@ namespace BalikProjesi.Services
 
         }
 
-        public bool CheckCard(string cardID)
-        {
-            var result = db.Find(x => x.CartCode == cardID).FirstOrDefault();
-            if (result == null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-        }
-
         public List<Carts> Get()
         {
             var result = db.Find(x => true).ToList();
+            return result;
+        }
+        public Carts GetByCardID(string CardId)
+        {
+
+            var result = db.Find(x => x.Id == CardId).FirstOrDefault();
             return result;
         }
         public Carts GetByCardCode(string cardcode)
         {
             
             var result = db.Find(x => x.CartCode == cardcode).FirstOrDefault();
+            return result;
+        }
+
+        public List<Carts> GetFilteredCards(FilterDefinition<Carts> filteredCards)
+        {
+            var result = db.Find(filteredCards).ToList();
             return result;
         }
         public bool Update(Carts card, string Cname = null)
@@ -121,7 +120,40 @@ namespace BalikProjesi.Services
 
         }
 
-      
-      
+        public bool CheckCard(string cardCode)
+        {
+            var result = db.Find(x => x.CartCode == cardCode).FirstOrDefault();
+            if (result == null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public int CheckCardTypeResult(string cardCode)
+        {
+            Carts card = GetByCardCode(cardCode);
+
+            if(card != null)
+            {
+                string cardType = card.CartType;
+                if (cardType == InputEnums.Kontrol || cardType == InputEnums.Fileto)
+                    return 0;//CartType Personal
+                else
+                    return 1;//CartType Personal Değil
+            }
+            else
+            {
+                return -1;//Kart Carts Collectionda Yok
+            }
+
+        }
+
+
+
     }
 }

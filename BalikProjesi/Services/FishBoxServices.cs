@@ -56,10 +56,16 @@ namespace BalikProjesi.Services
             var result = db.Find(x => x.CartId == ID).FirstOrDefault();
             return result;
         }
+        public List<FishBox> GetFilteredFishBox(FilterDefinition<FishBox> filteredFishBox)
+        {
+            var result = db.Find(filteredFishBox).ToList();
+            return result;
+        }
+
         public bool UpdateCardInfo(FishBox fishbox)
         {
 
-            if (!String.IsNullOrEmpty(fishbox.Id) && !String.IsNullOrEmpty(fishbox.FishBoxType) && fishbox.UpdateDate != DateTime.MinValue)
+            if (!String.IsNullOrEmpty(fishbox.Id) && !String.IsNullOrEmpty(fishbox.FishBoxType))
             {
                 var Filter = Builders<FishBox>.Filter.Eq(x => x.Id, fishbox.Id);
                 var Update = Builders<FishBox>.Update

@@ -1,4 +1,5 @@
 ﻿using BalikProjesi.Entities;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 
@@ -12,6 +13,7 @@ namespace BalikProjesi.Services
         List<FishBox> Get();
         FishBox Get(string ID);
         FishBox GetByCardID(string ID);
+        List<FishBox> GetFilteredFishBox(FilterDefinition<FishBox> filteredFishBox);
         bool Update(FishBox fishBox);
         bool UpdateCardInfo(FishBox fishbox);
     }
