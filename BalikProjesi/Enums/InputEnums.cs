@@ -22,8 +22,6 @@ namespace BalikProjesi.Enums
 
     public static class WarningEnums
     {
-        
-
 
         #region Essentials
         public const string InvalidSelection = "Lütfen listeden bir kart seçiniz veya kartınızı okutunuz.";
@@ -37,14 +35,14 @@ namespace BalikProjesi.Enums
         public const string DefineToCardCollection = "Kart sisteme kayıtlı değil, lütfen bu kartı KAYIT -> KART KAYDI panelinde sisteme kaydedin";
         public const string ThisFieldMustBeFilled = "Bu Alan doldurulmak zorunda";
         public const string PleaseFillAllFields = "Lütfen tüm alanları doldurunuz";
-        public const string CardTypeIsNotPersonal = "Kart Türü Fileto ya da Kontrol Personeli değil, lütfen kartı KAYIT -> KART KAYDI panelinde güncelleyin ya da başka bir kart seçin";
-        public const string CardTypeIsNotFillet = "Kart Türü Fileto Personeli değil, lütfen kartı KAYIT -> KART KAYDI panelinde güncelleyin ya da başka bir kart seçin";
-        public const string CardTypeIsNotControl = "Kart Türü Kontrol Personeli değil, lütfen kartı KAYIT -> KART KAYDI panelinde güncelleyin ya da başka bir kart seçin";
+        public const string CardTypeIsNotPersonal = "Kart türü Fileto ya da Kontrol Personeli değil, lütfen kartı KAYIT -> KART KAYDI panelinde güncelleyin ya da başka bir kart seçin";
+        public const string CardTypeIsNotFillet = "Kart türü Fileto personeli değil, lütfen kartı KAYIT -> KART KAYDI panelinde güncelleyin ya da başka bir kart seçin";
+        public const string CardTypeIsNotControl = "Kart türü Kontrol personeli değil, lütfen kartı KAYIT -> KART KAYDI panelinde güncelleyin ya da başka bir kart seçin";
+        public const string CardTypeIsNotValid = "Kart türü uygun değil, lütfen kartı KAYIT -> KART KAYDI panelinde güncelleyin ya da başka bir kart seçin";
         public const string CreateSuccess = "Kaydetme işlemi başarılı.";
         public const string CreateFailed = "Kaydetme işlemi başarısız. Girilen kayıt zaten kayıtlı.";
 
         #endregion
-
 
         #region Card Warnings Messages        
         public const string DataLoss = "Bu işlem veri kaybına sebep verebilir. Devam etmek istiyor musunuz?";
@@ -60,5 +58,6 @@ namespace BalikProjesi.Enums
         public const string FishboxCodeIsEmpty = "Lütfen bir kasa kodu seçiniz.";
         public const string FishboxTypeIsEmpty = "Lütfen bir kasa tipi seçiniz.";
         #endregion
+    
     }
 }

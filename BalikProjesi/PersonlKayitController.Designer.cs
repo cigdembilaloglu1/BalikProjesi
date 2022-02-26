@@ -264,7 +264,6 @@
             this.txtKartID.Name = "txtKartID";
             this.txtKartID.Size = new System.Drawing.Size(333, 47);
             this.txtKartID.TabIndex = 5;
-            this.txtKartID.TextChanged += new System.EventHandler(this.txtKartID_TextChanged);
             // 
             // label5
             // 

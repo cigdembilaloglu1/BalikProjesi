@@ -32,18 +32,18 @@ namespace BalikProjesi
             CardID = "";
             PersTuru = "";
         }
-        public void listviewDataGet(Carts card=null)
+        public void listviewDataGet(Carts card = null)
         {
-            
-            if (card!=null)
+
+            if (card != null)
             {
                 var prsFillet = _perService.GetFilletPersonnelByCardId(card.Id);
                 var prsControl = _perService.GetControlPersonnelByCardId(card.Id);
 
-                if (card.CartType==InputEnums.Fileto&&prsFillet!=null)
+                if (card.CartType == InputEnums.Fileto && prsFillet != null)
                 {
-                    
-                    if (prsFillet!=null)
+
+                    if (prsFillet != null)
                     {
                         txtPersonelAd.Text = prsFillet.PersonelName;
                         txtPersonelSoyad.Text = prsFillet.PersonelSurname;
@@ -68,9 +68,9 @@ namespace BalikProjesi
                         CardID = prsFillet.CartId;
 
                     }
-                                       
+
                 }
-                else if (card.CartType == InputEnums.Kontrol&&prsControl!=null)
+                else if (card.CartType == InputEnums.Kontrol && prsControl != null)
                 {
                     if (prsControl != null)
                     {
@@ -98,7 +98,7 @@ namespace BalikProjesi
 
 
                     }
-                    
+
                 }
             }
             else
@@ -139,7 +139,7 @@ namespace BalikProjesi
                     persID = itm.SubItems[6].Text;
                     PersTuru = cbPersonelTur.Text;
                 }
-                
+
             }
         }
 
@@ -200,7 +200,7 @@ namespace BalikProjesi
                 }
             }
 
-            
+
 
 
             txtKartID.Clear();
@@ -217,7 +217,7 @@ namespace BalikProjesi
             foreach (var item in listView1.SelectedItems)
             {
                 listView1.SelectedItems.Clear();
-            
+
             }
 
         }
@@ -231,52 +231,61 @@ namespace BalikProjesi
         {
             bool check = true;
             string cardCode = txtKartID.Text;
+            int cardType;
+            if (cbPersonelTur.Text == InputEnums.Fileto)
+                cardType = 0;
+            else
+                cardType = 1;
+
             bool personalCollecitonsResult = _perService.PCardCodeExist(cardCode);
             int cardCollectionResult = _cartsServices.CheckCardTypeResult(cardCode);
-            string perTur = cbPersonelTur.Text.Trim();
-            var cardInfo = _cartsServices.GetByCardCode(txtKartID.Text);
-            if (string.IsNullOrEmpty(txtKartID.Text) || string.IsNullOrEmpty(txtPersonelAd.Text)|| string.IsNullOrEmpty(txtPersonelSoyad.Text) || string.IsNullOrEmpty(txtPersonelKod.Text))
+
+
+            if (txtKartID.Text == "" || txtPersonelAd.Text == "" || txtPersonelSoyad.Text == "" || txtPersonelKod.Text == "")
             {
-                MessageBox.Show(WarningEnums.PleaseFillAllFields, WarningEnums.Uyarı, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                check = false;
-            }else if (cardCollectionResult == -1)//Kart Carts Collection'da kayıtlı değilse
-            {
-                MessageBox.Show(WarningEnums.DefineToCardCollection, WarningEnums.Uyarı, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                check = false;
-            }else if(cardCollectionResult == 1)//CardType Personal değil
-            {
-                MessageBox.Show(WarningEnums.CardTypeIsNotPersonal, WarningEnums.Uyarı, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                check = false;
-            }else if (personalCollecitonsResult)//Kart başka bir personele kayıtlımı
-            {
-                MessageBox.Show(WarningEnums.CardIsDefined, WarningEnums.Uyarı, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show(WarningEnums.PleaseFillAllFields, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 check = false;
             }
-            else if (perTur!=cardInfo.CartType)
+            else if (cardCollectionResult == -1)//Kart Carts Collection'da kayıtlı değilse
             {
-                MessageBox.Show("Okunan kart "+cardInfo.CartType+" kartıdır. Kaydı yapabilmeniz için "+perTur+" tipinde bir kart gerekmektedir.", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageBox.Show(WarningEnums.DefineToCardCollection, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                check = false;
+            }
+            else if (cardCollectionResult == 2)//CardType Kasa İse
+            {
+                MessageBox.Show(WarningEnums.CardTypeIsNotPersonal, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                check = false;
+            }
+            else if (cardCollectionResult != cardType)//CardType cbPersonelTurdaki değere eşit değilse
+            {
+                MessageBox.Show(WarningEnums.CardTypeIsNotValid, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                check = false;
+            }
+            else if (personalCollecitonsResult)//Kart başka bir personele kayıtlımı
+            {
+                MessageBox.Show(WarningEnums.CardIsDefined, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 check = false;
             }
 
             if (check)
             {
-                var result =_perService.Create(new Personel
+                var result = _perService.Create(new Personel
                 {
-                    PersonelName=txtPersonelAd.Text.Trim(),
-                    PersonelSurname=txtPersonelSoyad.Text.Trim(),
-                    PersonelGroup=cbPersonelGrup.Text.Trim(),
-                    PersonelCode=txtPersonelKod.Text.Trim(),
-                    CreateDate=DateTime.Now,
-                    CartCode=txtKartID.Text.Trim(),
-                    CartId=CardID
-                } ,cbPersonelTur.Text.Trim());
+                    PersonelName = txtPersonelAd.Text.Trim(),
+                    PersonelSurname = txtPersonelSoyad.Text.Trim(),
+                    PersonelGroup = cbPersonelGrup.Text.Trim(),
+                    PersonelCode = txtPersonelKod.Text.Trim(),
+                    CreateDate = DateTime.Now,
+                    CartCode = txtKartID.Text.Trim(),
+                    CartId = CardID
+                }, cbPersonelTur.Text.Trim());
                 if (result)
                 {
                     MessageBox.Show(WarningEnums.CreateSuccess, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show(WarningEnums.CreateFailed,WarningEnums.Uyarı, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(WarningEnums.CreateFailed, WarningEnums.Uyarı, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 list(cbPersonelTur.Text);
             }
@@ -295,7 +304,7 @@ namespace BalikProjesi
             cbListGroup.Items.Add(InputEnums.Kontrol);
             cbListGroup.SelectedIndex = 1;
             cbPersonelTur.SelectedIndex = 1;
-            
+
         }
 
         private void cbListGroup_SelectedIndexChanged(object sender, EventArgs e)
@@ -304,11 +313,11 @@ namespace BalikProjesi
 
         }
 
-        
+
 
         private void button2_Click(object sender, EventArgs e)
         {
-                        
+
             string PersonelAd = txtPersonelAd.Text.Trim();
             string PersonelSoyad = txtPersonelSoyad.Text.Trim();
             string PersonelKod = txtPersonelKod.Text.Trim();
@@ -322,7 +331,7 @@ namespace BalikProjesi
             }
             else
             {
-                if (KartID=="")
+                if (KartID == "")
                 {
                     MessageBox.Show(WarningEnums.InvalidSelection);
                 }
@@ -330,11 +339,11 @@ namespace BalikProjesi
                 {
                     MessageBox.Show(WarningEnums.DefineToCardCollection);
                 }
-                
+
             }
             if (!string.IsNullOrEmpty(persID) && readCard != null)
             {
-                if (PersonelTur==readCard.CartType)
+                if (PersonelTur == readCard.CartType)
                 {
                     Personel prs = new Personel();
                     prs.Id = persID;
@@ -359,7 +368,7 @@ namespace BalikProjesi
                     MessageBox.Show("Okunan kart " + readCard.CartType + " kartıdır. Kaydı yapabilmeniz için " + PersonelTur + " tipinde bir kart gerekmektedir.", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 }
             }
-            
+
             list(cbPersonelTur.Text);
         }
 
@@ -370,10 +379,10 @@ namespace BalikProjesi
 
         private void gÜNCELLEToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
-            
+
+
         }
-        
+
         private async void btnReader_Click(object sender, EventArgs e)
         {
             await _readerServices.WriteTagIdToTextboxAsync(txtKartID);
@@ -393,8 +402,8 @@ namespace BalikProjesi
 
         private void sİLToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
-            
+
+
             //Veri kaybı için bilgilendirme
             if (MessageBox.Show(WarningEnums.DataLoss, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
@@ -426,7 +435,7 @@ namespace BalikProjesi
 
                 throw;
             }
-            
+
         }
 
         private void mtSearch_TextChanged(object sender, EventArgs e)
@@ -454,9 +463,9 @@ namespace BalikProjesi
             List<Personel> filteredPersonelList;
             if (cbListGroup.Text == InputEnums.Fileto)
             {
-                 filteredPersonelList = _perService.GetFilteredFillet(Filter);
+                filteredPersonelList = _perService.GetFilteredFillet(Filter);
             }
-            else 
+            else
             {
                 filteredPersonelList = _perService.GetFilteredController(Filter);
             }
