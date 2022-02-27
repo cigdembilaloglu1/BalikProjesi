@@ -18,7 +18,7 @@ namespace BalikProjesi.Enums
         public const string A = "A";
         public const string B = "B";
         public const string C = "C";
-        public const string Kaydet = "Kaydet";
+        public const string Kaydet = "KAYDET";
         public const string Guncelle = "GÜNCELLE";
 
     }
@@ -44,7 +44,7 @@ namespace BalikProjesi.Enums
         public const string CardTypeIsNotValid = "Kart türü uygun değil, lütfen kartı KAYIT -> KART KAYDI panelinde güncelleyin ya da başka bir kart seçin";
         public const string CreateSuccess = "Kaydetme işlemi başarılı.";
         public const string CreateFailed = "Kaydetme işlemi başarısız. Girilen kayıt zaten kayıtlı.";
-
+        public const string AskUpdate = "Seçilen kayıt güncellenecektir. Devam etmek istiyor musunuz ?";
         #endregion
 
         #region Card Warnings Messages        
