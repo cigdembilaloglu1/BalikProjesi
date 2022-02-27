@@ -59,7 +59,7 @@ namespace BalikProjesi
             KartKoduTb.Clear();
             cbCardType.SelectedIndex = 0;
             CardID = "";
-            button1.Text = "Kaydet";
+            button1.Text = "KAYDET";
         }
         public void listget(Carts card = null)
         {
@@ -271,7 +271,7 @@ namespace BalikProjesi
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (button1.Text=="Kaydet")
+            if (button1.Text=="KAYDET")
             {
                 Create();
 
@@ -295,8 +295,8 @@ namespace BalikProjesi
 
         private void button2_Click(object sender, EventArgs e)
         {
-            dataupdate();
-
+            //dataupdate();
+            liste();
             lbCardCode.Text = "";
             lbCardNo.Text = "";
             
@@ -521,6 +521,7 @@ namespace BalikProjesi
 
         private void KartKoduTb_TextChanged(object sender, EventArgs e)
         {
+            
             string cardcodetxt = KartKoduTb.Text.Trim();
             var readCard = _cartService.GetByCardCode(cardcodetxt);
 
@@ -532,7 +533,7 @@ namespace BalikProjesi
             {
                 KartNameTxt.Text = "";
                 cbCardType.SelectedIndex = 0;
-                button1.Text = "Kaydet";
+                button1.Text = "KAYDET";
             }
 
             lbCardCode.Text = "";

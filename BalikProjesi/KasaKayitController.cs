@@ -97,7 +97,7 @@ namespace BalikProjesi
 
         private void button1_Click(object sender, EventArgs e)
         {
-            dataupdate();
+            list();
         }
         void create()
         {
@@ -182,19 +182,18 @@ namespace BalikProjesi
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            if (button2.Text=="Kaydet")
-            {
-                //BoxID = "";
-            }
-            if (string.IsNullOrEmpty(BoxID))
+            if (button2.Text == "KAYDET")
             {
                 create();
+                list();
             }
-            else if(!string.IsNullOrEmpty(BoxID))
+            else if (button2.Text == "GÜNCELLE")
             {
                 dataupdate();
+                list();
+
             }
-            
+
         }
         public void PageFilteredFishBoxToTable(List<FishBox> tableList)
         {
@@ -236,7 +235,7 @@ namespace BalikProjesi
             txtKasatip.Clear();
             BoxID = "";
             CardID = "";
-            button2.Text = "Kaydet";//button text-kaydet
+            button2.Text = "KAYDET";//button text-kaydet
         }
         void listget(Carts card=null)
         {
@@ -265,6 +264,10 @@ namespace BalikProjesi
                     {
                         CardID = result.Id;
                     }
+                    else
+                    {
+                        button2.Text = "GÜNCELLE";
+                    }
                     txtKasakod.Text = itm.SubItems[0].Text;
                     txtKasatip.Text = itm.SubItems[1].Text;                    
                     BoxID = itm.SubItems[3].Text;
@@ -276,7 +279,7 @@ namespace BalikProjesi
 
         private void KasaKayitController_Load(object sender, EventArgs e)
         {
-            button2.Text = "Kaydet";
+            button2.Text = "KAYDET";
             list();
         }
 
@@ -353,67 +356,102 @@ namespace BalikProjesi
 
         private void txtKartid_TextChanged(object sender, EventArgs e)
         {
-            //button2.Text = "Kaydet";
+            ////button2.Text = "Kaydet";
+            //string cardcodetxt = txtKartid.Text.Trim();
+            //if (!string.IsNullOrEmpty(cardcodetxt))
+            //{
+            //    var readCard = _cartServices.GetByCardCode(cardcodetxt);
+            //    if (readCard!=null)
+            //    {
+            //        try
+            //        {
+            //            var readBox = _fboxService.GetByCardID(readCard.Id);
+            //            var fb = _fboxService.Get(BoxID);
+            //            if (readBox != null)
+            //            {
+            //                if (readCard.CartType == InputEnums.Kasa)
+            //                {
+            //                    if (string.IsNullOrEmpty(readBox.CartId))
+            //                    {
+            //                        button2.Text = "GÜNCELLE";
+            //                    }
+            //                    if (readBox.CartId != readCard.Id)
+            //                    {
+            //                        button2.Text = "Kaydet";
+            //                    }
+            //                    if (readBox.CartId == readCard.Id)
+            //                    {
+            //                        button2.Text = "GÜNCELLE";
+            //                        listget(readCard);
+            //                    }
+
+            //                }
+            //            }
+            //            else if (string.IsNullOrEmpty(fb.CartId))
+            //            {
+            //                if (readCard.CartType == InputEnums.Kasa)
+            //                {
+            //                    if (string.IsNullOrEmpty(fb.CartId))
+            //                    {
+            //                        button2.Text = "GÜNCELLE";
+            //                        listget(readCard);
+            //                    }
+            //                }
+            //            }
+            //            else
+            //            {
+            //                button2.Text = "Kaydet";
+            //            }
+
+            //        }
+            //        catch (Exception)
+            //        {
+
+            //            throw;
+            //        }
+
+            //    }
+
+            //}
+            #region Açıklama
+            //Kart silinirse CardId ve Cardcode "" olacaktır. Bu durumu kontrol ediyoruz
+            #endregion
+
             string cardcodetxt = txtKartid.Text.Trim();
+
             if (!string.IsNullOrEmpty(cardcodetxt))
             {
                 var readCard = _cartServices.GetByCardCode(cardcodetxt);
-                if (readCard!=null)
+                if (readCard != null)
                 {
-                    try
-                    {
-                        var readBox = _fboxService.GetByCardID(readCard.Id);
-                        var fb = _fboxService.Get(BoxID);
-                        if (readBox != null)
-                        {
-                            if (readCard.CartType == InputEnums.Kasa)
-                            {
-                                if (string.IsNullOrEmpty(readBox.CartId))
-                                {
-                                    button2.Text = "GÜNCELLE";
-                                }
-                                if (readBox.CartId != readCard.Id)
-                                {
-                                    button2.Text = "Kaydet";
-                                }
-                                if (readBox.CartId == readCard.Id)
-                                {
-                                    button2.Text = "GÜNCELLE";
-                                    listget(readCard);
-                                }
-
-                            }
-                        }
-                        else if (string.IsNullOrEmpty(fb.CartId))
-                        {
-                            if (readCard.CartType == InputEnums.Kasa)
-                            {
-                                if (string.IsNullOrEmpty(fb.CartId))
-                                {
-                                    button2.Text = "GÜNCELLE";
-                                    listget(readCard);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            button2.Text = "Kaydet";
-                        }
-
-                    }
-                    catch (Exception)
-                    {
-
-                        throw;
-                    }
+                    CardID = readCard.Id;
+                    listget(readCard);//Buradaki methodda textboxa bir şey yazdığımız için textboxchanged eventini tetikliyoruz.Sonrasında kod blokları bir kere daha çalışıyor
 
                 }
-                
+                else
+                {
+
+                }
             }
-            
-            
-            
-            
+            else
+            {
+                if (!string.IsNullOrEmpty(BoxID))//Kayıt seçilmişse, cardid ve cardcode "" ise  çalışır.
+                {
+                    button2.Text = "GÜNCELLE";
+                }
+                else
+                {
+                    button2.Text = "KAYDET";
+                }
+
+            }
+            if (!string.IsNullOrEmpty(BoxID))//Kayıt seçilmişse çalışır
+            {
+                button2.Text = "GÜNCELLE";
+            }
+
+
+
         }
     }
 }

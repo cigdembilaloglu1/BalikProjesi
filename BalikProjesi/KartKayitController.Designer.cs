@@ -117,7 +117,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(290, 86);
             this.button1.TabIndex = 4;
-            this.button1.Text = "Kaydet";
+            this.button1.Text = "KAYDET";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -195,14 +195,13 @@
             // 
             this.btnUpdate.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnUpdate.Enabled = false;
             this.btnUpdate.Font = new System.Drawing.Font("Bahnschrift SemiBold", 15.75F, System.Drawing.FontStyle.Bold);
             this.btnUpdate.ForeColor = System.Drawing.SystemColors.Control;
             this.btnUpdate.Location = new System.Drawing.Point(299, 3);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(291, 86);
             this.btnUpdate.TabIndex = 13;
-            this.btnUpdate.Text = "GÜNCELLE";
+            this.btnUpdate.Text = "TEMİZLE";
             this.btnUpdate.UseVisualStyleBackColor = false;
             this.btnUpdate.Click += new System.EventHandler(this.button2_Click);
             // 
