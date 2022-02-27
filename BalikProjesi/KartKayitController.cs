@@ -278,7 +278,16 @@ namespace BalikProjesi
             }
             else if(button1.Text=="GÜNCELLE")
             {
-                dataupdate();
+                if (MessageBox.Show(WarningEnums.AskUpdate, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    dataupdate();
+                    liste();
+                }
+                else
+                {
+                    liste();
+                }
+                
             }
 
         }
