@@ -442,29 +442,27 @@ namespace BalikProjesi
         {
             await _readerServices.WriteTagIdToTextboxAsync(KartKoduTb); 
         }
-
-        private void KartKayitController_SizeChanged(object sender, EventArgs e)
+        void listwidth()
         {
-            
             int width = this.Width;
-            
+
             try
             {
-                for (int i = 0; i < listView1.Columns.Count-1; i++)
+                for (int i = 0; i < listView1.Columns.Count - 1; i++)
                 {
-                    
+
                     switch (i)
                     {
                         case 0:
-                            listView1.Columns[i].Width = Convert.ToInt32(width*0.25);
-                         break;
+                            listView1.Columns[i].Width = Convert.ToInt32(width * 0.25);
+                            break;
                         case 1:
                             listView1.Columns[i].Width = Convert.ToInt32(width * 0.5);
                             break;
                         case 2:
                             listView1.Columns[i].Width = Convert.ToInt32(width * 0.25);
                             break;
-                        
+
                     }
                 }
             }
@@ -473,6 +471,12 @@ namespace BalikProjesi
 
                 throw;
             }
+        }
+
+        private void KartKayitController_SizeChanged(object sender, EventArgs e)
+        {
+
+            listwidth();
         }
 
         private void rbCardNo_CheckedChanged(object sender, EventArgs e)

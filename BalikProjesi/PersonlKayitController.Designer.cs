@@ -204,7 +204,7 @@
             // PersKartId
             // 
             this.PersKartId.Text = "Kart Id";
-            this.PersKartId.Width = 193;
+            this.PersKartId.Width = 121;
             // 
             // PersID
             // 

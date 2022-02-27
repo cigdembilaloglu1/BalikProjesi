@@ -238,7 +238,7 @@ namespace BalikProjesi
                 string[] data = { boxcode, boxtype, boxcardid, BoxID };
                 ListViewItem record = new ListViewItem(data);
                 listView1.Items.Add(record);
-            }
+            }            
             txtKartid.Clear();
             txtKasakod.Clear();
             txtKasatip.Clear();
@@ -290,6 +290,7 @@ namespace BalikProjesi
         {
             button2.Text = "KAYDET";
             list();
+            listwidth();
         }
 
         private void listView1_Click(object sender, EventArgs e)
@@ -461,6 +462,41 @@ namespace BalikProjesi
 
 
 
+        }
+        void listwidth()
+        {
+            int width = this.Width;
+
+            try
+            {
+                for (int i = 0; i < listView1.Columns.Count - 1; i++)
+                {
+
+                    switch (i)
+                    {
+                        case 0:
+                            listView1.Columns[i].Width = Convert.ToInt32(width * 0.25);
+                            break;
+                        case 1:
+                            listView1.Columns[i].Width = Convert.ToInt32(width * 0.25);
+                            break;
+                        case 2:
+                            listView1.Columns[i].Width = Convert.ToInt32(width * 0.5);
+                            break;
+
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        private void KasaKayitController_SizeChanged(object sender, EventArgs e)
+        {
+            listwidth();
         }
     }
 }

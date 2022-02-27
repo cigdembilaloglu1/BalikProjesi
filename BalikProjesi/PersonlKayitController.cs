@@ -487,15 +487,38 @@ namespace BalikProjesi
         {
             listviewDataGet();
         }
-
-        private void PersonlKayitController_SizeChanged(object sender, EventArgs e)
+        void listwidth()
         {
             int width = this.Width;
+
             try
             {
                 for (int i = 0; i < listView1.Columns.Count - 1; i++)
                 {
-                    listView1.Columns[i].Width = width / 6;
+
+                    switch (i)
+                    {
+                        case 0:
+                            listView1.Columns[i].Width = Convert.ToInt32(width * 0.15);
+                            break;
+                        case 1:
+                            listView1.Columns[i].Width = Convert.ToInt32(width * 0.15);
+                            break;
+                        case 2:
+                            listView1.Columns[i].Width = Convert.ToInt32(width * 0.15);
+                            break;
+                        case 3:
+                            listView1.Columns[i].Width = Convert.ToInt32(width * 0.1);
+                            break;
+                        case 4:
+                            listView1.Columns[i].Width = Convert.ToInt32(width * 0.15);
+                            break;
+                        case 5:
+                            listView1.Columns[i].Width = Convert.ToInt32(width * 0.3);
+                            break;
+                        
+
+                    }
                 }
             }
             catch (Exception)
@@ -503,6 +526,24 @@ namespace BalikProjesi
 
                 throw;
             }
+        }
+
+        private void PersonlKayitController_SizeChanged(object sender, EventArgs e)
+        {
+            //int width = this.Width;
+            //try
+            //{
+            //    for (int i = 0; i < listView1.Columns.Count - 1; i++)
+            //    {
+            //        listView1.Columns[i].Width = width / 6;
+            //    }
+            //}
+            //catch (Exception)
+            //{
+
+            //    throw;
+            //}
+            listwidth();
 
         }
 

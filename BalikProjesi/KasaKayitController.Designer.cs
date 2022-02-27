@@ -393,6 +393,7 @@
             this.Name = "KasaKayitController";
             this.Size = new System.Drawing.Size(1133, 579);
             this.Load += new System.EventHandler(this.KasaKayitController_Load);
+            this.SizeChanged += new System.EventHandler(this.KasaKayitController_SizeChanged);
             this.contextMenuStrip1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
