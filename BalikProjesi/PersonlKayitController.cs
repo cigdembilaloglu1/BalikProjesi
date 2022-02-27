@@ -136,6 +136,7 @@ namespace BalikProjesi
                     if (result != null)
                     {
                         CardID = result.Id;
+                        
                     }
                     else
                     {
@@ -205,7 +206,8 @@ namespace BalikProjesi
             txtPersonelKod.Clear();
             CardID = "";
             persID = "";
-            button1.Text = "Kaydet";
+            button1.Text = "KAYDET";
+            
         }
 
         public void SelectedClear()
@@ -345,13 +347,16 @@ namespace BalikProjesi
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            if (button1.Text=="Kaydet")
+            if (button1.Text=="KAYDET")
             {
                 Create();
+                list();
             }
             else if (button1.Text=="GÜNCELLE")
             {
                 update();
+                list();
+
             }
         }
 
@@ -383,58 +388,58 @@ namespace BalikProjesi
         private void button2_Click(object sender, EventArgs e)
         {
 
-            string PersonelAd = txtPersonelAd.Text.Trim();
-            string PersonelSoyad = txtPersonelSoyad.Text.Trim();
-            string PersonelKod = txtPersonelKod.Text.Trim();
-            string PersonelGrup = cbPersonelGrup.Text.Trim();
-            string PersonelTur = cbPersonelTur.Text.Trim();
-            string KartID = txtKartID.Text;
-            var readCard = _cartsServices.GetByCardCode(KartID);//
-            if (readCard != null)
-            {
-                CardID = readCard.Id;
-            }
-            else
-            {
-                if (KartID == "")
-                {
-                    MessageBox.Show(WarningEnums.InvalidSelection);
-                }
-                else
-                {
-                    MessageBox.Show(WarningEnums.DefineToCardCollection);
-                }
+            //string PersonelAd = txtPersonelAd.Text.Trim();
+            //string PersonelSoyad = txtPersonelSoyad.Text.Trim();
+            //string PersonelKod = txtPersonelKod.Text.Trim();
+            //string PersonelGrup = cbPersonelGrup.Text.Trim();
+            //string PersonelTur = cbPersonelTur.Text.Trim();
+            //string KartID = txtKartID.Text;
+            //var readCard = _cartsServices.GetByCardCode(KartID);//
+            //if (readCard != null)
+            //{
+            //    CardID = readCard.Id;
+            //}
+            //else
+            //{
+            //    if (KartID == "")
+            //    {
+            //        MessageBox.Show(WarningEnums.InvalidSelection);
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show(WarningEnums.DefineToCardCollection);
+            //    }
 
-            }
-            if (!string.IsNullOrEmpty(persID) && readCard != null)
-            {
-                if (PersonelTur == readCard.CartType)
-                {
-                    Personel prs = new Personel();
-                    prs.Id = persID;
-                    prs.PersonelName = PersonelAd;
-                    prs.PersonelSurname = PersonelSoyad;
-                    prs.PersonelCode = PersonelKod;
-                    prs.PersonelGroup = PersonelGrup;
-                    prs.CartCode = KartID;
-                    prs.CartId = CardID;
-                    bool chk = _perService.Update(prs, PersonelTur);
-                    if (chk == true)
-                    {
-                        MessageBox.Show(WarningEnums.UpdateSuccess);
-                    }
-                    else
-                    {
-                        MessageBox.Show(WarningEnums.UpdateFailed);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Okunan kart " + readCard.CartType + " kartıdır. Kaydı yapabilmeniz için " + PersonelTur + " tipinde bir kart gerekmektedir.", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                }
-            }
+            //}
+            //if (!string.IsNullOrEmpty(persID) && readCard != null)
+            //{
+            //    if (PersonelTur == readCard.CartType)
+            //    {
+            //        Personel prs = new Personel();
+            //        prs.Id = persID;
+            //        prs.PersonelName = PersonelAd;
+            //        prs.PersonelSurname = PersonelSoyad;
+            //        prs.PersonelCode = PersonelKod;
+            //        prs.PersonelGroup = PersonelGrup;
+            //        prs.CartCode = KartID;
+            //        prs.CartId = CardID;
+            //        bool chk = _perService.Update(prs, PersonelTur);
+            //        if (chk == true)
+            //        {
+            //            MessageBox.Show(WarningEnums.UpdateSuccess);
+            //        }
+            //        else
+            //        {
+            //            MessageBox.Show(WarningEnums.UpdateFailed);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Okunan kart " + readCard.CartType + " kartıdır. Kaydı yapabilmeniz için " + PersonelTur + " tipinde bir kart gerekmektedir.", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            //    }
+            //}
 
-            list(cbPersonelTur.Text);
+            list();
         }
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
@@ -560,45 +565,54 @@ namespace BalikProjesi
 
         private void txtKartID_TextChanged(object sender, EventArgs e)
         {
-            //string cardcodetxt = txtKartID.Text.Trim();
-            //if (!string.IsNullOrEmpty(cardcodetxt))
-            //{
-            //    var readCard = _cartsServices.GetByCardCode(cardcodetxt);
-            //    if (readCard != null)
-            //    {
-            //        CardID = readCard.Id;
-            //        listviewDataGet(readCard);
-
-            //    }
-            //    else
-            //    {
-
-            //    }
-            //}
-            //else
-            //{
-            //    if (!string.IsNullOrEmpty(persID))
-            //    {
-            //        button1.Text = "GÜNCELLE";
-            //    }
-            //    else
-            //    {
-            //        button1.Text = "Kaydet";
-            //    }
-
-            //}
-
             string cardcodetxt = txtKartID.Text.Trim();
-            var readCard = _cartsServices.GetByCardCode(cardcodetxt);
-            if (readCard != null)
+
+            if (!string.IsNullOrEmpty(cardcodetxt))
             {
-                CardID = readCard.Id;
-                listviewDataGet(readCard);
+                var readCard = _cartsServices.GetByCardCode(cardcodetxt);
+                if (readCard != null)
+                {
+                    CardID = readCard.Id;
+                    listviewDataGet(readCard);
+
+                }
+                else
+                {
+
+                }
             }
             else
             {
+                if (!string.IsNullOrEmpty(persID))
+                {
+                    button1.Text = "GÜNCELLE";
+                }
+                else
+                {
+                    button1.Text = "KAYDET";
+                }
 
             }
+            if (!string.IsNullOrEmpty(persID))
+            {
+                button1.Text = "GÜNCELLE";
+            }
+            
+            
+
+            //string cardcodetxt = txtKartID.Text.Trim();
+            //var readCard = _cartsServices.GetByCardCode(cardcodetxt);
+            //if (readCard != null)
+            //{
+            //    CardID = readCard.Id;
+            //    listviewDataGet(readCard);
+            //}
+            //else
+            //{
+
+            //}
         }
+
+       
     }
 }
