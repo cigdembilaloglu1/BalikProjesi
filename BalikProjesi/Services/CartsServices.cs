@@ -23,9 +23,8 @@ namespace BalikProjesi.Services
             var Islem = CheckCard(Data.CartCode);
             if (Islem)
             {
-
+                Data.CartName = GetNewCardName();
                 db.InsertOne(Data);
-
             }
             return Islem;
 
@@ -55,30 +54,39 @@ namespace BalikProjesi.Services
             var result = db.Find(filteredCards).ToList();
             return result;
         }
-        public bool Update(Carts card, string Cname = null)
+
+        public string GetNewCardName()
         {
-            if (!String.IsNullOrEmpty(Cname))
+            int cardName;
+            Carts lastCard = db.AsQueryable().OrderByDescending(c => c.Id).FirstOrDefault();
+            if(lastCard != null)
             {
-                var Filter = Builders<Carts>.Filter
-                    .Eq(x => x.Id, card.Id);
-
-                var Update = Builders<Carts>.Update
-                    .Set(x => x.CartName, Cname)
-                    .Set(x => x.UpdateDate, card.UpdateDate)
-                    .Set(x => x.CartCode, card.CartCode)
-                    .Set(x => x.CartType, card.CartType);
-
-                try
-                {
-                    db.UpdateOne(Filter, Update);
-                    return true;
-                }
-                catch
-                {
-                    return false;
-                }
+                cardName = int.Parse(lastCard.CartName);
+                cardName++;
             }
             else
+            {
+                cardName = 10000;
+            }
+
+            return cardName.ToString();
+        }
+        public bool Update(Carts card)
+        {
+            var Filter = Builders<Carts>.Filter
+                     .Eq(x => x.Id, card.Id);
+
+            var Update = Builders<Carts>.Update
+                .Set(x => x.UpdateDate, card.UpdateDate)
+                .Set(x => x.CartCode, card.CartCode)
+                .Set(x => x.CartType, card.CartType);
+
+            try
+            {
+                db.UpdateOne(Filter, Update);
+                return true;
+            }
+            catch
             {
                 return false;
             }

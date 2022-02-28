@@ -86,22 +86,23 @@ namespace BalikProjesi.Services
                 return true;
         }
 
-        public List<Personel> GetAll()
+        public List<Personel> GetAll(int page, int pageSize = 15)
         {
             List<Personel> result;
-            result = fdb.Find(x => true).ToList();
-            result.AddRange(cdb.Find(x => true).ToList());
+            result = fdb.Find(x => true).Skip((page - 1) * pageSize).Limit(pageSize).ToList();
+            result.AddRange(cdb.Find(x => true).Skip((page - 1) * pageSize).Limit(pageSize).ToList());
 
             return result;
         }
-        public List<Personel> GetControl()
+        public List<Personel> GetControl(int page, int pageSize = 15)
         {
-            var result = cdb.Find(x => true).ToList();
+            var result = cdb.Find(x => true).Skip((page - 1) * pageSize).Limit(pageSize).ToList();
             return result;
         }
-        public List<Personel> GetFillet()
+        public List<Personel> GetFillet(int page, int pageSize = 15)
         {
-            var result = fdb.Find(x => true).ToList();
+            
+            var result = fdb.Find(x => true).Skip((page - 1) * pageSize).Limit(pageSize).ToList();
             return result;
         }
         public Personel GetPersonalByCardCode(string cardCode)
@@ -139,6 +140,30 @@ namespace BalikProjesi.Services
             var result = cdb.Find(filteredPersonel).ToList();
             return result;
         }
+        public List<Personel> GetFilteredPersonal(FilterDefinition<Personel> filteredPersonel)
+        {
+            var result = cdb.Find(filteredPersonel).ToList();
+            result.AddRange(fdb.Find(filteredPersonel).ToList());
+            return result;
+        }
+
+        public long GetFilletDocumentCount()
+        {
+            long docCount = fdb.CountDocuments(FilterDefinition<Personel>.Empty);
+            return docCount;
+        }
+        public long GetControllerDocumentCount()
+        {
+            long docCount = cdb.CountDocuments(FilterDefinition<Personel>.Empty);
+            return docCount;
+        }
+        public long GetAllPersonalDocumentCount()
+        {
+            long docCount = fdb.CountDocuments(FilterDefinition<Personel>.Empty);
+            docCount += cdb.CountDocuments(FilterDefinition<Personel>.Empty);
+            return docCount;
+        }
+
         public bool UpdateControllerCardInfo(Personel personel)
         {
             if (!String.IsNullOrEmpty(personel.PersonelName) && !String.IsNullOrEmpty(personel.PersonelSurname) && !String.IsNullOrEmpty(personel.PersonelCode) && !String.IsNullOrEmpty(personel.PersonelGroup))

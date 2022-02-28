@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -56,9 +55,6 @@
             this.bntCardReader = new System.Windows.Forms.Button();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.lbCardCode = new System.Windows.Forms.Label();
-            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbCardNo = new System.Windows.Forms.Label();
-            this.KartNameTxt = new System.Windows.Forms.MaskedTextBox();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.cbCardType = new System.Windows.Forms.ComboBox();
             this.contextMenuStrip1.SuspendLayout();
@@ -69,20 +65,8 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
-            this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label2.Location = new System.Drawing.Point(3, 74);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(112, 55);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Kart No:";
             // 
             // label3
             // 
@@ -92,7 +76,7 @@
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(3, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(112, 74);
+            this.label3.Size = new System.Drawing.Size(112, 62);
             this.label3.TabIndex = 1;
             this.label3.Text = "Kart Kodu:";
             // 
@@ -101,9 +85,9 @@
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label4.Location = new System.Drawing.Point(3, 129);
+            this.label4.Location = new System.Drawing.Point(3, 62);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(112, 56);
+            this.label4.Size = new System.Drawing.Size(112, 62);
             this.label4.TabIndex = 1;
             this.label4.Text = "Kart Tipi:";
             // 
@@ -334,17 +318,15 @@
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel3, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.label3, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.label2, 0, 1);
-            this.tableLayoutPanel4.Controls.Add(this.label4, 0, 2);
-            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel6, 1, 1);
-            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel7, 1, 2);
+            this.tableLayoutPanel4.Controls.Add(this.label4, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel7, 1, 1);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 3;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(593, 185);
             this.tableLayoutPanel4.TabIndex = 17;
             // 
@@ -360,7 +342,7 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(469, 68);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(469, 56);
             this.tableLayoutPanel3.TabIndex = 16;
             // 
             // bntCardReader
@@ -372,7 +354,7 @@
             this.bntCardReader.ForeColor = System.Drawing.SystemColors.Control;
             this.bntCardReader.Location = new System.Drawing.Point(378, 3);
             this.bntCardReader.Name = "bntCardReader";
-            this.bntCardReader.Size = new System.Drawing.Size(88, 62);
+            this.bntCardReader.Size = new System.Drawing.Size(88, 50);
             this.bntCardReader.TabIndex = 15;
             this.bntCardReader.Text = "KART\r\nOKU";
             this.bntCardReader.UseVisualStyleBackColor = false;
@@ -391,7 +373,7 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(369, 62);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(369, 50);
             this.tableLayoutPanel5.TabIndex = 16;
             // 
             // lbCardCode
@@ -399,45 +381,10 @@
             this.lbCardCode.AutoSize = true;
             this.lbCardCode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbCardCode.ForeColor = System.Drawing.Color.Red;
-            this.lbCardCode.Location = new System.Drawing.Point(3, 31);
+            this.lbCardCode.Location = new System.Drawing.Point(3, 25);
             this.lbCardCode.Name = "lbCardCode";
-            this.lbCardCode.Size = new System.Drawing.Size(363, 31);
+            this.lbCardCode.Size = new System.Drawing.Size(363, 25);
             this.lbCardCode.TabIndex = 10;
-            // 
-            // tableLayoutPanel6
-            // 
-            this.tableLayoutPanel6.ColumnCount = 1;
-            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.Controls.Add(this.lbCardNo, 0, 1);
-            this.tableLayoutPanel6.Controls.Add(this.KartNameTxt, 0, 0);
-            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(121, 77);
-            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
-            this.tableLayoutPanel6.RowCount = 2;
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 55F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(469, 49);
-            this.tableLayoutPanel6.TabIndex = 17;
-            // 
-            // lbCardNo
-            // 
-            this.lbCardNo.AutoSize = true;
-            this.lbCardNo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbCardNo.ForeColor = System.Drawing.Color.Red;
-            this.lbCardNo.Location = new System.Drawing.Point(3, 26);
-            this.lbCardNo.Name = "lbCardNo";
-            this.lbCardNo.Size = new System.Drawing.Size(463, 23);
-            this.lbCardNo.TabIndex = 11;
-            // 
-            // KartNameTxt
-            // 
-            this.KartNameTxt.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.KartNameTxt.Location = new System.Drawing.Point(3, 3);
-            this.KartNameTxt.Mask = "00000";
-            this.KartNameTxt.Name = "KartNameTxt";
-            this.KartNameTxt.Size = new System.Drawing.Size(463, 20);
-            this.KartNameTxt.TabIndex = 12;
-            this.KartNameTxt.ValidatingType = typeof(int);
             // 
             // tableLayoutPanel7
             // 
@@ -446,12 +393,12 @@
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel7.Controls.Add(this.cbCardType, 0, 0);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel7.Location = new System.Drawing.Point(121, 132);
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(121, 65);
             this.tableLayoutPanel7.Name = "tableLayoutPanel7";
             this.tableLayoutPanel7.RowCount = 2;
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(469, 50);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(469, 56);
             this.tableLayoutPanel7.TabIndex = 18;
             // 
             // cbCardType
@@ -486,15 +433,12 @@
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
-            this.tableLayoutPanel6.ResumeLayout(false);
-            this.tableLayoutPanel6.PerformLayout();
             this.tableLayoutPanel7.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button1;
@@ -515,10 +459,7 @@
         private System.Windows.Forms.ToolStripMenuItem DeleteMenuStrip;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Label lbCardCode;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
-        private System.Windows.Forms.Label lbCardNo;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
-        private System.Windows.Forms.MaskedTextBox KartNameTxt;
         private System.Windows.Forms.ComboBox cbCardType;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.TextBox tbSearch;

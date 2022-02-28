@@ -55,7 +55,6 @@ namespace BalikProjesi
                 ListViewItem record = new ListViewItem(data);
                 listView1.Items.Add(record);
             }
-            KartNameTxt.Clear();
             KartKoduTb.Clear();
             cbCardType.SelectedIndex = 0;
             CardID = "";
@@ -66,7 +65,6 @@ namespace BalikProjesi
             if (card != null)
             {
                 button1.Text = "GÜNCELLE";
-                KartNameTxt.Text = card.CartName;
                 KartKoduTb.Text = card.CartCode;
 
                 if (card.CartType == InputEnums.Kasa)
@@ -85,7 +83,6 @@ namespace BalikProjesi
                 {
                     ListViewItem itm = listView1.SelectedItems[0];
                     CardID = itm.SubItems[3].Text;
-                    KartNameTxt.Text = itm.SubItems[0].Text;
                     KartKoduTb.Text = itm.SubItems[1].Text;
 
                     if (itm.SubItems[2].Text == InputEnums.Kasa)
@@ -104,18 +101,16 @@ namespace BalikProjesi
         public void dataupdate()
         {
             
-            string CartName = KartNameTxt.Text.Trim();
             string CartCode = KartKoduTb.Text.Trim();
             string CartType = cbCardType.Text.Trim();
             void updateOnlyCard()//Kart güncellemesi
             {
                 Entities.Carts ct = new Carts();
-                ct.CartName = CartName;
                 ct.CartCode = CartCode;
                 ct.CartType = CartType;
                 ct.Id = CardID;
                 ct.UpdateDate = DateTime.Now;
-                bool chk = _cartService.Update(ct, CartName);
+                bool chk = _cartService.Update(ct);
                 if (chk == true)
                 {
                     MessageBox.Show(WarningEnums.UpdateSuccess);
@@ -231,12 +226,6 @@ namespace BalikProjesi
         void Create()
         {
             bool check = true;
-            if (string.IsNullOrEmpty(KartNameTxt.Text))
-            {
-                lbCardNo.Text = WarningEnums.ThisFieldMustBeFilled;
-                KartNameTxt.Focus();
-                check = false;
-            }
             if (string.IsNullOrEmpty(KartKoduTb.Text))
             {
                 lbCardCode.Text = WarningEnums.ThisFieldMustBeFilled;
@@ -245,10 +234,9 @@ namespace BalikProjesi
             }
             if (check)
             {
-                var result = _cartService.Create(new Entities.Carts
+                var result = _cartService.Create(new Carts
                 {
                     CartCode = KartKoduTb.Text.Trim(),
-                    CartName = KartNameTxt.Text.Trim(),
                     CartType = cbCardType.Text,
                     CreateDate = DateTime.Now
                 });
@@ -260,7 +248,6 @@ namespace BalikProjesi
                 {
                     MessageBox.Show(WarningEnums.CardIsDefined);
                     lbCardCode.Text = "";
-                    lbCardNo.Text = "";
                 }
                 liste();
             }
@@ -307,8 +294,6 @@ namespace BalikProjesi
             //dataupdate();
             liste();
             lbCardCode.Text = "";
-            lbCardNo.Text = "";
-            
 
         }
 
@@ -325,7 +310,6 @@ namespace BalikProjesi
         private void DeleteMenuStrip_Click(object sender, EventArgs e)
         {
             //Kartı güncellerken diğer kayıtlara da bakıp oradan işilişiğini kesmemiz gerekiyor.
-            string CartName = KartNameTxt.Text.Trim();
             string CartCode = KartKoduTb.Text.Trim();
             string CartType = cbCardType.Text.Trim();
             void onlyDelete()//Kartın eşleşen bir kaydı yoksa bu kısım çalışıyor.
@@ -544,13 +528,11 @@ namespace BalikProjesi
             }
             else
             {
-                KartNameTxt.Text = "";
                 cbCardType.SelectedIndex = 0;
                 button1.Text = "KAYDET";
             }
 
             lbCardCode.Text = "";
-            lbCardNo.Text = "";
         }
     }
 }

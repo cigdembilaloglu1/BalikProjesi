@@ -15,6 +15,6 @@ namespace BalikProjesi.Services
         Carts GetByCardCode(string cardcode);
         Carts GetByCardID(string CardId);
         List<Carts> GetFilteredCards(FilterDefinition<Carts> filteredCards);
-        bool Update(Carts card, string Cname = null);
+        bool Update(Carts card);
     }
 }
