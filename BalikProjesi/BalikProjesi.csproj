@@ -155,7 +155,7 @@
       <DependentUpon>FiletoKabul.cs</DependentUpon>
     </Compile>
     <Compile Include="FiletoTeslim.cs">
-      <SubType>Form</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FiletoTeslim.Designer.cs">
       <DependentUpon>FiletoTeslim.cs</DependentUpon>
