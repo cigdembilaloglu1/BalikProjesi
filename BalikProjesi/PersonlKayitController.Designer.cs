@@ -525,7 +525,6 @@
             this.txtKartID.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtKartID.Multiline = true;
             this.txtKartID.Name = "txtKartID";
-            this.txtKartID.ReadOnly = true;
             this.txtKartID.Size = new System.Drawing.Size(333, 47);
             this.txtKartID.TabIndex = 5;
             this.txtKartID.TextChanged += new System.EventHandler(this.txtKartID_TextChanged);

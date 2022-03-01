@@ -5,6 +5,7 @@ namespace BalikProjesi.Services
 {
     public interface IRecordingsServices
     {
+        bool ChangeCardId(string OldCardId, string NewCardId);
         bool ControllerClosing(Recordings Record);
         bool ControllerOpening(Recordings Record);
         bool Create(Recordings Record);
