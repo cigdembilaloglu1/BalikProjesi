@@ -145,6 +145,28 @@ namespace BalikProjesi.Services
             }
         }
 
+        public bool ChangeCardId(string OldCardId, string NewCardId)
+        {
+            try
+            {
+                var filterfishbox = Builders<Recordings>.Filter.Eq(x => x.FishboxID, OldCardId);
+                var Updatefixbod = Builders<Recordings>.Update.Set(x => x.FishboxID, NewCardId);
+                db.UpdateOne(filterfishbox, Updatefixbod);
+
+                var controlCartfilter = Builders<Recordings>.Filter.Eq(x => x.ControllerCardId, OldCardId);
+                var controlCartUpdate = Builders<Recordings>.Update.Set(x => x.ControllerCardId, NewCardId);
+                db.UpdateOne(controlCartfilter, controlCartUpdate);
+
+                var FiletoFilter = Builders<Recordings>.Filter.Eq(x => x.FilletCardId, OldCardId);
+                var FiletUpdated = Builders<Recordings>.Update.Set(x => x.FilletCardId, NewCardId);
+                db.UpdateOne(FiletoFilter, FiletUpdated);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
 
     }

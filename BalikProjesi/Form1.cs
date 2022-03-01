@@ -20,6 +20,7 @@ namespace BalikProjesi
         {
             InitializeComponent();
             lgn = new LoginServices();
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -29,7 +30,9 @@ namespace BalikProjesi
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+#if DEBUG
+            lgn.Create("hakan", "hakan");
+#endif
             this.MaximizeBox = false;
             //this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }

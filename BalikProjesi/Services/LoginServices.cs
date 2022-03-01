@@ -28,6 +28,7 @@ namespace BalikProjesi.Services
                 EklenecekVeri.UserName = _uname;
                 
                 EklenecekVeri.Password = _pass;
+                EklenecekVeri.Role = "Admin";
                 if (_uname !=null && _pass !=null)
                 {
                     db.InsertOne(EklenecekVeri);
