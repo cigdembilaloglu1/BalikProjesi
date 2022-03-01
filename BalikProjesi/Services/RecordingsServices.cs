@@ -56,6 +56,11 @@ namespace BalikProjesi.Services
 
             return true;
         }
+        public Recordings CheckRecordValidByFishboxID(string ID)
+        {
+            var result = db.Find(x => x.ControllerClosingDate == DateTime.MinValue).FirstOrDefault();
+            return result;
+        }
 
         public bool FilletClosing(Recordings Record)
         {
