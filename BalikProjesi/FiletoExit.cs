@@ -10,17 +10,17 @@ using System.Windows.Forms;
 
 namespace BalikProjesi
 {
-    public partial class KontrolTeslim : Form
+    public partial class FiletoExit : Form
     {
-        public KontrolTeslim()
+        public FiletoExit()
         {
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ControlUser ContUs = new ControlUser();
-            ContUs.Show();
+            FilletUser FillUs=new FilletUser();
+            FillUs.Show();
             this.Hide();
         }
     }

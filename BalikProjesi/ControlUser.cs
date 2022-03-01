@@ -19,14 +19,14 @@ namespace BalikProjesi
 
         private void button1_Click(object sender, EventArgs e)
         {
-            KontrolTeslim Kteslim = new KontrolTeslim();
+            KontolStart Kteslim = new KontolStart();
             Kteslim.Show();
             this.Hide();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            KontrolKabul Kkabul = new KontrolKabul();
+            KontolExit Kkabul = new KontolExit();
             Kkabul.Show();
             this.Hide();
         }

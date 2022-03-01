@@ -155,17 +155,17 @@
     <Compile Include="Entities\Personel.cs" />
     <Compile Include="Entities\FishBox.cs" />
     <Compile Include="Enums\InputEnums.cs" />
-    <Compile Include="FiletoKabul.cs">
+    <Compile Include="FiletoExit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FiletoKabul.Designer.cs">
-      <DependentUpon>FiletoKabul.cs</DependentUpon>
+    <Compile Include="FiletoExit.Designer.cs">
+      <DependentUpon>FiletoExit.cs</DependentUpon>
     </Compile>
-    <Compile Include="FiletoTeslim.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="FiletoStart.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FiletoTeslim.Designer.cs">
-      <DependentUpon>FiletoTeslim.cs</DependentUpon>
+    <Compile Include="FiletoStart.Designer.cs">
+      <DependentUpon>FiletoStart.cs</DependentUpon>
     </Compile>
     <Compile Include="FilletUser.cs">
       <SubType>Form</SubType>
@@ -211,17 +211,17 @@
     <Compile Include="KasaKayitController.Designer.cs">
       <DependentUpon>KasaKayitController.cs</DependentUpon>
     </Compile>
-    <Compile Include="KontrolKabul.cs">
+    <Compile Include="KontolExit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="KontrolKabul.Designer.cs">
-      <DependentUpon>KontrolKabul.cs</DependentUpon>
+    <Compile Include="KontolExit.Designer.cs">
+      <DependentUpon>KontolExit.cs</DependentUpon>
     </Compile>
-    <Compile Include="KontrolTeslim.cs">
+    <Compile Include="KontolStart.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="KontrolTeslim.Designer.cs">
-      <DependentUpon>KontrolTeslim.cs</DependentUpon>
+    <Compile Include="KontolStart.Designer.cs">
+      <DependentUpon>KontolStart.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\ReaderResponseModel.cs" />
     <Compile Include="PersonlKayitController.cs">
@@ -261,11 +261,11 @@
     <EmbeddedResource Include="ControlUser.resx">
       <DependentUpon>ControlUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FiletoKabul.resx">
-      <DependentUpon>FiletoKabul.cs</DependentUpon>
+    <EmbeddedResource Include="FiletoExit.resx">
+      <DependentUpon>FiletoExit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FiletoTeslim.resx">
-      <DependentUpon>FiletoTeslim.cs</DependentUpon>
+    <EmbeddedResource Include="FiletoStart.resx">
+      <DependentUpon>FiletoStart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FilletUser.resx">
       <DependentUpon>FilletUser.cs</DependentUpon>
@@ -288,11 +288,11 @@
     <EmbeddedResource Include="KasaKayitController.resx">
       <DependentUpon>KasaKayitController.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="KontrolKabul.resx">
-      <DependentUpon>KontrolKabul.cs</DependentUpon>
+    <EmbeddedResource Include="KontolExit.resx">
+      <DependentUpon>KontolExit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="KontrolTeslim.resx">
-      <DependentUpon>KontrolTeslim.cs</DependentUpon>
+    <EmbeddedResource Include="KontolStart.resx">
+      <DependentUpon>KontolStart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PersonlKayitController.resx">
       <DependentUpon>PersonlKayitController.cs</DependentUpon>
