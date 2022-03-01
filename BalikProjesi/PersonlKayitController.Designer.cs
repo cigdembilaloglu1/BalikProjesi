@@ -69,12 +69,14 @@
             this.PersKod = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PersGrup = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PersTur = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.PersKartId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PersKartCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.lbPagination = new System.Windows.Forms.Label();
-            this.btnFirst = new System.Windows.Forms.Button();
             this.btnPrev = new System.Windows.Forms.Button();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.lbDocumentCount = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
@@ -84,6 +86,7 @@
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel8.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -384,7 +387,7 @@
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(175, 30);
             this.label5.TabIndex = 2;
-            this.label5.Text = "Personel Tür:";
+            this.label5.Text = "Personel Tipi:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // cbPersonelGrup
@@ -482,7 +485,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(175, 45);
             this.label6.TabIndex = 2;
-            this.label6.Text = "Kart ID:";
+            this.label6.Text = "Kart Kodu:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel5
@@ -538,10 +541,10 @@
             this.PersKod,
             this.PersGrup,
             this.PersTur,
-            this.PersKartId});
+            this.PersKartCode});
             this.tableLayoutPanel1.SetColumnSpan(this.listView1, 2);
             this.listView1.ContextMenuStrip = this.contextMenuStrip1;
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.listView1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.listView1.FullRowSelect = true;
@@ -551,6 +554,7 @@
             this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
             this.listView1.Scrollable = false;
+            this.listView1.ShowGroups = false;
             this.listView1.Size = new System.Drawing.Size(1021, 312);
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
@@ -579,23 +583,24 @@
             // 
             // PersTur
             // 
-            this.PersTur.Text = "Personel Tur";
+            this.PersTur.Text = "Personel Tipi";
             this.PersTur.Width = 64;
             // 
-            // PersKartId
+            // PersKartCode
             // 
-            this.PersKartId.Text = "Kart Id";
-            this.PersKartId.Width = 121;
+            this.PersKartCode.Text = "Kart Kodu";
+            this.PersKartCode.Width = 121;
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40F));
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel8, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.listView1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel8, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel6, 1, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.MaximumSize = new System.Drawing.Size(1027, 0);
@@ -616,15 +621,15 @@
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18.93688F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 65.4485F));
             this.tableLayoutPanel8.Controls.Add(this.lbPagination, 2, 0);
-            this.tableLayoutPanel8.Controls.Add(this.btnFirst, 0, 0);
-            this.tableLayoutPanel8.Controls.Add(this.btnPrev, 1, 0);
-            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Right;
-            this.tableLayoutPanel8.Location = new System.Drawing.Point(723, 570);
+            this.tableLayoutPanel8.Controls.Add(this.btnPrev, 0, 0);
+            this.tableLayoutPanel8.Controls.Add(this.btnNext, 1, 0);
+            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Left;
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 570);
             this.tableLayoutPanel8.Name = "tableLayoutPanel8";
             this.tableLayoutPanel8.RowCount = 1;
             this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel8.Size = new System.Drawing.Size(301, 50);
-            this.tableLayoutPanel8.TabIndex = 25;
+            this.tableLayoutPanel8.TabIndex = 26;
             // 
             // lbPagination
             // 
@@ -638,31 +643,61 @@
             this.lbPagination.TabIndex = 24;
             this.lbPagination.Text = "1";
             // 
-            // btnFirst
-            // 
-            this.btnFirst.BackColor = System.Drawing.Color.White;
-            this.btnFirst.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFirst.BackgroundImage")));
-            this.btnFirst.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnFirst.ForeColor = System.Drawing.Color.White;
-            this.btnFirst.Location = new System.Drawing.Point(3, 3);
-            this.btnFirst.Name = "btnFirst";
-            this.btnFirst.Size = new System.Drawing.Size(40, 40);
-            this.btnFirst.TabIndex = 20;
-            this.btnFirst.UseVisualStyleBackColor = false;
-            this.btnFirst.Click += new System.EventHandler(this.btnFirst_Click);
-            // 
             // btnPrev
             // 
+            this.btnPrev.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnPrev.BackColor = System.Drawing.Color.White;
             this.btnPrev.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPrev.BackgroundImage")));
             this.btnPrev.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnPrev.ForeColor = System.Drawing.Color.White;
-            this.btnPrev.Location = new System.Drawing.Point(50, 3);
+            this.btnPrev.Location = new System.Drawing.Point(3, 5);
             this.btnPrev.Name = "btnPrev";
             this.btnPrev.Size = new System.Drawing.Size(40, 40);
-            this.btnPrev.TabIndex = 21;
+            this.btnPrev.TabIndex = 20;
             this.btnPrev.UseVisualStyleBackColor = false;
             this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
+            // 
+            // btnNext
+            // 
+            this.btnNext.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnNext.BackColor = System.Drawing.Color.White;
+            this.btnNext.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnNext.BackgroundImage")));
+            this.btnNext.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnNext.ForeColor = System.Drawing.Color.White;
+            this.btnNext.Location = new System.Drawing.Point(55, 5);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(40, 40);
+            this.btnNext.TabIndex = 21;
+            this.btnNext.UseVisualStyleBackColor = false;
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 1;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel6.Controls.Add(this.lbDocumentCount, 0, 0);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(619, 570);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 1;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(405, 50);
+            this.tableLayoutPanel6.TabIndex = 27;
+            // 
+            // lbDocumentCount
+            // 
+            this.lbDocumentCount.AutoSize = true;
+            this.lbDocumentCount.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lbDocumentCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.lbDocumentCount.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.lbDocumentCount.Location = new System.Drawing.Point(381, 0);
+            this.lbDocumentCount.Name = "lbDocumentCount";
+            this.lbDocumentCount.Size = new System.Drawing.Size(21, 50);
+            this.lbDocumentCount.TabIndex = 25;
+            this.lbDocumentCount.Text = "1";
+            this.lbDocumentCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // PersonlKayitController
             // 
@@ -692,6 +727,8 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel8.PerformLayout();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -737,11 +774,13 @@
         private System.Windows.Forms.ColumnHeader PersKod;
         private System.Windows.Forms.ColumnHeader PersGrup;
         private System.Windows.Forms.ColumnHeader PersTur;
-        private System.Windows.Forms.ColumnHeader PersKartId;
+        private System.Windows.Forms.ColumnHeader PersKartCode;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Button btnFirst;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
         private System.Windows.Forms.Label lbPagination;
         private System.Windows.Forms.Button btnPrev;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
+        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.Label lbDocumentCount;
     }
 }

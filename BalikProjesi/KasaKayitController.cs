@@ -19,6 +19,9 @@ namespace BalikProjesi
         private readonly IFishBoxServices _fboxService;
         private readonly ReaderServices _readerServices;
         private readonly ICartsServices1 _cartServices;
+        private long BoxCount;
+        private int currentPage;
+        private long lastPage;
 
         private string BoxID;
         private string CardID;
@@ -30,6 +33,16 @@ namespace BalikProjesi
             _cartServices = new CartsServices();
             BoxID = "";
             CardID = "";
+            BoxCount = _fboxService.GetDocumentCount();
+            currentPage = 1;
+            lastPage = DivideRoundingUp(BoxCount, 15);
+            lbPagination.Text = currentPage + "/" + lastPage;
+
+            int maxWidthSize = Screen.PrimaryScreen.Bounds.Width;
+            listView1.MaximumSize = new Size(maxWidthSize-10, 282);
+            listView1.MaximumSize = new Size(0, 282);
+
+            lbDocumentCount.Text = InputEnums.ToplamKayıt + BoxCount;
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -142,6 +155,9 @@ namespace BalikProjesi
                         {
                             case true:
                                 MessageBox.Show(WarningEnums.CreateSuccess);
+                                BoxCount++;
+                                lbDocumentCount.Text = InputEnums.ToplamKayıt + BoxCount;
+
                                 break;
                             case false:
                                 MessageBox.Show(WarningEnums.CreateFailed);
@@ -163,7 +179,7 @@ namespace BalikProjesi
                 }
                 else
                 {
-                    var result = _fboxService.GetByCardID(CardID);
+                    var result = _fboxService.GetByCardCode(CardID);
                     if (result.CartType == InputEnums.Kontrol)
                     {
                         MessageBox.Show("Okunan kart " + result.CartType + " kartıdır. Lütfen başka bir kart giriniz veya kartı güncelleyiniz");
@@ -228,7 +244,7 @@ namespace BalikProjesi
         {
             listView1.Items.Clear();
             string boxcode, boxtype, boxcardid;
-            var dt = _fboxService.Get();
+            var dt = _fboxService.Get(currentPage);
             foreach (var item in dt)
             {
                 boxcode = item.FishBoxCode;
@@ -251,7 +267,7 @@ namespace BalikProjesi
             //button2.Text = "GÜNCELLE";//button text-güncelle
             if (card!=null)
             {
-                var fb = _fboxService.GetByCardID(card.Id);
+                var fb = _fboxService.GetByCardCode(card.Id);
                 if (fb!=null)
                 {
                     txtKasakod.Text = fb.FishBoxCode;
@@ -312,6 +328,8 @@ namespace BalikProjesi
             }
                 
             list();
+            BoxCount--;
+            lbDocumentCount.Text = InputEnums.ToplamKayıt + BoxCount;
         }
 
         private async void btnCardRead_Click(object sender, EventArgs e)
@@ -497,6 +515,49 @@ namespace BalikProjesi
         private void KasaKayitController_SizeChanged(object sender, EventArgs e)
         {
             listwidth();
+        }
+
+        private void btnPrev_Click(object sender, EventArgs e)
+        {
+            if (currentPage != 1)
+            {
+                currentPage--;
+                lbPagination.Text = currentPage + "/" + lastPage;
+                list();
+            }
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            if (currentPage != lastPage)
+            {
+                currentPage++;
+                lbPagination.Text = currentPage + "/" + lastPage;
+                list();
+            }
+
+        }
+
+        public static long DivideRoundingUp(long x, long y)
+        {
+            long s;
+
+            if (x > y)
+            {
+                long a = x % y;
+                x -= a;
+
+                if (a != 0)
+                    s = (x / y) + 1;
+                else
+                    s = (x / y);
+
+                return s;
+            }
+            else
+            {
+                return 1;
+            }
         }
     }
 }

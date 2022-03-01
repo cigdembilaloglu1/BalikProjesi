@@ -39,7 +39,14 @@ namespace BalikProjesi
             ControllerPersonalCount = _perService.GetControllerDocumentCount();
             currentPage = 1;
             lastPage = DivideRoundingUp(FilletPersonalCount + ControllerPersonalCount, 15);
-            lbPagination.Text = currentPage + "/" + lastPage; 
+            lbPagination.Text = currentPage + "/" + lastPage;
+
+            int maxWidthSize = Screen.PrimaryScreen.Bounds.Width;
+            listView1.MaximumSize = new Size(maxWidthSize - 10, 282);
+            listView1.MaximumSize = new Size(0, 282);
+
+            lbDocumentCount.Text = InputEnums.ToplamKayıt + FilletPersonalCount + ControllerPersonalCount;
+
         }
         public void listviewDataGet(Carts card = null)
         {
@@ -289,6 +296,18 @@ namespace BalikProjesi
                 if (result)
                 {
                     MessageBox.Show(WarningEnums.CreateSuccess, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    switch (cbPersonelTur.Text)
+                    {
+                        case InputEnums.Fileto:
+                            FilletPersonalCount--;
+                            lbDocumentCount.Text = InputEnums.ToplamKayıt + FilletPersonalCount;
+                            break;
+                        case InputEnums.Kontrol:
+                            ControllerPersonalCount--;
+                            lbDocumentCount.Text = InputEnums.ToplamKayıt + ControllerPersonalCount;
+                            break;
+                    }
                 }
                 else
                 {
@@ -397,12 +416,21 @@ namespace BalikProjesi
             list(cbListGroup.Text);
 
             if (cbListGroup.Text == InputEnums.Fileto)
+            {
                 lastPage = DivideRoundingUp(FilletPersonalCount, 15);
+                lbDocumentCount.Text = InputEnums.ToplamKayıt + FilletPersonalCount;
+            }
             else if (cbListGroup.Text == InputEnums.Kontrol)
+            {
                 lastPage = DivideRoundingUp(ControllerPersonalCount, 15);
+                lbDocumentCount.Text = InputEnums.ToplamKayıt + ControllerPersonalCount;
+            }
             else
+            {
                 lastPage = DivideRoundingUp(FilletPersonalCount + ControllerPersonalCount, 15);
-
+                lbDocumentCount.Text = InputEnums.ToplamKayıt + (FilletPersonalCount + ControllerPersonalCount);
+            }
+                
         }
 
 
@@ -491,6 +519,30 @@ namespace BalikProjesi
                 if (chk)
                 {
                     MessageBox.Show(WarningEnums.DeleteSuccess, "", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+
+                    
+                    if (listView1.SelectedItems[0].SubItems[4].Text == InputEnums.Fileto)
+                    {
+                        FilletPersonalCount--;
+                    }
+                    else
+                    {
+                        ControllerPersonalCount--;
+                    }
+
+                    switch (cbListGroup.Text)
+                    {
+                        case InputEnums.Fileto:
+                            lbDocumentCount.Text = InputEnums.ToplamKayıt + FilletPersonalCount;
+                            break;
+                        case InputEnums.Kontrol:
+                            lbDocumentCount.Text = InputEnums.ToplamKayıt + ControllerPersonalCount;
+                            break;
+                        case InputEnums.Tumu:
+                            lbDocumentCount.Text = InputEnums.ToplamKayıt + (ControllerPersonalCount + FilletPersonalCount);
+                            break;
+                    }
+                    
                 }
                 list();
             }
@@ -678,7 +730,7 @@ namespace BalikProjesi
             button1.Text = "KAYDET";
         }
 
-        private void btnFirst_Click(object sender, EventArgs e)
+        private void btnPrev_Click(object sender, EventArgs e)
         {
             if (currentPage != 1)
             {
@@ -688,7 +740,7 @@ namespace BalikProjesi
             }
         }
 
-        private void btnPrev_Click(object sender, EventArgs e)
+        private void btnNext_Click(object sender, EventArgs e)
         {
             if (currentPage != lastPage)
             {
@@ -720,6 +772,5 @@ namespace BalikProjesi
                 return 1;
             }
         }
-
     }
 }

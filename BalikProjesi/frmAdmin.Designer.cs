@@ -40,12 +40,15 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.menuStrip1.Font = new System.Drawing.Font("Leelawadee UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.kAYITToolStripMenuItem,
             this.rAPORToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.menuStrip1.Size = new System.Drawing.Size(800, 29);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "adminMenu";
             // 
@@ -55,45 +58,47 @@
             this.kARTKAYDIToolStripMenuItem,
             this.pERSONELKAYDIToolStripMenuItem,
             this.kASAKAYDIToolStripMenuItem});
+            this.kAYITToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.kAYITToolStripMenuItem.Name = "kAYITToolStripMenuItem";
-            this.kAYITToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
+            this.kAYITToolStripMenuItem.Size = new System.Drawing.Size(67, 25);
             this.kAYITToolStripMenuItem.Text = "KAYIT";
             this.kAYITToolStripMenuItem.Click += new System.EventHandler(this.kAYITToolStripMenuItem_Click);
             // 
             // kARTKAYDIToolStripMenuItem
             // 
             this.kARTKAYDIToolStripMenuItem.Name = "kARTKAYDIToolStripMenuItem";
-            this.kARTKAYDIToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.kARTKAYDIToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
             this.kARTKAYDIToolStripMenuItem.Text = "KART KAYDI";
             this.kARTKAYDIToolStripMenuItem.Click += new System.EventHandler(this.kARTKAYDIToolStripMenuItem_Click);
             // 
             // pERSONELKAYDIToolStripMenuItem
             // 
             this.pERSONELKAYDIToolStripMenuItem.Name = "pERSONELKAYDIToolStripMenuItem";
-            this.pERSONELKAYDIToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pERSONELKAYDIToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
             this.pERSONELKAYDIToolStripMenuItem.Text = "PERSONEL KAYDI";
             this.pERSONELKAYDIToolStripMenuItem.Click += new System.EventHandler(this.pERSONELKAYDIToolStripMenuItem_Click);
             // 
             // kASAKAYDIToolStripMenuItem
             // 
             this.kASAKAYDIToolStripMenuItem.Name = "kASAKAYDIToolStripMenuItem";
-            this.kASAKAYDIToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.kASAKAYDIToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
             this.kASAKAYDIToolStripMenuItem.Text = "KASA KAYDI";
             this.kASAKAYDIToolStripMenuItem.Click += new System.EventHandler(this.kASAKAYDIToolStripMenuItem_Click);
             // 
             // rAPORToolStripMenuItem
             // 
+            this.rAPORToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.rAPORToolStripMenuItem.Name = "rAPORToolStripMenuItem";
-            this.rAPORToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.rAPORToolStripMenuItem.Size = new System.Drawing.Size(75, 25);
             this.rAPORToolStripMenuItem.Text = "RAPOR";
             this.rAPORToolStripMenuItem.Click += new System.EventHandler(this.rAPORToolStripMenuItem_Click);
             // 
             // MainPanel
             // 
             this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainPanel.Location = new System.Drawing.Point(0, 24);
+            this.MainPanel.Location = new System.Drawing.Point(0, 29);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(800, 426);
+            this.MainPanel.Size = new System.Drawing.Size(800, 421);
             this.MainPanel.TabIndex = 1;
             // 
             // frmAdmin

@@ -20,6 +20,7 @@ namespace BalikProjesi.Enums
         public const string C = "C";
         public const string Kaydet = "KAYDET";
         public const string Guncelle = "GÜNCELLE";
+        public const string ToplamKayıt = "Toplam Kayıt Sayısı: ";
 
     }
 

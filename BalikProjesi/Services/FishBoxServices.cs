@@ -41,17 +41,17 @@ namespace BalikProjesi.Services
             }
         }
 
-        public FishBox Get(string ID)
+        public FishBox GetById(string ID)
         {
             var result = db.Find(x => x.Id == ID).FirstOrDefault();
             return result;
         }
-        public List<FishBox> Get()
+        public List<FishBox> Get(int page, int pageSize = 15)
         {
-            var result = db.Find(x => true).ToList();
+            var result = db.Find(x => true).Skip((page - 1) * pageSize).Limit(pageSize).ToList();
             return result;
         }
-        public FishBox GetByCardID(string ID)
+        public FishBox GetByCardCode(string ID)
         {
             var result = db.Find(x => x.CartId == ID).FirstOrDefault();
             return result;
@@ -60,6 +60,11 @@ namespace BalikProjesi.Services
         {
             var result = db.Find(filteredFishBox).ToList();
             return result;
+        }
+        public long GetDocumentCount()
+        {
+            long docCount = db.CountDocuments(FilterDefinition<FishBox>.Empty);
+            return docCount;
         }
 
         public bool UpdateCardInfo(FishBox fishbox)

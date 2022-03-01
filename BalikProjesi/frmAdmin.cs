@@ -16,7 +16,6 @@ namespace BalikProjesi
         {
             InitializeComponent();
         }
-
         private void Kapat(object sender, FormClosingEventArgs e)
         {
             Form1 frm1 = new Form1();
@@ -34,6 +33,7 @@ namespace BalikProjesi
             rprController.Show();
             rprController.Dock = DockStyle.Fill;
         }
+
 
         private void btnSave_Click(object sender, EventArgs e)
         {

@@ -31,9 +31,9 @@ namespace BalikProjesi.Services
 
         }
 
-        public List<Carts> Get()
+        public List<Carts> Get(int page, int pageSize = 15)
         {
-            var result = db.Find(x => true).ToList();
+            var result = db.Find(x => true).Skip((page - 1) * pageSize).Limit(pageSize).ToList(); ;
             return result;
         }
         public Carts GetByCardID(string CardId)
@@ -70,6 +70,11 @@ namespace BalikProjesi.Services
             }
 
             return cardName.ToString();
+        }
+        public long GetDocumentCount()
+        {
+            long docCount = db.CountDocuments(FilterDefinition<Carts>.Empty);
+            return docCount;
         }
         public bool Update(Carts card)
         {

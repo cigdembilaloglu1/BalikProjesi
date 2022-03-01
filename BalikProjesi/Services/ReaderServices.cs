@@ -34,6 +34,36 @@ namespace BalikProjesi.Services
         }
 
         #region Public Methods
+        public async Task<string> GetTagId(string com = "COM5")
+        {
+            try
+            {
+                openPort(com);
+
+
+                _continue = true;
+
+                while (_continue)
+                {
+
+                    status = 0;
+                    ReadTagMemoryCmd("TID");
+
+                    await Task.Delay(1000);
+                }
+
+                closePort();
+                return tagID;
+            }
+            catch (Exception)
+            {
+                closePort();
+                return null;
+            }
+
+
+        }
+
         public async Task WriteTagIdAndTypeToTextboxAsync(TextBox tagIdTextbox, TextBox tagTypeTextbox, string com = "COM5")
         {
             try
@@ -67,11 +97,6 @@ namespace BalikProjesi.Services
 
             closePort();
 
-        }
-
-        internal Task WriteTagIdToTextboxAsync(Label label2)
-        {
-            throw new NotImplementedException();
         }
 
         public async Task WriteTagIdToTextboxAsync(TextBox tagIdTextbox, string com = "COM5")
@@ -321,23 +346,5 @@ namespace BalikProjesi.Services
         }
 
         #endregion
-
-        private void InitializeComponent()
-        {
-            this.SuspendLayout();
-            // 
-            // ReaderServices
-            // 
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Name = "ReaderServices";
-            this.Load += new System.EventHandler(this.ReaderServices_Load);
-            this.ResumeLayout(false);
-
-        }
-
-        private void ReaderServices_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

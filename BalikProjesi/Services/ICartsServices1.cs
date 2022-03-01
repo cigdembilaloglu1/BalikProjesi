@@ -11,9 +11,10 @@ namespace BalikProjesi.Services
         bool CheckUser(string Cname);
         bool Create(Carts Data);
         bool Delete(string cardID);
-        List<Carts> Get();
+        List<Carts> Get(int page, int pageSize = 15);
         Carts GetByCardCode(string cardcode);
         Carts GetByCardID(string CardId);
+        long GetDocumentCount();
         List<Carts> GetFilteredCards(FilterDefinition<Carts> filteredCards);
         bool Update(Carts card);
     }

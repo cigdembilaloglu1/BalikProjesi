@@ -10,9 +10,10 @@ namespace BalikProjesi.Services
         bool CheckFBox(string Fbcode);
         bool Create(FishBox fishBox);
         bool Delete(string Fcode);
-        List<FishBox> Get();
-        FishBox Get(string ID);
-        FishBox GetByCardID(string ID);
+        List<FishBox> Get(int page, int pageSize = 15);
+        FishBox GetById(string ID);
+        FishBox GetByCardCode(string ID);
+        long GetDocumentCount();
         List<FishBox> GetFilteredFishBox(FilterDefinition<FishBox> filteredFishBox);
         bool Update(FishBox fishBox);
         bool UpdateCardInfo(FishBox fishbox);

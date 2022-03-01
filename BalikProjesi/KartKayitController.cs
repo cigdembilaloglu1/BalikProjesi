@@ -20,7 +20,10 @@ namespace BalikProjesi
         private string CardID = "";
         private readonly ReaderServices _readerServices;
         private readonly IPersonelServices _personelService;
-        private readonly Services.IFishBoxServices _fboxService;
+        private readonly IFishBoxServices _fboxService;
+        private long CardCount;
+        private int currentPage;
+        private long lastPage;
 
         public KartKayitController()
         {
@@ -34,6 +37,16 @@ namespace BalikProjesi
             cbCardType.Items.Add(InputEnums.Fileto);
             cbCardType.Items.Add(InputEnums.Kontrol);
             cbCardType.SelectedIndex = 1;
+            CardCount = _cartService.GetDocumentCount();
+            currentPage = 1;
+            lastPage = DivideRoundingUp(CardCount, 15);
+            lbPagination.Text = currentPage + "/" + lastPage;
+
+            int maxWidthSize = Screen.PrimaryScreen.Bounds.Width;
+            listView1.MaximumSize = new Size(maxWidthSize - 10, 282);
+            listView1.MaximumSize = new Size(0, 282);
+
+            lbDocumentCount.Text = InputEnums.ToplamKayıt + CardCount;
         }
         public void liste()
         {
@@ -43,7 +56,7 @@ namespace BalikProjesi
             {
                 listView1.Items.Clear();
             }
-            var dt = _cartService.Get();
+            var dt = _cartService.Get(currentPage);
             foreach (var item in dt)
             {
                 CartAd = item.CartName;
@@ -135,7 +148,7 @@ namespace BalikProjesi
                         if (chkcard != null)
                         {
                             //Okunan kartı her bir collectionda sorguluyoruz
-                            var chkfb = _fboxService.GetByCardID(CardID);
+                            var chkfb = _fboxService.GetByCardCode(CardID);
                             var chkfillet = _personelService.GetFilletPersonnelByCardId(CardID);
                             var chkkontrol = _personelService.GetControlPersonnelByCardId(CardID);
                             //okunan kart hangi collectiondaysa o kısmı güncelliyoruz
@@ -243,6 +256,8 @@ namespace BalikProjesi
                 if (result)
                 {
                     MessageBox.Show(WarningEnums.CreateSuccess);
+                    CardCount++;
+                    lbDocumentCount.Text = InputEnums.ToplamKayıt + CardCount;
                 }
                 else
                 {
@@ -318,6 +333,8 @@ namespace BalikProjesi
                 if (result)
                 {
                     MessageBox.Show(WarningEnums.DeleteSuccess);
+                    CardCount--;
+                    lbDocumentCount.Text = InputEnums.ToplamKayıt + CardCount;
                 }
                 else
                 {
@@ -337,7 +354,7 @@ namespace BalikProjesi
                         if (chkcard != null)
                         {
                             
-                            var chkfb = _fboxService.GetByCardID(CardID);
+                            var chkfb = _fboxService.GetByCardCode(CardID);
                             var chkfillet = _personelService.GetFilletPersonnelByCardId(CardID);
                             var chkkontrol = _personelService.GetControlPersonnelByCardId(CardID);
                             //Okunan kartı her bir collectionda sorguluyoruz ve eşleşen kayıttaki kart bilgilerini siliyoruz.eğer bulunmaz ise sadece kartı siliyoruz.
@@ -534,6 +551,49 @@ namespace BalikProjesi
 
             lbCardCode.Text = "";
         }
+
+        private void btnPrev_Click(object sender, EventArgs e)
+        {
+            if (currentPage != 1)
+            {
+                currentPage--;
+                lbPagination.Text = currentPage + "/" + lastPage;
+                liste();
+            }
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            if (currentPage != lastPage)
+            {
+                currentPage++;
+                lbPagination.Text = currentPage + "/" + lastPage;
+                liste();
+            }
+        }
+
+        public static long DivideRoundingUp(long x, long y)
+        {
+            long s;
+
+            if (x > y)
+            {
+                long a = x % y;
+                x -= a;
+
+                if (a != 0)
+                    s = (x / y) + 1;
+                else
+                    s = (x / y);
+
+                return s;
+            }
+            else
+            {
+                return 1;
+            }
+        }
+
     }
 }
 
