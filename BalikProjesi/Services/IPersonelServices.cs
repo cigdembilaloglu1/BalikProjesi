@@ -21,6 +21,7 @@ namespace BalikProjesi.Services
         List<Personel> GetFilteredFillet(FilterDefinition<Personel> filteredPersonel);
         List<Personel> GetFilteredPersonal(FilterDefinition<Personel> filteredPersonel);
         Personel GetPersonalByCardCode(string cardCode);
+        Personel GetPersonnelByCardId(Carts card);        
         bool PCardCodeExist(string code);
         bool Update(Personel personel, string perstype);
         bool UpdateControllerCardInfo(Personel personel);

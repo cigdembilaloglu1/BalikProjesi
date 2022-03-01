@@ -120,6 +120,26 @@ namespace BalikProjesi.Services
 
             return result;
         }
+        public Personel GetPersonnelByCardId(Carts card)
+        {
+            
+            if (card.CartType==InputEnums.Fileto)
+            {
+                var result = fdb.Find(x => x.CartId == card.Id).FirstOrDefault();
+                return result;
+            }
+            else if (card.CartType==InputEnums.Kontrol)
+            {
+                var result = cdb.Find(x => x.CartId == card.Id).FirstOrDefault();
+                return result;
+            }
+            else
+            {
+                return null;//Kasa kartı veya kayıtlı olmayan bir kart okutulmuştur.
+            }
+            
+            
+        }
         public Personel GetFilletPersonnelByCardId(string CardID)
         {
             var result = fdb.Find(x => x.CartId == CardID).FirstOrDefault();
