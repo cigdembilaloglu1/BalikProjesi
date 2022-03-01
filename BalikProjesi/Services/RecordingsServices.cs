@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BalikProjesi.Services
 {
-    public class RecordingsServices
+    public class RecordingsServices : IRecordingsServices
     {
         public readonly IMongoCollection<Recordings> db;
 
@@ -27,7 +27,7 @@ namespace BalikProjesi.Services
         //    EklenecekVeri.Knife = Knifee;
         //    EklenecekVeri.Reaping = Reapingg;
         //    db.InsertOne(EklenecekVeri);
-      
+
         //}
 
         public Recordings Get(string _id)
@@ -40,6 +40,111 @@ namespace BalikProjesi.Services
             var result = db.Find(x => true).ToList();
             return result;
         }
+        public bool Create(Recordings Record)
+        {
+            try
+            {
+
+                db.InsertOne(Record);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return true;
+        }
+
+        public bool FilletClosing(Recordings Record)
+        {
+            var Filter = Builders<Recordings>.Filter.Eq(x => x.Id, Record.Id);
+            var Update = Builders<Recordings>.Update
+                    .Set(x => x.FilletClosingDate, Record.FilletClosingDate);
+            try
+            {
+                db.UpdateOne(Filter, Update);
+                return true;
+
+            }
+            catch (Exception)
+            {
+                return false;
+                throw;
+            }
+                    
+        }
+        
+        public bool CheckFilletClosing(Recordings Record)
+        {
+            if (Record.FilletClosingDate!=DateTime.MinValue)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+            
+        }
+        public bool ControllerOpening(Recordings Record)
+        {
+            var result=CheckFilletClosing(Record);
+            if (result)
+            {
+                var Filter = Builders<Recordings>.Filter.Eq(x => x.Id, Record.Id);
+                var Update = Builders<Recordings>.Update
+                        .Set(x => x.ControllerCardId, Record.ControllerCardId)
+                        .Set(x => x.ControllerID, Record.ControllerID)
+                        .Set(x => x.ControllerOpeningDate, Record.ControllerOpeningDate);
+                try
+                {
+                    db.UpdateOne(Filter, Update);
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                    throw;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        
+        public bool ControllerClosing(Recordings Record)
+        {
+            var result = CheckFilletClosing(Record);
+            if (result)
+            {
+                var Filter = Builders<Recordings>.Filter.Eq(x => x.Id, Record.Id);
+                var Update = Builders<Recordings>.Update                        
+                        .Set(x => x.ControllerClosingDate, Record.ControllerClosingDate)
+                        .Set(x=>x.FishBone,Record.FishBone)
+                        .Set(x => x.Defo, Record.Defo)
+                        .Set(x => x.Knife, Record.Knife)
+                        .Set(x => x.OdLekesi, Record.OdLekesi);
+                try
+                {
+                    db.UpdateOne(Filter, Update);
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                    throw;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
 
     }
