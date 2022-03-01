@@ -63,4 +63,17 @@ namespace BalikProjesi.Enums
         #endregion
     
     }
+    public static class RecordingEnums
+    {
+        
+        public const string CardReadFailed = "KART OKUNAMADI. LÜTFEN KARTINIZI TEKRAR OKUTUNUZ.";
+        public const string ReadFishbox = "LÜTFEN KASA KARTININIZI OKUTUNUZ.";
+        public const string ReadFishboxSuccess = "KASA KARTI OKUNMASI BAŞARILI.";
+        public const string ReadFillet = "LÜTFEN FİLETO PERSONELİ KARTININIZI OKUTUNUZ.";
+        public const string ReadFilletSuccess = "LÜTFEN FİLETO PERSONELİ KARTININIZI OKUTUNUZ.";
+        public const string ReadController = "LÜTFEN KONTROL PERSONELİ KARTININIZI OKUTUNUZ.";
+        public const string ReadControllerSuccess = "LÜTFEN KONTROL PERSONELİ KARTININIZI OKUTUNUZ.";        
+        public const string RecordOpeningPersonnel = "LÜTFEN KAYDI AÇAN PERSONELİN KARTININIZI OKUTUNUZ.";
+
+    }
 }
