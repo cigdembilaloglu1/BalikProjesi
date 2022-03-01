@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace BalikProjesi
 {
-    public partial class KontrolKabul : Form
+    public partial class KontolExit : Form
     {
-        public KontrolKabul()
+        public KontolExit()
         {
             InitializeComponent();
         }

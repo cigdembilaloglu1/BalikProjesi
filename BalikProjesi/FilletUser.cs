@@ -24,8 +24,8 @@ namespace BalikProjesi
 
         private void button1_Click(object sender, EventArgs e)
         {
-            FiletoTeslim Fteslim = new FiletoTeslim();
-            Fteslim.Show();
+            FiletoStart Fstart = new FiletoStart();
+            Fstart.Show();
             this.Hide();
         }
 
@@ -36,7 +36,7 @@ namespace BalikProjesi
 
         private void button2_Click(object sender, EventArgs e)
         {
-            FiletoKabul Fkabul = new FiletoKabul();
+            FiletoExit Fkabul = new FiletoExit();
             Fkabul.Show();
             this.Hide();
         }

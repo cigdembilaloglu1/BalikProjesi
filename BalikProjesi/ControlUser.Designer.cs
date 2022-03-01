@@ -85,7 +85,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(245, 258);
             this.button2.TabIndex = 0;
-            this.button2.Text = "KONTROL KABUL";
+            this.button2.Text = "KONTROL\r\nKAYDINI\r\nBİTİR\r\n";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -100,7 +100,7 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 264F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(314, 264);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
@@ -114,7 +114,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(246, 258);
             this.button1.TabIndex = 0;
-            this.button1.Text = "KONTROL TESLİM";
+            this.button1.Text = "KONTROL\r\nKAYDINI\r\nBAŞLAT\r\n";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
