@@ -58,10 +58,15 @@ namespace BalikProjesi.Services
         }
         public Recordings CheckRecordValidByFishboxID(string ID)
         {
-            var result = db.Find(x => x.ControllerClosingDate == DateTime.MinValue).FirstOrDefault();
+            var result = db.Find(x => x.FishboxID == ID && x.ControllerClosingDate == DateTime.MinValue).FirstOrDefault();
             return result;
         }
-
+        public Recordings CheckPersonelValidByPeronelID(string ID) 
+        {
+         var result=db.Find(x => x.FilletID==ID && x.FilletOpeningDate == DateTime.MinValue).FirstOrDefault();
+            return result;
+         
+        }
         public bool FilletClosing(Recordings Record)
         {
             var Filter = Builders<Recordings>.Filter.Eq(x => x.Id, Record.Id);

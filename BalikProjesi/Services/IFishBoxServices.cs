@@ -17,5 +17,6 @@ namespace BalikProjesi.Services
         List<FishBox> GetFilteredFishBox(FilterDefinition<FishBox> filteredFishBox);
         bool Update(FishBox fishBox);
         bool UpdateCardInfo(FishBox fishbox);
+        object CheckRecordValidByFishboxID(string fishboxID);
     }
 }
