@@ -223,6 +223,7 @@
     <Compile Include="KontolStart.Designer.cs">
       <DependentUpon>KontolStart.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\InfoPanellReturnModel.cs" />
     <Compile Include="Models\ReaderResponseModel.cs" />
     <Compile Include="PersonlKayitController.cs">
       <SubType>UserControl</SubType>

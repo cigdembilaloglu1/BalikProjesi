@@ -58,12 +58,14 @@ namespace BalikProjesi.Services
         }
         public Recordings CheckRecordValidByFishboxID(string ID)
         {
-            var result = db.Find(x => x.FishboxID == ID && x.ControllerClosingDate == DateTime.MinValue).FirstOrDefault();
+            DateTime MinDate = DateTime.MinValue.AddYears(10);
+            var result = db.Find(x => x.FishboxID == ID && x.ControllerClosingDate < MinDate).FirstOrDefault();
             return result;
         }
         public Recordings CheckPersonelValidByPeronelID(string ID) 
         {
-         var result=db.Find(x => x.FilletID==ID && x.FilletOpeningDate == DateTime.MinValue).FirstOrDefault();
+            DateTime MinDate = DateTime.MinValue.AddYears(10);
+            var result=db.Find(x => x.FilletID==ID && x.FilletOpeningDate < MinDate).FirstOrDefault();
             return result;
          
         }

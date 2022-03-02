@@ -15,6 +15,9 @@ namespace BalikProjesi.Entities
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
         public DateTime CreateDate { get; set; }
+        public bool FilletStatus { get; set; }
+        public bool ControlStatus { get; set; }
+        public bool FishboxStatus { get; set; }
         public string FishboxID { get; set; }
         public string FilletID { get; set; }
         public string FilletCardId { get; set; }

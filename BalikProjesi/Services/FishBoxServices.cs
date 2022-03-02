@@ -137,9 +137,9 @@ namespace BalikProjesi.Services
             }
         }
 
-        public object CheckRecordValidByFishboxID(string fishboxID)
+        public Recordings CheckRecordValidByFishboxID(string fishboxID)
         {
-            throw new NotImplementedException();
+            return db.Find(x=>x.FishBoxCode == fishboxID && x.)
         }
     }
 }

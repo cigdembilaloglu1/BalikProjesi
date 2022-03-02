@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using BalikProjesi.Entities;
 using BalikProjesi.Services;
 using BalikProjesi.Enums;
+using BalikProjesi.Models;
 
 namespace BalikProjesi
 {
@@ -36,14 +37,24 @@ namespace BalikProjesi
 
         }
 
-        void FishBoxInfo()
+        public InfoPanellReturnModel FishBoxInfo()
         {
+            var ReturnModel = new InfoPanellReturnModel();
+            return ReturnModel;
              FishboxID = "";
 
             var result = _fishBoxServices.CheckRecordValidByFishboxID(FishboxID);
 
             if (result != null)
             {
+                ReturnModel.Kayitlar = result;
+
+
+                // Kayıt Kapatılmamış bu nedenle
+                // Kasa Kodu, Kaydı Açık kalan Personel Bilgisi 
+                // ve Kapatma yazısı ekranda belirmeli. 
+
+
                 // FishboxID = result.Eq(FishboxID);
                //   FishboxID = result.Equals(ID);
 
