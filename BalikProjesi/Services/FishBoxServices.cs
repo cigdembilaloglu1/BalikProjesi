@@ -139,7 +139,20 @@ namespace BalikProjesi.Services
 
         public Recordings CheckRecordValidByFishboxID(string fishboxID)
         {
-            return db.Find(x=>x.FishBoxCode == fishboxID && x.)
+            //return db.Find(x=>x.FishBoxCode == fishboxID && x.)
+            return null;
+        }
+
+        public bool UpdateCartId(string OldCart, string NewCart)
+        {
+            try
+            {
+                var Filter = Builders<FishBox>.Filter.Eq(x=>x.CartCode, OldCart);
+                var Update = Builders<FishBox>.Update.Set(x => x.CartCode, NewCart);
+                db.UpdateOne(Filter, Update);
+                return true;
+            }
+            catch { return false; }
         }
     }
 }

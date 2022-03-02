@@ -41,7 +41,7 @@
             this.Delete = new System.Windows.Forms.ToolStripMenuItem();
             this.label3 = new System.Windows.Forms.Label();
             this.txtKartid = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.AddorUpdateBtn = new System.Windows.Forms.Button();
             this.btnCardRead = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -181,19 +181,19 @@
             this.txtKartid.TabIndex = 8;
             this.txtKartid.TextChanged += new System.EventHandler(this.txtKartid_TextChanged);
             // 
-            // button2
+            // AddorUpdateBtn
             // 
-            this.button2.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Font = new System.Drawing.Font("Bahnschrift SemiBold", 15.75F, System.Drawing.FontStyle.Bold);
-            this.button2.ForeColor = System.Drawing.SystemColors.Control;
-            this.button2.Location = new System.Drawing.Point(3, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(230, 77);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "KAYDET";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.AddorUpdateBtn.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.AddorUpdateBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AddorUpdateBtn.Font = new System.Drawing.Font("Bahnschrift SemiBold", 15.75F, System.Drawing.FontStyle.Bold);
+            this.AddorUpdateBtn.ForeColor = System.Drawing.SystemColors.Control;
+            this.AddorUpdateBtn.Location = new System.Drawing.Point(3, 3);
+            this.AddorUpdateBtn.Name = "AddorUpdateBtn";
+            this.AddorUpdateBtn.Size = new System.Drawing.Size(230, 77);
+            this.AddorUpdateBtn.TabIndex = 12;
+            this.AddorUpdateBtn.Text = "KAYDET";
+            this.AddorUpdateBtn.UseVisualStyleBackColor = false;
+            this.AddorUpdateBtn.Click += new System.EventHandler(this.AddorUpdateBtnClick);
             // 
             // btnCardRead
             // 
@@ -321,7 +321,7 @@
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.button2, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.AddorUpdateBtn, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.button1, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel5, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -528,7 +528,7 @@
         private System.Windows.Forms.ColumnHeader KasaUUID;
         private System.Windows.Forms.ColumnHeader KasaKod;
         private System.Windows.Forms.ColumnHeader KasaTip;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button AddorUpdateBtn;
         private System.Windows.Forms.Button btnCardRead;
         private System.Windows.Forms.ColumnHeader KasaID;
         private System.Windows.Forms.Button button1;

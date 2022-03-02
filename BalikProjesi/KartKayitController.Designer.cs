@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(KartKayitController));
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.AddOrUpdateBtn = new System.Windows.Forms.Button();
             this.KartKoduTb = new System.Windows.Forms.TextBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.KartKod = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -41,7 +41,7 @@
             this.KartUUID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.DeleteMenuStrip = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnUpdate = new System.Windows.Forms.Button();
+            this.ClearButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.lbPagination = new System.Windows.Forms.Label();
@@ -101,19 +101,19 @@
             this.label4.TabIndex = 1;
             this.label4.Text = "Kart Tipi:";
             // 
-            // button1
+            // AddOrUpdateBtn
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Font = new System.Drawing.Font("Bahnschrift SemiBold", 15.75F, System.Drawing.FontStyle.Bold);
-            this.button1.ForeColor = System.Drawing.SystemColors.Control;
-            this.button1.Location = new System.Drawing.Point(3, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(291, 102);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "KAYDET";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.AddOrUpdateBtn.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.AddOrUpdateBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AddOrUpdateBtn.Font = new System.Drawing.Font("Bahnschrift SemiBold", 15.75F, System.Drawing.FontStyle.Bold);
+            this.AddOrUpdateBtn.ForeColor = System.Drawing.SystemColors.Control;
+            this.AddOrUpdateBtn.Location = new System.Drawing.Point(3, 3);
+            this.AddOrUpdateBtn.Name = "AddOrUpdateBtn";
+            this.AddOrUpdateBtn.Size = new System.Drawing.Size(291, 102);
+            this.AddOrUpdateBtn.TabIndex = 4;
+            this.AddOrUpdateBtn.Text = "KAYDET";
+            this.AddOrUpdateBtn.UseVisualStyleBackColor = false;
+            this.AddOrUpdateBtn.Click += new System.EventHandler(this.AddorUpdateBtn_Click);
             // 
             // KartKoduTb
             // 
@@ -122,7 +122,6 @@
             this.KartKoduTb.Name = "KartKoduTb";
             this.KartKoduTb.Size = new System.Drawing.Size(364, 20);
             this.KartKoduTb.TabIndex = 9;
-            this.KartKoduTb.TextChanged += new System.EventHandler(this.KartKoduTb_TextChanged);
             // 
             // listView1
             // 
@@ -147,7 +146,7 @@
             this.listView1.TabIndex = 12;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.Click += new System.EventHandler(this.listView1_Click);
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged_1);
             // 
             // KartKod
             // 
@@ -185,19 +184,19 @@
             this.DeleteMenuStrip.Text = "KAYDI SİL";
             this.DeleteMenuStrip.Click += new System.EventHandler(this.DeleteMenuStrip_Click);
             // 
-            // btnUpdate
+            // ClearButton
             // 
-            this.btnUpdate.BackColor = System.Drawing.Color.MediumSeaGreen;
-            this.btnUpdate.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnUpdate.Font = new System.Drawing.Font("Bahnschrift SemiBold", 15.75F, System.Drawing.FontStyle.Bold);
-            this.btnUpdate.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnUpdate.Location = new System.Drawing.Point(300, 3);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(291, 102);
-            this.btnUpdate.TabIndex = 13;
-            this.btnUpdate.Text = "TEMİZLE";
-            this.btnUpdate.UseVisualStyleBackColor = false;
-            this.btnUpdate.Click += new System.EventHandler(this.button2_Click);
+            this.ClearButton.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.ClearButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ClearButton.Font = new System.Drawing.Font("Bahnschrift SemiBold", 15.75F, System.Drawing.FontStyle.Bold);
+            this.ClearButton.ForeColor = System.Drawing.SystemColors.Control;
+            this.ClearButton.Location = new System.Drawing.Point(300, 3);
+            this.ClearButton.Name = "ClearButton";
+            this.ClearButton.Size = new System.Drawing.Size(291, 102);
+            this.ClearButton.TabIndex = 13;
+            this.ClearButton.Text = "TEMİZLE";
+            this.ClearButton.UseVisualStyleBackColor = false;
+            this.ClearButton.Click += new System.EventHandler(this.TemizleBtnClick);
             // 
             // tableLayoutPanel1
             // 
@@ -323,8 +322,8 @@
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.button1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.btnUpdate, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.AddOrUpdateBtn, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.ClearButton, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel8, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(603, 3);
@@ -547,14 +546,14 @@
         #endregion
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button AddOrUpdateBtn;
         private System.Windows.Forms.TextBox KartKoduTb;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ColumnHeader KartAd;
         private System.Windows.Forms.ColumnHeader KartKod;
         private System.Windows.Forms.ColumnHeader KartTip;
         private System.Windows.Forms.ColumnHeader KartUUID;
-        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Button ClearButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button bntCardReader;

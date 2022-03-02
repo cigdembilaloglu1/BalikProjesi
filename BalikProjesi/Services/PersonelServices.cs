@@ -293,7 +293,21 @@ namespace BalikProjesi.Services
                 return false;
             }
         }
-
+        public bool ChangeCardId(string OldCard, string NewCard)
+        {
+            try
+            {
+                var Filter = Builders<Personel>.Filter.Eq(x => x.CartCode, OldCard);
+                var Update = Builders<Personel>.Update.Set(x => x.CartCode, NewCard);
+                cdb.UpdateOne(Filter, Update);
+                fdb.UpdateOne(Filter, Update);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         public object CheckPersonelValidByPeronelID(string filletID)
         {
             throw new NotImplementedException();

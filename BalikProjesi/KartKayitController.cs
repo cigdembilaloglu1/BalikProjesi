@@ -17,20 +17,23 @@ namespace BalikProjesi
     public partial class KartKayitController : UserControl
     {
         private readonly ICartsServices1 _cartService;
-        private string CardID = "";
+        private string CardID = String.Empty;
         private readonly ReaderServices _readerServices;
         private readonly IPersonelServices _personelService;
         private readonly IFishBoxServices _fboxService;
+        private readonly IRecordingsServices _recordingsService;
         private long CardCount;
         private int currentPage;
         private long lastPage;
 
+        private bool NewRecord = true;
         public KartKayitController()
         {
             InitializeComponent();
+            _recordingsService = new RecordingsServices();
             _cartService = new CartsServices();
             _readerServices = new ReaderServices();
-            CardID = "";
+            CardID = String.Empty;
             _personelService = new PersonelServices();
             _fboxService = new FishBoxServices();
             cbCardType.Items.Add(InputEnums.Kasa);
@@ -48,6 +51,8 @@ namespace BalikProjesi
 
             lbDocumentCount.Text = InputEnums.ToplamKayıt + CardCount;
         }
+
+        
         public void liste()
         {
             
@@ -71,181 +76,33 @@ namespace BalikProjesi
             KartKoduTb.Clear();
             cbCardType.SelectedIndex = 0;
             CardID = "";
-            button1.Text = "KAYDET";
+            AddOrUpdateBtn.Text = "KAYDET";
         }
-        public void listget(Carts card = null)
+
+        #region FIXED METHODS
+
+        private void BtnTextChanger(bool RecordType)
         {
-            if (card != null)
+            NewRecord = RecordType;
+            if (RecordType)
             {
-                button1.Text = "GÜNCELLE";
-                KartKoduTb.Text = card.CartCode;
-
-                if (card.CartType == InputEnums.Kasa)
-                    cbCardType.SelectedIndex = 0;
-                else if (card.CartType == InputEnums.Fileto)
-                    cbCardType.SelectedIndex = 1;
-                else if (card.CartType == InputEnums.Kontrol)
-                    cbCardType.SelectedIndex = 2;
-
-                CardID = card.Id;
+                AddOrUpdateBtn.Text = "KAYDET";
+                CardID = string.Empty;
             }
             else
             {
-                button1.Text = "GÜNCELLE";
-                if (listView1.SelectedItems.Count != 0)
-                {
-                    ListViewItem itm = listView1.SelectedItems[0];
-                    CardID = itm.SubItems[3].Text;
-                    KartKoduTb.Text = itm.SubItems[1].Text;
-
-                    if (itm.SubItems[2].Text == InputEnums.Kasa)
-                        cbCardType.SelectedIndex = 0;
-                    else if (itm.SubItems[2].Text == InputEnums.Fileto)
-                        cbCardType.SelectedIndex = 1;
-                    else if (itm.SubItems[2].Text == InputEnums.Kontrol)
-                        cbCardType.SelectedIndex = 2;
-
-                    
-
-
-                }
+                AddOrUpdateBtn.Text = "GÜNCELLE";
             }
         }
-        public void dataupdate()
+        private void Create()
         {
-            
-            string CartCode = KartKoduTb.Text.Trim();
-            string CartType = cbCardType.Text.Trim();
-            void updateOnlyCard()//Kart güncellemesi
-            {
-                Entities.Carts ct = new Carts();
-                ct.CartCode = CartCode;
-                ct.CartType = CartType;
-                ct.Id = CardID;
-                ct.UpdateDate = DateTime.Now;
-                bool chk = _cartService.Update(ct);
-                if (chk == true)
-                {
-                    MessageBox.Show(WarningEnums.UpdateSuccess);
-                }
-                else
-                {
-                    MessageBox.Show(WarningEnums.UpdateFailed);
-                }
-            }
-            
-            //Kart seçildise veya okunduysa çalışır
-            if (!string.IsNullOrEmpty(CardID))
-            {
-                //Veri kaybı için bilgilendirme
-                if (MessageBox.Show(WarningEnums.DataLoss, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    //Veri kaybı için bilgilendirme
-                    if (MessageBox.Show(WarningEnums.DataLossConfirm, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        //Okunan kartın bilgilerini getiriyoruz
-                        var chkcard = _cartService.GetByCardID(CardID);
-                        if (chkcard != null)
-                        {
-                            //Okunan kartı her bir collectionda sorguluyoruz
-                            var chkfb = _fboxService.GetByCardCode(CardID);
-                            var chkfillet = _personelService.GetFilletPersonnelByCardId(CardID);
-                            var chkkontrol = _personelService.GetControlPersonnelByCardId(CardID);
-                            //okunan kart hangi collectiondaysa o kısmı güncelliyoruz
-                            void updatecardinfo()//Okunan kartı her bir collectionda sorguluyoruz ve eşleşen kayıttaki kart bilgilerini siliyoruz.eğer bulunmaz ise sadece kartı siliyoruz.
-                            {
-                                if (chkfb != null)
-                                {
-                                    if (MessageBox.Show(WarningEnums.CardMatchedAnotherRecord + WarningEnums.Space + WarningEnums.CardMatchedAnotherRecordAskUpdate, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                                    {
-                                        chkfb.CartId = "";
-                                        chkfb.CartCode = "";
-                                        var result = _fboxService.UpdateCardInfo(chkfb);
-                                        if (result)
-                                        {
-                                            updateOnlyCard();
-                                            MessageBox.Show(WarningEnums.MacthedRecordUpdateSuccess);
-                                        }
-                                    }
-                                    else
-                                    {
-                                        updateOnlyCard();
-                                    }
-
-                                }
-                                else if (chkfillet != null)
-                                {
-                                    if (MessageBox.Show(WarningEnums.CardMatchedAnotherRecord + WarningEnums.Space + WarningEnums.CardMatchedAnotherRecordAskUpdate, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                                    {
-                                        chkfillet.CartId = "";
-                                        chkfillet.CartCode = "";
-                                        var result = _personelService.UpdateFilletCardInfo(chkfillet);
-                                        if (result)
-                                        {
-                                            updateOnlyCard();
-                                            MessageBox.Show(WarningEnums.MacthedRecordUpdateSuccess);
-                                        }
-
-                                    }
-                                }
-                                else if (chkkontrol != null)
-                                {
-                                    if (MessageBox.Show(WarningEnums.CardMatchedAnotherRecord + WarningEnums.Space + WarningEnums.CardMatchedAnotherRecordAskUpdate, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                                    {
-                                        chkkontrol.CartId = "";
-                                        chkkontrol.CartCode = "";
-                                        var result = _personelService.UpdateControllerCardInfo(chkkontrol);
-                                        if (result)
-                                        {
-                                            updateOnlyCard();
-                                            MessageBox.Show(WarningEnums.MacthedRecordUpdateSuccess);
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    updateOnlyCard();
-                                }
-                            }
-                            if (CartType==InputEnums.Kontrol)
-                            {
-                                updatecardinfo();
-                            }
-                            else if (CartType==InputEnums.Fileto)
-                            {
-                                updatecardinfo();
-                            }
-                            else if (CartType==InputEnums.Kasa)
-                            {
-                                updatecardinfo();
-                            }
-                            
-                        }
-                        else
-                        {
-                            updateOnlyCard();
-                        }
-                    }
-                }
-            }
-            else
-            {
-                
-            }
-            liste();
-
-
-        }
-        void Create()
-        {
-            bool check = true;
-            if (string.IsNullOrEmpty(KartKoduTb.Text))
+            BtnTextChanger(true);
+            if (string.IsNullOrEmpty(KartKoduTb.Text.Trim()))
             {
                 lbCardCode.Text = WarningEnums.ThisFieldMustBeFilled;
                 KartKoduTb.Focus();
-                check = false;
             }
-            if (check)
+            else
             {
                 var result = _cartService.Create(new Carts
                 {
@@ -268,59 +125,195 @@ namespace BalikProjesi
             }
         }
 
-
-
-
-        private void button1_Click(object sender, EventArgs e)
+        private void listView1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            if (button1.Text=="KAYDET")
+            if (listView1.SelectedItems.Count > 0)
+            {
+                BtnTextChanger(false);
+
+                ListViewItem itm = listView1.SelectedItems[0];
+                CardID = itm.SubItems[3].Text;
+                KartKoduTb.Text = itm.SubItems[1].Text;
+
+                if (itm.SubItems[2].Text == InputEnums.Kasa)
+                    cbCardType.SelectedIndex = 0;
+                else if (itm.SubItems[2].Text == InputEnums.Fileto)
+                    cbCardType.SelectedIndex = 1;
+                else if (itm.SubItems[2].Text == InputEnums.Kontrol)
+                    cbCardType.SelectedIndex = 2;
+            }
+        }
+        private void TemizleBtnClick(object sender, EventArgs e)
+        {
+            BtnTextChanger(true);
+            liste();
+            lbCardCode.Text = String.Empty;
+        }
+
+        private void AddorUpdateBtn_Click(object sender, EventArgs e)
+        {
+            if (NewRecord)
             {
                 Create();
-
             }
-            else if(button1.Text=="GÜNCELLE")
+            else
             {
-                if (MessageBox.Show(WarningEnums.AskUpdate, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                DialogResult dr = new DialogResult();
+                dr = MessageBox.Show(WarningEnums.AskUpdate, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dr == DialogResult.Yes)
                 {
-                    dataupdate();
-                    liste();
+                    KayitGuncelle();
                 }
-                else
-                {
-                    liste();
-                }
-                
             }
-
         }
+
+        public void KayitGuncelle()
+        {
+            string OldCardCode = string.Empty;
+            string NewCardCode = string.Empty;
+            string NewCartType = string.Empty;
+            if (!string.IsNullOrEmpty(KartKoduTb.Text.Trim()))
+            {
+                NewCardCode = KartKoduTb.Text.Trim();
+                NewCartType = cbCardType.Text.Trim(); 
+                var OldCard = _cartService.GetByCardID(CardID);
+                OldCardCode = OldCard.CartCode;
+
+
+                OldCard.CartCode = NewCardCode;
+                OldCard.CartType = NewCartType;
+                var UpdateStatus = _cartService.Update(OldCard);
+                if (UpdateStatus)
+                {
+                    var PersonelUpdate = _personelService.ChangeCardId(OldCardCode, NewCardCode);
+                    if (!PersonelUpdate)
+                    {
+                        MessageBox.Show("Personel Kart Güncelleme Hatası", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    var FishboxUpdate = _fboxService.UpdateCartId(OldCardCode, NewCardCode);
+                    if (!FishboxUpdate)
+                    {
+                        MessageBox.Show("Kasa Kart Güncelleme Hatası", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    var RecordingUpdate = _recordingsService.ChangeCardId(OldCardCode, NewCardCode);
+                    if (!RecordingUpdate)
+                    {
+                        MessageBox.Show("Kayıt Kart Güncelleme Hatası", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+
+            }
+            BtnTextChanger(true);
+            liste();
+            lbCardCode.Text = String.Empty;
+        }
+
+
+        private void btnPrev_Click(object sender, EventArgs e)
+        {
+            if (currentPage != 1)
+            {
+                currentPage--;
+                lbPagination.Text = currentPage + "/" + lastPage;
+                liste();
+            }
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            if (currentPage != lastPage)
+            {
+                currentPage++;
+                lbPagination.Text = currentPage + "/" + lastPage;
+                liste();
+            }
+        }
+
+        public static long DivideRoundingUp(long x, long y)
+        {
+            long s;
+
+            if (x > y)
+            {
+                long a = x % y;
+                x -= a;
+
+                if (a != 0)
+                    s = (x / y) + 1;
+                else
+                    s = (x / y);
+
+                return s;
+            }
+            else
+            {
+                return 1;
+            }
+        }
+
+        #endregion
+
+
+
+
+
+
+
+
+        public void listget(Carts card = null)
+        {
+            if (card != null)
+            {
+                AddOrUpdateBtn.Text = "GÜNCELLE";
+                KartKoduTb.Text = card.CartCode;
+
+                if (card.CartType == InputEnums.Kasa)
+                    cbCardType.SelectedIndex = 0;
+                else if (card.CartType == InputEnums.Fileto)
+                    cbCardType.SelectedIndex = 1;
+                else if (card.CartType == InputEnums.Kontrol)
+                    cbCardType.SelectedIndex = 2;
+
+                CardID = card.Id;
+            }
+            else
+            {
+                AddOrUpdateBtn.Text = "GÜNCELLE";
+                if (listView1.SelectedItems.Count != 0)
+                {
+                    ListViewItem itm = listView1.SelectedItems[0];
+                    CardID = itm.SubItems[3].Text;
+                    KartKoduTb.Text = itm.SubItems[1].Text;
+
+                    if (itm.SubItems[2].Text == InputEnums.Kasa)
+                        cbCardType.SelectedIndex = 0;
+                    else if (itm.SubItems[2].Text == InputEnums.Fileto)
+                        cbCardType.SelectedIndex = 1;
+                    else if (itm.SubItems[2].Text == InputEnums.Kontrol)
+                        cbCardType.SelectedIndex = 2;
+
+                    
+
+
+                }
+            }
+        }
+       
+
+
+
+
+        
 
         private void KartKayitController_Load(object sender, EventArgs e)
         {
             liste();
 
         }
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            listget();
-        }
+     
+        
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            //dataupdate();
-            liste();
-            lbCardCode.Text = "";
-
-        }
-
-        private void listView1_Click(object sender, EventArgs e)
-        {
-            listget();
-        }
-
-        private void KartKayitController_Load_1(object sender, EventArgs e)
-        {
-            liste();
-        }
 
         private void DeleteMenuStrip_Click(object sender, EventArgs e)
         {
@@ -533,9 +526,143 @@ namespace BalikProjesi
             }
         }
 
+        
+
+      
+
+
+
+        #region Gereksiz METHODLAR
+
+        public void dataupdate()
+        {
+
+            string CartCode = KartKoduTb.Text.Trim();
+            string CartType = cbCardType.Text.Trim();
+            void updateOnlyCard()//Kart güncellemesi
+            {
+                Entities.Carts ct = new Carts();
+                ct.CartCode = CartCode;
+                ct.CartType = CartType;
+                ct.Id = CardID;
+                ct.UpdateDate = DateTime.Now;
+                bool chk = _cartService.Update(ct);
+                if (chk == true)
+                {
+                    MessageBox.Show(WarningEnums.UpdateSuccess);
+                }
+                else
+                {
+                    MessageBox.Show(WarningEnums.UpdateFailed);
+                }
+            }
+
+            //Kart seçildise veya okunduysa çalışır
+            if (!string.IsNullOrEmpty(CardID))
+            {
+                //Veri kaybı için bilgilendirme
+                if (MessageBox.Show(WarningEnums.DataLoss, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    //Veri kaybı için bilgilendirme
+                    if (MessageBox.Show(WarningEnums.DataLossConfirm, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        //Okunan kartın bilgilerini getiriyoruz
+                        var chkcard = _cartService.GetByCardID(CardID);
+                        if (chkcard != null)
+                        {
+                            //Okunan kartı her bir collectionda sorguluyoruz
+                            var chkfb = _fboxService.GetByCardCode(CardID);
+                            var chkfillet = _personelService.GetFilletPersonnelByCardId(CardID);
+                            var chkkontrol = _personelService.GetControlPersonnelByCardId(CardID);
+                            //okunan kart hangi collectiondaysa o kısmı güncelliyoruz
+                            void updatecardinfo()//Okunan kartı her bir collectionda sorguluyoruz ve eşleşen kayıttaki kart bilgilerini siliyoruz.eğer bulunmaz ise sadece kartı siliyoruz.
+                            {
+                                if (chkfb != null)
+                                {
+                                    if (MessageBox.Show(WarningEnums.CardMatchedAnotherRecord + WarningEnums.Space + WarningEnums.CardMatchedAnotherRecordAskUpdate, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    {
+                                        chkfb.CartId = "";
+                                        chkfb.CartCode = "";
+                                        var result = _fboxService.UpdateCardInfo(chkfb);
+                                        if (result)
+                                        {
+                                            updateOnlyCard();
+                                            MessageBox.Show(WarningEnums.MacthedRecordUpdateSuccess);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        updateOnlyCard();
+                                    }
+
+                                }
+                                else if (chkfillet != null)
+                                {
+                                    if (MessageBox.Show(WarningEnums.CardMatchedAnotherRecord + WarningEnums.Space + WarningEnums.CardMatchedAnotherRecordAskUpdate, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    {
+                                        chkfillet.CartId = "";
+                                        chkfillet.CartCode = "";
+                                        var result = _personelService.UpdateFilletCardInfo(chkfillet);
+                                        if (result)
+                                        {
+                                            updateOnlyCard();
+                                            MessageBox.Show(WarningEnums.MacthedRecordUpdateSuccess);
+                                        }
+
+                                    }
+                                }
+                                else if (chkkontrol != null)
+                                {
+                                    if (MessageBox.Show(WarningEnums.CardMatchedAnotherRecord + WarningEnums.Space + WarningEnums.CardMatchedAnotherRecordAskUpdate, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    {
+                                        chkkontrol.CartId = "";
+                                        chkkontrol.CartCode = "";
+                                        var result = _personelService.UpdateControllerCardInfo(chkkontrol);
+                                        if (result)
+                                        {
+                                            updateOnlyCard();
+                                            MessageBox.Show(WarningEnums.MacthedRecordUpdateSuccess);
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    updateOnlyCard();
+                                }
+                            }
+                            if (CartType == InputEnums.Kontrol)
+                            {
+                                updatecardinfo();
+                            }
+                            else if (CartType == InputEnums.Fileto)
+                            {
+                                updatecardinfo();
+                            }
+                            else if (CartType == InputEnums.Kasa)
+                            {
+                                updatecardinfo();
+                            }
+
+                        }
+                        else
+                        {
+                            updateOnlyCard();
+                        }
+                    }
+                }
+            }
+            else
+            {
+
+            }
+            liste();
+
+
+        }
+
         private void KartKoduTb_TextChanged(object sender, EventArgs e)
         {
-            
+
             string cardcodetxt = KartKoduTb.Text.Trim();
             var readCard = _cartService.GetByCardCode(cardcodetxt);
 
@@ -546,54 +673,12 @@ namespace BalikProjesi
             else
             {
                 cbCardType.SelectedIndex = 0;
-                button1.Text = "KAYDET";
+                AddOrUpdateBtn.Text = "KAYDET";
             }
 
             lbCardCode.Text = "";
         }
-
-        private void btnPrev_Click(object sender, EventArgs e)
-        {
-            if (currentPage != 1)
-            {
-                currentPage--;
-                lbPagination.Text = currentPage + "/" + lastPage;
-                liste();
-            }
-        }
-
-        private void btnNext_Click(object sender, EventArgs e)
-        {
-            if (currentPage != lastPage)
-            {
-                currentPage++;
-                lbPagination.Text = currentPage + "/" + lastPage;
-                liste();
-            }
-        }
-
-        public static long DivideRoundingUp(long x, long y)
-        {
-            long s;
-
-            if (x > y)
-            {
-                long a = x % y;
-                x -= a;
-
-                if (a != 0)
-                    s = (x / y) + 1;
-                else
-                    s = (x / y);
-
-                return s;
-            }
-            else
-            {
-                return 1;
-            }
-        }
-
+        #endregion
     }
 }
 
