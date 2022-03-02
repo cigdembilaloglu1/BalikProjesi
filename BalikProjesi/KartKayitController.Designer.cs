@@ -176,12 +176,12 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.DeleteMenuStrip});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(125, 26);
             // 
             // DeleteMenuStrip
             // 
             this.DeleteMenuStrip.Name = "DeleteMenuStrip";
-            this.DeleteMenuStrip.Size = new System.Drawing.Size(180, 22);
+            this.DeleteMenuStrip.Size = new System.Drawing.Size(124, 22);
             this.DeleteMenuStrip.Text = "KAYDI SİL";
             this.DeleteMenuStrip.Click += new System.EventHandler(this.DeleteMenuStrip_Click);
             // 

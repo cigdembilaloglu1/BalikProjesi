@@ -137,5 +137,9 @@ namespace BalikProjesi.Services
             }
         }
 
+        public object CheckRecordValidByFishboxID(string fishboxID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

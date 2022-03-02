@@ -44,7 +44,9 @@ namespace BalikProjesi
 
             if (result != null)
             {
-               //    FishboxID = result.Eq(FishboxID);
+                // FishboxID = result.Eq(FishboxID);
+               //   FishboxID = result.Equals(ID);
+
                
 
             }

@@ -294,6 +294,9 @@ namespace BalikProjesi.Services
             }
         }
 
-
+        public object CheckPersonelValidByPeronelID(string filletID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
