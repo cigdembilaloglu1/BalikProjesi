@@ -132,7 +132,6 @@
             this.KartTip,
             this.KartUUID});
             this.tableLayoutPanel1.SetColumnSpan(this.listView1, 2);
-            this.listView1.ContextMenuStrip = this.contextMenuStrip1;
             this.listView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.listView1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
