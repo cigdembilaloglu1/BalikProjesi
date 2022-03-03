@@ -341,10 +341,10 @@ namespace BalikProjesi
             listwidth();
         }
 
-        private void listView1_Click(object sender, EventArgs e)
-        {
-            listget();
-        }
+        //private void listView1_Click(object sender, EventArgs e)
+        //{
+        //    listget();
+        //}
 
         private void Delete_Click(object sender, EventArgs e)
         {
@@ -590,6 +590,35 @@ namespace BalikProjesi
             {
                 return 1;
             }
+        }
+        private void BtnTextChanger(bool RecordType)
+        {
+            NewRecord = RecordType;
+            if (RecordType)
+            {
+                AddorUpdateBtn.Text = "KAYDET";
+                
+            }
+            else
+            {
+                AddorUpdateBtn.Text = "GÜNCELLE";
+            }
+        }
+        private void listView1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                BtnTextChanger(false);
+
+                ListViewItem itm = listView1.SelectedItems[0];
+                CardID = itm.SubItems[3].Text;
+                txtKartid.Text = itm.SubItems[0].Text;
+                txtKasakod.Text = itm.SubItems[1].Text;
+                txtKasatip.Text = itm.SubItems[2].Text;
+
+
+            }
+
         }
     }
 }
