@@ -325,7 +325,7 @@ namespace BalikProjesi
             string PersonelGrup = cbPersonelGrup.Text.Trim();
             string PersonelTur = cbPersonelTur.Text.Trim();
             string KartID = txtKartID.Text;
-            var readCard = _cartsServices.GetByCardCode(KartID);//
+            var readCard = _cartsServices.GetByCardCode(KartID);
             if (readCard != null)
             {
                 CardID = readCard.Id;
@@ -492,22 +492,14 @@ namespace BalikProjesi
             list();
         }
 
-        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
-        {
-
-        }
-
-        private void gÜNCELLEToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-
-        }
+      
 
         private async void btnReader_Click(object sender, EventArgs e)
         {
             await _readerServices.WriteTagIdToTextboxAsync(txtKartID);
         }
 
+        #region gereksiz
         private void sİLToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -520,7 +512,7 @@ namespace BalikProjesi
                 {
                     MessageBox.Show(WarningEnums.DeleteSuccess, "", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
 
-                    
+
                     if (listView1.SelectedItems[0].SubItems[4].Text == InputEnums.Fileto)
                     {
                         FilletPersonalCount--;
@@ -542,11 +534,24 @@ namespace BalikProjesi
                             lbDocumentCount.Text = InputEnums.ToplamKayıt + (ControllerPersonalCount + FilletPersonalCount);
                             break;
                     }
-                    
+
                 }
                 list();
             }
         }
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void gÜNCELLEToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+
+        }
+        #endregion
+
+
 
         private void listView1_Click(object sender, EventArgs e)
         {

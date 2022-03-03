@@ -56,9 +56,9 @@ namespace BalikProjesi
                 }
                 if (role.Role==InputEnums.User)
                 {
-                    frmUser frUser = new frmUser();
-                    frUser.Show();
-                    this.Hide();
+                    //frmUser frUser = new frmUser();
+                    //frUser.Show();
+                    //this.Hide();
 
                 }
                 

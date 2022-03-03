@@ -180,13 +180,11 @@ namespace BalikProjesi
 
                 var OldBCode = _fboxService.GetByCardCode(BoxID);
                 OldBoxCode = OldBCode.FishBoxCode;
-
-                var OldBType = _fboxService.GetByBoxType(BoxID);
-                OldBoxType = OldBType.FishBoxType;
+                OldBoxType = OldBCode.FishBoxType;
 
                 OldCard.CartCode = NewCardCode;
                 OldBCode.FishBoxCode = NewBoxCode;
-                OldBType.FishBoxType = NewBoxType;
+              
 
                 var UpdateStatus = _cartServices.Update(OldCard);
                 if (UpdateStatus)
@@ -339,63 +337,7 @@ namespace BalikProjesi
 
         private void txtKartid_TextChanged(object sender, EventArgs e)
         {
-            ////button2.Text = "Kaydet";
-            //string cardcodetxt = txtKartid.Text.Trim();
-            //if (!string.IsNullOrEmpty(cardcodetxt))
-            //{
-            //    var readCard = _cartServices.GetByCardCode(cardcodetxt);
-            //    if (readCard!=null)
-            //    {
-            //        try
-            //        {
-            //            var readBox = _fboxService.GetByCardID(readCard.Id);
-            //            var fb = _fboxService.Get(BoxID);
-            //            if (readBox != null)
-            //            {
-            //                if (readCard.CartType == InputEnums.Kasa)
-            //                {
-            //                    if (string.IsNullOrEmpty(readBox.CartId))
-            //                    {
-            //                        button2.Text = "GÜNCELLE";
-            //                    }
-            //                    if (readBox.CartId != readCard.Id)
-            //                    {
-            //                        button2.Text = "Kaydet";
-            //                    }
-            //                    if (readBox.CartId == readCard.Id)
-            //                    {
-            //                        button2.Text = "GÜNCELLE";
-            //                        listget(readCard);
-            //                    }
-
-            //                }
-            //            }
-            //            else if (string.IsNullOrEmpty(fb.CartId))
-            //            {
-            //                if (readCard.CartType == InputEnums.Kasa)
-            //                {
-            //                    if (string.IsNullOrEmpty(fb.CartId))
-            //                    {
-            //                        button2.Text = "GÜNCELLE";
-            //                        listget(readCard);
-            //                    }
-            //                }
-            //            }
-            //            else
-            //            {
-            //                button2.Text = "Kaydet";
-            //            }
-
-            //        }
-            //        catch (Exception)
-            //        {
-
-            //            throw;
-            //        }
-
-            //    }
-
-            //}
+            
             #region Açıklama
             //Kart silinirse CardId ve Cardcode "" olacaktır. Bu durumu kontrol ediyoruz
             #endregion
