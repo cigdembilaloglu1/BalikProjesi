@@ -23,7 +23,7 @@ namespace BalikProjesi
         private readonly IPersonelServices _personelServices;
         private readonly IFishBoxServices _fishBoxServices;
         string FilletID;
-        string FilletCardId;
+       // string FilletCardId;
         string FishboxID;
 
 
@@ -71,7 +71,7 @@ namespace BalikProjesi
 
         {
             FilletID = "";
-            FilletCardId = "";
+           // FilletCardId = "";
             var result = _personelServices.CheckPersonelValidByPeronelID(FilletID);
             if (result != null)
             {
