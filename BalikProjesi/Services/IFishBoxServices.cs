@@ -19,5 +19,6 @@ namespace BalikProjesi.Services
         bool UpdateCardInfo(FishBox fishbox);
         Recordings CheckRecordValidByFishboxID(string fishboxID);
         bool UpdateCartId(string OldCart, string NewCart);
+        FishBox GetByBoxType(string fbType);
     }
 }

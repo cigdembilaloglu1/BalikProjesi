@@ -33,9 +33,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.KartKod = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.KasaKod = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.KasaTip = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.KasaUUID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.KasaID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.Delete = new System.Windows.Forms.ToolStripMenuItem();
@@ -105,12 +105,11 @@
             this.listView1.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.listView1.BackgroundImageTiled = true;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.KartKod,
             this.KasaKod,
             this.KasaTip,
-            this.KasaUUID,
             this.KasaID});
             this.tableLayoutPanel1.SetColumnSpan(this.listView1, 2);
-            this.listView1.ContextMenuStrip = this.contextMenuStrip1;
             this.listView1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.listView1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
@@ -124,22 +123,22 @@
             this.listView1.TabIndex = 10;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.Click += new System.EventHandler(this.listView1_Click);
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged_1);
+            // 
+            // KartKod
+            // 
+            this.KartKod.Text = "KART KODU";
+            this.KartKod.Width = 150;
             // 
             // KasaKod
             // 
             this.KasaKod.Text = "KASA KODU";
-            this.KasaKod.Width = 150;
+            this.KasaKod.Width = 100;
             // 
             // KasaTip
             // 
             this.KasaTip.Text = "KASA TİPİ";
-            this.KasaTip.Width = 100;
-            // 
-            // KasaUUID
-            // 
-            this.KasaUUID.Text = "KASA KARTI KODU";
-            this.KasaUUID.Width = 200;
+            this.KasaTip.Width = 200;
             // 
             // KasaID
             // 
@@ -525,9 +524,9 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtKartid;
-        private System.Windows.Forms.ColumnHeader KasaUUID;
-        private System.Windows.Forms.ColumnHeader KasaKod;
         private System.Windows.Forms.ColumnHeader KasaTip;
+        private System.Windows.Forms.ColumnHeader KartKod;
+        private System.Windows.Forms.ColumnHeader KasaKod;
         private System.Windows.Forms.Button AddorUpdateBtn;
         private System.Windows.Forms.Button btnCardRead;
         private System.Windows.Forms.ColumnHeader KasaID;

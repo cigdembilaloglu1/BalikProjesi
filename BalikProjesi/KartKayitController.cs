@@ -57,7 +57,7 @@ namespace BalikProjesi
         {
             
             string CartAd, CartCode, CartType, CartUUID;
-            if (listView1.Items.Count != 0)
+            if (listView1.Items.Count > 0)
             {
                 listView1.Items.Clear();
             }
@@ -280,7 +280,7 @@ namespace BalikProjesi
             else
             {
                 AddOrUpdateBtn.Text = "GÜNCELLE";
-                if (listView1.SelectedItems.Count != 0)
+                if (listView1.SelectedItems.Count > 0)
                 {
                     ListViewItem itm = listView1.SelectedItems[0];
                     CardID = itm.SubItems[3].Text;
@@ -508,7 +508,7 @@ namespace BalikProjesi
         public void PageFilteredCardsToTable(List<Carts> tableList)
         {
             string CartAd, CartCode, CartType, CartUUID;
-            if (listView1.Items.Count != 0)
+            if (listView1.Items.Count > 0)
             {
                 listView1.Items.Clear();
             }
