@@ -53,64 +53,7 @@ namespace BalikProjesi
         {
 
         }
-        //public void dataupdate()
-        //{
-
-        //    string boxcode = txtKasakod.Text.Trim();
-        //    string CartCode =txtKartid.Text.Trim();
-        //    string boxtype = txtKasatip.Text.Trim();
-        //    var readCard = _cartServices.GetByCardCode(CartCode);
-        //    if (readCard != null)
-        //    {
-        //        CardID = readCard.Id;                
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show(WarningEnums.DefineToCardCollection);
-        //    }
-        //    if (!string.IsNullOrEmpty(BoxID)&& readCard != null)
-        //    {
-        //        if (readCard.CartType==InputEnums.Kasa)
-        //        {
-        //            Entities.FishBox fb = new FishBox();
-
-
-        //            fb.FishBoxCode = boxcode;
-        //            fb.CartCode = CartCode;
-        //            fb.CartId = CardID;
-        //            fb.FishBoxType = boxtype;
-        //            fb.Id = BoxID;
-        //            fb.UpdateDate = DateTime.Now;
-        //            bool chk = _fboxService.Update(fb);
-        //            if (chk == true)
-        //            {
-        //                MessageBox.Show(WarningEnums.UpdateSuccess);
-        //            }
-        //            else
-        //            {
-        //                MessageBox.Show(WarningEnums.UpdateFailed);
-        //            }
-        //        }
-        //        else if (readCard.CartType == InputEnums.Fileto)
-        //        {
-        //            MessageBox.Show("Okunan kart Fileto personeli kartıdır. Lüften farklı bir kartla tekrar deneyin veya kartı güncelleyin.");
-        //        }
-        //        else if (readCard.CartType == InputEnums.Kontrol)
-        //        {
-        //            MessageBox.Show("Okunan kart Kontrol personeli kartıdır. Lüften farklı bir kartla tekrar deneyin veya kartı güncelleyin.");
-        //        }
-
-
-
-        //    }
-        //    else if(string.IsNullOrEmpty(BoxID))
-        //    {
-        //        MessageBox.Show("Lütfen listeden güncellemek istediğiniz kaydı seçiniz veya kartınızı okutunuz");
-        //    }
-        //    list();
-
-
-        //}
+       
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -330,43 +273,7 @@ namespace BalikProjesi
 
             }
 
-            ////button2.Text = "GÜNCELLE";//button text-güncelle
-            //if (card!=null)
-            //{
-            //    var fb = _fboxService.GetByCardCode(card.Id);
-            //    if (fb!=null)
-            //    {
-            //        txtKasakod.Text = fb.FishBoxCode;
-            //        txtKasatip.Text = fb.FishBoxType;
-            //        txtKartid.Text = fb.CartCode;
-            //        BoxID = fb.Id;
-            //        CardID = fb.CartId;
-            //    }
-
-            //}
-            //else
-            //{
-
-            //    ListViewItem itm = listView1.SelectedItems[0];
-            //    if (listView1.SelectedItems.Count != 0)
-            //    {
-            //        var result = _cartServices.GetByCardCode(itm.SubItems[2].Text);
-            //        if (result!=null)
-            //        {
-            //            CardID = result.Id;
-            //        }
-            //        else
-            //        {
-            //            AddorUpdateBtn.Text = "GÜNCELLE";
-            //        }
-            //        txtKasakod.Text = itm.SubItems[0].Text;
-            //        txtKasatip.Text = itm.SubItems[1].Text;                    
-            //        BoxID = itm.SubItems[3].Text;
-            //        txtKartid.Text = itm.SubItems[2].Text;
-            //    }
-
-            //}
-            //
+          
         }
 
         private void KasaKayitController_Load(object sender, EventArgs e)
