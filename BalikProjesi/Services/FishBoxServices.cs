@@ -56,6 +56,11 @@ namespace BalikProjesi.Services
             var result = db.Find(x => x.CartId == ID).FirstOrDefault();
             return result;
         }
+        public FishBox GetByBoxType(string fbType)
+        {
+            var result = db.Find(x => x.FishBoxType == fbType).FirstOrDefault();
+            return result;
+        }
         public List<FishBox> GetFilteredFishBox(FilterDefinition<FishBox> filteredFishBox)
         {
             var result = db.Find(filteredFishBox).ToList();
