@@ -213,7 +213,7 @@ namespace BalikProjesi
                 dr = MessageBox.Show(WarningEnums.AskUpdate, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if(dr == DialogResult.Yes)
                 {
-                    
+                   // KayitGuncelle();
                 }
                 
             }
