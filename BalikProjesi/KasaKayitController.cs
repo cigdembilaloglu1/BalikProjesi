@@ -16,7 +16,9 @@ namespace BalikProjesi
 {
     public partial class KasaKayitController : UserControl
     {
+
         private readonly IFishBoxServices _fboxService;
+        private readonly IRecordingsServices _recordingsService;
         private readonly ReaderServices _readerServices;
         private readonly ICartsServices1 _cartServices;
         private long BoxCount;
@@ -29,6 +31,7 @@ namespace BalikProjesi
         public KasaKayitController()
         {
             InitializeComponent();
+            _recordingsService = new RecordingsServices();
             _fboxService = new FishBoxServices();
             _readerServices = new ReaderServices();
             _cartServices = new CartsServices();
@@ -112,6 +115,7 @@ namespace BalikProjesi
         private void button1_Click(object sender, EventArgs e)
         {
             list();
+            BtnTextChanger(true);
         }
         void create()
         {
