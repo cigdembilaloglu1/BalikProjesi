@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BalikProjesi.Services;
 using BalikProjesi.Enums;
-
+using BalikProjesi.Forms.User;
 
 namespace BalikProjesi
 {
@@ -30,9 +30,6 @@ namespace BalikProjesi
 
         private void Form1_Load(object sender, EventArgs e)
         {
-#if DEBUG
-            lgn.Create("hakan", "hakan");
-#endif
             this.MaximizeBox = false;
             //this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
@@ -56,7 +53,7 @@ namespace BalikProjesi
                 }
                 if (role.Role==InputEnums.User)
                 {
-                    frmUser frUser = new frmUser();
+                    MainUser frUser = new MainUser();
                     frUser.Show();
                     this.Hide();
 
