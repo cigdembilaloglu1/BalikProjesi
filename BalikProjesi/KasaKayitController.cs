@@ -331,6 +331,7 @@ namespace BalikProjesi
             //    }
 
             //}
+            //
         }
 
         private void KasaKayitController_Load(object sender, EventArgs e)
