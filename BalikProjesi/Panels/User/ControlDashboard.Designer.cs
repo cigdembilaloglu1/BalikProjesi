@@ -74,6 +74,7 @@
             this.KontrolKaydiBasla.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.KontrolKaydiBasla.Dock = System.Windows.Forms.DockStyle.Fill;
             this.KontrolKaydiBasla.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.KontrolKaydiBasla.ForeColor = System.Drawing.Color.White;
             this.KontrolKaydiBasla.Location = new System.Drawing.Point(30, 80);
             this.KontrolKaydiBasla.Margin = new System.Windows.Forms.Padding(30);
             this.KontrolKaydiBasla.Name = "KontrolKaydiBasla";
@@ -90,6 +91,7 @@
             this.KontrolKayitBitir.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.KontrolKayitBitir.Dock = System.Windows.Forms.DockStyle.Fill;
             this.KontrolKayitBitir.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold);
+            this.KontrolKayitBitir.ForeColor = System.Drawing.Color.White;
             this.KontrolKayitBitir.Location = new System.Drawing.Point(457, 80);
             this.KontrolKayitBitir.Margin = new System.Windows.Forms.Padding(30);
             this.KontrolKayitBitir.Name = "KontrolKayitBitir";

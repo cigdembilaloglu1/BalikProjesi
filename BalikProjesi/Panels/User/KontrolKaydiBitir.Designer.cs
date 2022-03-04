@@ -91,7 +91,7 @@
             this.BackBtn.Name = "BackBtn";
             this.BackBtn.Size = new System.Drawing.Size(278, 38);
             this.BackBtn.TabIndex = 0;
-            this.BackBtn.Text = "<<GERİ";
+            this.BackBtn.Text = "<< GERİ";
             this.BackBtn.UseVisualStyleBackColor = false;
             this.BackBtn.Click += new System.EventHandler(this.BackBtn_Click);
             // 
@@ -112,7 +112,7 @@
             // 
             // RaporBtn
             // 
-            this.RaporBtn.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.RaporBtn.BackColor = System.Drawing.Color.Black;
             this.RaporBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RaporBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold);
             this.RaporBtn.ForeColor = System.Drawing.Color.White;
@@ -167,8 +167,10 @@
             // 
             // HasatDefoBtn
             // 
-            this.HasatDefoBtn.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.HasatDefoBtn.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.HasatDefoBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.HasatDefoBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.HasatDefoBtn.ForeColor = System.Drawing.Color.White;
             this.HasatDefoBtn.Location = new System.Drawing.Point(53, 67);
             this.HasatDefoBtn.Name = "HasatDefoBtn";
             this.HasatDefoBtn.Size = new System.Drawing.Size(218, 23);
@@ -179,8 +181,10 @@
             // 
             // BıcakDefoBtn
             // 
-            this.BıcakDefoBtn.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.BıcakDefoBtn.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.BıcakDefoBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BıcakDefoBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold);
+            this.BıcakDefoBtn.ForeColor = System.Drawing.Color.White;
             this.BıcakDefoBtn.Location = new System.Drawing.Point(53, 190);
             this.BıcakDefoBtn.Name = "BıcakDefoBtn";
             this.BıcakDefoBtn.Size = new System.Drawing.Size(218, 23);
@@ -190,8 +194,10 @@
             // 
             // KılcıkBtn
             // 
-            this.KılcıkBtn.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.KılcıkBtn.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.KılcıkBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.KılcıkBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold);
+            this.KılcıkBtn.ForeColor = System.Drawing.Color.White;
             this.KılcıkBtn.Location = new System.Drawing.Point(327, 67);
             this.KılcıkBtn.Name = "KılcıkBtn";
             this.KılcıkBtn.Size = new System.Drawing.Size(218, 23);
@@ -201,8 +207,10 @@
             // 
             // DigerBtn
             // 
-            this.DigerBtn.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.DigerBtn.BackColor = System.Drawing.SystemColors.WindowFrame;
             this.DigerBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DigerBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold);
+            this.DigerBtn.ForeColor = System.Drawing.Color.White;
             this.DigerBtn.Location = new System.Drawing.Point(327, 190);
             this.DigerBtn.Name = "DigerBtn";
             this.DigerBtn.Size = new System.Drawing.Size(218, 23);

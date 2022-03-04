@@ -75,7 +75,8 @@
             this.FiletoKaydiBasla.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.FiletoKaydiBasla.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.FiletoKaydiBasla.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FiletoKaydiBasla.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.FiletoKaydiBasla.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold);
+            this.FiletoKaydiBasla.ForeColor = System.Drawing.Color.White;
             this.FiletoKaydiBasla.Location = new System.Drawing.Point(30, 80);
             this.FiletoKaydiBasla.Margin = new System.Windows.Forms.Padding(30);
             this.FiletoKaydiBasla.Name = "FiletoKaydiBasla";
@@ -91,7 +92,8 @@
             this.FiletoKayitBitir.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.FiletoKayitBitir.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.FiletoKayitBitir.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FiletoKayitBitir.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.FiletoKayitBitir.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold);
+            this.FiletoKayitBitir.ForeColor = System.Drawing.Color.White;
             this.FiletoKayitBitir.Location = new System.Drawing.Point(561, 80);
             this.FiletoKayitBitir.Margin = new System.Windows.Forms.Padding(30);
             this.FiletoKayitBitir.Name = "FiletoKayitBitir";

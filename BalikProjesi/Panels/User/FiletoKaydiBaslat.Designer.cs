@@ -92,7 +92,7 @@
             this.BackBtn.Name = "BackBtn";
             this.BackBtn.Size = new System.Drawing.Size(291, 38);
             this.BackBtn.TabIndex = 0;
-            this.BackBtn.Text = "<<GERİ";
+            this.BackBtn.Text = "<< GERİ";
             this.BackBtn.UseVisualStyleBackColor = false;
             this.BackBtn.Click += new System.EventHandler(this.BackBtn_Click);
             // 

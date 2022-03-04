@@ -57,6 +57,7 @@
             this.FletoPanelBtn.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.FletoPanelBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FletoPanelBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.FletoPanelBtn.ForeColor = System.Drawing.Color.White;
             this.FletoPanelBtn.Location = new System.Drawing.Point(3, 3);
             this.FletoPanelBtn.Name = "FletoPanelBtn";
             this.FletoPanelBtn.Size = new System.Drawing.Size(596, 597);
@@ -72,6 +73,7 @@
             this.KontrolBtn.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.KontrolBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.KontrolBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold);
+            this.KontrolBtn.ForeColor = System.Drawing.Color.White;
             this.KontrolBtn.Location = new System.Drawing.Point(655, 3);
             this.KontrolBtn.Name = "KontrolBtn";
             this.KontrolBtn.Size = new System.Drawing.Size(596, 597);
