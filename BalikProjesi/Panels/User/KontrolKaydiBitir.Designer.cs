@@ -177,7 +177,7 @@
             this.HasatDefoBtn.TabIndex = 1;
             this.HasatDefoBtn.Text = "HASAT DEFO";
             this.HasatDefoBtn.UseVisualStyleBackColor = false;
-            this.HasatDefoBtn.Click += new System.EventHandler(this.HasatDefoBtn_Click);
+            this.HasatDefoBtn.Click += new System.EventHandler(this.selections);
             // 
             // BıcakDefoBtn
             // 
@@ -191,6 +191,7 @@
             this.BıcakDefoBtn.TabIndex = 2;
             this.BıcakDefoBtn.Text = "BIÇAK DEFO";
             this.BıcakDefoBtn.UseVisualStyleBackColor = false;
+            this.BıcakDefoBtn.Click += new System.EventHandler(this.selections);
             // 
             // KılcıkBtn
             // 
@@ -204,6 +205,7 @@
             this.KılcıkBtn.TabIndex = 3;
             this.KılcıkBtn.Text = "KILÇIK";
             this.KılcıkBtn.UseVisualStyleBackColor = false;
+            this.KılcıkBtn.Click += new System.EventHandler(this.selections);
             // 
             // DigerBtn
             // 
@@ -217,6 +219,7 @@
             this.DigerBtn.TabIndex = 4;
             this.DigerBtn.Text = "DİĞER";
             this.DigerBtn.UseVisualStyleBackColor = false;
+            this.DigerBtn.Click += new System.EventHandler(this.selections);
             // 
             // KılcıkTxt
             // 
