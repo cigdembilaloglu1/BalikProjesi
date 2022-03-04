@@ -169,10 +169,10 @@
     <Compile Include="frmAdmin.Designer.cs">
       <DependentUpon>frmAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmNumbers.cs">
+    <Compile Include="Forms\User\frmNumbers.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmNumbers.Designer.cs">
+    <Compile Include="Forms\User\frmNumbers.Designer.cs">
       <DependentUpon>frmNumbers.cs</DependentUpon>
     </Compile>
     <Compile Include="KartKayitController.cs">
@@ -186,12 +186,6 @@
     </Compile>
     <Compile Include="KasaKayitController.Designer.cs">
       <DependentUpon>KasaKayitController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="KontolExit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="KontolExit.Designer.cs">
-      <DependentUpon>KontolExit.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\InfoPanellReturnModel.cs" />
     <Compile Include="Models\ReaderResponseModel.cs" />
@@ -243,10 +237,10 @@
     <Compile Include="PersonlKayitController.Designer.cs">
       <DependentUpon>PersonlKayitController.cs</DependentUpon>
     </Compile>
-    <Compile Include="PopUp.cs">
+    <Compile Include="Forms\User\PopUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PopUp.Designer.cs">
+    <Compile Include="Forms\User\PopUp.Designer.cs">
       <DependentUpon>PopUp.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -280,7 +274,7 @@
     <EmbeddedResource Include="frmAdmin.resx">
       <DependentUpon>frmAdmin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmNumbers.resx">
+    <EmbeddedResource Include="Forms\User\frmNumbers.resx">
       <DependentUpon>frmNumbers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="KartKayitController.resx">
@@ -288,9 +282,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="KasaKayitController.resx">
       <DependentUpon>KasaKayitController.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="KontolExit.resx">
-      <DependentUpon>KontolExit.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\User\ControlDashboard.resx">
       <DependentUpon>ControlDashboard.cs</DependentUpon>
@@ -316,7 +307,7 @@
     <EmbeddedResource Include="PersonlKayitController.resx">
       <DependentUpon>PersonlKayitController.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PopUp.resx">
+    <EmbeddedResource Include="Forms\User\PopUp.resx">
       <DependentUpon>PopUp.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

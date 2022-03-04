@@ -176,7 +176,7 @@ namespace BalikProjesi
                 NewBoxCode = txtKasakod.Text.Trim();
                 NewBoxType = txtKasatip.Text.Trim();
                // var OldCard = _cartServices.GetByCardID(CardID);
-              //  OldCardCode = OldCard.CartCode;
+               //OldCardCode = OldCard.CartCode;
 
                 var EskiKasaKaydi = _fboxService.GetById(CardID);
                 OldBoxCode = EskiKasaKaydi.FishBoxCode;
@@ -186,8 +186,8 @@ namespace BalikProjesi
                 EskiKasaKaydi.FishBoxCode = NewBoxCode;
                 EskiKasaKaydi.FishBoxType = NewBoxType;
 
-               // OldCard.CartCode = NewCardCode;
-               // OldBCode.FishBoxCode = NewBoxCode;
+                //OldCard.CartCode = NewCardCode;
+               EskiKasaKaydi.FishBoxCode = NewBoxCode;
               
 
                 var UpdateStatus = _fboxService.Update(EskiKasaKaydi);
