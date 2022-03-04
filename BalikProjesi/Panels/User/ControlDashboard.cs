@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace BalikProjesi.Panels.User
 {
-    public partial class FiletoDashboard : UserControl
+    public partial class ControlDashboard : UserControl
     {
-        public FiletoDashboard()
+        public ControlDashboard()
         {
             InitializeComponent();
         }
@@ -26,27 +26,23 @@ namespace BalikProjesi.Panels.User
             Ud.Show();
         }
 
-        private void FiletoDashboardTLP_Paint(object sender, PaintEventArgs e)
+        private void KontrolKaydiBasla_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void FiletoKaydiBasla_Click(object sender, EventArgs e)
-        {
-            FiletoKaydiBaslat fkd = new FiletoKaydiBaslat();
+            KontrolKaydiBaslat fkd = new KontrolKaydiBaslat();
             this.Controls.Clear();
             this.Controls.Add(fkd);
             fkd.Dock = DockStyle.Fill;
             fkd.Show();
         }
 
-        private void FiletoKayitBitir_Click(object sender, EventArgs e)
+        private void KontrolKayitBitir_Click(object sender, EventArgs e)
         {
-            FiletoKaydiBitir fkd = new FiletoKaydiBitir();
+            KontrolKaydiBitir fkd = new KontrolKaydiBitir();
             this.Controls.Clear();
             this.Controls.Add(fkd);
             fkd.Dock = DockStyle.Fill;
             fkd.Show();
+
         }
     }
 }

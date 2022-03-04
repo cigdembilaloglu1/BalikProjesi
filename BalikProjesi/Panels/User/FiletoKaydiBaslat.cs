@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace BalikProjesi.Panels.User
 {
-    public partial class FletoKaydiBaslat : UserControl
+    public partial class FiletoKaydiBaslat : UserControl
     {
         public string KasaKarti;
         public string FiletoPersonelKarti;
@@ -23,7 +23,7 @@ namespace BalikProjesi.Panels.User
 
         private bool KasaKartiOkuma = false;
         private bool PersonelKartiOkuma = false;
-        public FletoKaydiBaslat()
+        public FiletoKaydiBaslat()
         {
             _persoelService = new PersonelServices();
             _fishboxService = new FishBoxServices();
@@ -51,6 +51,36 @@ namespace BalikProjesi.Panels.User
             /// Eğer Kasaya aitse ID si alınır. 
             /// Recordins içinde KASA ID si eşleşen TAMAMLANMAMIŞ Kayıt var ise Kayda ait bilgiler getirilir. ve kullanıcı uyarılır. 
             /// Tamamlanmış bir kayıt varsa yeni kayıt açmak için PERSONEL Kartı da istenir.
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BackBtn_Click(object sender, EventArgs e)
+        {
+
+            this.Controls.Clear();
+            FiletoDashboard Ud = new FiletoDashboard();
+            this.Controls.Add(Ud);
+            Ud.Dock = DockStyle.Fill;
+            Ud.Show();
+        }
+
+        private void FiletoKayitTLP_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void BackBtnTLP_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void messageTLP_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

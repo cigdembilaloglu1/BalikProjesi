@@ -60,7 +60,7 @@
             this.FletoPanelBtn.Name = "FletoPanelBtn";
             this.FletoPanelBtn.Size = new System.Drawing.Size(596, 597);
             this.FletoPanelBtn.TabIndex = 0;
-            this.FletoPanelBtn.Text = "Fileto";
+            this.FletoPanelBtn.Text = "FİLETO";
             this.FletoPanelBtn.UseVisualStyleBackColor = true;
             this.FletoPanelBtn.Click += new System.EventHandler(this.FletoPanelBtn_Click);
             // 
@@ -76,6 +76,7 @@
             this.KontrolBtn.TabIndex = 1;
             this.KontrolBtn.Text = "KONTROL";
             this.KontrolBtn.UseVisualStyleBackColor = true;
+            this.KontrolBtn.Click += new System.EventHandler(this.KontrolBtn_Click);
             // 
             // UserDashboard
             // 

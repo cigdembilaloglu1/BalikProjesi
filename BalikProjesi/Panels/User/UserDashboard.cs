@@ -26,5 +26,14 @@ namespace BalikProjesi.Panels.User
             fd.Dock= DockStyle.Fill;
             fd.Show();
         }
+
+        private void KontrolBtn_Click(object sender, EventArgs e)
+        {
+            ControlDashboard cd = new ControlDashboard();
+            this.Controls.Clear();
+            this.Controls.Add(cd);
+            cd.Dock = DockStyle.Fill;
+            cd.Show();
+        }
     }
 }

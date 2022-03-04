@@ -195,17 +195,41 @@
     </Compile>
     <Compile Include="Models\InfoPanellReturnModel.cs" />
     <Compile Include="Models\ReaderResponseModel.cs" />
+    <Compile Include="Panels\User\ControlDashboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panels\User\ControlDashboard.Designer.cs">
+      <DependentUpon>ControlDashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Panels\User\FiletoDashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Panels\User\FiletoDashboard.Designer.cs">
       <DependentUpon>FiletoDashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Panels\User\FletoKaydiBaslat.cs">
+    <Compile Include="Panels\User\FiletoKaydiBaslat.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Panels\User\FletoKaydiBaslat.Designer.cs">
-      <DependentUpon>FletoKaydiBaslat.cs</DependentUpon>
+    <Compile Include="Panels\User\FiletoKaydiBaslat.Designer.cs">
+      <DependentUpon>FiletoKaydiBaslat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\User\FiletoKaydiBitir.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panels\User\FiletoKaydiBitir.Designer.cs">
+      <DependentUpon>FiletoKaydiBitir.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\User\KontrolKaydiBaslat.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panels\User\KontrolKaydiBaslat.Designer.cs">
+      <DependentUpon>KontrolKaydiBaslat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Panels\User\KontrolKaydiBitir.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panels\User\KontrolKaydiBitir.Designer.cs">
+      <DependentUpon>KontrolKaydiBitir.cs</DependentUpon>
     </Compile>
     <Compile Include="Panels\User\UserDashboard.cs">
       <SubType>UserControl</SubType>
@@ -268,14 +292,23 @@
     <EmbeddedResource Include="KontolExit.resx">
       <DependentUpon>KontolExit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="KontolStart.resx">
-      <DependentUpon>KontolStart.cs</DependentUpon>
+    <EmbeddedResource Include="Panels\User\ControlDashboard.resx">
+      <DependentUpon>ControlDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\User\FiletoDashboard.resx">
       <DependentUpon>FiletoDashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Panels\User\FletoKaydiBaslat.resx">
-      <DependentUpon>FletoKaydiBaslat.cs</DependentUpon>
+    <EmbeddedResource Include="Panels\User\FiletoKaydiBaslat.resx">
+      <DependentUpon>FiletoKaydiBaslat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\User\FiletoKaydiBitir.resx">
+      <DependentUpon>FiletoKaydiBitir.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\User\KontrolKaydiBaslat.resx">
+      <DependentUpon>KontrolKaydiBaslat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\User\KontrolKaydiBitir.resx">
+      <DependentUpon>KontrolKaydiBitir.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\User\UserDashboard.resx">
       <DependentUpon>UserDashboard.cs</DependentUpon>

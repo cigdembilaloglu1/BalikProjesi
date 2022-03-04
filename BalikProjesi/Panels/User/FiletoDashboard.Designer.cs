@@ -45,6 +45,7 @@
             this.FiletoDashboardTLP.Controls.Add(this.FiletoKaydiBasla, 0, 1);
             this.FiletoDashboardTLP.Controls.Add(this.FiletoKayitBitir, 2, 1);
             this.FiletoDashboardTLP.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FiletoDashboardTLP.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.FiletoDashboardTLP.Location = new System.Drawing.Point(0, 0);
             this.FiletoDashboardTLP.Name = "FiletoDashboardTLP";
             this.FiletoDashboardTLP.RowCount = 3;
@@ -53,16 +54,19 @@
             this.FiletoDashboardTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.FiletoDashboardTLP.Size = new System.Drawing.Size(1013, 586);
             this.FiletoDashboardTLP.TabIndex = 0;
+            this.FiletoDashboardTLP.Paint += new System.Windows.Forms.PaintEventHandler(this.FiletoDashboardTLP_Paint);
             // 
             // BackBtn
             // 
+            this.BackBtn.BackColor = System.Drawing.Color.IndianRed;
             this.BackBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BackBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.BackBtn.Location = new System.Drawing.Point(3, 3);
             this.BackBtn.Name = "BackBtn";
             this.BackBtn.Size = new System.Drawing.Size(475, 44);
             this.BackBtn.TabIndex = 0;
             this.BackBtn.Text = "<< GERİ";
-            this.BackBtn.UseVisualStyleBackColor = true;
+            this.BackBtn.UseVisualStyleBackColor = false;
             this.BackBtn.Click += new System.EventHandler(this.BackBtn_Click);
             // 
             // FiletoKaydiBasla
@@ -70,6 +74,7 @@
             this.FiletoKaydiBasla.AutoSize = true;
             this.FiletoKaydiBasla.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.FiletoKaydiBasla.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FiletoKaydiBasla.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.FiletoKaydiBasla.Location = new System.Drawing.Point(30, 80);
             this.FiletoKaydiBasla.Margin = new System.Windows.Forms.Padding(30);
             this.FiletoKaydiBasla.Name = "FiletoKaydiBasla";
@@ -77,12 +82,14 @@
             this.FiletoKaydiBasla.TabIndex = 1;
             this.FiletoKaydiBasla.Text = "Fileto Kaydı Başlat";
             this.FiletoKaydiBasla.UseVisualStyleBackColor = true;
+            this.FiletoKaydiBasla.Click += new System.EventHandler(this.FiletoKaydiBasla_Click);
             // 
             // FiletoKayitBitir
             // 
             this.FiletoKayitBitir.AutoSize = true;
             this.FiletoKayitBitir.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.FiletoKayitBitir.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FiletoKayitBitir.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.FiletoKayitBitir.Location = new System.Drawing.Point(561, 80);
             this.FiletoKayitBitir.Margin = new System.Windows.Forms.Padding(30);
             this.FiletoKayitBitir.Name = "FiletoKayitBitir";
@@ -90,6 +97,7 @@
             this.FiletoKayitBitir.TabIndex = 2;
             this.FiletoKayitBitir.Text = "Fileto Kaydı Bitir";
             this.FiletoKayitBitir.UseVisualStyleBackColor = true;
+            this.FiletoKayitBitir.Click += new System.EventHandler(this.FiletoKayitBitir_Click);
             // 
             // FiletoDashboard
             // 
