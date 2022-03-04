@@ -175,32 +175,36 @@ namespace BalikProjesi
                 NewCardCode = txtKartid.Text.Trim();
                 NewBoxCode = txtKasakod.Text.Trim();
                 NewBoxType = txtKasatip.Text.Trim();
-                var OldCard = _cartServices.GetByCardID(CardID);
-                OldCardCode = OldCard.CartCode;
+               // var OldCard = _cartServices.GetByCardID(CardID);
+              //  OldCardCode = OldCard.CartCode;
 
-                var OldBCode = _fboxService.GetByCardCode(BoxID);
-                OldBoxCode = OldBCode.FishBoxCode;
-                OldBoxType = OldBCode.FishBoxType;
+                var EskiKasaKaydi = _fboxService.GetById(CardID);
+                OldBoxCode = EskiKasaKaydi.FishBoxCode;
+                OldBoxType = EskiKasaKaydi.FishBoxType;
 
-                OldCard.CartCode = NewCardCode;
-                OldBCode.FishBoxCode = NewBoxCode;
+                EskiKasaKaydi.CartCode = NewCardCode;
+                EskiKasaKaydi.FishBoxCode = NewBoxCode;
+                EskiKasaKaydi.FishBoxType = NewBoxType;
+
+               // OldCard.CartCode = NewCardCode;
+               // OldBCode.FishBoxCode = NewBoxCode;
               
 
-                var UpdateStatus = _cartServices.Update(OldCard);
-                if (UpdateStatus)
-                {
+                var UpdateStatus = _fboxService.Update(EskiKasaKaydi);
+                //if (UpdateStatus)
+                //{
 
-                    var FishboxUpdate = _fboxService.UpdateCartId(OldCardCode, NewCardCode);
-                    if (!FishboxUpdate)
-                    {
-                        MessageBox.Show("Kasa Kart Güncelleme Hatası", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    var RecordingUpdate = _recordingsService.ChangeCardId(OldCardCode, NewCardCode);
-                    if (!RecordingUpdate)
-                    {
-                        MessageBox.Show("Kayıt Kart Güncelleme Hatası", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
+                //    var FishboxUpdate = _fboxService.UpdateCartId(OldCardCode, NewCardCode);
+                //    if (!FishboxUpdate)
+                //    {
+                //        MessageBox.Show("Kasa Kart Güncelleme Hatası", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    }
+                //    var RecordingUpdate = _recordingsService.ChangeCardId(OldCardCode, NewCardCode);
+                //    if (!RecordingUpdate)
+                //    {
+                //        MessageBox.Show("Kayıt Kart Güncelleme Hatası", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //    }
+                //}
 
 
             }
@@ -225,7 +229,7 @@ namespace BalikProjesi
                 boxcode = item.FishBoxCode;
                 boxtype = item.FishBoxType;
                 boxcardid = item.CartCode;
-                string[] data = { boxcode, boxtype, boxcardid };
+                string[] data = { boxcardid,boxcode, boxtype};
                 ListViewItem record = new ListViewItem(data);
                 listView1.Items.Add(record);
             }
@@ -241,11 +245,13 @@ namespace BalikProjesi
             var dt = _fboxService.Get(currentPage);
             foreach (var item in dt)
             {
+                BoxID = item.Id;
+                BoxcardId = item.CartCode;
                 BoxCode = item.FishBoxCode;
                 BoxType = item.FishBoxType;
-                BoxcardId = item.CartCode;
-                BoxID = item.Id;
-                string[] data = { BoxCode, BoxType, BoxcardId, BoxID };
+                
+                
+                string[] data = { BoxcardId,BoxCode, BoxType, BoxID };
                 ListViewItem record = new ListViewItem(data);
                 listView1.Items.Add(record);
             }
@@ -263,10 +269,11 @@ namespace BalikProjesi
             if (listView1.SelectedItems.Count > 0)
             {
                 ListViewItem itm = listView1.SelectedItems[0];
-                txtKasakod.Text = itm.SubItems[0].Text;
-                txtKasatip.Text = itm.SubItems[1].Text;
+                txtKartid.Text = itm.SubItems[0].Text;
+                txtKasakod.Text = itm.SubItems[1].Text;
+                txtKasatip.Text = itm.SubItems[2].Text;
                 BoxID = itm.SubItems[3].Text;
-                txtKartid.Text = itm.SubItems[2].Text;
+                
 
 
             }

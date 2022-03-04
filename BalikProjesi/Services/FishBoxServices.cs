@@ -102,7 +102,7 @@ namespace BalikProjesi.Services
         {
 
 
-            if (!String.IsNullOrEmpty(fishbox.Id) && !String.IsNullOrEmpty(fishbox.FishBoxType) && fishbox.UpdateDate != DateTime.MinValue)
+            if (!String.IsNullOrEmpty(fishbox.Id) && !String.IsNullOrEmpty(fishbox.FishBoxType))
             {
                 var Filter = Builders<FishBox>.Filter
                     .Eq(x => x.Id, fishbox.Id);
@@ -110,7 +110,7 @@ namespace BalikProjesi.Services
                 var Update = Builders<FishBox>.Update
                     .Set(x => x.FishBoxCode, fishbox.FishBoxCode)
                     .Set(x => x.FishBoxType, fishbox.FishBoxType)
-                    .Set(x => x.UpdateDate, fishbox.UpdateDate)
+                    .Set(x => x.UpdateDate, DateTime.UtcNow)
                     .Set(x => x.CartCode, fishbox.CartCode)
                     .Set(x => x.CartId, fishbox.CartId);
                 try
