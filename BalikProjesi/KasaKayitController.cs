@@ -16,7 +16,9 @@ namespace BalikProjesi
 {
     public partial class KasaKayitController : UserControl
     {
+
         private readonly IFishBoxServices _fboxService;
+        private readonly IRecordingsServices _recordingsService;
         private readonly ReaderServices _readerServices;
         private readonly ICartsServices1 _cartServices;
         private long BoxCount;
@@ -25,10 +27,11 @@ namespace BalikProjesi
 
         private string BoxID;
         private string CardID;
-        private bool NewRecord = true; 
+        private bool NewRecord = true;
         public KasaKayitController()
         {
             InitializeComponent();
+            _recordingsService = new RecordingsServices();
             _fboxService = new FishBoxServices();
             _readerServices = new ReaderServices();
             _cartServices = new CartsServices();
@@ -40,7 +43,7 @@ namespace BalikProjesi
             lbPagination.Text = currentPage + "/" + lastPage;
 
             int maxWidthSize = Screen.PrimaryScreen.Bounds.Width;
-            listView1.MaximumSize = new Size(maxWidthSize-10, 282);
+            listView1.MaximumSize = new Size(maxWidthSize - 10, 282);
             listView1.MaximumSize = new Size(0, 282);
 
             lbDocumentCount.Text = InputEnums.ToplamKayıt + BoxCount;
@@ -50,68 +53,12 @@ namespace BalikProjesi
         {
 
         }
-        public void dataupdate()
-        {
-
-            string boxcode = txtKasakod.Text.Trim();
-            string CartCode =txtKartid.Text.Trim();
-            string boxtype = txtKasatip.Text.Trim();
-            var readCard = _cartServices.GetByCardCode(CartCode);
-            if (readCard != null)
-            {
-                CardID = readCard.Id;                
-            }
-            else
-            {
-                MessageBox.Show(WarningEnums.DefineToCardCollection);
-            }
-            if (!string.IsNullOrEmpty(BoxID)&& readCard != null)
-            {
-                if (readCard.CartType==InputEnums.Kasa)
-                {
-                    Entities.FishBox fb = new FishBox();
-
-
-                    fb.FishBoxCode = boxcode;
-                    fb.CartCode = CartCode;
-                    fb.CartId = CardID;
-                    fb.FishBoxType = boxtype;
-                    fb.Id = BoxID;
-                    fb.UpdateDate = DateTime.Now;
-                    bool chk = _fboxService.Update(fb);
-                    if (chk == true)
-                    {
-                        MessageBox.Show(WarningEnums.UpdateSuccess);
-                    }
-                    else
-                    {
-                        MessageBox.Show(WarningEnums.UpdateFailed);
-                    }
-                }
-                else if (readCard.CartType == InputEnums.Fileto)
-                {
-                    MessageBox.Show("Okunan kart Fileto personeli kartıdır. Lüften farklı bir kartla tekrar deneyin veya kartı güncelleyin.");
-                }
-                else if (readCard.CartType == InputEnums.Kontrol)
-                {
-                    MessageBox.Show("Okunan kart Kontrol personeli kartıdır. Lüften farklı bir kartla tekrar deneyin veya kartı güncelleyin.");
-                }
-
-
-
-            }
-            else if(string.IsNullOrEmpty(BoxID))
-            {
-                MessageBox.Show("Lütfen listeden güncellemek istediğiniz kaydı seçiniz veya kartınızı okutunuz");
-            }
-            list();
-
-
-        }
+       
 
         private void button1_Click(object sender, EventArgs e)
         {
             list();
+            BtnTextChanger(true);
         }
         void create()
         {
@@ -189,34 +136,81 @@ namespace BalikProjesi
                 {
                     MessageBox.Show(WarningEnums.InvalidSelection);
                 }
-               
+
 
                 CardID = "";
             }
-            
+
             list();
         }
         private void AddorUpdateBtnClick(object sender, EventArgs e)
         {
+
             if (NewRecord)
             {
-                //CreateRecord();
                 create();
             }
             else
             {
                 DialogResult dr = new DialogResult();
                 dr = MessageBox.Show(WarningEnums.AskUpdate, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if(dr == DialogResult.Yes)
+                if (dr == DialogResult.Yes)
                 {
-                    //UpdateRecord();
+                    KayitGuncelle();
                 }
-                else
-                {
 
-                }
             }
         }
+
+        public void KayitGuncelle()
+        {
+            string OldCardCode = string.Empty;
+            string OldBoxCode = string.Empty;
+            string OldBoxType = string.Empty;
+            string NewCardCode = string.Empty;
+            string NewBoxCode = string.Empty;
+            string NewBoxType = string.Empty;
+            if (!string.IsNullOrEmpty(txtKartid.Text.Trim()))
+            {
+                NewCardCode = txtKartid.Text.Trim();
+                NewBoxCode = txtKasakod.Text.Trim();
+                NewBoxType = txtKasatip.Text.Trim();
+                var OldCard = _cartServices.GetByCardID(CardID);
+                OldCardCode = OldCard.CartCode;
+
+                var OldBCode = _fboxService.GetByCardCode(BoxID);
+                OldBoxCode = OldBCode.FishBoxCode;
+                OldBoxType = OldBCode.FishBoxType;
+
+                OldCard.CartCode = NewCardCode;
+                OldBCode.FishBoxCode = NewBoxCode;
+              
+
+                var UpdateStatus = _cartServices.Update(OldCard);
+                if (UpdateStatus)
+                {
+
+                    var FishboxUpdate = _fboxService.UpdateCartId(OldCardCode, NewCardCode);
+                    if (!FishboxUpdate)
+                    {
+                        MessageBox.Show("Kasa Kart Güncelleme Hatası", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    var RecordingUpdate = _recordingsService.ChangeCardId(OldCardCode, NewCardCode);
+                    if (!RecordingUpdate)
+                    {
+                        MessageBox.Show("Kayıt Kart Güncelleme Hatası", "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+
+            }
+            BtnTextChanger(true);
+            list();
+
+        }
+
+
+
         public void PageFilteredFishBoxToTable(List<FishBox> tableList)
         {
             if (listView1.Items.Count != 0)
@@ -236,67 +230,48 @@ namespace BalikProjesi
                 listView1.Items.Add(record);
             }
         }
-
-        void list()
+        public void list()
         {
-            listView1.Items.Clear();
-            string boxcode, boxtype, boxcardid;
+
+            string BoxCode, BoxType, BoxcardId;
+            if (listView1.Items.Count > 0)
+            {
+                listView1.Items.Clear();
+            }
             var dt = _fboxService.Get(currentPage);
             foreach (var item in dt)
             {
-                boxcode = item.FishBoxCode;
-                boxtype = item.FishBoxType;
-                boxcardid = item.CartCode;                
+                BoxCode = item.FishBoxCode;
+                BoxType = item.FishBoxType;
+                BoxcardId = item.CartCode;
                 BoxID = item.Id;
-                string[] data = { boxcode, boxtype, boxcardid, BoxID };
+                string[] data = { BoxCode, BoxType, BoxcardId, BoxID };
                 ListViewItem record = new ListViewItem(data);
                 listView1.Items.Add(record);
-            }            
+            }
             txtKartid.Clear();
             txtKasakod.Clear();
             txtKasatip.Clear();
             BoxID = "";
             CardID = "";
-            AddorUpdateBtn.Text = "KAYDET";//button text-kaydet
+            AddorUpdateBtn.Text = "KAYDET";
         }
-        void listget(Carts card=null)
+
+
+        void listget(Carts card = null)
         {
-            //button2.Text = "GÜNCELLE";//button text-güncelle
-            if (card!=null)
+            if (listView1.SelectedItems.Count > 0)
             {
-                var fb = _fboxService.GetByCardCode(card.Id);
-                if (fb!=null)
-                {
-                    txtKasakod.Text = fb.FishBoxCode;
-                    txtKasatip.Text = fb.FishBoxType;
-                    txtKartid.Text = fb.CartCode;
-                    BoxID = fb.Id;
-                    CardID = fb.CartId;
-                }
-                
-            }
-            else
-            {
-                
                 ListViewItem itm = listView1.SelectedItems[0];
-                if (listView1.SelectedItems.Count != 0)
-                {
-                    var result = _cartServices.GetByCardCode(itm.SubItems[2].Text);
-                    if (result!=null)
-                    {
-                        CardID = result.Id;
-                    }
-                    else
-                    {
-                        AddorUpdateBtn.Text = "GÜNCELLE";
-                    }
-                    txtKasakod.Text = itm.SubItems[0].Text;
-                    txtKasatip.Text = itm.SubItems[1].Text;                    
-                    BoxID = itm.SubItems[3].Text;
-                    txtKartid.Text = itm.SubItems[2].Text;
-                }
-                
+                txtKasakod.Text = itm.SubItems[0].Text;
+                txtKasatip.Text = itm.SubItems[1].Text;
+                BoxID = itm.SubItems[3].Text;
+                txtKartid.Text = itm.SubItems[2].Text;
+
+
             }
+
+          
         }
 
         private void KasaKayitController_Load(object sender, EventArgs e)
@@ -306,28 +281,9 @@ namespace BalikProjesi
             listwidth();
         }
 
-        private void listView1_Click(object sender, EventArgs e)
-        {
-            listget();
-        }
 
-        private void Delete_Click(object sender, EventArgs e)
-        {
-            
-            //Veri kaybı için bilgilendirme
-            if (MessageBox.Show(WarningEnums.DataLoss, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                bool chk = _fboxService.Delete(BoxID);
-                if (chk)
-                {
-                    MessageBox.Show(WarningEnums.DeleteSuccess, "", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
-                }
-            }
-                
-            list();
-            BoxCount--;
-            lbDocumentCount.Text = InputEnums.ToplamKayıt + BoxCount;
-        }
+
+
 
         private async void btnCardRead_Click(object sender, EventArgs e)
         {
@@ -362,7 +318,7 @@ namespace BalikProjesi
             }
 
             FilteredFishBox = _fboxService.GetFilteredFishBox(Filter);
-            if(FilteredFishBox != null)
+            if (FilteredFishBox != null)
             {
                 PageFilteredFishBoxToTable(FilteredFishBox);
             }
@@ -381,63 +337,7 @@ namespace BalikProjesi
 
         private void txtKartid_TextChanged(object sender, EventArgs e)
         {
-            ////button2.Text = "Kaydet";
-            //string cardcodetxt = txtKartid.Text.Trim();
-            //if (!string.IsNullOrEmpty(cardcodetxt))
-            //{
-            //    var readCard = _cartServices.GetByCardCode(cardcodetxt);
-            //    if (readCard!=null)
-            //    {
-            //        try
-            //        {
-            //            var readBox = _fboxService.GetByCardID(readCard.Id);
-            //            var fb = _fboxService.Get(BoxID);
-            //            if (readBox != null)
-            //            {
-            //                if (readCard.CartType == InputEnums.Kasa)
-            //                {
-            //                    if (string.IsNullOrEmpty(readBox.CartId))
-            //                    {
-            //                        button2.Text = "GÜNCELLE";
-            //                    }
-            //                    if (readBox.CartId != readCard.Id)
-            //                    {
-            //                        button2.Text = "Kaydet";
-            //                    }
-            //                    if (readBox.CartId == readCard.Id)
-            //                    {
-            //                        button2.Text = "GÜNCELLE";
-            //                        listget(readCard);
-            //                    }
-
-            //                }
-            //            }
-            //            else if (string.IsNullOrEmpty(fb.CartId))
-            //            {
-            //                if (readCard.CartType == InputEnums.Kasa)
-            //                {
-            //                    if (string.IsNullOrEmpty(fb.CartId))
-            //                    {
-            //                        button2.Text = "GÜNCELLE";
-            //                        listget(readCard);
-            //                    }
-            //                }
-            //            }
-            //            else
-            //            {
-            //                button2.Text = "Kaydet";
-            //            }
-
-            //        }
-            //        catch (Exception)
-            //        {
-
-            //            throw;
-            //        }
-
-            //    }
-
-            //}
+            
             #region Açıklama
             //Kart silinirse CardId ve Cardcode "" olacaktır. Bu durumu kontrol ediyoruz
             #endregion
@@ -556,5 +456,183 @@ namespace BalikProjesi
                 return 1;
             }
         }
+        private void BtnTextChanger(bool RecordType)
+        {
+            NewRecord = RecordType;
+            if (RecordType)
+            {
+                AddorUpdateBtn.Text = "KAYDET";
+
+            }
+            else
+            {
+                AddorUpdateBtn.Text = "GÜNCELLE";
+            }
+        }
+        private void listView1_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                BtnTextChanger(false);
+
+                ListViewItem itm = listView1.SelectedItems[0];
+                CardID = itm.SubItems[3].Text;
+                txtKartid.Text = itm.SubItems[0].Text;
+                txtKasakod.Text = itm.SubItems[1].Text;
+                txtKasatip.Text = itm.SubItems[2].Text;
+
+
+            }
+
+        }
+        #region gereksiz
+        //void listget(Carts card = null)
+        //{
+           
+            ////button2.Text = "GÜNCELLE";//button text-güncelle
+            //if (card!=null)
+            //{
+            //    var fb = _fboxService.GetByCardCode(card.Id);
+            //    if (fb!=null)
+            //    {
+            //        txtKasakod.Text = fb.FishBoxCode;
+            //        txtKasatip.Text = fb.FishBoxType;
+            //        txtKartid.Text = fb.CartCode;
+            //        BoxID = fb.Id;
+            //        CardID = fb.CartId;
+            //    }
+
+            //}
+            //else
+            //{
+
+            //    ListViewItem itm = listView1.SelectedItems[0];
+            //    if (listView1.SelectedItems.Count != 0)
+            //    {
+            //        var result = _cartServices.GetByCardCode(itm.SubItems[2].Text);
+            //        if (result!=null)
+            //        {
+            //            CardID = result.Id;
+            //        }
+            //        else
+            //        {
+            //            AddorUpdateBtn.Text = "GÜNCELLE";
+            //        }
+            //        txtKasakod.Text = itm.SubItems[0].Text;
+            //        txtKasatip.Text = itm.SubItems[1].Text;                    
+            //        BoxID = itm.SubItems[3].Text;
+            //        txtKartid.Text = itm.SubItems[2].Text;
+            //    }
+
+            //}
+            //
+        //}
+        private void Delete_Click(object sender, EventArgs e)
+        {
+
+            //Veri kaybı için bilgilendirme
+            if (MessageBox.Show(WarningEnums.DataLoss, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                bool chk = _fboxService.Delete(BoxID);
+                if (chk)
+                {
+                    MessageBox.Show(WarningEnums.DeleteSuccess, "", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                }
+            }
+
+            list();
+            BoxCount--;
+            lbDocumentCount.Text = InputEnums.ToplamKayıt + BoxCount;
+        }
+        //private void listView1_Click(object sender, EventArgs e)
+        //{
+        //    listget();
+        //}
+        //void liste()
+        //{
+        //    listView1.Items.Clear();
+        //    string boxcode, boxtype, boxcardid;
+        //    var dt = _fboxService.Get(currentPage);
+        //    foreach (var item in dt)
+        //    {
+        //        boxcode = item.FishBoxCode;
+        //        boxtype = item.FishBoxType;
+        //        boxcardid = item.CartCode;                
+        //        BoxID = item.Id;
+        //        string[] data = { boxcode, boxtype, boxcardid, BoxID };
+        //        ListViewItem record = new ListViewItem(data);
+        //        listView1.Items.Add(record);
+        //    }            
+        //    txtKartid.Clear();
+        //    txtKasakod.Clear();
+        //    txtKasatip.Clear();
+        //    BoxID = "";
+        //    CardID = "";
+        //    AddorUpdateBtn.Text = "KAYDET";//button text-kaydet
+        //}
+        //private void txtKartid_TextChanged(object sender, EventArgs e)
+        //{
+            ////button2.Text = "Kaydet";
+            //string cardcodetxt = txtKartid.Text.Trim();
+            //if (!string.IsNullOrEmpty(cardcodetxt))
+            //{
+            //    var readCard = _cartServices.GetByCardCode(cardcodetxt);
+            //    if (readCard!=null)
+            //    {
+            //        try
+            //        {
+            //            var readBox = _fboxService.GetByCardID(readCard.Id);
+            //            var fb = _fboxService.Get(BoxID);
+            //            if (readBox != null)
+            //            {
+            //                if (readCard.CartType == InputEnums.Kasa)
+            //                {
+            //                    if (string.IsNullOrEmpty(readBox.CartId))
+            //                    {
+            //                        button2.Text = "GÜNCELLE";
+            //                    }
+            //                    if (readBox.CartId != readCard.Id)
+            //                    {
+            //                        button2.Text = "Kaydet";
+            //                    }
+            //                    if (readBox.CartId == readCard.Id)
+            //                    {
+            //                        button2.Text = "GÜNCELLE";
+            //                        listget(readCard);
+            //                    }
+
+            //                }
+            //            }
+            //            else if (string.IsNullOrEmpty(fb.CartId))
+            //            {
+            //                if (readCard.CartType == InputEnums.Kasa)
+            //                {
+            //                    if (string.IsNullOrEmpty(fb.CartId))
+            //                    {
+            //                        button2.Text = "GÜNCELLE";
+            //                        listget(readCard);
+            //                    }
+            //                }
+            //            }
+            //            else
+            //            {
+            //                button2.Text = "Kaydet";
+            //            }
+
+            //        }
+            //        catch (Exception)
+            //        {
+
+            //            throw;
+            //        }
+
+            //    }
+
+            //}
+        
+
+
+            #endregion
+
+        }
     }
-}

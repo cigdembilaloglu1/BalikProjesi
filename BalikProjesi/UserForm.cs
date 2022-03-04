@@ -10,18 +10,11 @@ using System.Windows.Forms;
 
 namespace BalikProjesi
 {
-    public partial class KontolStart : Form
+    public partial class UserForm : Form
     {
-        public KontolStart()
+        public UserForm()
         {
             InitializeComponent();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            ControlUser ContUs = new ControlUser();
-            ContUs.Show();
-            this.Hide();
         }
     }
 }

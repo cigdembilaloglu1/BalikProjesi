@@ -36,7 +36,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.AddorUpdateBtn = new System.Windows.Forms.Button();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.cbListGroup = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -128,7 +128,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.Controls.Add(this.button2, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.button1, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.AddorUpdateBtn, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel7, 0, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(616, 0);
@@ -155,20 +155,20 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button1
+            // AddorUpdateBtn
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.Font = new System.Drawing.Font("Bahnschrift SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button1.ForeColor = System.Drawing.SystemColors.Control;
-            this.button1.Location = new System.Drawing.Point(3, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(199, 106);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "KAYDET";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.AddorUpdateBtn.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.AddorUpdateBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AddorUpdateBtn.FlatAppearance.BorderSize = 0;
+            this.AddorUpdateBtn.Font = new System.Drawing.Font("Bahnschrift SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.AddorUpdateBtn.ForeColor = System.Drawing.SystemColors.Control;
+            this.AddorUpdateBtn.Location = new System.Drawing.Point(3, 3);
+            this.AddorUpdateBtn.Name = "AddorUpdateBtn";
+            this.AddorUpdateBtn.Size = new System.Drawing.Size(199, 106);
+            this.AddorUpdateBtn.TabIndex = 6;
+            this.AddorUpdateBtn.Text = "KAYDET";
+            this.AddorUpdateBtn.UseVisualStyleBackColor = false;
+            this.AddorUpdateBtn.Click += new System.EventHandler(this.button1_Click);
             // 
             // tableLayoutPanel7
             // 
@@ -469,7 +469,6 @@
             this.txtPersonelKod.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtPersonelKod.Multiline = true;
             this.txtPersonelKod.Name = "txtPersonelKod";
-            this.txtPersonelKod.ReadOnly = true;
             this.txtPersonelKod.Size = new System.Drawing.Size(419, 32);
             this.txtPersonelKod.TabIndex = 2;
             // 
@@ -558,7 +557,7 @@
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.Click += new System.EventHandler(this.listView1_Click);
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.ListviewSelection);
             // 
             // PersonelAd
             // 
@@ -740,7 +739,7 @@
         private System.Windows.Forms.ToolStripMenuItem sİLToolStripMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button AddorUpdateBtn;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.ComboBox cbListGroup;
         private System.Windows.Forms.Label label7;

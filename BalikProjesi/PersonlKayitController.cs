@@ -19,20 +19,21 @@ namespace BalikProjesi
         private readonly IPersonelServices _perService;
         private readonly ICartsServices1 _cartsServices;
         private readonly ReaderServices _readerServices;
-        private string persID;
+        private string PersID;
         private string CardID;
         private string PersTuru;
         private long FilletPersonalCount;
         private long ControllerPersonalCount;
         private int currentPage;
         private long lastPage;
+        private bool NewRecord = true;
         public PersonlKayitController()
         {
             InitializeComponent();
             _perService = new PersonelServices();
             _readerServices = new ReaderServices();
             _cartsServices = new CartsServices();
-            persID = "";
+            PersID = string.Empty;
             CardID = "";
             PersTuru = "";
             FilletPersonalCount = _perService.GetFilletDocumentCount();
@@ -48,6 +49,74 @@ namespace BalikProjesi
             lbDocumentCount.Text = InputEnums.ToplamKayıt + FilletPersonalCount + ControllerPersonalCount;
 
         }
+
+        #region FixedMethods
+        private void BtnTextChanger(bool Record)
+        {
+            NewRecord = Record;
+            if (Record)
+            {
+                AddorUpdateBtn.Text = "KAYDET";
+            }
+            else
+            {
+                AddorUpdateBtn.Text = "GÜNCELLE";
+            }
+        }
+
+        private void ListviewSelection(object sender, EventArgs e)
+        {
+
+            if (listView1.SelectedItems.Count > 0)
+            {
+                BtnTextChanger(false);
+
+                ListViewItem itm = listView1.SelectedItems[0];
+                PersID = itm.SubItems[6].Text;
+                txtPersonelAd.Text = itm.SubItems[0].Text;
+                txtPersonelSoyad.Text = itm.SubItems[1].Text;
+                txtPersonelKod.Text = itm.SubItems[2].Text;
+                ComboSelector("Group", itm.SubItems[3].Text);
+                ComboSelector("Tip", itm.SubItems[4].Text);
+                txtKartID.Text = itm.SubItems[5].Text;
+               
+               
+            }
+        }
+        private void ComboSelector(string ComboName, string Selection)
+        {
+            if(ComboName == "Group")
+            {
+                var Cb = cbPersonelGrup;
+                switch (Selection)
+                {
+                    case "A":
+                        Cb.SelectedIndex = 0;
+                        break;
+                    case "B":
+                        Cb.SelectedIndex= 1;
+                        break;
+                    case "C":
+                        Cb.SelectedIndex = 2;
+                        break;
+                }
+            }
+            if(ComboName == "Tip")
+            {
+                var Cb = cbPersonelTur;
+                switch (Selection)
+                {
+                    case "Tümü":
+                    case "Fileto":
+                        Cb.SelectedIndex = 0;
+                        break;
+                    case "Kontrol":
+                        Cb.SelectedIndex = 1;
+                        break;
+                }
+            }
+        }
+        #endregion
         public void listviewDataGet(Carts card = null)
         {
 
@@ -79,7 +148,7 @@ namespace BalikProjesi
                         {
                             cbPersonelTur.SelectedItem = InputEnums.Fileto;
                         }
-                        persID = prsFillet.Id;
+                        PersID = prsFillet.Id;
                         PersTuru = cbPersonelTur.Text;
                         CardID = prsFillet.CartId;
 
@@ -108,7 +177,7 @@ namespace BalikProjesi
                         {
                             cbPersonelTur.SelectedItem = InputEnums.Kontrol;
                         }
-                        persID = prsControl.Id;
+                        PersID = prsControl.Id;
                         PersTuru = cbPersonelTur.Text;
                         CardID = prsControl.CartId;
 
@@ -160,9 +229,9 @@ namespace BalikProjesi
                     }
                     else
                     {
-                        button1.Text = "GÜNCELLE";
+                        AddorUpdateBtn.Text = "GÜNCELLE";
                     }
-                    persID = itm.SubItems[6].Text;
+                    PersID = itm.SubItems[6].Text;
                     PersTuru = cbPersonelTur.Text;
                 }
                
@@ -325,7 +394,7 @@ namespace BalikProjesi
             string PersonelGrup = cbPersonelGrup.Text.Trim();
             string PersonelTur = cbPersonelTur.Text.Trim();
             string KartID = txtKartID.Text;
-            var readCard = _cartsServices.GetByCardCode(KartID);//
+            var readCard = _cartsServices.GetByCardCode(KartID);
             if (readCard != null)
             {
                 CardID = readCard.Id;
@@ -342,12 +411,12 @@ namespace BalikProjesi
                 }
 
             }
-            if (!string.IsNullOrEmpty(persID) && readCard != null)
+            if (!string.IsNullOrEmpty(PersID) && readCard != null)
             {
                 if (PersonelTur == readCard.CartType)
                 {
                     Personel prs = new Personel();
-                    prs.Id = persID;
+                    prs.Id = PersID;
                     prs.PersonelName = PersonelAd;
                     prs.PersonelSurname = PersonelSoyad;
                     prs.PersonelCode = PersonelKod;
@@ -374,12 +443,12 @@ namespace BalikProjesi
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            if (button1.Text=="KAYDET")
+            if (AddorUpdateBtn.Text=="KAYDET")
             {
                 Create();
                 list();
             }
-            else if (button1.Text=="GÜNCELLE")
+            else if (AddorUpdateBtn.Text=="GÜNCELLE")
             {
                 if (MessageBox.Show(WarningEnums.AskUpdate, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
@@ -492,22 +561,14 @@ namespace BalikProjesi
             list();
         }
 
-        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
-        {
-
-        }
-
-        private void gÜNCELLEToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-
-        }
+      
 
         private async void btnReader_Click(object sender, EventArgs e)
         {
             await _readerServices.WriteTagIdToTextboxAsync(txtKartID);
         }
 
+        #region gereksiz
         private void sİLToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -515,12 +576,12 @@ namespace BalikProjesi
             //Veri kaybı için bilgilendirme
             if (MessageBox.Show(WarningEnums.DataLoss, WarningEnums.Uyarı, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                bool chk = _perService.Delete(persID, PersTuru);
+                bool chk = _perService.Delete(PersID, PersTuru);
                 if (chk)
                 {
                     MessageBox.Show(WarningEnums.DeleteSuccess, "", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
 
-                    
+
                     if (listView1.SelectedItems[0].SubItems[4].Text == InputEnums.Fileto)
                     {
                         FilletPersonalCount--;
@@ -542,11 +603,24 @@ namespace BalikProjesi
                             lbDocumentCount.Text = InputEnums.ToplamKayıt + (ControllerPersonalCount + FilletPersonalCount);
                             break;
                     }
-                    
+
                 }
                 list();
             }
         }
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void gÜNCELLEToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+
+        }
+        #endregion
+
+
 
         private void listView1_Click(object sender, EventArgs e)
         {
@@ -701,19 +775,19 @@ namespace BalikProjesi
             }
             else
             {
-                if (!string.IsNullOrEmpty(persID))
+                if (!string.IsNullOrEmpty(PersID))
                 {
-                    button1.Text = "GÜNCELLE";
+                    AddorUpdateBtn.Text = "GÜNCELLE";
                 }
                 else
                 {
-                    button1.Text = "KAYDET";
+                    AddorUpdateBtn.Text = "KAYDET";
                 }
 
             }
-            if (!string.IsNullOrEmpty(persID))
+            if (!string.IsNullOrEmpty(PersID))
             {
-                button1.Text = "GÜNCELLE";
+                AddorUpdateBtn.Text = "GÜNCELLE";
             }
             
         }
@@ -726,8 +800,8 @@ namespace BalikProjesi
             txtPersonelSoyad.Clear();
 
             CardID = "";
-            persID = "";
-            button1.Text = "KAYDET";
+            PersID = "";
+            AddorUpdateBtn.Text = "KAYDET";
         }
 
         private void btnPrev_Click(object sender, EventArgs e)
@@ -772,5 +846,7 @@ namespace BalikProjesi
                 return 1;
             }
         }
+
+       
     }
 }
