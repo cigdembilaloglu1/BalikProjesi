@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BalikProjesi.Enums;
 using MongoDB.Driver;
+using System.Collections;
 
 namespace BalikProjesi
 {
@@ -77,6 +78,34 @@ namespace BalikProjesi
             cbCardType.SelectedIndex = 0;
             CardID = "";
             AddOrUpdateBtn.Text = "KAYDET";
+        }
+
+        private int _sortColumnIndex = -1;
+        private void columnSort_Click(object sender, ColumnClickEventArgs e)
+        {
+            if (e.Column != _sortColumnIndex)
+            {
+                
+                _sortColumnIndex = e.Column;
+                
+                listView1.Sorting = SortOrder.Ascending;
+            }
+            else
+            {
+                
+                if (listView1.Sorting == SortOrder.Ascending)
+                    listView1.Sorting = SortOrder.Descending;
+                else
+                    listView1.Sorting = SortOrder.Ascending;
+            }
+
+            
+            listView1.Sort();
+
+            
+
+            listView1.ListViewItemSorter = new ListViewItemStringComparer(e.Column, listView1.Sorting);
+
         }
 
         #region FIXED METHODS
@@ -679,6 +708,37 @@ namespace BalikProjesi
             lbCardCode.Text = "";
         }
         #endregion
+       
+    }
+    class ListViewItemStringComparer : IComparer
+    {
+        private int col;
+        private SortOrder order;
+        public ListViewItemStringComparer()
+        {
+            col = 0;
+            order = SortOrder.Ascending;
+        }
+
+        public ListViewItemStringComparer(int column, SortOrder order)
+        {
+            col = column;
+            this.order = order;
+        }
+
+        public int Compare(object x, object y)
+        {
+            int returnVal = -1;
+            returnVal = String.Compare(((ListViewItem)x).SubItems[col].Text,
+                                       ((ListViewItem)y).SubItems[col].Text);
+
+
+            if (order == SortOrder.Descending)
+
+                returnVal *= -1;
+
+            return returnVal;
+        }
     }
 }
 
