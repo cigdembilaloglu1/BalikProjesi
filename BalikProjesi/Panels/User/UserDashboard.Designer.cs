@@ -54,28 +54,30 @@
             // 
             this.FletoPanelBtn.AutoSize = true;
             this.FletoPanelBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.FletoPanelBtn.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.FletoPanelBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FletoPanelBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.FletoPanelBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.FletoPanelBtn.Location = new System.Drawing.Point(3, 3);
             this.FletoPanelBtn.Name = "FletoPanelBtn";
             this.FletoPanelBtn.Size = new System.Drawing.Size(596, 597);
             this.FletoPanelBtn.TabIndex = 0;
             this.FletoPanelBtn.Text = "FİLETO";
-            this.FletoPanelBtn.UseVisualStyleBackColor = true;
+            this.FletoPanelBtn.UseVisualStyleBackColor = false;
             this.FletoPanelBtn.Click += new System.EventHandler(this.FletoPanelBtn_Click);
             // 
             // KontrolBtn
             // 
             this.KontrolBtn.AutoSize = true;
             this.KontrolBtn.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.KontrolBtn.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.KontrolBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.KontrolBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.KontrolBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold);
             this.KontrolBtn.Location = new System.Drawing.Point(655, 3);
             this.KontrolBtn.Name = "KontrolBtn";
             this.KontrolBtn.Size = new System.Drawing.Size(596, 597);
             this.KontrolBtn.TabIndex = 1;
             this.KontrolBtn.Text = "KONTROL";
-            this.KontrolBtn.UseVisualStyleBackColor = true;
+            this.KontrolBtn.UseVisualStyleBackColor = false;
             this.KontrolBtn.Click += new System.EventHandler(this.KontrolBtn_Click);
             // 
             // UserDashboard

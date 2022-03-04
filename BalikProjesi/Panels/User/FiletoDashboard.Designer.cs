@@ -73,6 +73,7 @@
             // 
             this.FiletoKaydiBasla.AutoSize = true;
             this.FiletoKaydiBasla.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.FiletoKaydiBasla.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.FiletoKaydiBasla.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FiletoKaydiBasla.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.FiletoKaydiBasla.Location = new System.Drawing.Point(30, 80);
@@ -81,13 +82,14 @@
             this.FiletoKaydiBasla.Size = new System.Drawing.Size(421, 426);
             this.FiletoKaydiBasla.TabIndex = 1;
             this.FiletoKaydiBasla.Text = "Fileto Kaydı Başlat";
-            this.FiletoKaydiBasla.UseVisualStyleBackColor = true;
+            this.FiletoKaydiBasla.UseVisualStyleBackColor = false;
             this.FiletoKaydiBasla.Click += new System.EventHandler(this.FiletoKaydiBasla_Click);
             // 
             // FiletoKayitBitir
             // 
             this.FiletoKayitBitir.AutoSize = true;
             this.FiletoKayitBitir.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.FiletoKayitBitir.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.FiletoKayitBitir.Dock = System.Windows.Forms.DockStyle.Fill;
             this.FiletoKayitBitir.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.FiletoKayitBitir.Location = new System.Drawing.Point(561, 80);
@@ -96,7 +98,7 @@
             this.FiletoKayitBitir.Size = new System.Drawing.Size(422, 426);
             this.FiletoKayitBitir.TabIndex = 2;
             this.FiletoKayitBitir.Text = "Fileto Kaydı Bitir";
-            this.FiletoKayitBitir.UseVisualStyleBackColor = true;
+            this.FiletoKayitBitir.UseVisualStyleBackColor = false;
             this.FiletoKayitBitir.Click += new System.EventHandler(this.FiletoKayitBitir_Click);
             // 
             // FiletoDashboard

@@ -71,6 +71,7 @@
             // 
             this.KontrolKaydiBasla.AutoSize = true;
             this.KontrolKaydiBasla.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.KontrolKaydiBasla.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.KontrolKaydiBasla.Dock = System.Windows.Forms.DockStyle.Fill;
             this.KontrolKaydiBasla.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.KontrolKaydiBasla.Location = new System.Drawing.Point(30, 80);
@@ -79,13 +80,14 @@
             this.KontrolKaydiBasla.Size = new System.Drawing.Size(317, 342);
             this.KontrolKaydiBasla.TabIndex = 1;
             this.KontrolKaydiBasla.Text = "Kontrol Kaydı Başlat";
-            this.KontrolKaydiBasla.UseVisualStyleBackColor = true;
+            this.KontrolKaydiBasla.UseVisualStyleBackColor = false;
             this.KontrolKaydiBasla.Click += new System.EventHandler(this.KontrolKaydiBasla_Click);
             // 
             // KontrolKayitBitir
             // 
             this.KontrolKayitBitir.AutoSize = true;
             this.KontrolKayitBitir.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.KontrolKayitBitir.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.KontrolKayitBitir.Dock = System.Windows.Forms.DockStyle.Fill;
             this.KontrolKayitBitir.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold);
             this.KontrolKayitBitir.Location = new System.Drawing.Point(457, 80);
@@ -94,7 +96,7 @@
             this.KontrolKayitBitir.Size = new System.Drawing.Size(317, 342);
             this.KontrolKayitBitir.TabIndex = 2;
             this.KontrolKayitBitir.Text = "Kontrol Kaydı Bitir";
-            this.KontrolKayitBitir.UseVisualStyleBackColor = true;
+            this.KontrolKayitBitir.UseVisualStyleBackColor = false;
             this.KontrolKayitBitir.Click += new System.EventHandler(this.KontrolKayitBitir_Click);
             // 
             // ControlDashboard
