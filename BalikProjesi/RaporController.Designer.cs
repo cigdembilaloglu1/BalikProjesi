@@ -29,11 +29,22 @@
         private void InitializeComponent()
         {
             this.AnaPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.LbArama = new System.Windows.Forms.Label();
+            this.AraTLP = new System.Windows.Forms.TableLayoutPanel();
+            this.PersKasaTLP = new System.Windows.Forms.TableLayoutPanel();
+            this.BaslaTarLb = new System.Windows.Forms.Label();
+            this.BitisTarBtn = new System.Windows.Forms.Label();
+            this.PersLb = new System.Windows.Forms.Label();
+            this.KasaLb = new System.Windows.Forms.Label();
+            this.PersCb = new System.Windows.Forms.ComboBox();
+            this.KasaCb = new System.Windows.Forms.ComboBox();
+            this.BaslangicDtP = new System.Windows.Forms.DateTimePicker();
+            this.BitisDtP = new System.Windows.Forms.DateTimePicker();
+            this.AraBtn = new System.Windows.Forms.Button();
             this.AramaTLP = new System.Windows.Forms.TableLayoutPanel();
             this.RBGun = new System.Windows.Forms.RadioButton();
             this.RBPersonel = new System.Windows.Forms.RadioButton();
             this.RBKasa = new System.Windows.Forms.RadioButton();
+            this.LbArama = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.PersAd = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.PersSoyad = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -44,21 +55,10 @@
             this.HasatDefo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Diger = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.BtnExcel = new System.Windows.Forms.Button();
-            this.PersKasaTLP = new System.Windows.Forms.TableLayoutPanel();
-            this.AraTLP = new System.Windows.Forms.TableLayoutPanel();
-            this.AraBtn = new System.Windows.Forms.Button();
-            this.BaslaTarLb = new System.Windows.Forms.Label();
-            this.BitisTarBtn = new System.Windows.Forms.Label();
-            this.PersLb = new System.Windows.Forms.Label();
-            this.KasaLb = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.BaslangicDtP = new System.Windows.Forms.DateTimePicker();
-            this.BitisDtP = new System.Windows.Forms.DateTimePicker();
             this.AnaPanel.SuspendLayout();
-            this.AramaTLP.SuspendLayout();
-            this.PersKasaTLP.SuspendLayout();
             this.AraTLP.SuspendLayout();
+            this.PersKasaTLP.SuspendLayout();
+            this.AramaTLP.SuspendLayout();
             this.SuspendLayout();
             // 
             // AnaPanel
@@ -87,19 +87,146 @@
             this.AnaPanel.TabIndex = 0;
             this.AnaPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
-            // LbArama
+            // AraTLP
             // 
-            this.LbArama.AutoSize = true;
-            this.LbArama.BackColor = System.Drawing.Color.DimGray;
-            this.LbArama.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LbArama.Font = new System.Drawing.Font("Bahnschrift SemiBold SemiConden", 14.25F, System.Drawing.FontStyle.Bold);
-            this.LbArama.ForeColor = System.Drawing.Color.White;
-            this.LbArama.Location = new System.Drawing.Point(3, 0);
-            this.LbArama.Name = "LbArama";
-            this.LbArama.Size = new System.Drawing.Size(726, 34);
-            this.LbArama.TabIndex = 0;
-            this.LbArama.Text = "ARAMA";
-            this.LbArama.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.AraTLP.ColumnCount = 2;
+            this.AraTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.AraTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.AraTLP.Controls.Add(this.PersKasaTLP, 1, 0);
+            this.AraTLP.Controls.Add(this.AraBtn, 0, 0);
+            this.AraTLP.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AraTLP.Location = new System.Drawing.Point(3, 131);
+            this.AraTLP.Name = "AraTLP";
+            this.AraTLP.RowCount = 1;
+            this.AraTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.AraTLP.Size = new System.Drawing.Size(726, 98);
+            this.AraTLP.TabIndex = 2;
+            // 
+            // PersKasaTLP
+            // 
+            this.PersKasaTLP.ColumnCount = 8;
+            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.PersKasaTLP.Controls.Add(this.BaslaTarLb, 1, 0);
+            this.PersKasaTLP.Controls.Add(this.BitisTarBtn, 1, 1);
+            this.PersKasaTLP.Controls.Add(this.PersLb, 5, 0);
+            this.PersKasaTLP.Controls.Add(this.KasaLb, 5, 1);
+            this.PersKasaTLP.Controls.Add(this.PersCb, 7, 0);
+            this.PersKasaTLP.Controls.Add(this.KasaCb, 7, 1);
+            this.PersKasaTLP.Controls.Add(this.BaslangicDtP, 3, 0);
+            this.PersKasaTLP.Controls.Add(this.BitisDtP, 3, 1);
+            this.PersKasaTLP.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PersKasaTLP.Location = new System.Drawing.Point(148, 3);
+            this.PersKasaTLP.Name = "PersKasaTLP";
+            this.PersKasaTLP.RowCount = 2;
+            this.PersKasaTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.PersKasaTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.PersKasaTLP.Size = new System.Drawing.Size(575, 92);
+            this.PersKasaTLP.TabIndex = 1;
+            this.PersKasaTLP.VisibleChanged += new System.EventHandler(this.RBGun_CheckedChanged);
+            this.PersKasaTLP.Paint += new System.Windows.Forms.PaintEventHandler(this.KontrollerTLP_Paint);
+            // 
+            // BaslaTarLb
+            // 
+            this.BaslaTarLb.AutoSize = true;
+            this.BaslaTarLb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BaslaTarLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.BaslaTarLb.Location = new System.Drawing.Point(23, 0);
+            this.BaslaTarLb.Name = "BaslaTarLb";
+            this.BaslaTarLb.Size = new System.Drawing.Size(117, 46);
+            this.BaslaTarLb.TabIndex = 0;
+            this.BaslaTarLb.Text = "Başlangıç Tarihi";
+            // 
+            // BitisTarBtn
+            // 
+            this.BitisTarBtn.AutoSize = true;
+            this.BitisTarBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BitisTarBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.BitisTarBtn.Location = new System.Drawing.Point(23, 46);
+            this.BitisTarBtn.Name = "BitisTarBtn";
+            this.BitisTarBtn.Size = new System.Drawing.Size(117, 46);
+            this.BitisTarBtn.TabIndex = 1;
+            this.BitisTarBtn.Text = "Bitiş Tarihi";
+            // 
+            // PersLb
+            // 
+            this.PersLb.AutoSize = true;
+            this.PersLb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PersLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.PersLb.Location = new System.Drawing.Point(319, 0);
+            this.PersLb.Name = "PersLb";
+            this.PersLb.Size = new System.Drawing.Size(117, 46);
+            this.PersLb.TabIndex = 2;
+            this.PersLb.Text = "Personel";
+            this.PersLb.Click += new System.EventHandler(this.PersLb_Click);
+            // 
+            // KasaLb
+            // 
+            this.KasaLb.AutoSize = true;
+            this.KasaLb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.KasaLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.KasaLb.Location = new System.Drawing.Point(319, 46);
+            this.KasaLb.Name = "KasaLb";
+            this.KasaLb.Size = new System.Drawing.Size(117, 46);
+            this.KasaLb.TabIndex = 3;
+            this.KasaLb.Text = "Kasa";
+            // 
+            // PersCb
+            // 
+            this.PersCb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PersCb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.PersCb.FormattingEnabled = true;
+            this.PersCb.Location = new System.Drawing.Point(452, 3);
+            this.PersCb.Name = "PersCb";
+            this.PersCb.Size = new System.Drawing.Size(120, 23);
+            this.PersCb.TabIndex = 4;
+            this.PersCb.Text = "Personel Seçiniz";
+            // 
+            // KasaCb
+            // 
+            this.KasaCb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.KasaCb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Italic);
+            this.KasaCb.FormattingEnabled = true;
+            this.KasaCb.Location = new System.Drawing.Point(452, 49);
+            this.KasaCb.Name = "KasaCb";
+            this.KasaCb.Size = new System.Drawing.Size(120, 23);
+            this.KasaCb.TabIndex = 5;
+            this.KasaCb.Text = "Kasa Seçiniz";
+            // 
+            // BaslangicDtP
+            // 
+            this.BaslangicDtP.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BaslangicDtP.Location = new System.Drawing.Point(156, 3);
+            this.BaslangicDtP.Name = "BaslangicDtP";
+            this.BaslangicDtP.Size = new System.Drawing.Size(117, 20);
+            this.BaslangicDtP.TabIndex = 6;
+            // 
+            // BitisDtP
+            // 
+            this.BitisDtP.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BitisDtP.Location = new System.Drawing.Point(156, 49);
+            this.BitisDtP.Name = "BitisDtP";
+            this.BitisDtP.Size = new System.Drawing.Size(117, 20);
+            this.BitisDtP.TabIndex = 7;
+            // 
+            // AraBtn
+            // 
+            this.AraBtn.BackColor = System.Drawing.Color.Black;
+            this.AraBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AraBtn.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.AraBtn.ForeColor = System.Drawing.Color.White;
+            this.AraBtn.Location = new System.Drawing.Point(3, 3);
+            this.AraBtn.Name = "AraBtn";
+            this.AraBtn.Size = new System.Drawing.Size(139, 92);
+            this.AraBtn.TabIndex = 2;
+            this.AraBtn.Text = "ARA";
+            this.AraBtn.UseVisualStyleBackColor = false;
             // 
             // AramaTLP
             // 
@@ -118,7 +245,7 @@
             this.AramaTLP.Name = "AramaTLP";
             this.AramaTLP.RowCount = 1;
             this.AramaTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.AramaTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.AramaTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
             this.AramaTLP.Size = new System.Drawing.Size(726, 72);
             this.AramaTLP.TabIndex = 1;
             // 
@@ -134,6 +261,7 @@
             this.RBGun.TabStop = true;
             this.RBGun.Text = "GÜN";
             this.RBGun.UseVisualStyleBackColor = false;
+            this.RBGun.CheckedChanged += new System.EventHandler(this.RBGun_CheckedChanged);
             // 
             // RBPersonel
             // 
@@ -147,6 +275,7 @@
             this.RBPersonel.TabStop = true;
             this.RBPersonel.Text = "PERSONEL";
             this.RBPersonel.UseVisualStyleBackColor = false;
+            this.RBPersonel.CheckedChanged += new System.EventHandler(this.RBPersonel_CheckedChanged);
             // 
             // RBKasa
             // 
@@ -160,6 +289,22 @@
             this.RBKasa.TabStop = true;
             this.RBKasa.Text = "KASA";
             this.RBKasa.UseVisualStyleBackColor = false;
+            this.RBKasa.CheckedChanged += new System.EventHandler(this.RBKasa_CheckedChanged);
+            // 
+            // LbArama
+            // 
+            this.LbArama.AutoSize = true;
+            this.LbArama.BackColor = System.Drawing.Color.DimGray;
+            this.LbArama.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LbArama.Font = new System.Drawing.Font("Bahnschrift SemiBold SemiConden", 14.25F, System.Drawing.FontStyle.Bold);
+            this.LbArama.ForeColor = System.Drawing.Color.White;
+            this.LbArama.Location = new System.Drawing.Point(3, 0);
+            this.LbArama.Name = "LbArama";
+            this.LbArama.Size = new System.Drawing.Size(726, 34);
+            this.LbArama.TabIndex = 0;
+            this.LbArama.Text = "ARAMA";
+            this.LbArama.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LbArama.Click += new System.EventHandler(this.LbArama_Click);
             // 
             // listView1
             // 
@@ -197,7 +342,7 @@
             // 
             // PersGorev
             // 
-            this.PersGorev.Text = "GÖREV";
+            this.PersGorev.Text = "Görev";
             this.PersGorev.Width = 190;
             // 
             // KasaKod
@@ -238,145 +383,6 @@
             this.BtnExcel.Text = "EXCEL\'E AKTAR";
             this.BtnExcel.UseVisualStyleBackColor = false;
             // 
-            // PersKasaTLP
-            // 
-            this.PersKasaTLP.ColumnCount = 8;
-            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.PersKasaTLP.Controls.Add(this.BaslaTarLb, 1, 0);
-            this.PersKasaTLP.Controls.Add(this.BitisTarBtn, 1, 1);
-            this.PersKasaTLP.Controls.Add(this.PersLb, 5, 0);
-            this.PersKasaTLP.Controls.Add(this.KasaLb, 5, 1);
-            this.PersKasaTLP.Controls.Add(this.comboBox1, 7, 0);
-            this.PersKasaTLP.Controls.Add(this.comboBox2, 7, 1);
-            this.PersKasaTLP.Controls.Add(this.BaslangicDtP, 3, 0);
-            this.PersKasaTLP.Controls.Add(this.BitisDtP, 3, 1);
-            this.PersKasaTLP.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PersKasaTLP.Location = new System.Drawing.Point(148, 3);
-            this.PersKasaTLP.Name = "PersKasaTLP";
-            this.PersKasaTLP.RowCount = 2;
-            this.PersKasaTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.PersKasaTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.PersKasaTLP.Size = new System.Drawing.Size(575, 92);
-            this.PersKasaTLP.TabIndex = 1;
-            this.PersKasaTLP.Paint += new System.Windows.Forms.PaintEventHandler(this.KontrollerTLP_Paint);
-            // 
-            // AraTLP
-            // 
-            this.AraTLP.ColumnCount = 2;
-            this.AraTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.AraTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.AraTLP.Controls.Add(this.PersKasaTLP, 1, 0);
-            this.AraTLP.Controls.Add(this.AraBtn, 0, 0);
-            this.AraTLP.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AraTLP.Location = new System.Drawing.Point(3, 131);
-            this.AraTLP.Name = "AraTLP";
-            this.AraTLP.RowCount = 1;
-            this.AraTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.AraTLP.Size = new System.Drawing.Size(726, 98);
-            this.AraTLP.TabIndex = 2;
-            // 
-            // AraBtn
-            // 
-            this.AraBtn.BackColor = System.Drawing.Color.Black;
-            this.AraBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AraBtn.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.AraBtn.ForeColor = System.Drawing.Color.White;
-            this.AraBtn.Location = new System.Drawing.Point(3, 3);
-            this.AraBtn.Name = "AraBtn";
-            this.AraBtn.Size = new System.Drawing.Size(139, 92);
-            this.AraBtn.TabIndex = 2;
-            this.AraBtn.Text = "ARA";
-            this.AraBtn.UseVisualStyleBackColor = false;
-            // 
-            // BaslaTarLb
-            // 
-            this.BaslaTarLb.AutoSize = true;
-            this.BaslaTarLb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BaslaTarLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.BaslaTarLb.Location = new System.Drawing.Point(23, 0);
-            this.BaslaTarLb.Name = "BaslaTarLb";
-            this.BaslaTarLb.Size = new System.Drawing.Size(117, 46);
-            this.BaslaTarLb.TabIndex = 0;
-            this.BaslaTarLb.Text = "Başlangıç Tarihi";
-            // 
-            // BitisTarBtn
-            // 
-            this.BitisTarBtn.AutoSize = true;
-            this.BitisTarBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BitisTarBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.BitisTarBtn.Location = new System.Drawing.Point(23, 46);
-            this.BitisTarBtn.Name = "BitisTarBtn";
-            this.BitisTarBtn.Size = new System.Drawing.Size(117, 46);
-            this.BitisTarBtn.TabIndex = 1;
-            this.BitisTarBtn.Text = "Bitiş Tarihi";
-            // 
-            // PersLb
-            // 
-            this.PersLb.AutoSize = true;
-            this.PersLb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PersLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.PersLb.Location = new System.Drawing.Point(319, 0);
-            this.PersLb.Name = "PersLb";
-            this.PersLb.Size = new System.Drawing.Size(117, 46);
-            this.PersLb.TabIndex = 2;
-            this.PersLb.Text = "Personel";
-            // 
-            // KasaLb
-            // 
-            this.KasaLb.AutoSize = true;
-            this.KasaLb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.KasaLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.KasaLb.Location = new System.Drawing.Point(319, 46);
-            this.KasaLb.Name = "KasaLb";
-            this.KasaLb.Size = new System.Drawing.Size(117, 46);
-            this.KasaLb.TabIndex = 3;
-            this.KasaLb.Text = "Kasa";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(452, 3);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(120, 23);
-            this.comboBox1.TabIndex = 4;
-            this.comboBox1.Text = "Personel Seçiniz";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Italic);
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(452, 49);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(120, 23);
-            this.comboBox2.TabIndex = 5;
-            this.comboBox2.Text = "Kasa Seçiniz";
-            // 
-            // BaslangicDtP
-            // 
-            this.BaslangicDtP.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BaslangicDtP.Location = new System.Drawing.Point(156, 3);
-            this.BaslangicDtP.Name = "BaslangicDtP";
-            this.BaslangicDtP.Size = new System.Drawing.Size(117, 20);
-            this.BaslangicDtP.TabIndex = 6;
-            // 
-            // BitisDtP
-            // 
-            this.BitisDtP.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BitisDtP.Location = new System.Drawing.Point(156, 49);
-            this.BitisDtP.Name = "BitisDtP";
-            this.BitisDtP.Size = new System.Drawing.Size(117, 20);
-            this.BitisDtP.TabIndex = 7;
-            // 
             // RaporController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -384,13 +390,14 @@
             this.Controls.Add(this.AnaPanel);
             this.Name = "RaporController";
             this.Size = new System.Drawing.Size(732, 495);
+            this.Load += new System.EventHandler(this.RaporController_Load);
             this.AnaPanel.ResumeLayout(false);
             this.AnaPanel.PerformLayout();
-            this.AramaTLP.ResumeLayout(false);
-            this.AramaTLP.PerformLayout();
+            this.AraTLP.ResumeLayout(false);
             this.PersKasaTLP.ResumeLayout(false);
             this.PersKasaTLP.PerformLayout();
-            this.AraTLP.ResumeLayout(false);
+            this.AramaTLP.ResumeLayout(false);
+            this.AramaTLP.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -420,8 +427,8 @@
         private System.Windows.Forms.Label BitisTarBtn;
         private System.Windows.Forms.Label PersLb;
         private System.Windows.Forms.Label KasaLb;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox PersCb;
+        private System.Windows.Forms.ComboBox KasaCb;
         private System.Windows.Forms.DateTimePicker BaslangicDtP;
         private System.Windows.Forms.DateTimePicker BitisDtP;
     }

@@ -27,5 +27,54 @@ namespace BalikProjesi
             
             
         }
+
+        private void RBGun_CheckedChanged(object sender, EventArgs e)
+        {
+           
+            PersLb.Visible = false;
+            KasaLb.Visible = false;
+            PersCb.Visible = false;
+            KasaCb.Visible = false;
+        }
+
+        private void RBPersonel_CheckedChanged(object sender, EventArgs e)
+        {
+
+            PersLb.Visible = true;
+            KasaLb.Visible = false;
+            PersCb.Visible = true;
+            KasaCb.Visible = false;
+           
+
+        }
+
+        private void RBKasa_CheckedChanged(object sender, EventArgs e)
+        {
+            
+            PersLb.Visible =false;
+            KasaLb.Visible = true;
+            PersCb.Visible =false;
+            KasaCb.Visible = true;
+
+
+        }
+
+        private void LbArama_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PersLb_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RaporController_Load(object sender, EventArgs e)
+        {
+            PersLb.Visible = false;
+            KasaLb.Visible = false;
+            PersCb.Visible = false;
+            KasaCb.Visible = false;
+        }
     }
 }
