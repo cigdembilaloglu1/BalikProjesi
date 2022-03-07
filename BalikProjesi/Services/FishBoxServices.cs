@@ -43,7 +43,7 @@ namespace BalikProjesi.Services
 
         public FishBox GetById(string ID)
         {
-            var result = db.Find(x => x.Id == ID).FirstOrDefault();
+            var result = db.Find(x => x.CartId == ID).FirstOrDefault();
             return result;
         }
         public List<FishBox> Get(int page, int pageSize = 15)

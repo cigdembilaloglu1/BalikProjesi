@@ -756,40 +756,42 @@ namespace BalikProjesi
 
         private void txtKartID_TextChanged(object sender, EventArgs e)
         {
-            string cardcodetxt = txtKartID.Text.Trim();
-
-            if (!string.IsNullOrEmpty(cardcodetxt))
+            if(NewRecord)
             {
-                var readCard = _cartsServices.GetByCardCode(cardcodetxt);
-                if (readCard != null)
+                string cardcodetxt = txtKartID.Text.Trim();
+
+                if (!string.IsNullOrEmpty(cardcodetxt))
                 {
-                    if (readCard.CartType == InputEnums.Fileto)
-                        cbPersonelTur.SelectedItem = 0;
-                    else if (readCard.CartType == InputEnums.Kontrol)
-                        cbPersonelTur.SelectedItem = 1;
+                    var readCard = _cartsServices.GetByCardCode(cardcodetxt);
+                    if (readCard != null)
+                    {
+                        if (readCard.CartType == InputEnums.Fileto)
+                            cbPersonelTur.SelectedItem = 0;
+                        else if (readCard.CartType == InputEnums.Kontrol)
+                            cbPersonelTur.SelectedItem = 1;
 
-                    txtPersonelKod.Text = readCard.CartName;
-                    CardID = readCard.Id;
-                    listviewDataGet(readCard);
+                        txtPersonelKod.Text = readCard.CartName;
+                        CardID = readCard.Id;
+                        listviewDataGet(readCard);
+                    }
                 }
-            }
-            else
-            {
+                else
+                {
+                    if (!string.IsNullOrEmpty(PersID))
+                    {
+                        AddorUpdateBtn.Text = "GÜNCELLE";
+                    }
+                    else
+                    {
+                        AddorUpdateBtn.Text = "KAYDET";
+                    }
+
+                }
                 if (!string.IsNullOrEmpty(PersID))
                 {
                     AddorUpdateBtn.Text = "GÜNCELLE";
                 }
-                else
-                {
-                    AddorUpdateBtn.Text = "KAYDET";
-                }
-
             }
-            if (!string.IsNullOrEmpty(PersID))
-            {
-                AddorUpdateBtn.Text = "GÜNCELLE";
-            }
-            
         }
 
         private void RefreshInputs()
