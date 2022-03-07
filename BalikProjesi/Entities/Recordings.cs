@@ -27,10 +27,10 @@ namespace BalikProjesi.Entities
         public string ControllerCardId { get; set; }
         public DateTime ControllerOpeningDate { get; set; }
         public DateTime ControllerClosingDate { get; set; }        
-        public string FishBone { get; set; }
-        public string Defo { get; set; }
-        public string Knife { get; set; }
-        public string OdLekesi { get; set; }
+        public int FishBone { get; set; }
+        public int Defo { get; set; }
+        public int Knife { get; set; }
+        public int OdLekesi { get; set; }
         
         
 

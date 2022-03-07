@@ -46,15 +46,21 @@
             this.RBKasa = new System.Windows.Forms.RadioButton();
             this.LbArama = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.PersAd = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.PersSoyad = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.PersGorev = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.KasaKod = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.filletpers = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ControlPers = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.KasaAd = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.BıcakDefo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.KılcıkDefo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.HasatDefo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Diger = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.OdLeke = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.FilletBasTar = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.FBitisTar = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.BtnExcel = new System.Windows.Forms.Button();
+            this.KBasTar = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.KBitTar = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.FİslemSure = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.KİsSure = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.AnaPanel.SuspendLayout();
             this.AraTLP.SuspendLayout();
             this.PersKasaTLP.SuspendLayout();
@@ -310,14 +316,20 @@
             // 
             this.listView1.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.PersAd,
-            this.PersSoyad,
-            this.PersGorev,
-            this.KasaKod,
+            this.id,
+            this.filletpers,
+            this.ControlPers,
+            this.KasaAd,
             this.BıcakDefo,
             this.KılcıkDefo,
             this.HasatDefo,
-            this.Diger});
+            this.OdLeke,
+            this.FilletBasTar,
+            this.FBitisTar,
+            this.FİslemSure,
+            this.KBasTar,
+            this.KBitTar,
+            this.KİsSure});
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.listView1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
@@ -329,46 +341,61 @@
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
-            // PersAd
+            // filletpers
             // 
-            this.PersAd.Text = "Personel Ad";
-            this.PersAd.Width = 180;
+            this.filletpers.DisplayIndex = 0;
+            this.filletpers.Text = "Fileto Personel";
+            this.filletpers.Width = 150;
             // 
-            // PersSoyad
+            // ControlPers
             // 
-            this.PersSoyad.Text = "Personel Soyad";
-            this.PersSoyad.Width = 200;
+            this.ControlPers.DisplayIndex = 1;
+            this.ControlPers.Text = "Kontrol Personel";
+            this.ControlPers.Width = 170;
             // 
-            // PersGorev
+            // KasaAd
             // 
-            this.PersGorev.Text = "Görev";
-            this.PersGorev.Width = 190;
-            // 
-            // KasaKod
-            // 
-            this.KasaKod.Text = "Kasa Kod";
-            this.KasaKod.Width = 100;
+            this.KasaAd.DisplayIndex = 2;
+            this.KasaAd.Text = "Kasa Ad";
+            this.KasaAd.Width = 100;
             // 
             // BıcakDefo
             // 
+            this.BıcakDefo.DisplayIndex = 3;
             this.BıcakDefo.Text = "Bıçak Defo";
-            this.BıcakDefo.Width = 170;
+            this.BıcakDefo.Width = 130;
             // 
             // KılcıkDefo
             // 
+            this.KılcıkDefo.DisplayIndex = 4;
             this.KılcıkDefo.Text = "Kılçık Defo";
-            this.KılcıkDefo.Width = 171;
+            this.KılcıkDefo.Width = 131;
             // 
             // HasatDefo
             // 
+            this.HasatDefo.DisplayIndex = 5;
             this.HasatDefo.Text = "Hasat Defo";
-            this.HasatDefo.Width = 172;
+            this.HasatDefo.Width = 132;
             // 
-            // Diger
+            // OdLeke
             // 
-            this.Diger.Text = "Diğer";
-            this.Diger.Width = 173;
+            this.OdLeke.DisplayIndex = 6;
+            this.OdLeke.Text = "Öd Lekesi";
+            this.OdLeke.Width = 133;
+            // 
+            // FilletBasTar
+            // 
+            this.FilletBasTar.DisplayIndex = 7;
+            this.FilletBasTar.Text = "F.Baş.Tarihi";
+            this.FilletBasTar.Width = 91;
+            // 
+            // FBitisTar
+            // 
+            this.FBitisTar.DisplayIndex = 8;
+            this.FBitisTar.Text = "F.Bit. Tarihi";
+            this.FBitisTar.Width = 92;
             // 
             // BtnExcel
             // 
@@ -382,6 +409,31 @@
             this.BtnExcel.TabIndex = 3;
             this.BtnExcel.Text = "EXCEL\'E AKTAR";
             this.BtnExcel.UseVisualStyleBackColor = false;
+            // 
+            // KBasTar
+            // 
+            this.KBasTar.DisplayIndex = 9;
+            this.KBasTar.Text = "K.Bas.Tarihi";
+            // 
+            // KBitTar
+            // 
+            this.KBitTar.DisplayIndex = 10;
+            this.KBitTar.Text = "K.Bit.Tarihi";
+            // 
+            // FİslemSure
+            // 
+            this.FİslemSure.DisplayIndex = 11;
+            this.FİslemSure.Text = "F.İşlem Süresi";
+            // 
+            // KİsSure
+            // 
+            this.KİsSure.DisplayIndex = 12;
+            this.KİsSure.Text = "K.İşlem Süresi";
+            // 
+            // id
+            // 
+            this.id.DisplayIndex = 13;
+            this.id.Text = "#";
             // 
             // RaporController
             // 
@@ -411,14 +463,13 @@
         private System.Windows.Forms.RadioButton RBPersonel;
         private System.Windows.Forms.RadioButton RBKasa;
         private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader PersAd;
-        private System.Windows.Forms.ColumnHeader PersSoyad;
-        private System.Windows.Forms.ColumnHeader PersGorev;
-        private System.Windows.Forms.ColumnHeader KasaKod;
+        private System.Windows.Forms.ColumnHeader filletpers;
+        private System.Windows.Forms.ColumnHeader ControlPers;
+        private System.Windows.Forms.ColumnHeader KasaAd;
         private System.Windows.Forms.ColumnHeader BıcakDefo;
         private System.Windows.Forms.ColumnHeader KılcıkDefo;
         private System.Windows.Forms.ColumnHeader HasatDefo;
-        private System.Windows.Forms.ColumnHeader Diger;
+        private System.Windows.Forms.ColumnHeader OdLeke;
         private System.Windows.Forms.Button BtnExcel;
         private System.Windows.Forms.TableLayoutPanel PersKasaTLP;
         private System.Windows.Forms.TableLayoutPanel AraTLP;
@@ -431,5 +482,12 @@
         private System.Windows.Forms.ComboBox KasaCb;
         private System.Windows.Forms.DateTimePicker BaslangicDtP;
         private System.Windows.Forms.DateTimePicker BitisDtP;
+        private System.Windows.Forms.ColumnHeader FilletBasTar;
+        private System.Windows.Forms.ColumnHeader FBitisTar;
+        private System.Windows.Forms.ColumnHeader KBasTar;
+        private System.Windows.Forms.ColumnHeader KBitTar;
+        private System.Windows.Forms.ColumnHeader FİslemSure;
+        private System.Windows.Forms.ColumnHeader KİsSure;
+        private System.Windows.Forms.ColumnHeader id;
     }
 }

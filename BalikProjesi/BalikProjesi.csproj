@@ -188,6 +188,7 @@
       <DependentUpon>KasaKayitController.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\InfoPanellReturnModel.cs" />
+    <Compile Include="Models\RaporListviewModel.cs" />
     <Compile Include="Models\ReaderResponseModel.cs" />
     <Compile Include="Panels\Admin\TarihController.cs">
       <SubType>UserControl</SubType>
@@ -271,6 +272,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Services\RecordingsServices.cs" />
+    <Compile Include="Temp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Temp.Designer.cs">
+      <DependentUpon>Temp.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -334,6 +341,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Services\ReaderServices.resx">
       <DependentUpon>ReaderServices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Temp.resx">
+      <DependentUpon>Temp.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Core\Compression\Snappy\lib\linux\libsnappy64.so" />
     <None Include="Core\Compression\Snappy\lib\osx\libsnappy64.dylib" />

@@ -74,7 +74,16 @@ namespace BalikProjesi.Services
 
 
         }
-
+        public List<Personel> GetFilletPersonels()
+        {
+            var result = fdb.Find(x => true).ToList();
+            return result;
+        }
+        public List<Personel> GetControlPersonels()
+        {
+            var result = cdb.Find(x => true).ToList();
+            return result;
+        }
         public bool PCardCodeExist(string code)
         {
             var fResult = fdb.Find(x => x.CartCode == code).FirstOrDefault();

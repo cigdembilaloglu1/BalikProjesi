@@ -28,5 +28,7 @@ namespace BalikProjesi.Services
         bool UpdateFilletCardInfo(Personel personel);
         object CheckPersonelValidByPeronelID(string filletID);
         bool ChangeCardId(string OldCard, string NewCard);
+        List<Personel> GetFilletPersonels();
+        List<Personel> GetControlPersonels();
     }
 }

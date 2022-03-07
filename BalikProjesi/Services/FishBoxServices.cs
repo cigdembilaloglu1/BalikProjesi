@@ -28,6 +28,10 @@ namespace BalikProjesi.Services
             return Islem;
         }
 
+        public List<FishBox> GetAllBoxes()
+        {
+            return db.Find(x => true).ToList();
+        }
         public bool CheckFBox(string Code)
         {
             var result = db.Find(x => x.FishBoxCode == Code).FirstOrDefault();

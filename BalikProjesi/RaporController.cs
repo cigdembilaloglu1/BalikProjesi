@@ -76,5 +76,10 @@ namespace BalikProjesi
             PersCb.Visible = false;
             KasaCb.Visible = false;
         }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

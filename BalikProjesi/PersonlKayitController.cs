@@ -313,77 +313,82 @@ namespace BalikProjesi
         {
             bool check = true;
             string cardCode = txtKartID.Text;
-            int cardType;
-            if (cbPersonelTur.Text == InputEnums.Fileto)
-                cardType = 0;
-            else
-                cardType = 1;
-
-            bool personalCollecitonsResult = _perService.PCardCodeExist(cardCode);
-            int cardCollectionResult = _cartsServices.CheckCardTypeResult(cardCode);
-
-
-            if (txtKartID.Text == "" || txtPersonelAd.Text == "" || txtPersonelSoyad.Text == "" || txtPersonelKod.Text == "")
+            if (!string.IsNullOrEmpty(cardCode))
             {
-                MessageBox.Show(WarningEnums.PleaseFillAllFields, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                check = false;
-            }
-            else if (cardCollectionResult == -1)//Kart Carts Collection'da kayıtlı değilse
-            {
-                MessageBox.Show(WarningEnums.DefineToCardCollection, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                check = false;
-            }
-            else if (cardCollectionResult == 2)//CardType Kasa İse
-            {
-                MessageBox.Show(WarningEnums.CardTypeIsNotPersonal, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                check = false;
-            }
-            else if (cardCollectionResult != cardType)//CardType cbPersonelTurdaki değere eşit değilse
-            {
-                MessageBox.Show(WarningEnums.CardTypeIsNotValid, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                check = false;
-            }
-            else if (personalCollecitonsResult)//Kart başka bir personele kayıtlımı
-            {
-                MessageBox.Show(WarningEnums.CardIsDefined, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                check = false;
-            }
-
-            if (check)
-            {
-                var result = _perService.Create(new Personel
-                {
-                    PersonelName = txtPersonelAd.Text.Trim(),
-                    PersonelSurname = txtPersonelSoyad.Text.Trim(),
-                    PersonelGroup = cbPersonelGrup.Text.Trim(),
-                    PersonelCode = txtPersonelKod.Text.Trim(),
-                    CreateDate = DateTime.Now,
-                    CartCode = txtKartID.Text.Trim(),
-                    CartId = CardID,
-                    CartType = cbPersonelTur.Text
-                }, cbPersonelTur.Text.Trim());
-                if (result)
-                {
-                    MessageBox.Show(WarningEnums.CreateSuccess, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    switch (cbPersonelTur.Text)
-                    {
-                        case InputEnums.Fileto:
-                            FilletPersonalCount--;
-                            lbDocumentCount.Text = InputEnums.ToplamKayıt + FilletPersonalCount;
-                            break;
-                        case InputEnums.Kontrol:
-                            ControllerPersonalCount--;
-                            lbDocumentCount.Text = InputEnums.ToplamKayıt + ControllerPersonalCount;
-                            break;
-                    }
-                }
+                var CART = _cartsServices.GetByCardCode(cardCode);
+                int cardType;
+                if (cbPersonelTur.Text == InputEnums.Fileto)
+                    cardType = 0;
                 else
+                    cardType = 1;
+
+                bool personalCollecitonsResult = _perService.PCardCodeExist(cardCode);
+                int cardCollectionResult = _cartsServices.CheckCardTypeResult(cardCode);
+
+
+                if (txtKartID.Text == "" || txtPersonelAd.Text == "" || txtPersonelSoyad.Text == "" || txtPersonelKod.Text == "")
                 {
-                    MessageBox.Show(WarningEnums.CreateFailed, WarningEnums.Uyarı, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(WarningEnums.PleaseFillAllFields, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    check = false;
                 }
-                list(cbPersonelTur.Text);
+                else if (cardCollectionResult == -1)//Kart Carts Collection'da kayıtlı değilse
+                {
+                    MessageBox.Show(WarningEnums.DefineToCardCollection, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    check = false;
+                }
+                else if (cardCollectionResult == 2)//CardType Kasa İse
+                {
+                    MessageBox.Show(WarningEnums.CardTypeIsNotPersonal, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    check = false;
+                }
+                else if (cardCollectionResult != cardType)//CardType cbPersonelTurdaki değere eşit değilse
+                {
+                    MessageBox.Show(WarningEnums.CardTypeIsNotValid, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    check = false;
+                }
+                else if (personalCollecitonsResult)//Kart başka bir personele kayıtlımı
+                {
+                    MessageBox.Show(WarningEnums.CardIsDefined, "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    check = false;
+                }
+
+                if (check)
+                {
+                    var result = _perService.Create(new Personel
+                    {
+                        PersonelName = txtPersonelAd.Text.Trim(),
+                        PersonelSurname = txtPersonelSoyad.Text.Trim(),
+                        PersonelGroup = cbPersonelGrup.Text.Trim(),
+                        PersonelCode = txtPersonelKod.Text.Trim(),
+                        CreateDate = DateTime.Now,
+                        CartCode = txtKartID.Text.Trim(),
+                        CartId = CART.Id,
+                        CartType = cbPersonelTur.Text
+                    }, cbPersonelTur.Text.Trim());
+                    if (result)
+                    {
+                        MessageBox.Show(WarningEnums.CreateSuccess, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        switch (cbPersonelTur.Text)
+                        {
+                            case InputEnums.Fileto:
+                                FilletPersonalCount--;
+                                lbDocumentCount.Text = InputEnums.ToplamKayıt + FilletPersonalCount;
+                                break;
+                            case InputEnums.Kontrol:
+                                ControllerPersonalCount--;
+                                lbDocumentCount.Text = InputEnums.ToplamKayıt + ControllerPersonalCount;
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(WarningEnums.CreateFailed, WarningEnums.Uyarı, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    list(cbPersonelTur.Text);
+                }
             }
+            
         }
         void update()
         {

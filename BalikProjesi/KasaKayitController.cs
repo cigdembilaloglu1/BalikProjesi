@@ -63,85 +63,90 @@ namespace BalikProjesi
         void create()
         {
             bool check = true;
-            if (string.IsNullOrEmpty(txtKartid.Text) || string.IsNullOrEmpty(txtKasakod.Text) || string.IsNullOrEmpty(txtKasatip.Text))
+            string cardCode = txtKartid.Text;
+            if (!string.IsNullOrEmpty(cardCode))
             {
-                if (string.IsNullOrEmpty(txtKartid.Text))
+                var CART = _cartServices.GetByCardCode(cardCode);
+                if (string.IsNullOrEmpty(txtKartid.Text) || string.IsNullOrEmpty(txtKasakod.Text) || string.IsNullOrEmpty(txtKasatip.Text))
                 {
-                    MessageBox.Show(WarningEnums.InvalidSelection, WarningEnums.Uyarı, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    check = false;
-                }
-                if (string.IsNullOrEmpty(txtKasakod.Text))
-                {
-                    MessageBox.Show(WarningEnums.FishboxCodeIsEmpty, WarningEnums.Uyarı, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    check = false;
-                }
-                if (string.IsNullOrEmpty(txtKasatip.Text))
-                {
-                    MessageBox.Show(WarningEnums.FishboxTypeIsEmpty, WarningEnums.Uyarı, MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    check = false;
-                }
-            }
-            else
-            {
-                string cardCode = txtKartid.Text.Trim();
-
-
-                var readCard = _cartServices.GetByCardCode(cardCode);
-                if (readCard != null)
-                {
-                    CardID = readCard.Id;
-                    if (check)
+                    if (string.IsNullOrEmpty(txtKartid.Text))
                     {
-
-                        if (readCard.CartType == InputEnums.Kasa)
-                        {
-                            var kasaresult = _fboxService.Create(new FishBox
-                            {
-                                CreateDate = DateTime.Now,
-                                FishBoxCode = txtKasakod.Text.Trim(),
-                                FishBoxType = txtKasatip.Text.Trim(),
-                                CartCode = cardCode,
-                                CartId = CardID
-                            });
-                            switch (kasaresult)
-                            {
-                                case true:
-                                    MessageBox.Show(WarningEnums.CreateSuccess);
-                                    BoxCount++;
-                                    lbDocumentCount.Text = InputEnums.ToplamKayıt + BoxCount;
-
-                                    break;
-                                case false:
-                                    MessageBox.Show(WarningEnums.CreateFailed);
-                                    break;
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Okunan kart " + readCard.CartType + " kartıdır. Kaydı yapabilmeniz için " + InputEnums.Kasa + " tipinde bir kart gerekmektedir.", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                        }
-
+                        MessageBox.Show(WarningEnums.InvalidSelection, WarningEnums.Uyarı, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        check = false;
                     }
-                    var result = _fboxService.GetByCardCode(CardID);
-                    if (result.CartType == InputEnums.Kontrol)
+                    if (string.IsNullOrEmpty(txtKasakod.Text))
                     {
-                        MessageBox.Show("Okunan kart " + result.CartType + " kartıdır. Lütfen başka bir kart giriniz veya kartı güncelleyiniz");
+                        MessageBox.Show(WarningEnums.FishboxCodeIsEmpty, WarningEnums.Uyarı, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        check = false;
                     }
-                    else if (result.CartType == InputEnums.Fileto)
+                    if (string.IsNullOrEmpty(txtKasatip.Text))
                     {
-                        MessageBox.Show("Okunan kart " + result.CartType + " kartıdır. Lütfen başka bir kart giriniz veya kartı güncelleyiniz");
+                        MessageBox.Show(WarningEnums.FishboxTypeIsEmpty, WarningEnums.Uyarı, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        check = false;
                     }
                 }
                 else
                 {
-                    MessageBox.Show(WarningEnums.InvalidSelection);
+                    cardCode = txtKartid.Text.Trim();
+
+
+                    var readCard = _cartServices.GetByCardCode(cardCode);
+                    if (readCard != null)
+                    {
+                        CardID = readCard.Id;
+                        if (check)
+                        {
+
+                            if (readCard.CartType == InputEnums.Kasa)
+                            {
+                                var kasaresult = _fboxService.Create(new FishBox
+                                {
+                                    CreateDate = DateTime.Now,
+                                    FishBoxCode = txtKasakod.Text.Trim(),
+                                    FishBoxType = txtKasatip.Text.Trim(),
+                                    CartCode = cardCode,
+                                    CartId = CART.Id
+                                });
+                                switch (kasaresult)
+                                {
+                                    case true:
+                                        MessageBox.Show(WarningEnums.CreateSuccess);
+                                        BoxCount++;
+                                        lbDocumentCount.Text = InputEnums.ToplamKayıt + BoxCount;
+
+                                        break;
+                                    case false:
+                                        MessageBox.Show(WarningEnums.CreateFailed);
+                                        break;
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Okunan kart " + readCard.CartType + " kartıdır. Kaydı yapabilmeniz için " + InputEnums.Kasa + " tipinde bir kart gerekmektedir.", "UYARI", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                            }
+
+                        }
+                        var result = _fboxService.GetByCardCode(CardID);
+                        if (result.CartType == InputEnums.Kontrol)
+                        {
+                            MessageBox.Show("Okunan kart " + result.CartType + " kartıdır. Lütfen başka bir kart giriniz veya kartı güncelleyiniz");
+                        }
+                        else if (result.CartType == InputEnums.Fileto)
+                        {
+                            MessageBox.Show("Okunan kart " + result.CartType + " kartıdır. Lütfen başka bir kart giriniz veya kartı güncelleyiniz");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(WarningEnums.InvalidSelection);
+                    }
+
+
+                    CardID = "";
                 }
 
-
-                CardID = "";
+                list();
             }
-
-            list();
         }
         private void AddorUpdateBtnClick(object sender, EventArgs e)
         {
