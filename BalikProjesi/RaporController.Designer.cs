@@ -46,7 +46,6 @@
             this.RBKasa = new System.Windows.Forms.RadioButton();
             this.LbArama = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.BtnExcel = new System.Windows.Forms.Button();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -61,6 +60,7 @@
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.BtnExcel = new System.Windows.Forms.Button();
             this.AnaPanel.SuspendLayout();
             this.AraTLP.SuspendLayout();
             this.PersKasaTLP.SuspendLayout();
@@ -218,6 +218,7 @@
             // BitisDtP
             // 
             this.BitisDtP.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BitisDtP.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.BitisDtP.Location = new System.Drawing.Point(156, 49);
             this.BitisDtP.Name = "BitisDtP";
             this.BitisDtP.Size = new System.Drawing.Size(117, 20);

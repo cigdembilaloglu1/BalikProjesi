@@ -89,6 +89,12 @@ namespace BalikProjesi
             KasaLb.Visible = false;
             PersCb.Visible = false;
             KasaCb.Visible = false;
+            BaslangicDtP.Dock = DockStyle.Fill;
+            BitisDtP.Dock = DockStyle.Fill;
+            BaslangicDtP.Format = DateTimePickerFormat.Custom;
+            BaslangicDtP.CustomFormat = "dd.MM.yyyy   HH:mm:ss";
+            BitisDtP.Format = DateTimePickerFormat.Custom;
+            BitisDtP.CustomFormat = "dd.MM.yyyy   HH:mm:ss";
 
             var data = _recordingsService.Get().ToList().OrderBy(x=>x.FilletOpeningDate).ToList();
             BaslangicDtP.MaxDate = data.Last().FilletOpeningDate;
