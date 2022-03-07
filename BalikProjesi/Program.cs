@@ -16,7 +16,7 @@ namespace BalikProjesi
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Temp());
+            Application.Run(new Form1());
         }
     }
 }

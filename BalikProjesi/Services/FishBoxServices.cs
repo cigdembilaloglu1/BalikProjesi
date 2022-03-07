@@ -50,6 +50,11 @@ namespace BalikProjesi.Services
             var result = db.Find(x => x.CartId == ID).FirstOrDefault();
             return result;
         }
+        public FishBox Get(string ID)
+        {
+            var result = db.Find(x => x.Id == ID).FirstOrDefault();
+            return result;
+        }
         public List<FishBox> Get(int page, int pageSize = 15)
         {
             var result = db.Find(x => true).Skip((page - 1) * pageSize).Limit(pageSize).ToList();

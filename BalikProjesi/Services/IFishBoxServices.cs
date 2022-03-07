@@ -21,5 +21,6 @@ namespace BalikProjesi.Services
         bool UpdateCartId(string OldCart, string NewCart);
         FishBox GetByBoxType(string fbType);
         List<FishBox> GetAllBoxes();
+        FishBox Get(string ID);
     }
 }
