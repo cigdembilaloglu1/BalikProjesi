@@ -239,22 +239,21 @@
             // 
             // AramaTLP
             // 
-            this.AramaTLP.ColumnCount = 6;
-            this.AramaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.AramaTLP.ColumnCount = 5;
             this.AramaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.AramaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.AramaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.AramaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.AramaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.AramaTLP.Controls.Add(this.RBGun, 1, 0);
-            this.AramaTLP.Controls.Add(this.RBPersonel, 3, 0);
-            this.AramaTLP.Controls.Add(this.RBKasa, 5, 0);
+            this.AramaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.AramaTLP.Controls.Add(this.RBGun, 0, 0);
+            this.AramaTLP.Controls.Add(this.RBPersonel, 2, 0);
+            this.AramaTLP.Controls.Add(this.RBKasa, 4, 0);
             this.AramaTLP.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AramaTLP.Location = new System.Drawing.Point(3, 45);
             this.AramaTLP.Name = "AramaTLP";
             this.AramaTLP.RowCount = 1;
             this.AramaTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.AramaTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 72F));
             this.AramaTLP.Size = new System.Drawing.Size(726, 72);
             this.AramaTLP.TabIndex = 1;
             // 
@@ -263,9 +262,9 @@
             this.RBGun.AutoSize = true;
             this.RBGun.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.RBGun.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RBGun.Location = new System.Drawing.Point(23, 3);
+            this.RBGun.Location = new System.Drawing.Point(3, 3);
             this.RBGun.Name = "RBGun";
-            this.RBGun.Size = new System.Drawing.Size(216, 66);
+            this.RBGun.Size = new System.Drawing.Size(222, 66);
             this.RBGun.TabIndex = 0;
             this.RBGun.TabStop = true;
             this.RBGun.Text = "GÜN";
@@ -277,9 +276,9 @@
             this.RBPersonel.AutoSize = true;
             this.RBPersonel.BackColor = System.Drawing.Color.BurlyWood;
             this.RBPersonel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RBPersonel.Location = new System.Drawing.Point(265, 3);
+            this.RBPersonel.Location = new System.Drawing.Point(251, 3);
             this.RBPersonel.Name = "RBPersonel";
-            this.RBPersonel.Size = new System.Drawing.Size(216, 66);
+            this.RBPersonel.Size = new System.Drawing.Size(222, 66);
             this.RBPersonel.TabIndex = 1;
             this.RBPersonel.TabStop = true;
             this.RBPersonel.Text = "PERSONEL";
@@ -291,9 +290,9 @@
             this.RBKasa.AutoSize = true;
             this.RBKasa.BackColor = System.Drawing.Color.IndianRed;
             this.RBKasa.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RBKasa.Location = new System.Drawing.Point(507, 3);
+            this.RBKasa.Location = new System.Drawing.Point(499, 3);
             this.RBKasa.Name = "RBKasa";
-            this.RBKasa.Size = new System.Drawing.Size(216, 66);
+            this.RBKasa.Size = new System.Drawing.Size(224, 66);
             this.RBKasa.TabIndex = 2;
             this.RBKasa.TabStop = true;
             this.RBKasa.Text = "KASA";

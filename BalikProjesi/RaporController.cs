@@ -203,7 +203,7 @@ namespace BalikProjesi
             {
                 DisplayIndex = 8,
                 Name = "FBasTar",
-                Text = "F.Başalngıç Tarihi"
+                Text = "F.Başlangıç Tarihi"
             });
             listView1.Columns.Add(new ColumnHeader
             {
@@ -215,7 +215,7 @@ namespace BalikProjesi
             listView1.Columns.Add(new ColumnHeader
             {
                 DisplayIndex = 10,
-                Name = "FBİsSure",
+                Name = "FİsSure",
                 Text = "F.İşlem Süresi",
                 Width = 140
             });
@@ -269,63 +269,7 @@ namespace BalikProjesi
 
                 listView1.Items.Add(ListItem);
             });
-            /// LvModeldeki Veriyi ListViewa Bınd Et. 
-            //string BoxCode, BoxType, BoxcardId;
-            //if (listView1.Items.Count > 0)
-            //{
-            //    listView1.Items.Clear();
-            //}
-            //var dt = _fboxService.Get(currentPage);
-            //foreach (var item in dt)
-            //{
-            //    BoxID = item.Id;
-            //    BoxcardId = item.CartCode;
-            //    BoxCode = item.FishBoxCode;
-            //    BoxType = item.FishBoxType;
-
-
-            //    string[] data = { BoxcardId, BoxCode, BoxType, BoxID };
-            //    ListViewItem record = new ListViewItem(data);
-            //    listView1.Items.Add(record);
-            //}
-            //string ID,FiletoPersonel, KontrolPersonel, KasaKod;
-            //int BicakDefo, Kilcikdefo, HasatDefo, OdLekesi,FİsTar,KİsTar;
-            //DateTime FbasTar, FBitTar, kBasTar, KBitTar;
-            //if (listView1.Items.Count > 0)
-            //{
-            //    listView1.Items.Clear();
-            //}
-            //var dt = _recordingsService.Get();
-            //foreach(var item in dt)
-            //{
-            //    ID = item.Id;
-            //    BicakDefo = item.Knife;
-            //    Kilcikdefo = item.FishBone;
-            //    HasatDefo = item.Defo;
-            //    OdLekesi = item.OdLekesi;
             
-            //}
-            //var fpers = _personelService.GetFilletPersonels();
-            //foreach(var item in fpers)
-            //{
-            //    FiletoPersonel = item.PersonelName + " " + item.PersonelSurname;
-            //    FbasTar = item.OpeningDate;
-            //    FBitTar = item.ClosingDate;
-
-            //}
-            //var cpers = _personelService.GetControlPersonels();
-            //foreach(var item in cpers)
-            //{
-            //    KontrolPersonel = item.PersonelName + " " + item.PersonelSurname;
-            //    kBasTar = item.OpeningDate;
-            //    KBitTar = item.ClosingDate;
-
-            //}
-            //string[] data = { ID, FiletoPersonel, KontrolPersonel, KasaKod, BicakDefo, Kilcikdefo, HasatDefo, OdLekesi, FİsTar, KİsTar;
-            //DateTime FbasTar, FBitTar, kBasTar, KBitTar, FbasTar, FBitTar, kBasTar, KBitTar);
-        
-            //   ListViewItem record = new ListViewItem(data);
-            //   listView1.Items.Add(record);
 
         }
 
