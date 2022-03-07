@@ -44,21 +44,34 @@
             this.HasatDefo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Diger = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.BtnExcel = new System.Windows.Forms.Button();
-            this.KontrollerTLP = new System.Windows.Forms.TableLayoutPanel();
+            this.PersKasaTLP = new System.Windows.Forms.TableLayoutPanel();
+            this.AraTLP = new System.Windows.Forms.TableLayoutPanel();
+            this.AraBtn = new System.Windows.Forms.Button();
+            this.BaslaTarLb = new System.Windows.Forms.Label();
+            this.BitisTarBtn = new System.Windows.Forms.Label();
+            this.PersLb = new System.Windows.Forms.Label();
+            this.KasaLb = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.BaslangicDtP = new System.Windows.Forms.DateTimePicker();
+            this.BitisDtP = new System.Windows.Forms.DateTimePicker();
             this.AnaPanel.SuspendLayout();
             this.AramaTLP.SuspendLayout();
+            this.PersKasaTLP.SuspendLayout();
+            this.AraTLP.SuspendLayout();
             this.SuspendLayout();
             // 
             // AnaPanel
             // 
             this.AnaPanel.ColumnCount = 1;
             this.AnaPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.AnaPanel.Controls.Add(this.AraTLP, 0, 4);
             this.AnaPanel.Controls.Add(this.AramaTLP, 0, 2);
             this.AnaPanel.Controls.Add(this.LbArama, 0, 0);
             this.AnaPanel.Controls.Add(this.listView1, 0, 6);
             this.AnaPanel.Controls.Add(this.BtnExcel, 0, 8);
-            this.AnaPanel.Controls.Add(this.KontrollerTLP, 0, 4);
-            this.AnaPanel.Location = new System.Drawing.Point(27, 21);
+            this.AnaPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AnaPanel.Location = new System.Drawing.Point(0, 0);
             this.AnaPanel.Name = "AnaPanel";
             this.AnaPanel.RowCount = 9;
             this.AnaPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.54717F));
@@ -70,7 +83,7 @@
             this.AnaPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40.56604F));
             this.AnaPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
             this.AnaPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.26415F));
-            this.AnaPanel.Size = new System.Drawing.Size(485, 369);
+            this.AnaPanel.Size = new System.Drawing.Size(732, 495);
             this.AnaPanel.TabIndex = 0;
             this.AnaPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
@@ -83,7 +96,7 @@
             this.LbArama.ForeColor = System.Drawing.Color.White;
             this.LbArama.Location = new System.Drawing.Point(3, 0);
             this.LbArama.Name = "LbArama";
-            this.LbArama.Size = new System.Drawing.Size(479, 25);
+            this.LbArama.Size = new System.Drawing.Size(726, 34);
             this.LbArama.TabIndex = 0;
             this.LbArama.Text = "ARAMA";
             this.LbArama.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -101,12 +114,12 @@
             this.AramaTLP.Controls.Add(this.RBPersonel, 3, 0);
             this.AramaTLP.Controls.Add(this.RBKasa, 5, 0);
             this.AramaTLP.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AramaTLP.Location = new System.Drawing.Point(3, 36);
+            this.AramaTLP.Location = new System.Drawing.Point(3, 45);
             this.AramaTLP.Name = "AramaTLP";
             this.AramaTLP.RowCount = 1;
             this.AramaTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.AramaTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.AramaTLP.Size = new System.Drawing.Size(479, 51);
+            this.AramaTLP.Size = new System.Drawing.Size(726, 72);
             this.AramaTLP.TabIndex = 1;
             // 
             // RBGun
@@ -116,7 +129,7 @@
             this.RBGun.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RBGun.Location = new System.Drawing.Point(23, 3);
             this.RBGun.Name = "RBGun";
-            this.RBGun.Size = new System.Drawing.Size(133, 45);
+            this.RBGun.Size = new System.Drawing.Size(216, 66);
             this.RBGun.TabIndex = 0;
             this.RBGun.TabStop = true;
             this.RBGun.Text = "GÜN";
@@ -127,9 +140,9 @@
             this.RBPersonel.AutoSize = true;
             this.RBPersonel.BackColor = System.Drawing.Color.BurlyWood;
             this.RBPersonel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RBPersonel.Location = new System.Drawing.Point(182, 3);
+            this.RBPersonel.Location = new System.Drawing.Point(265, 3);
             this.RBPersonel.Name = "RBPersonel";
-            this.RBPersonel.Size = new System.Drawing.Size(133, 45);
+            this.RBPersonel.Size = new System.Drawing.Size(216, 66);
             this.RBPersonel.TabIndex = 1;
             this.RBPersonel.TabStop = true;
             this.RBPersonel.Text = "PERSONEL";
@@ -140,9 +153,9 @@
             this.RBKasa.AutoSize = true;
             this.RBKasa.BackColor = System.Drawing.Color.IndianRed;
             this.RBKasa.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RBKasa.Location = new System.Drawing.Point(341, 3);
+            this.RBKasa.Location = new System.Drawing.Point(507, 3);
             this.RBKasa.Name = "RBKasa";
-            this.RBKasa.Size = new System.Drawing.Size(135, 45);
+            this.RBKasa.Size = new System.Drawing.Size(216, 66);
             this.RBKasa.TabIndex = 2;
             this.RBKasa.TabStop = true;
             this.RBKasa.Text = "KASA";
@@ -165,9 +178,9 @@
             this.listView1.ForeColor = System.Drawing.SystemColors.MenuHighlight;
             this.listView1.GridLines = true;
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(3, 185);
+            this.listView1.Location = new System.Drawing.Point(3, 243);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(479, 130);
+            this.listView1.Size = new System.Drawing.Size(726, 181);
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -175,41 +188,42 @@
             // PersAd
             // 
             this.PersAd.Text = "Personel Ad";
-            this.PersAd.Width = 90;
+            this.PersAd.Width = 180;
             // 
             // PersSoyad
             // 
             this.PersSoyad.Text = "Personel Soyad";
-            this.PersSoyad.Width = 110;
+            this.PersSoyad.Width = 200;
             // 
             // PersGorev
             // 
             this.PersGorev.Text = "GÖREV";
-            this.PersGorev.Width = 80;
+            this.PersGorev.Width = 190;
             // 
             // KasaKod
             // 
             this.KasaKod.Text = "Kasa Kod";
+            this.KasaKod.Width = 100;
             // 
             // BıcakDefo
             // 
             this.BıcakDefo.Text = "Bıçak Defo";
-            this.BıcakDefo.Width = 70;
+            this.BıcakDefo.Width = 170;
             // 
             // KılcıkDefo
             // 
             this.KılcıkDefo.Text = "Kılçık Defo";
-            this.KılcıkDefo.Width = 71;
+            this.KılcıkDefo.Width = 171;
             // 
             // HasatDefo
             // 
             this.HasatDefo.Text = "Hasat Defo";
-            this.HasatDefo.Width = 72;
+            this.HasatDefo.Width = 172;
             // 
             // Diger
             // 
             this.Diger.Text = "Diğer";
-            this.Diger.Width = 73;
+            this.Diger.Width = 173;
             // 
             // BtnExcel
             // 
@@ -217,24 +231,151 @@
             this.BtnExcel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BtnExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.BtnExcel.ForeColor = System.Drawing.Color.White;
-            this.BtnExcel.Location = new System.Drawing.Point(3, 329);
+            this.BtnExcel.Location = new System.Drawing.Point(3, 438);
             this.BtnExcel.Name = "BtnExcel";
-            this.BtnExcel.Size = new System.Drawing.Size(479, 37);
+            this.BtnExcel.Size = new System.Drawing.Size(726, 54);
             this.BtnExcel.TabIndex = 3;
             this.BtnExcel.Text = "EXCEL\'E AKTAR";
             this.BtnExcel.UseVisualStyleBackColor = false;
             // 
-            // KontrollerTLP
+            // PersKasaTLP
             // 
-            this.KontrollerTLP.ColumnCount = 1;
-            this.KontrollerTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.KontrollerTLP.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.KontrollerTLP.Location = new System.Drawing.Point(3, 101);
-            this.KontrollerTLP.Name = "KontrollerTLP";
-            this.KontrollerTLP.RowCount = 1;
-            this.KontrollerTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.KontrollerTLP.Size = new System.Drawing.Size(479, 70);
-            this.KontrollerTLP.TabIndex = 1;
+            this.PersKasaTLP.ColumnCount = 8;
+            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
+            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.PersKasaTLP.Controls.Add(this.BaslaTarLb, 1, 0);
+            this.PersKasaTLP.Controls.Add(this.BitisTarBtn, 1, 1);
+            this.PersKasaTLP.Controls.Add(this.PersLb, 5, 0);
+            this.PersKasaTLP.Controls.Add(this.KasaLb, 5, 1);
+            this.PersKasaTLP.Controls.Add(this.comboBox1, 7, 0);
+            this.PersKasaTLP.Controls.Add(this.comboBox2, 7, 1);
+            this.PersKasaTLP.Controls.Add(this.BaslangicDtP, 3, 0);
+            this.PersKasaTLP.Controls.Add(this.BitisDtP, 3, 1);
+            this.PersKasaTLP.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PersKasaTLP.Location = new System.Drawing.Point(148, 3);
+            this.PersKasaTLP.Name = "PersKasaTLP";
+            this.PersKasaTLP.RowCount = 2;
+            this.PersKasaTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.PersKasaTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.PersKasaTLP.Size = new System.Drawing.Size(575, 92);
+            this.PersKasaTLP.TabIndex = 1;
+            this.PersKasaTLP.Paint += new System.Windows.Forms.PaintEventHandler(this.KontrollerTLP_Paint);
+            // 
+            // AraTLP
+            // 
+            this.AraTLP.ColumnCount = 2;
+            this.AraTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.AraTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
+            this.AraTLP.Controls.Add(this.PersKasaTLP, 1, 0);
+            this.AraTLP.Controls.Add(this.AraBtn, 0, 0);
+            this.AraTLP.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AraTLP.Location = new System.Drawing.Point(3, 131);
+            this.AraTLP.Name = "AraTLP";
+            this.AraTLP.RowCount = 1;
+            this.AraTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.AraTLP.Size = new System.Drawing.Size(726, 98);
+            this.AraTLP.TabIndex = 2;
+            // 
+            // AraBtn
+            // 
+            this.AraBtn.BackColor = System.Drawing.Color.Black;
+            this.AraBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AraBtn.Font = new System.Drawing.Font("Adobe Fan Heiti Std B", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.AraBtn.ForeColor = System.Drawing.Color.White;
+            this.AraBtn.Location = new System.Drawing.Point(3, 3);
+            this.AraBtn.Name = "AraBtn";
+            this.AraBtn.Size = new System.Drawing.Size(139, 92);
+            this.AraBtn.TabIndex = 2;
+            this.AraBtn.Text = "ARA";
+            this.AraBtn.UseVisualStyleBackColor = false;
+            // 
+            // BaslaTarLb
+            // 
+            this.BaslaTarLb.AutoSize = true;
+            this.BaslaTarLb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BaslaTarLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.BaslaTarLb.Location = new System.Drawing.Point(23, 0);
+            this.BaslaTarLb.Name = "BaslaTarLb";
+            this.BaslaTarLb.Size = new System.Drawing.Size(117, 46);
+            this.BaslaTarLb.TabIndex = 0;
+            this.BaslaTarLb.Text = "Başlangıç Tarihi";
+            // 
+            // BitisTarBtn
+            // 
+            this.BitisTarBtn.AutoSize = true;
+            this.BitisTarBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BitisTarBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.BitisTarBtn.Location = new System.Drawing.Point(23, 46);
+            this.BitisTarBtn.Name = "BitisTarBtn";
+            this.BitisTarBtn.Size = new System.Drawing.Size(117, 46);
+            this.BitisTarBtn.TabIndex = 1;
+            this.BitisTarBtn.Text = "Bitiş Tarihi";
+            // 
+            // PersLb
+            // 
+            this.PersLb.AutoSize = true;
+            this.PersLb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PersLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.PersLb.Location = new System.Drawing.Point(319, 0);
+            this.PersLb.Name = "PersLb";
+            this.PersLb.Size = new System.Drawing.Size(117, 46);
+            this.PersLb.TabIndex = 2;
+            this.PersLb.Text = "Personel";
+            // 
+            // KasaLb
+            // 
+            this.KasaLb.AutoSize = true;
+            this.KasaLb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.KasaLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.KasaLb.Location = new System.Drawing.Point(319, 46);
+            this.KasaLb.Name = "KasaLb";
+            this.KasaLb.Size = new System.Drawing.Size(117, 46);
+            this.KasaLb.TabIndex = 3;
+            this.KasaLb.Text = "Kasa";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(452, 3);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(120, 23);
+            this.comboBox1.TabIndex = 4;
+            this.comboBox1.Text = "Personel Seçiniz";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Italic);
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(452, 49);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(120, 23);
+            this.comboBox2.TabIndex = 5;
+            this.comboBox2.Text = "Kasa Seçiniz";
+            // 
+            // BaslangicDtP
+            // 
+            this.BaslangicDtP.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BaslangicDtP.Location = new System.Drawing.Point(156, 3);
+            this.BaslangicDtP.Name = "BaslangicDtP";
+            this.BaslangicDtP.Size = new System.Drawing.Size(117, 20);
+            this.BaslangicDtP.TabIndex = 6;
+            // 
+            // BitisDtP
+            // 
+            this.BitisDtP.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BitisDtP.Location = new System.Drawing.Point(156, 49);
+            this.BitisDtP.Name = "BitisDtP";
+            this.BitisDtP.Size = new System.Drawing.Size(117, 20);
+            this.BitisDtP.TabIndex = 7;
             // 
             // RaporController
             // 
@@ -247,6 +388,9 @@
             this.AnaPanel.PerformLayout();
             this.AramaTLP.ResumeLayout(false);
             this.AramaTLP.PerformLayout();
+            this.PersKasaTLP.ResumeLayout(false);
+            this.PersKasaTLP.PerformLayout();
+            this.AraTLP.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -269,6 +413,16 @@
         private System.Windows.Forms.ColumnHeader HasatDefo;
         private System.Windows.Forms.ColumnHeader Diger;
         private System.Windows.Forms.Button BtnExcel;
-        private System.Windows.Forms.TableLayoutPanel KontrollerTLP;
+        private System.Windows.Forms.TableLayoutPanel PersKasaTLP;
+        private System.Windows.Forms.TableLayoutPanel AraTLP;
+        private System.Windows.Forms.Button AraBtn;
+        private System.Windows.Forms.Label BaslaTarLb;
+        private System.Windows.Forms.Label BitisTarBtn;
+        private System.Windows.Forms.Label PersLb;
+        private System.Windows.Forms.Label KasaLb;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.DateTimePicker BaslangicDtP;
+        private System.Windows.Forms.DateTimePicker BitisDtP;
     }
 }

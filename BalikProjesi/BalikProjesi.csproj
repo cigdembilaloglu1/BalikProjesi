@@ -189,6 +189,12 @@
     </Compile>
     <Compile Include="Models\InfoPanellReturnModel.cs" />
     <Compile Include="Models\ReaderResponseModel.cs" />
+    <Compile Include="Panels\Admin\TarihController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panels\Admin\TarihController.Designer.cs">
+      <DependentUpon>TarihController.cs</DependentUpon>
+    </Compile>
     <Compile Include="Panels\User\ControlDashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -282,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="KasaKayitController.resx">
       <DependentUpon>KasaKayitController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panels\Admin\TarihController.resx">
+      <DependentUpon>TarihController.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Panels\User\ControlDashboard.resx">
       <DependentUpon>ControlDashboard.cs</DependentUpon>

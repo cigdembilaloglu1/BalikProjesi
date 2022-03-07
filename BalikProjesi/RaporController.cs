@@ -21,5 +21,11 @@ namespace BalikProjesi
         {
 
         }
+
+        private void KontrollerTLP_Paint(object sender, PaintEventArgs e)
+        {
+            
+            
+        }
     }
 }
