@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BalikProjesi.Models;
 using BalikProjesi.Services;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace BalikProjesi
 {
@@ -20,8 +21,12 @@ namespace BalikProjesi
         private readonly IPersonelServices _personelService;
         private readonly IFishBoxServices _fboxService;
         private readonly List<RaporListviewModel> LvModel;
+        private  int ScreenW;
+        private  int ScreenH;
+
         public RaporController()
         {
+           
             InitializeComponent();
             _recordingsService = new RecordingsServices();
             _cartService = new CartsServices();
@@ -85,6 +90,7 @@ namespace BalikProjesi
 
         private void RaporController_Load(object sender, EventArgs e)
         {
+            
             PersLb.Visible = false;
             KasaLb.Visible = false;
             PersCb.Visible = false;
@@ -99,7 +105,12 @@ namespace BalikProjesi
             var data = _recordingsService.Get().ToList().OrderBy(x => x.FilletOpeningDate).ToList();
             BaslangicDtP.MaxDate = data.Last().FilletOpeningDate;
             BaslangicDtP.MinDate = data.First().FilletOpeningDate;
+            BaslangicDtP.Value  = data.First().FilletOpeningDate;
             BitisDtP.MinDate = data.First().FilletOpeningDate;
+
+            var FilletPersonels = _personelService.GetFilletPersonels();
+            var ControlPersonels = _personelService.GetControlPersonels();
+
             int RecordId = 1;
             data.ForEach(x =>
             {
@@ -145,7 +156,7 @@ namespace BalikProjesi
                 DisplayIndex = 0,
                 Name = "ID",
                 Text = "#",
-                Width = 50
+                Width = 45
 
             });
             listView1.Columns.Add(new ColumnHeader
@@ -161,42 +172,42 @@ namespace BalikProjesi
                 Name = "Cper",
                 Text = "Kontrol Personel",
 
-                Width = 131
+                Width = 130
             });
             listView1.Columns.Add(new ColumnHeader
             {
                 DisplayIndex = 3,
                 Name = "KasaKod",
                 Text = "Kasa Kod",
-                Width = 70
+                Width = 50
             });
             listView1.Columns.Add(new ColumnHeader
             {
                 DisplayIndex = 4,
                 Name = "Bdefo",
                 Text = "Bıçak Defo",
-                Width = 50
+                Width = 40
             });
             listView1.Columns.Add(new ColumnHeader
             {
                 DisplayIndex = 5,
                 Name = "Kdefo",
                 Text = "Kılçık Defo",
-                Width = 51
+                Width = 40
             });
             listView1.Columns.Add(new ColumnHeader
             {
                 DisplayIndex = 6,
                 Name = "Hdefo",
                 Text = "Hasat Defo",
-                Width = 52
+                Width = 40
             });
             listView1.Columns.Add(new ColumnHeader
             {
                 DisplayIndex = 7,
                 Name = "OdLeke",
                 Text = "Öd Lekesi",
-                Width = 53
+                Width = 40
 
             });
             listView1.Columns.Add(new ColumnHeader
@@ -204,21 +215,21 @@ namespace BalikProjesi
                 DisplayIndex = 8,
                 Name = "FBasTar",
                 Text = "F.Başlangıç Tarihi",
-                Width = 136
+                Width = 135
             });
             listView1.Columns.Add(new ColumnHeader
             {
                 DisplayIndex = 9,
                 Name = "FBitTar",
                 Text = "F.Bitiş Tarihi",
-                Width = 137
+                Width = 135
             });
             listView1.Columns.Add(new ColumnHeader
             {
                 DisplayIndex = 10,
                 Name = "FİsSure",
                 Text = "F.İşlem Süresi",
-                Width = 110
+                Width = 100
             });
 
             listView1.Columns.Add(new ColumnHeader
@@ -226,7 +237,7 @@ namespace BalikProjesi
                 DisplayIndex = 11,
                 Name = "KBasTar",
                 Text = "K.Başlangıç tarihi",
-                Width = 138
+                Width = 135
 
             });
             listView1.Columns.Add(new ColumnHeader
@@ -234,7 +245,7 @@ namespace BalikProjesi
                 DisplayIndex = 12,
                 Name = "KBitTar",
                 Text = "K.Bitiş Tarihi",
-                Width = 139
+                Width = 135
 
             });
             listView1.Columns.Add(new ColumnHeader
@@ -242,7 +253,7 @@ namespace BalikProjesi
                 DisplayIndex = 13,
                 Name = "KİsSure",
                 Text = "K.İşlem Süresi",
-                Width = 111
+                Width = 100
 
 
             });
@@ -340,6 +351,143 @@ namespace BalikProjesi
         private void AraBtn_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void BtnExcel_Click(object sender, EventArgs e)
+        {
+            if(LvModel.Count > 0)
+            {
+                DataTable table = new DataTable();
+                table.Columns.Add("ID", typeof(int));
+                table.Columns.Add("Fileto Personeli", typeof(string));
+                table.Columns.Add("Kontrol Personeli", typeof(string));
+                table.Columns.Add("Kasa Kodu", typeof(string));
+                table.Columns.Add("Fileto Başlangıç", typeof(DateTime));
+                table.Columns.Add("Fileto Bitiş", typeof(DateTime));
+                table.Columns.Add("Fileto Çalışma Süresi", typeof(string));
+                table.Columns.Add("Kontrol Başlangıç", typeof(DateTime));
+                table.Columns.Add("Kontrol Bitiş", typeof(DateTime));
+                table.Columns.Add("Kontrol Çalışma Süresi", typeof(string));
+                table.Columns.Add("Hasat Defo", typeof(int));
+                table.Columns.Add("Bıçak Defo", typeof(int));
+                table.Columns.Add("Kılçık", typeof(int));
+                table.Columns.Add("Öd Lekesi", typeof(int));
+
+                LvModel.ForEach(x =>
+                {
+                    string Fcs = "";
+                    int Fcsint = x.FİsSure / 60;
+                    Fcs = Fcsint + " Dk";
+                    string Kcs = "";
+                    int Kcsint = x.KİsSure / 60;
+                    Kcs = Kcsint + " Dk";
+                    table.Rows.Add(
+                        x.Id,
+                        x.FiletoPersonel,
+                        x.KontrolPersonel,
+                        x.KasaKod,
+                        x.FBasTar,
+                        x.FBitTar,
+                        Fcs,
+                        x.KBasTar,
+                        x.KBitTar,
+                        Kcs,
+                        x.HasatDefo,
+                        x.BicakDefo,
+                        x.KilcikDefo,
+                        x.OdLekesi
+                        );
+
+                });
+
+                var excel = new Microsoft.Office.Interop.Excel.Application();
+                excel.Visible = false;
+                excel.DisplayAlerts = false;
+                var worKbooK = excel.Workbooks.Add(Type.Missing);
+                var worKsheeT = (Microsoft.Office.Interop.Excel.Worksheet)worKbooK.ActiveSheet; worKsheeT.Name = "LuckyfishRapor";
+
+                worKsheeT.Range[worKsheeT.Cells[1, 1], worKsheeT.Cells[1, 14]].Merge();
+                worKsheeT.Cells[1, 1] = "LuckyFish Kontrol Tablosu Raporu";
+                worKsheeT.Cells.Font.Size = 15;
+
+                int rowcount = 2;
+                dynamic celLrangE;
+                foreach (DataRow datarow in table.Rows)
+                {
+                    rowcount += 1;
+                    for (int i = 1; i <= table.Columns.Count; i++)
+                    {
+
+                        if (rowcount == 3)
+                        {
+                            worKsheeT.Cells[2, i] = table.Columns[i - 1].ColumnName;
+                            worKsheeT.Cells.Font.Color = System.Drawing.Color.Black;
+
+                        }
+
+                        worKsheeT.Cells[rowcount, i] = datarow[i - 1].ToString();
+
+                        if (rowcount > 3)
+                        {
+                            if (i == table.Columns.Count)
+                            {
+                                if (rowcount % 2 == 0)
+                                {
+                                    celLrangE = worKsheeT.Range[worKsheeT.Cells[rowcount, 1], worKsheeT.Cells[rowcount, table.Columns.Count]];
+                                }
+
+                            }
+                        }
+
+                    }
+                }
+
+                celLrangE = worKsheeT.Range[worKsheeT.Cells[1, 1], worKsheeT.Cells[rowcount, table.Columns.Count]];
+                celLrangE.EntireColumn.AutoFit();
+                Microsoft.Office.Interop.Excel.Borders border = celLrangE.Borders;
+                border.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                border.Weight = 2d;
+
+                celLrangE = worKsheeT.Range[worKsheeT.Cells[1, 1], worKsheeT.Cells[2, table.Columns.Count]];
+                object misValue = System.Reflection.Missing.Value;
+
+                worKbooK.SaveAs("c:\\excel\\csharp-Excel.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+
+                //worKbooK.SaveAs(@"C:\\excel\\Rapor" + DateTime.Now.ToString("dd-MM-yyyy-HH-mm") +".xls"); ;
+                worKbooK.Close();
+                excel.Quit();
+            }
+        }
+
+        private void PanelBoyutlandırma(object sender, EventArgs e)
+        {
+            ScreenW = this.AnaPanel.Width;
+            ScreenH = this.AnaPanel.Height;
+            // listView1 Column Width.
+            //var ColumnList = listView1.Columns;
+            //int SingleWidth = ScreenW / 14;
+            int[] WidthArray = new int[] { 45, 110, 110, 80, 80, 80, 80, 80, 130, 130, 130, 130, 100, 100 };
+            for (int i = 0; i < listView1.Columns.Count; i++)
+            {
+                int ColWidth = WidthArray[i];
+                int NewColWidth = WidthPercenter(ColWidth);
+                listView1.Columns[i].Width = NewColWidth;
+            }
+        }
+        private int WidthPercenter(int Source)
+        {
+            int CalculatedBase = 0;
+            if (ScreenW < 1200)
+                CalculatedBase = 1200;
+            else
+                CalculatedBase = ScreenW;
+
+            //int CalculatedSize = 1255;
+            float CurrentSizeBalance =  ((1200 * 100) / CalculatedBase);
+            var NewSource = ((Source / 100) * CurrentSizeBalance) + Source;
+            int CalculatedSizeBalance = int.Parse(Math.Round(NewSource, 0).ToString());
+
+            return CalculatedSizeBalance;
         }
     }
 }

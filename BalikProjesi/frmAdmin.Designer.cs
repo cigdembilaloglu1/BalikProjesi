@@ -48,7 +48,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.menuStrip1.Size = new System.Drawing.Size(800, 29);
+            this.menuStrip1.Size = new System.Drawing.Size(1239, 29);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "adminMenu";
             // 
@@ -67,21 +67,21 @@
             // kARTKAYDIToolStripMenuItem
             // 
             this.kARTKAYDIToolStripMenuItem.Name = "kARTKAYDIToolStripMenuItem";
-            this.kARTKAYDIToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
+            this.kARTKAYDIToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
             this.kARTKAYDIToolStripMenuItem.Text = "KART KAYDI";
             this.kARTKAYDIToolStripMenuItem.Click += new System.EventHandler(this.kARTKAYDIToolStripMenuItem_Click);
             // 
             // pERSONELKAYDIToolStripMenuItem
             // 
             this.pERSONELKAYDIToolStripMenuItem.Name = "pERSONELKAYDIToolStripMenuItem";
-            this.pERSONELKAYDIToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
+            this.pERSONELKAYDIToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
             this.pERSONELKAYDIToolStripMenuItem.Text = "PERSONEL KAYDI";
             this.pERSONELKAYDIToolStripMenuItem.Click += new System.EventHandler(this.pERSONELKAYDIToolStripMenuItem_Click);
             // 
             // kASAKAYDIToolStripMenuItem
             // 
             this.kASAKAYDIToolStripMenuItem.Name = "kASAKAYDIToolStripMenuItem";
-            this.kASAKAYDIToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
+            this.kASAKAYDIToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
             this.kASAKAYDIToolStripMenuItem.Text = "KASA KAYDI";
             this.kASAKAYDIToolStripMenuItem.Click += new System.EventHandler(this.kASAKAYDIToolStripMenuItem_Click);
             // 
@@ -98,16 +98,17 @@
             this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainPanel.Location = new System.Drawing.Point(0, 29);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(800, 421);
+            this.MainPanel.Size = new System.Drawing.Size(1239, 532);
             this.MainPanel.TabIndex = 1;
             // 
             // frmAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1239, 561);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.menuStrip1);
+            this.MinimumSize = new System.Drawing.Size(1255, 600);
             this.Name = "frmAdmin";
             this.Text = "ADMİN";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Kapat);

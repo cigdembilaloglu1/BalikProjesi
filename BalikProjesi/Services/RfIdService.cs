@@ -131,6 +131,10 @@ namespace BalikProjesi.Services
                 OpenPort();
                 
             }
+            catch
+            {
+
+            }
         }
         private byte ChekSum(byte[] btdata, int nStartPos, int nLen)
         {
