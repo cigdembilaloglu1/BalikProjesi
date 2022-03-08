@@ -272,6 +272,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Services\RecordingsServices.cs" />
+    <Compile Include="Services\RfIdService.cs" />
     <Compile Include="Temp.cs">
       <SubType>Form</SubType>
     </Compile>
