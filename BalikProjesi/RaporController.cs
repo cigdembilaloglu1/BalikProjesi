@@ -145,7 +145,7 @@ namespace BalikProjesi
                 DisplayIndex = 0,
                 Name = "ID",
                 Text = "#",
-                 Width=100
+                 Width=50
                 
             });
             listView1.Columns.Add(new ColumnHeader
@@ -161,63 +161,64 @@ namespace BalikProjesi
                 Name = "Cper",
                 Text = "Kontrol Personel",
                 
-                Width = 140
+                Width = 131
             });
             listView1.Columns.Add(new ColumnHeader
             {
                 DisplayIndex = 3,
                 Name = "KasaKod",
                 Text = "Kasa Kod",
-                Width = 110
+                Width = 70
             });
             listView1.Columns.Add(new ColumnHeader
             {
                 DisplayIndex = 4,
                 Name = "Bdefo",
                 Text = "Bıçak Defo",
-                Width = 120
+                Width = 50
             });
             listView1.Columns.Add(new ColumnHeader
             {
                 DisplayIndex = 5,
                 Name = "Kdefo",
                 Text = "Kılçık Defo",
-                Width = 121
+                Width = 51
             });
             listView1.Columns.Add(new ColumnHeader
             {
                 DisplayIndex = 6,
                 Name = "Hdefo",
                 Text = "Hasat Defo",
-                Width = 122
+                Width = 52
             });
             listView1.Columns.Add(new ColumnHeader
             {
                 DisplayIndex = 7,
                 Name = "OdLeke",
                 Text = "Öd Lekesi",
-                Width = 123
+                Width = 53
 
             });
             listView1.Columns.Add(new ColumnHeader
             {
                 DisplayIndex = 8,
                 Name = "FBasTar",
-                Text = "F.Başlangıç Tarihi"
+                Text = "F.Başlangıç Tarihi",
+                 Width = 136
             });
             listView1.Columns.Add(new ColumnHeader
             {
                 DisplayIndex = 9,
                 Name = "FBitTar",
                 Text = "F.Bitiş Tarihi",
-                Width = 136
+                Width = 137
             });
             listView1.Columns.Add(new ColumnHeader
             {
                 DisplayIndex = 10,
                 Name = "FİsSure",
                 Text = "F.İşlem Süresi",
-                Width = 140
+                Width = 110
             });
            
             listView1.Columns.Add(new ColumnHeader
@@ -225,7 +226,7 @@ namespace BalikProjesi
                 DisplayIndex = 11,
                 Name = "KBasTar",
                 Text = "K.Başlangıç tarihi",
-                Width = 137
+                Width = 138
 
             });
             listView1.Columns.Add(new ColumnHeader
@@ -233,7 +234,7 @@ namespace BalikProjesi
                 DisplayIndex = 12,
                 Name = "KBitTar",
                 Text = "K.Bitiş Tarihi",
-                Width = 138
+                Width = 139
 
             });
             listView1.Columns.Add(new ColumnHeader
@@ -241,7 +242,7 @@ namespace BalikProjesi
                 DisplayIndex = 13,
                 Name = "KİsSure",
                 Text = "K.İşlem Süresi",
-                Width = 141
+                Width = 111
 
 
             });

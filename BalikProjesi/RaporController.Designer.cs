@@ -116,9 +116,9 @@
             this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.PersKasaTLP.Controls.Add(this.BaslaTarLb, 1, 0);
             this.PersKasaTLP.Controls.Add(this.BitisTarBtn, 1, 1);
             this.PersKasaTLP.Controls.Add(this.PersLb, 5, 0);
@@ -167,7 +167,7 @@
             this.PersLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.PersLb.Location = new System.Drawing.Point(319, 0);
             this.PersLb.Name = "PersLb";
-            this.PersLb.Size = new System.Drawing.Size(117, 46);
+            this.PersLb.Size = new System.Drawing.Size(68, 46);
             this.PersLb.TabIndex = 2;
             this.PersLb.Text = "Personel";
             this.PersLb.Click += new System.EventHandler(this.PersLb_Click);
@@ -179,7 +179,7 @@
             this.KasaLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.KasaLb.Location = new System.Drawing.Point(319, 46);
             this.KasaLb.Name = "KasaLb";
-            this.KasaLb.Size = new System.Drawing.Size(117, 46);
+            this.KasaLb.Size = new System.Drawing.Size(68, 46);
             this.KasaLb.TabIndex = 3;
             this.KasaLb.Text = "Kasa";
             // 
@@ -188,9 +188,9 @@
             this.PersCb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PersCb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.PersCb.FormattingEnabled = true;
-            this.PersCb.Location = new System.Drawing.Point(452, 3);
+            this.PersCb.Location = new System.Drawing.Point(403, 3);
             this.PersCb.Name = "PersCb";
-            this.PersCb.Size = new System.Drawing.Size(120, 23);
+            this.PersCb.Size = new System.Drawing.Size(169, 23);
             this.PersCb.TabIndex = 4;
             this.PersCb.Text = "Personel Seçiniz";
             // 
@@ -199,9 +199,9 @@
             this.KasaCb.Dock = System.Windows.Forms.DockStyle.Fill;
             this.KasaCb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Italic);
             this.KasaCb.FormattingEnabled = true;
-            this.KasaCb.Location = new System.Drawing.Point(452, 49);
+            this.KasaCb.Location = new System.Drawing.Point(403, 49);
             this.KasaCb.Name = "KasaCb";
-            this.KasaCb.Size = new System.Drawing.Size(120, 23);
+            this.KasaCb.Size = new System.Drawing.Size(169, 23);
             this.KasaCb.TabIndex = 5;
             this.KasaCb.Text = "Kasa Seçiniz";
             // 
