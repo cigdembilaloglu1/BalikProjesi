@@ -236,6 +236,7 @@
             this.AraBtn.TabIndex = 2;
             this.AraBtn.Text = "ARA";
             this.AraBtn.UseVisualStyleBackColor = false;
+            this.AraBtn.Click += new System.EventHandler(this.AraBtn_Click);
             // 
             // AramaTLP
             // 
@@ -357,7 +358,6 @@
             this.BtnExcel.TabIndex = 3;
             this.BtnExcel.Text = "EXCEL\'E AKTAR";
             this.BtnExcel.UseVisualStyleBackColor = false;
-        //    this.BtnExcel.Click += new System.EventHandler(this.BtnExcel_Click);
             // 
             // RaporController
             // 

@@ -335,5 +335,10 @@ namespace BalikProjesi
             BitisDtP.MinDate = BaslangicDtP.Value;
 
         }
+
+        private void AraBtn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
