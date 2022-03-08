@@ -38,13 +38,13 @@ namespace BalikProjesi
 
         private void KontrollerTLP_Paint(object sender, PaintEventArgs e)
         {
-            
-            
+
+
         }
 
         private void RBGun_CheckedChanged(object sender, EventArgs e)
         {
-           
+
             PersLb.Visible = false;
             KasaLb.Visible = false;
             PersCb.Visible = false;
@@ -58,16 +58,16 @@ namespace BalikProjesi
             KasaLb.Visible = false;
             PersCb.Visible = true;
             KasaCb.Visible = false;
-           
+
 
         }
 
         private void RBKasa_CheckedChanged(object sender, EventArgs e)
         {
-            
-            PersLb.Visible =false;
+
+            PersLb.Visible = false;
             KasaLb.Visible = true;
-            PersCb.Visible =false;
+            PersCb.Visible = false;
             KasaCb.Visible = true;
 
 
@@ -96,7 +96,7 @@ namespace BalikProjesi
             BitisDtP.Format = DateTimePickerFormat.Custom;
             BitisDtP.CustomFormat = "dd.MM.yyyy   HH:mm:ss";
 
-            var data = _recordingsService.Get().ToList().OrderBy(x=>x.FilletOpeningDate).ToList();
+            var data = _recordingsService.Get().ToList().OrderBy(x => x.FilletOpeningDate).ToList();
             BaslangicDtP.MaxDate = data.Last().FilletOpeningDate;
             BaslangicDtP.MinDate = data.First().FilletOpeningDate;
             BitisDtP.MinDate = data.First().FilletOpeningDate;
@@ -120,18 +120,18 @@ namespace BalikProjesi
                     Id = RecordId,
                     BicakDefo = x.Knife,
                     FiletoPersonel = Filetocu.PersonelName + " " + Filetocu.PersonelSurname,
-                    KontrolPersonel=Kontrolcu.PersonelName+" "+Kontrolcu.PersonelSurname,
-                    OdLekesi=x.OdLekesi,
-                    KilcikDefo=x.FishBone,
-                    HasatDefo=x.Defo,
-                    FBasTar=x.FilletOpeningDate,
-                    FBitTar=x.FilletClosingDate,
-                    KBasTar=x.ControllerOpeningDate,
-                    KBitTar=x.ControllerClosingDate,
-                    KasaKod=Kasa.FishBoxCode,
+                    KontrolPersonel = Kontrolcu.PersonelName + " " + Kontrolcu.PersonelSurname,
+                    OdLekesi = x.OdLekesi,
+                    KilcikDefo = x.FishBone,
+                    HasatDefo = x.Defo,
+                    FBasTar = x.FilletOpeningDate,
+                    FBitTar = x.FilletClosingDate,
+                    KBasTar = x.ControllerOpeningDate,
+                    KBitTar = x.ControllerClosingDate,
+                    KasaKod = Kasa.FishBoxCode,
 
-                    KİsSure=kontrolSuresi,
-                    FİsSure=filetoSuresi,
+                    KİsSure = kontrolSuresi,
+                    FİsSure = filetoSuresi,
 
 
 
@@ -145,8 +145,8 @@ namespace BalikProjesi
                 DisplayIndex = 0,
                 Name = "ID",
                 Text = "#",
-                 Width=50
-                
+                Width = 50
+
             });
             listView1.Columns.Add(new ColumnHeader
             {
@@ -160,7 +160,7 @@ namespace BalikProjesi
                 DisplayIndex = 2,
                 Name = "Cper",
                 Text = "Kontrol Personel",
-                
+
                 Width = 131
             });
             listView1.Columns.Add(new ColumnHeader
@@ -204,7 +204,7 @@ namespace BalikProjesi
                 DisplayIndex = 8,
                 Name = "FBasTar",
                 Text = "F.Başlangıç Tarihi",
-                 Width = 136
+                Width = 136
             });
             listView1.Columns.Add(new ColumnHeader
             {
@@ -220,7 +220,7 @@ namespace BalikProjesi
                 Text = "F.İşlem Süresi",
                 Width = 110
             });
-           
+
             listView1.Columns.Add(new ColumnHeader
             {
                 DisplayIndex = 11,
@@ -263,14 +263,14 @@ namespace BalikProjesi
                 ListItem.SubItems.Add(new ListViewItem.ListViewSubItem { Name = "Öd Lekesi", Text = x.OdLekesi.ToString() });
                 ListItem.SubItems.Add(new ListViewItem.ListViewSubItem { Name = "F.Başlangıç Tarihi", Text = x.FBasTar.ToString() });
                 ListItem.SubItems.Add(new ListViewItem.ListViewSubItem { Name = "F.Bitiş Tarihi", Text = x.FBitTar.ToString() });
-                ListItem.SubItems.Add(new ListViewItem.ListViewSubItem { Name = "F.İşlem Süresi", Text = x.FİsSure.ToString() +" Saniye" });
-                ListItem.SubItems.Add(new ListViewItem.ListViewSubItem { Name = "K.Başlangıç Tarihi", Text = x.KBasTar.ToString()  });
-                ListItem.SubItems.Add(new ListViewItem.ListViewSubItem { Name = "K.Bitiş Tarihi", Text = x.KBitTar.ToString()  });
-                ListItem.SubItems.Add(new ListViewItem.ListViewSubItem { Name = "K.İşlem Süresi", Text = x.KİsSure.ToString() + " Saniye"  });
+                ListItem.SubItems.Add(new ListViewItem.ListViewSubItem { Name = "F.İşlem Süresi", Text = x.FİsSure.ToString() + " Saniye" });
+                ListItem.SubItems.Add(new ListViewItem.ListViewSubItem { Name = "K.Başlangıç Tarihi", Text = x.KBasTar.ToString() });
+                ListItem.SubItems.Add(new ListViewItem.ListViewSubItem { Name = "K.Bitiş Tarihi", Text = x.KBitTar.ToString() });
+                ListItem.SubItems.Add(new ListViewItem.ListViewSubItem { Name = "K.İşlem Süresi", Text = x.KİsSure.ToString() + " Saniye" });
 
                 listView1.Items.Add(ListItem);
             });
-            
+
 
         }
 
@@ -279,14 +279,61 @@ namespace BalikProjesi
 
         }
 
-        private void BtnExcel_Click(object sender, EventArgs e)
+        private void BtnExcel_Click(object sender, EventArgs e, int i)
         {
+            using (SaveFileDialog sfd=new SaveFileDialog() { Filter ="Excel |.xls",ValidateNames=true})
+            {
+                if (sfd.ShowDialog()== DialogResult.OK)
+                {
+                   Microsoft.Office.Interop.Excel.Application uyg = new Microsoft.Office.Interop.Excel.Application();
+                   Microsoft.Office.Interop.Excel.Workbook kitap = uyg.Workbooks.Add(System.Reflection.Missing.Value);
+                   Microsoft.Office.Interop.Excel.Worksheet sayfa = (Microsoft.Office.Interop.Excel.Worksheet)kitap.Sheets[1];
+                    uyg.Visible = false;
+                    sayfa.Cells[1, 1] = "#";
 
-        }
+                    sayfa.Cells[1, 2] = "Fileto Personel";
+                    sayfa.Cells[1, 3] = "Kontrol Personel";
 
-        private void BaslangicDtP_ValueChanged(object sender, EventArgs e)
+
+
+                }
+            }
+            //    Microsoft.Office.Interop.Excel.Application uyg = new Microsoft.Office.Interop.Excel.Application();
+            //    uyg.Visible = true;
+            //    Microsoft.Office.Interop.Excel.Workbook kitap = uyg.Workbooks.Add(System.Reflection.Missing.Value);
+            //    Microsoft.Office.Interop.Excel.Worksheet sayfa = (Microsoft.Office.Interop.Excel.Worksheet)kitap.Sheets[1];
+            //    for (int i = 0; i < listView1.Columns.Count; i++)
+            //    {
+            //        Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)sayfa.Cells[1, i + 1];
+            //        range.Value2 = listView1.Columns[i].ListView.HeaderStyle;
+            //    }
+            //    for (int i = 0; i < listView1.Columns.Count; i++)
+            //    {
+            //        for (int j = 0; j < listView1.Items.Count; j++)
+            //        {
+            //            Microsoft.Office.Interop.Excel.Range range = (Microsoft.Office.Interop.Excel.Range)sayfa.Cells[j + 2, i + 1];
+            //            range.Value2 = listView1[i,j].Value;
+            //            //Tarih ,Saat ve Ondalıklı sayılar için aşağıdaki formatları kullanabilirsiniz.
+
+            //            //sayfa.Columns["E:E"].NumberFormat = "gg.aa.yyyy";
+            //            //Tarih formatı E:E Excel deki sütunun adı
+            //            sayfa.Columns["H:H"].NumberFormat = "dd.MM.yyyy   HH:mm:ss";//Tarih saat formatı
+            //            //sayfa.Columns["F:F"].NumberFormat = "#,##0.00";
+            //            //Ondalıklı Sayı Formatı
+
+            //        }
+
+            //    }
+
+
+            //    //}
+
+            }
+
+            private void BaslangicDtP_ValueChanged(object sender, EventArgs e)
         {
             BitisDtP.MinDate = BaslangicDtP.Value;
+
         }
     }
 }

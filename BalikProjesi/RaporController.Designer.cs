@@ -357,7 +357,7 @@
             this.BtnExcel.TabIndex = 3;
             this.BtnExcel.Text = "EXCEL\'E AKTAR";
             this.BtnExcel.UseVisualStyleBackColor = false;
-            this.BtnExcel.Click += new System.EventHandler(this.BtnExcel_Click);
+        //    this.BtnExcel.Click += new System.EventHandler(this.BtnExcel_Click);
             // 
             // RaporController
             // 
