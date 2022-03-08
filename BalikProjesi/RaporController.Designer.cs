@@ -30,22 +30,24 @@
         {
             this.AnaPanel = new System.Windows.Forms.TableLayoutPanel();
             this.AraTLP = new System.Windows.Forms.TableLayoutPanel();
-            this.PersKasaTLP = new System.Windows.Forms.TableLayoutPanel();
-            this.BaslaTarLb = new System.Windows.Forms.Label();
-            this.BitisTarBtn = new System.Windows.Forms.Label();
-            this.PersLb = new System.Windows.Forms.Label();
-            this.KasaLb = new System.Windows.Forms.Label();
-            this.PersCb = new System.Windows.Forms.ComboBox();
-            this.KasaCb = new System.Windows.Forms.ComboBox();
-            this.BaslangicDtP = new System.Windows.Forms.DateTimePicker();
-            this.BitisDtP = new System.Windows.Forms.DateTimePicker();
-            this.AraBtn = new System.Windows.Forms.Button();
+            this.SearchPanel = new System.Windows.Forms.Panel();
+            this.ComboDetail = new System.Windows.Forms.GroupBox();
+            this.DetailsearchLabel = new System.Windows.Forms.Label();
+            this.DetailSearchCb = new System.Windows.Forms.ComboBox();
+            this.TarihDetail = new System.Windows.Forms.GroupBox();
+            this.KontrolTarihi = new System.Windows.Forms.RadioButton();
+            this.FiletoTarihi = new System.Windows.Forms.RadioButton();
+            this.KayitTarihi = new System.Windows.Forms.RadioButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.EndDatePicker = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.StartDatePicker = new System.Windows.Forms.DateTimePicker();
             this.AramaTLP = new System.Windows.Forms.TableLayoutPanel();
             this.KasaBtn = new System.Windows.Forms.RadioButton();
             this.RBGun = new System.Windows.Forms.RadioButton();
             this.RBPersonel = new System.Windows.Forms.RadioButton();
             this.RBKontrol = new System.Windows.Forms.RadioButton();
-            this.LbArama = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -62,9 +64,14 @@
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.BtnExcel = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.TarihCheckBox = new System.Windows.Forms.CheckBox();
             this.AnaPanel.SuspendLayout();
             this.AraTLP.SuspendLayout();
-            this.PersKasaTLP.SuspendLayout();
+            this.SearchPanel.SuspendLayout();
+            this.ComboDetail.SuspendLayout();
+            this.TarihDetail.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.AramaTLP.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,9 +82,9 @@
             this.AnaPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.AnaPanel.Controls.Add(this.AraTLP, 0, 4);
             this.AnaPanel.Controls.Add(this.AramaTLP, 0, 2);
-            this.AnaPanel.Controls.Add(this.LbArama, 0, 0);
             this.AnaPanel.Controls.Add(this.listView1, 0, 6);
             this.AnaPanel.Controls.Add(this.BtnExcel, 0, 8);
+            this.AnaPanel.Controls.Add(this.button1, 0, 0);
             this.AnaPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AnaPanel.Location = new System.Drawing.Point(0, 0);
             this.AnaPanel.MinimumSize = new System.Drawing.Size(1255, 600);
@@ -98,11 +105,11 @@
             // 
             // AraTLP
             // 
-            this.AraTLP.ColumnCount = 2;
+            this.AraTLP.AutoSize = true;
+            this.AraTLP.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.AraTLP.ColumnCount = 1;
             this.AraTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.AraTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 80F));
-            this.AraTLP.Controls.Add(this.PersKasaTLP, 1, 0);
-            this.AraTLP.Controls.Add(this.AraBtn, 0, 0);
+            this.AraTLP.Controls.Add(this.SearchPanel, 0, 0);
             this.AraTLP.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AraTLP.Location = new System.Drawing.Point(3, 163);
             this.AraTLP.Name = "AraTLP";
@@ -111,136 +118,139 @@
             this.AraTLP.Size = new System.Drawing.Size(1249, 128);
             this.AraTLP.TabIndex = 2;
             // 
-            // PersKasaTLP
+            // SearchPanel
             // 
-            this.PersKasaTLP.ColumnCount = 8;
-            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15F));
-            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.PersKasaTLP.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
-            this.PersKasaTLP.Controls.Add(this.BaslaTarLb, 1, 0);
-            this.PersKasaTLP.Controls.Add(this.BitisTarBtn, 1, 1);
-            this.PersKasaTLP.Controls.Add(this.PersLb, 5, 0);
-            this.PersKasaTLP.Controls.Add(this.KasaLb, 5, 1);
-            this.PersKasaTLP.Controls.Add(this.PersCb, 7, 0);
-            this.PersKasaTLP.Controls.Add(this.KasaCb, 7, 1);
-            this.PersKasaTLP.Controls.Add(this.BaslangicDtP, 3, 0);
-            this.PersKasaTLP.Controls.Add(this.BitisDtP, 3, 1);
-            this.PersKasaTLP.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PersKasaTLP.Location = new System.Drawing.Point(252, 3);
-            this.PersKasaTLP.Name = "PersKasaTLP";
-            this.PersKasaTLP.RowCount = 3;
-            this.PersKasaTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.PersKasaTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.PersKasaTLP.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.PersKasaTLP.Size = new System.Drawing.Size(994, 122);
-            this.PersKasaTLP.TabIndex = 1;
-            this.PersKasaTLP.VisibleChanged += new System.EventHandler(this.RBGun_CheckedChanged);
-            this.PersKasaTLP.Paint += new System.Windows.Forms.PaintEventHandler(this.KontrollerTLP_Paint);
+            this.SearchPanel.Controls.Add(this.ComboDetail);
+            this.SearchPanel.Controls.Add(this.TarihDetail);
+            this.SearchPanel.Controls.Add(this.groupBox1);
+            this.SearchPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.SearchPanel.Location = new System.Drawing.Point(3, 3);
+            this.SearchPanel.Name = "SearchPanel";
+            this.SearchPanel.Size = new System.Drawing.Size(1243, 122);
+            this.SearchPanel.TabIndex = 0;
             // 
-            // BaslaTarLb
+            // ComboDetail
             // 
-            this.BaslaTarLb.AutoSize = true;
-            this.BaslaTarLb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BaslaTarLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.BaslaTarLb.Location = new System.Drawing.Point(23, 0);
-            this.BaslaTarLb.Name = "BaslaTarLb";
-            this.BaslaTarLb.Size = new System.Drawing.Size(222, 40);
-            this.BaslaTarLb.TabIndex = 0;
-            this.BaslaTarLb.Text = "Başlangıç Tarihi";
+            this.ComboDetail.Controls.Add(this.TarihCheckBox);
+            this.ComboDetail.Controls.Add(this.DetailsearchLabel);
+            this.ComboDetail.Controls.Add(this.DetailSearchCb);
+            this.ComboDetail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ComboDetail.Location = new System.Drawing.Point(705, 0);
+            this.ComboDetail.Name = "ComboDetail";
+            this.ComboDetail.Size = new System.Drawing.Size(538, 122);
+            this.ComboDetail.TabIndex = 4;
+            this.ComboDetail.TabStop = false;
+            this.ComboDetail.Visible = false;
             // 
-            // BitisTarBtn
+            // DetailsearchLabel
             // 
-            this.BitisTarBtn.AutoSize = true;
-            this.BitisTarBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BitisTarBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.BitisTarBtn.Location = new System.Drawing.Point(23, 40);
-            this.BitisTarBtn.Name = "BitisTarBtn";
-            this.BitisTarBtn.Size = new System.Drawing.Size(222, 40);
-            this.BitisTarBtn.TabIndex = 1;
-            this.BitisTarBtn.Text = "Bitiş Tarihi";
+            this.DetailsearchLabel.AutoSize = true;
+            this.DetailsearchLabel.Location = new System.Drawing.Point(162, 55);
+            this.DetailsearchLabel.Name = "DetailsearchLabel";
+            this.DetailsearchLabel.Size = new System.Drawing.Size(35, 13);
+            this.DetailsearchLabel.TabIndex = 1;
+            this.DetailsearchLabel.Text = "label3";
             // 
-            // PersLb
+            // DetailSearchCb
             // 
-            this.PersLb.AutoSize = true;
-            this.PersLb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PersLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.PersLb.Location = new System.Drawing.Point(529, 0);
-            this.PersLb.Name = "PersLb";
-            this.PersLb.Size = new System.Drawing.Size(131, 40);
-            this.PersLb.TabIndex = 2;
-            this.PersLb.Text = "Personel";
-            this.PersLb.Click += new System.EventHandler(this.PersLb_Click);
+            this.DetailSearchCb.FormattingEnabled = true;
+            this.DetailSearchCb.Location = new System.Drawing.Point(203, 51);
+            this.DetailSearchCb.Name = "DetailSearchCb";
+            this.DetailSearchCb.Size = new System.Drawing.Size(203, 21);
+            this.DetailSearchCb.TabIndex = 0;
             // 
-            // KasaLb
+            // TarihDetail
             // 
-            this.KasaLb.AutoSize = true;
-            this.KasaLb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.KasaLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.KasaLb.Location = new System.Drawing.Point(529, 40);
-            this.KasaLb.Name = "KasaLb";
-            this.KasaLb.Size = new System.Drawing.Size(131, 40);
-            this.KasaLb.TabIndex = 3;
-            this.KasaLb.Text = "Kasa";
+            this.TarihDetail.Controls.Add(this.KontrolTarihi);
+            this.TarihDetail.Controls.Add(this.FiletoTarihi);
+            this.TarihDetail.Controls.Add(this.KayitTarihi);
+            this.TarihDetail.Dock = System.Windows.Forms.DockStyle.Left;
+            this.TarihDetail.Location = new System.Drawing.Point(325, 0);
+            this.TarihDetail.Name = "TarihDetail";
+            this.TarihDetail.Size = new System.Drawing.Size(380, 122);
+            this.TarihDetail.TabIndex = 3;
+            this.TarihDetail.TabStop = false;
+            this.TarihDetail.Text = "Arama Yönü";
             // 
-            // PersCb
+            // KontrolTarihi
             // 
-            this.PersCb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PersCb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.PersCb.FormattingEnabled = true;
-            this.PersCb.Location = new System.Drawing.Point(676, 3);
-            this.PersCb.Name = "PersCb";
-            this.PersCb.Size = new System.Drawing.Size(315, 23);
-            this.PersCb.TabIndex = 4;
-            this.PersCb.Text = "Personel Seçiniz";
+            this.KontrolTarihi.AutoSize = true;
+            this.KontrolTarihi.Location = new System.Drawing.Point(251, 51);
+            this.KontrolTarihi.Name = "KontrolTarihi";
+            this.KontrolTarihi.Size = new System.Drawing.Size(114, 17);
+            this.KontrolTarihi.TabIndex = 2;
+            this.KontrolTarihi.TabStop = true;
+            this.KontrolTarihi.Text = "Kontrol İşlem Tarihi";
+            this.KontrolTarihi.UseVisualStyleBackColor = true;
             // 
-            // KasaCb
+            // FiletoTarihi
             // 
-            this.KasaCb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.KasaCb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Italic);
-            this.KasaCb.FormattingEnabled = true;
-            this.KasaCb.Location = new System.Drawing.Point(676, 43);
-            this.KasaCb.Name = "KasaCb";
-            this.KasaCb.Size = new System.Drawing.Size(315, 23);
-            this.KasaCb.TabIndex = 5;
-            this.KasaCb.Text = "Kasa Seçiniz";
+            this.FiletoTarihi.AutoSize = true;
+            this.FiletoTarihi.Location = new System.Drawing.Point(121, 51);
+            this.FiletoTarihi.Name = "FiletoTarihi";
+            this.FiletoTarihi.Size = new System.Drawing.Size(106, 17);
+            this.FiletoTarihi.TabIndex = 1;
+            this.FiletoTarihi.TabStop = true;
+            this.FiletoTarihi.Text = "Fileto İşlem Tarihi";
+            this.FiletoTarihi.UseVisualStyleBackColor = true;
             // 
-            // BaslangicDtP
+            // KayitTarihi
             // 
-            this.BaslangicDtP.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BaslangicDtP.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.BaslangicDtP.Location = new System.Drawing.Point(261, 3);
-            this.BaslangicDtP.Name = "BaslangicDtP";
-            this.BaslangicDtP.Size = new System.Drawing.Size(222, 20);
-            this.BaslangicDtP.TabIndex = 6;
-            this.BaslangicDtP.ValueChanged += new System.EventHandler(this.BaslangicDtP_ValueChanged);
+            this.KayitTarihi.AutoSize = true;
+            this.KayitTarihi.Location = new System.Drawing.Point(24, 51);
+            this.KayitTarihi.Name = "KayitTarihi";
+            this.KayitTarihi.Size = new System.Drawing.Size(77, 17);
+            this.KayitTarihi.TabIndex = 0;
+            this.KayitTarihi.TabStop = true;
+            this.KayitTarihi.Text = "Kayıt Tarihi";
+            this.KayitTarihi.UseVisualStyleBackColor = true;
             // 
-            // BitisDtP
+            // groupBox1
             // 
-            this.BitisDtP.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BitisDtP.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.BitisDtP.Location = new System.Drawing.Point(261, 43);
-            this.BitisDtP.Name = "BitisDtP";
-            this.BitisDtP.Size = new System.Drawing.Size(222, 20);
-            this.BitisDtP.TabIndex = 7;
+            this.groupBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.EndDatePicker);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.StartDatePicker);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(325, 122);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Tarih Aralığı Seçiniz";
             // 
-            // AraBtn
+            // label2
             // 
-            this.AraBtn.BackColor = System.Drawing.SystemColors.Control;
-            this.AraBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AraBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.AraBtn.ForeColor = System.Drawing.Color.Black;
-            this.AraBtn.Location = new System.Drawing.Point(3, 3);
-            this.AraBtn.Name = "AraBtn";
-            this.AraBtn.Size = new System.Drawing.Size(243, 122);
-            this.AraBtn.TabIndex = 2;
-            this.AraBtn.Text = "ARA";
-            this.AraBtn.UseVisualStyleBackColor = false;
-            this.AraBtn.Click += new System.EventHandler(this.AraBtn_Click);
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(16, 74);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(55, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Bitiş Tarihi";
+            // 
+            // EndDatePicker
+            // 
+            this.EndDatePicker.Location = new System.Drawing.Point(119, 70);
+            this.EndDatePicker.Name = "EndDatePicker";
+            this.EndDatePicker.Size = new System.Drawing.Size(200, 20);
+            this.EndDatePicker.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 36);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Başlangıç Tarihi";
+            // 
+            // StartDatePicker
+            // 
+            this.StartDatePicker.Location = new System.Drawing.Point(119, 32);
+            this.StartDatePicker.Name = "StartDatePicker";
+            this.StartDatePicker.Size = new System.Drawing.Size(200, 20);
+            this.StartDatePicker.TabIndex = 0;
             // 
             // AramaTLP
             // 
@@ -280,10 +290,12 @@
             // 
             // RBGun
             // 
+            this.RBGun.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.RBGun.AutoSize = true;
             this.RBGun.BackColor = System.Drawing.SystemColors.Control;
             this.RBGun.Checked = true;
-            this.RBGun.Dock = System.Windows.Forms.DockStyle.Fill;
             this.RBGun.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.RBGun.Location = new System.Drawing.Point(3, 3);
             this.RBGun.Name = "RBGun";
@@ -291,6 +303,7 @@
             this.RBGun.TabIndex = 0;
             this.RBGun.TabStop = true;
             this.RBGun.Text = "GÜN";
+            this.RBGun.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.RBGun.UseVisualStyleBackColor = false;
             this.RBGun.CheckedChanged += new System.EventHandler(this.RBGun_CheckedChanged);
             // 
@@ -321,21 +334,6 @@
             this.RBKontrol.Text = "KONTROL PERSONELİ";
             this.RBKontrol.UseVisualStyleBackColor = true;
             this.RBKontrol.CheckedChanged += new System.EventHandler(this.RBKontrol_CheckedChanged);
-            // 
-            // LbArama
-            // 
-            this.LbArama.AutoSize = true;
-            this.LbArama.BackColor = System.Drawing.Color.DimGray;
-            this.LbArama.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.LbArama.Font = new System.Drawing.Font("Bahnschrift SemiBold SemiConden", 14.25F, System.Drawing.FontStyle.Bold);
-            this.LbArama.ForeColor = System.Drawing.Color.White;
-            this.LbArama.Location = new System.Drawing.Point(3, 0);
-            this.LbArama.Name = "LbArama";
-            this.LbArama.Size = new System.Drawing.Size(1249, 44);
-            this.LbArama.TabIndex = 0;
-            this.LbArama.Text = "ARAMA";
-            this.LbArama.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.LbArama.Click += new System.EventHandler(this.LbArama_Click);
             // 
             // listView1
             // 
@@ -390,20 +388,47 @@
             this.BtnExcel.UseVisualStyleBackColor = false;
             this.BtnExcel.Click += new System.EventHandler(this.BtnExcel_Click);
             // 
+            // button1
+            // 
+            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.button1.Location = new System.Drawing.Point(3, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(1249, 38);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Arama Yap";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // TarihCheckBox
+            // 
+            this.TarihCheckBox.AutoSize = true;
+            this.TarihCheckBox.Location = new System.Drawing.Point(304, 79);
+            this.TarihCheckBox.Name = "TarihCheckBox";
+            this.TarihCheckBox.Size = new System.Drawing.Size(107, 17);
+            this.TarihCheckBox.TabIndex = 3;
+            this.TarihCheckBox.Text = "Tarih Kıstası Aktif";
+            this.TarihCheckBox.UseVisualStyleBackColor = true;
+            // 
             // RaporController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.AnaPanel);
             this.Name = "RaporController";
-            this.Size = new System.Drawing.Size(1121, 624);
+            this.Size = new System.Drawing.Size(1255, 624);
             this.Load += new System.EventHandler(this.RaporController_Load);
             this.Resize += new System.EventHandler(this.PanelBoyutlandırma);
             this.AnaPanel.ResumeLayout(false);
             this.AnaPanel.PerformLayout();
             this.AraTLP.ResumeLayout(false);
-            this.PersKasaTLP.ResumeLayout(false);
-            this.PersKasaTLP.PerformLayout();
+            this.SearchPanel.ResumeLayout(false);
+            this.ComboDetail.ResumeLayout(false);
+            this.ComboDetail.PerformLayout();
+            this.TarihDetail.ResumeLayout(false);
+            this.TarihDetail.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.AramaTLP.ResumeLayout(false);
             this.AramaTLP.PerformLayout();
             this.ResumeLayout(false);
@@ -414,23 +439,11 @@
         #endregion
 
         private System.Windows.Forms.TableLayoutPanel AnaPanel;
-        private System.Windows.Forms.Label LbArama;
         private System.Windows.Forms.TableLayoutPanel AramaTLP;
         private System.Windows.Forms.RadioButton RBGun;
         private System.Windows.Forms.RadioButton RBPersonel;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Button BtnExcel;
-        private System.Windows.Forms.TableLayoutPanel PersKasaTLP;
-        private System.Windows.Forms.TableLayoutPanel AraTLP;
-        private System.Windows.Forms.Button AraBtn;
-        private System.Windows.Forms.Label BaslaTarLb;
-        private System.Windows.Forms.Label BitisTarBtn;
-        private System.Windows.Forms.Label PersLb;
-        private System.Windows.Forms.Label KasaLb;
-        private System.Windows.Forms.ComboBox PersCb;
-        private System.Windows.Forms.ComboBox KasaCb;
-        private System.Windows.Forms.DateTimePicker BaslangicDtP;
-        private System.Windows.Forms.DateTimePicker BitisDtP;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.ColumnHeader columnHeader3;
@@ -447,5 +460,21 @@
         private System.Windows.Forms.ColumnHeader columnHeader14;
         private System.Windows.Forms.RadioButton KasaBtn;
         private System.Windows.Forms.RadioButton RBKontrol;
+        private System.Windows.Forms.TableLayoutPanel AraTLP;
+        private System.Windows.Forms.Panel SearchPanel;
+        private System.Windows.Forms.GroupBox TarihDetail;
+        private System.Windows.Forms.RadioButton KontrolTarihi;
+        private System.Windows.Forms.RadioButton FiletoTarihi;
+        private System.Windows.Forms.RadioButton KayitTarihi;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DateTimePicker EndDatePicker;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker StartDatePicker;
+        private System.Windows.Forms.GroupBox ComboDetail;
+        private System.Windows.Forms.Label DetailsearchLabel;
+        private System.Windows.Forms.ComboBox DetailSearchCb;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox TarihCheckBox;
     }
 }

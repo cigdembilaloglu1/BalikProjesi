@@ -1,4 +1,5 @@
 ﻿using BalikProjesi.Entities;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,41 @@ namespace BalikProjesi.Services
 
         //}
 
+        public List<Recordings> TarihArama(DateTime Baslangic, DateTime Bitis, string Tip)
+        {
+            var records = new List<Recordings>();
+            // TP : Kayit, Fileto, Kontrol
+            if(Tip == "Kayit")
+            {
+                var Query = new BsonDocument
+                {
+                    {
+                        "CreateDate" , new BsonDocument
+                        {
+                            {"$gte", Baslangic },
+                            {"$lte", Bitis }
+                        }
+                    }
+                };
+                records = db.Find(Query).ToList();
+            }
+            else if ( Tip == "Fileto")
+            {
+                var filterBuilder = Builders<Recordings>.Filter;
+                var filter = filterBuilder.Gte("FilletOpeningDate", Baslangic) &
+                             filterBuilder.Lte("FilletClosingDate", Bitis);
+                records = db.Find(filter).ToList();
+            }
+            else if(Tip == "Kontrol")
+            {
+                var filterBuilder = Builders<Recordings>.Filter;
+                var filter = filterBuilder.Gte("ControllerOpeningDate", Baslangic) &
+                             filterBuilder.Lte("ControllerClosingDate", Bitis);
+                records = db.Find(filter).ToList();
+            }
+
+            return records;
+        }
         public Recordings Get(string _id)
         {
             var result = db.Find(x => x.Id == _id).FirstOrDefault();

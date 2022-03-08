@@ -187,6 +187,7 @@
     <Compile Include="KasaKayitController.Designer.cs">
       <DependentUpon>KasaKayitController.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\ComboBoxModel.cs" />
     <Compile Include="Models\InfoPanellReturnModel.cs" />
     <Compile Include="Models\RaporListviewModel.cs" />
     <Compile Include="Models\ReaderResponseModel.cs" />

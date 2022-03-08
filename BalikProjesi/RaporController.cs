@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,72 +42,58 @@ namespace BalikProjesi
 
         }
 
-        private void KontrollerTLP_Paint(object sender, PaintEventArgs e)
-        {
-
-
-        }
-
         private void RBGun_CheckedChanged(object sender, EventArgs e)
         {
+            TarihDetail.Visible = true;
+            ComboDetail.Visible = false;
 
-            PersLb.Visible = false;
-            KasaLb.Visible = false;
-            PersCb.Visible = false;
-            KasaCb.Visible = false;
         }
 
         private void RBPersonel_CheckedChanged(object sender, EventArgs e)
         {
+            TarihDetail.Visible = false;
+            ComboDetail.Visible = true;
+            DetailsearchLabel.Text = "Fileto Personeli: ";
+            ComboDetail.Text = "Fileto Personeli Seçimi";
+            var ComboPosition = DetailSearchCb.Location;
+            DetailsearchLabel.Location = new Point(ComboPosition.X - DetailsearchLabel.Width, DetailsearchLabel.Location.Y);
+            var FilletPersonel = _personelService.GetFilletPersonels();
+            List<ComboBoxModel> Fp = new List<ComboBoxModel>();
+            FilletPersonel.ForEach(x =>
+            {
+                Fp.Add(new ComboBoxModel
+                {
+                    Tag = x.Id,
+                    Name = x.PersonelName + " " + x.PersonelSurname
+                });
+            });
 
-            PersLb.Visible = true;
-            KasaLb.Visible = false;
-            PersCb.Visible = true;
-            KasaCb.Visible = false;
+            DetailSearchCb.DataSource = Fp;
+            DetailSearchCb.ValueMember = "Tag";
+            DetailSearchCb.DisplayMember = "Name";
 
 
-        }
-
-        private void RBKasa_CheckedChanged(object sender, EventArgs e)
-        {
-
-            PersLb.Visible = false;
-            KasaLb.Visible = true;
-            PersCb.Visible = false;
-            KasaCb.Visible = true;
-
-
-        }
-
-        private void LbArama_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void PersLb_Click(object sender, EventArgs e)
-        {
 
         }
+
+      
 
         private void RaporController_Load(object sender, EventArgs e)
         {
             
-            PersLb.Visible = false;
-            KasaLb.Visible = false;
-            PersCb.Visible = false;
-            KasaCb.Visible = false;
-            BaslangicDtP.Dock = DockStyle.Fill;
-            BitisDtP.Dock = DockStyle.Fill;
-            BaslangicDtP.Format = DateTimePickerFormat.Custom;
-            BaslangicDtP.CustomFormat = "dd.MM.yyyy   HH:mm:ss";
-            BitisDtP.Format = DateTimePickerFormat.Custom;
-            BitisDtP.CustomFormat = "dd.MM.yyyy   HH:mm:ss";
+            
+            //BaslangicDtP.Dock = DockStyle.Fill;
+            //BitisDtP.Dock = DockStyle.Fill;
+            StartDatePicker.Format = DateTimePickerFormat.Custom;
+            StartDatePicker.CustomFormat = "dd.MM.yyyy   HH:mm:ss";
+            EndDatePicker.Format = DateTimePickerFormat.Custom;
+            EndDatePicker.CustomFormat = "dd.MM.yyyy   HH:mm:ss";
 
             var data = _recordingsService.Get().ToList().OrderBy(x => x.FilletOpeningDate).ToList();
-            BaslangicDtP.MaxDate = data.Last().FilletOpeningDate;
-            BaslangicDtP.MinDate = data.First().FilletOpeningDate;
-            BaslangicDtP.Value  = data.First().FilletOpeningDate;
-            BitisDtP.MinDate = data.First().FilletOpeningDate;
+            StartDatePicker.MaxDate = data.Last().FilletOpeningDate;
+            StartDatePicker.MinDate = data.First().FilletOpeningDate;
+            StartDatePicker.Value  = data.First().FilletOpeningDate;
+            EndDatePicker.MinDate = data.First().FilletOpeningDate;
 
             var FilletPersonels = _personelService.GetFilletPersonels();
             var ControlPersonels = _personelService.GetControlPersonels();
@@ -344,13 +331,13 @@ namespace BalikProjesi
 
         private void BaslangicDtP_ValueChanged(object sender, EventArgs e)
         {
-            BitisDtP.MinDate = BaslangicDtP.Value;
+            //BitisDtP.MinDate = BaslangicDtP.Value;
 
         }
 
         private void AraBtn_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void BtnExcel_Click(object sender, EventArgs e)
@@ -492,19 +479,144 @@ namespace BalikProjesi
 
         private void RBKontrol_CheckedChanged(object sender, EventArgs e)
         {
-            PersLb.Visible = true;
-            KasaLb.Visible = false;
-            PersCb.Visible = true;
-            KasaCb.Visible = false;
+            TarihDetail.Visible = false;
+            ComboDetail.Visible = true;
 
+            DetailsearchLabel.Text = "Kontrol Personeli: ";
+            var ComboPosition = DetailSearchCb.Location;
+            DetailsearchLabel.Location = new Point(ComboPosition.X - DetailsearchLabel.Width, DetailsearchLabel.Location.Y);
+            ComboDetail.Text = "Kontrol Personeli Seçimi";
+
+            var ControlPersonel = _personelService.GetControlPersonels();
+            List<ComboBoxModel> Cp = new List<ComboBoxModel>();
+            ControlPersonel.ForEach(x =>
+            {
+                Cp.Add(new ComboBoxModel
+                {
+                    Tag = x.Id,
+                    Name = x.PersonelName + " " + x.PersonelSurname
+                });
+            });
+
+            DetailSearchCb.DataSource = Cp;
+            DetailSearchCb.ValueMember = "Tag";
+            DetailSearchCb.DisplayMember = "Name";
         }
 
         private void KasaBtn_CheckedChanged(object sender, EventArgs e)
         {
-            PersLb.Visible = false;
-            KasaLb.Visible = true;
-            PersCb.Visible = false;
-            KasaCb.Visible = true;
+            TarihDetail.Visible = false;
+            ComboDetail.Visible = true;
+
+            DetailsearchLabel.Text = "Kasa : ";
+            ComboDetail.Text = "Kasa Seçimi";
+            var ComboPosition = DetailSearchCb.Location;
+            DetailsearchLabel.Location = new Point(ComboPosition.X - DetailsearchLabel.Width, DetailsearchLabel.Location.Y);
+
+            var Cases = _fboxService.GetAllBoxes();
+            List<ComboBoxModel> Case = new List<ComboBoxModel>();
+            Cases.ForEach(x =>
+            {
+                Case.Add(new ComboBoxModel
+                {
+                    Tag = x.Id,
+                    Name = x.FishBoxCode + " -" + x.FishBoxType
+                });
+            });
+
+            DetailSearchCb.DataSource = Case;
+            DetailSearchCb.ValueMember = "Tag";
+            DetailSearchCb.DisplayMember = "Name";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var NewLvModel = new List<RaporListviewModel>();
+            if (RBGun.Checked)
+            {
+                int RecordId = 1;
+                string Tp = string.Empty;
+                if (KayitTarihi.Checked)
+                    Tp = "Kayit";
+                else if (FiletoTarihi.Checked)
+                    Tp = "Fileto";
+                else if (KontrolTarihi.Checked)
+                    Tp = "Kontrol";
+                var Results = _recordingsService.TarihArama(StartDatePicker.Value, EndDatePicker.Value, Tp);
+                Results.ForEach(x =>
+                {
+                    int filetoSuresi = 0;
+                    var filetoFarki = x.FilletClosingDate - x.FilletOpeningDate;
+                    filetoSuresi = int.Parse(filetoFarki.TotalSeconds.ToString());
+
+                    int kontrolSuresi = 0;
+                    var kontrolFarki = x.ControllerClosingDate - x.ControllerOpeningDate;
+                    kontrolSuresi = int.Parse(kontrolFarki.TotalSeconds.ToString());
+
+
+                    var Filetocu = _personelService.GetFilletPersonnelByCardId(x.FilletCardId);
+                    var Kontrolcu = _personelService.GetControlPersonnelByCardId(x.ControllerCardId);
+                    var Kasa = _fboxService.Get(x.FishboxID);
+                    NewLvModel.Add(new RaporListviewModel
+                    {
+                        Id = RecordId,
+                        BicakDefo = x.Knife,
+                        FiletoPersonel = Filetocu.PersonelName + " " + Filetocu.PersonelSurname,
+                        KontrolPersonel = Kontrolcu.PersonelName + " " + Kontrolcu.PersonelSurname,
+                        OdLekesi = x.OdLekesi,
+                        KilcikDefo = x.FishBone,
+                        HasatDefo = x.Defo,
+                        FBasTar = x.FilletOpeningDate,
+                        FBitTar = x.FilletClosingDate,
+                        KBasTar = x.ControllerOpeningDate,
+                        KBitTar = x.ControllerClosingDate,
+                        KasaKod = Kasa.FishBoxCode,
+
+                        KİsSure = kontrolSuresi,
+                        FİsSure = filetoSuresi,
+
+
+
+                    });
+                    RecordId++;
+                });
+            }
+            else if (RBPersonel.Checked)
+            {
+
+            }
+            else if (RBKontrol.Checked)
+            {
+
+            }
+            else if (KasaBtn.Checked)
+            {
+
+            }
+
+            listView1.Items.Clear();
+            NewLvModel.ForEach(x =>
+            {
+                var ListItem = new ListViewItem();
+                ListItem.Text = x.Id.ToString();
+                ListItem.Tag = x.Id;
+                //ListItem.SubItems.Add(new ListViewItem.ListViewSubItem { Name= "#", Text = x.Id.ToString() });
+                ListItem.SubItems.Add(new ListViewItem.ListViewSubItem { Name = "Fileto Personel", Text = x.FiletoPersonel });
+                ListItem.SubItems.Add(new ListViewItem.ListViewSubItem { Name = "Kontrol Personel", Text = x.KontrolPersonel });
+                ListItem.SubItems.Add(new ListViewItem.ListViewSubItem { Name = "Kasa Kod", Text = x.KasaKod });
+                ListItem.SubItems.Add(new ListViewItem.ListViewSubItem { Name = "Bıçak Defo", Text = x.BicakDefo.ToString() });
+                ListItem.SubItems.Add(new ListViewItem.ListViewSubItem { Name = "Kılçık Defo", Text = x.KilcikDefo.ToString() });
+                ListItem.SubItems.Add(new ListViewItem.ListViewSubItem { Name = "Hasat Defo", Text = x.HasatDefo.ToString() });
+                ListItem.SubItems.Add(new ListViewItem.ListViewSubItem { Name = "Öd Lekesi", Text = x.OdLekesi.ToString() });
+                ListItem.SubItems.Add(new ListViewItem.ListViewSubItem { Name = "F.Başlangıç Tarihi", Text = x.FBasTar.ToString() });
+                ListItem.SubItems.Add(new ListViewItem.ListViewSubItem { Name = "F.Bitiş Tarihi", Text = x.FBitTar.ToString() });
+                ListItem.SubItems.Add(new ListViewItem.ListViewSubItem { Name = "F.İşlem Süresi", Text = x.FİsSure.ToString() + " Saniye" });
+                ListItem.SubItems.Add(new ListViewItem.ListViewSubItem { Name = "K.Başlangıç Tarihi", Text = x.KBasTar.ToString() });
+                ListItem.SubItems.Add(new ListViewItem.ListViewSubItem { Name = "K.Bitiş Tarihi", Text = x.KBitTar.ToString() });
+                ListItem.SubItems.Add(new ListViewItem.ListViewSubItem { Name = "K.İşlem Süresi", Text = x.KİsSure.ToString() + " Saniye" });
+
+                listView1.Items.Add(ListItem);
+            });
         }
     }
 }

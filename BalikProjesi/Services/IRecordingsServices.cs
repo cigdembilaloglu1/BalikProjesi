@@ -1,4 +1,5 @@
 ﻿using BalikProjesi.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace BalikProjesi.Services
@@ -14,5 +15,6 @@ namespace BalikProjesi.Services
         bool FilletClosing(Recordings Record);
         List<Recordings> Get();
         Recordings Get(string _id);
+        List<Recordings> TarihArama(DateTime Baslangic, DateTime Bitis, string Tip);
     }
 }
