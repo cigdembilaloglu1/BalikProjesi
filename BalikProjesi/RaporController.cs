@@ -489,5 +489,22 @@ namespace BalikProjesi
 
             return CalculatedSizeBalance;
         }
+
+        private void RBKontrol_CheckedChanged(object sender, EventArgs e)
+        {
+            PersLb.Visible = true;
+            KasaLb.Visible = false;
+            PersCb.Visible = true;
+            KasaCb.Visible = false;
+
+        }
+
+        private void KasaBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            PersLb.Visible = false;
+            KasaLb.Visible = true;
+            PersCb.Visible = false;
+            KasaCb.Visible = true;
+        }
     }
 }

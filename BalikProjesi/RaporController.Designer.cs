@@ -41,8 +41,10 @@
             this.BitisDtP = new System.Windows.Forms.DateTimePicker();
             this.AraBtn = new System.Windows.Forms.Button();
             this.AramaTLP = new System.Windows.Forms.TableLayoutPanel();
+            this.KasaBtn = new System.Windows.Forms.RadioButton();
             this.RBGun = new System.Windows.Forms.RadioButton();
             this.RBPersonel = new System.Windows.Forms.RadioButton();
+            this.RBKontrol = new System.Windows.Forms.RadioButton();
             this.LbArama = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -60,8 +62,6 @@
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.BtnExcel = new System.Windows.Forms.Button();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.KasaBtn = new System.Windows.Forms.RadioButton();
             this.AnaPanel.SuspendLayout();
             this.AraTLP.SuspendLayout();
             this.PersKasaTLP.SuspendLayout();
@@ -230,10 +230,10 @@
             // 
             // AraBtn
             // 
-            this.AraBtn.BackColor = System.Drawing.Color.Black;
+            this.AraBtn.BackColor = System.Drawing.SystemColors.Control;
             this.AraBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.AraBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.AraBtn.ForeColor = System.Drawing.Color.White;
+            this.AraBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.AraBtn.ForeColor = System.Drawing.Color.Black;
             this.AraBtn.Location = new System.Drawing.Point(3, 3);
             this.AraBtn.Name = "AraBtn";
             this.AraBtn.Size = new System.Drawing.Size(243, 122);
@@ -255,7 +255,7 @@
             this.AramaTLP.Controls.Add(this.KasaBtn, 6, 0);
             this.AramaTLP.Controls.Add(this.RBGun, 0, 0);
             this.AramaTLP.Controls.Add(this.RBPersonel, 2, 0);
-            this.AramaTLP.Controls.Add(this.radioButton1, 4, 0);
+            this.AramaTLP.Controls.Add(this.RBKontrol, 4, 0);
             this.AramaTLP.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AramaTLP.Location = new System.Drawing.Point(3, 55);
             this.AramaTLP.Name = "AramaTLP";
@@ -264,12 +264,27 @@
             this.AramaTLP.Size = new System.Drawing.Size(1249, 94);
             this.AramaTLP.TabIndex = 1;
             // 
+            // KasaBtn
+            // 
+            this.KasaBtn.AutoSize = true;
+            this.KasaBtn.BackColor = System.Drawing.Color.Transparent;
+            this.KasaBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.KasaBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.KasaBtn.Location = new System.Drawing.Point(954, 3);
+            this.KasaBtn.Name = "KasaBtn";
+            this.KasaBtn.Size = new System.Drawing.Size(292, 88);
+            this.KasaBtn.TabIndex = 6;
+            this.KasaBtn.Text = "KASA";
+            this.KasaBtn.UseVisualStyleBackColor = false;
+            this.KasaBtn.CheckedChanged += new System.EventHandler(this.KasaBtn_CheckedChanged);
+            // 
             // RBGun
             // 
             this.RBGun.AutoSize = true;
-            this.RBGun.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.RBGun.BackColor = System.Drawing.SystemColors.Control;
             this.RBGun.Checked = true;
             this.RBGun.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RBGun.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.RBGun.Location = new System.Drawing.Point(3, 3);
             this.RBGun.Name = "RBGun";
             this.RBGun.Size = new System.Drawing.Size(291, 88);
@@ -282,15 +297,30 @@
             // RBPersonel
             // 
             this.RBPersonel.AutoSize = true;
-            this.RBPersonel.BackColor = System.Drawing.Color.BurlyWood;
+            this.RBPersonel.BackColor = System.Drawing.SystemColors.Control;
             this.RBPersonel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RBPersonel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
             this.RBPersonel.Location = new System.Drawing.Point(320, 3);
             this.RBPersonel.Name = "RBPersonel";
             this.RBPersonel.Size = new System.Drawing.Size(291, 88);
             this.RBPersonel.TabIndex = 1;
-            this.RBPersonel.Text = "PERSONEL";
+            this.RBPersonel.Text = "FİLETO PERSONELİ";
             this.RBPersonel.UseVisualStyleBackColor = false;
             this.RBPersonel.CheckedChanged += new System.EventHandler(this.RBPersonel_CheckedChanged);
+            // 
+            // RBKontrol
+            // 
+            this.RBKontrol.AutoSize = true;
+            this.RBKontrol.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.RBKontrol.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F);
+            this.RBKontrol.Location = new System.Drawing.Point(637, 3);
+            this.RBKontrol.Name = "RBKontrol";
+            this.RBKontrol.Size = new System.Drawing.Size(291, 88);
+            this.RBKontrol.TabIndex = 2;
+            this.RBKontrol.TabStop = true;
+            this.RBKontrol.Text = "KONTROL PERSONELİ";
+            this.RBKontrol.UseVisualStyleBackColor = true;
+            this.RBKontrol.CheckedChanged += new System.EventHandler(this.RBKontrol_CheckedChanged);
             // 
             // LbArama
             // 
@@ -360,29 +390,6 @@
             this.BtnExcel.UseVisualStyleBackColor = false;
             this.BtnExcel.Click += new System.EventHandler(this.BtnExcel_Click);
             // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(637, 3);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(85, 17);
-            this.radioButton1.TabIndex = 2;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "radioButton1";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // KasaBtn
-            // 
-            this.KasaBtn.AutoSize = true;
-            this.KasaBtn.BackColor = System.Drawing.Color.Transparent;
-            this.KasaBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.KasaBtn.Location = new System.Drawing.Point(954, 3);
-            this.KasaBtn.Name = "KasaBtn";
-            this.KasaBtn.Size = new System.Drawing.Size(292, 88);
-            this.KasaBtn.TabIndex = 6;
-            this.KasaBtn.Text = "KASA";
-            this.KasaBtn.UseVisualStyleBackColor = false;
-            // 
             // RaporController
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -439,6 +446,6 @@
         private System.Windows.Forms.ColumnHeader columnHeader13;
         private System.Windows.Forms.ColumnHeader columnHeader14;
         private System.Windows.Forms.RadioButton KasaBtn;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton RBKontrol;
     }
 }
