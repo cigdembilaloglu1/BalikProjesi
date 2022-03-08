@@ -327,10 +327,11 @@ namespace BalikProjesi
 
 
             //    //}
+            /////
 
             }
 
-            private void BaslangicDtP_ValueChanged(object sender, EventArgs e)
+        private void BaslangicDtP_ValueChanged(object sender, EventArgs e)
         {
             BitisDtP.MinDate = BaslangicDtP.Value;
 
