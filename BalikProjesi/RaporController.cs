@@ -85,9 +85,9 @@ namespace BalikProjesi
             //BaslangicDtP.Dock = DockStyle.Fill;
             //BitisDtP.Dock = DockStyle.Fill;
             StartDatePicker.Format = DateTimePickerFormat.Custom;
-            StartDatePicker.CustomFormat = "dd-MM-yyyy HH:mm:ss";
+            StartDatePicker.CustomFormat = "dd.MM.yyyy HH:mm:ss";
             EndDatePicker.Format = DateTimePickerFormat.Custom;
-            EndDatePicker.CustomFormat = "dd-MM-yyyy HH:mm:ss";
+            EndDatePicker.CustomFormat = "dd.MM.yyyy HH:mm:ss";
 
             var data = _recordingsService.Get().ToList().OrderBy(x => x.FilletOpeningDate).ToList();
             StartDatePicker.MaxDate = data.Last().FilletOpeningDate;
@@ -531,7 +531,7 @@ namespace BalikProjesi
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DateTime Start = StartDatePicker.Value;
+            DateTime Start =StartDatePicker.Value;
             DateTime End = EndDatePicker.Value;
             var NewLvModel = new List<RaporListviewModel>();
             if (RBGun.Checked)

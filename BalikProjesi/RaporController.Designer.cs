@@ -32,6 +32,7 @@
             this.AraTLP = new System.Windows.Forms.TableLayoutPanel();
             this.SearchPanel = new System.Windows.Forms.Panel();
             this.ComboDetail = new System.Windows.Forms.GroupBox();
+            this.TarihCheckBox = new System.Windows.Forms.CheckBox();
             this.DetailsearchLabel = new System.Windows.Forms.Label();
             this.DetailSearchCb = new System.Windows.Forms.ComboBox();
             this.TarihDetail = new System.Windows.Forms.GroupBox();
@@ -65,7 +66,6 @@
             this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.BtnExcel = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.TarihCheckBox = new System.Windows.Forms.CheckBox();
             this.AnaPanel.SuspendLayout();
             this.AraTLP.SuspendLayout();
             this.SearchPanel.SuspendLayout();
@@ -141,6 +141,16 @@
             this.ComboDetail.TabIndex = 4;
             this.ComboDetail.TabStop = false;
             this.ComboDetail.Visible = false;
+            // 
+            // TarihCheckBox
+            // 
+            this.TarihCheckBox.AutoSize = true;
+            this.TarihCheckBox.Location = new System.Drawing.Point(304, 79);
+            this.TarihCheckBox.Name = "TarihCheckBox";
+            this.TarihCheckBox.Size = new System.Drawing.Size(107, 17);
+            this.TarihCheckBox.TabIndex = 3;
+            this.TarihCheckBox.Text = "Tarih Kıstası Aktif";
+            this.TarihCheckBox.UseVisualStyleBackColor = true;
             // 
             // DetailsearchLabel
             // 
@@ -231,10 +241,13 @@
             // 
             // EndDatePicker
             // 
+            this.EndDatePicker.CustomFormat = "dd.MM.yyyy HH:mm:ss";
+            this.EndDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.EndDatePicker.Location = new System.Drawing.Point(119, 70);
             this.EndDatePicker.Name = "EndDatePicker";
             this.EndDatePicker.Size = new System.Drawing.Size(200, 20);
             this.EndDatePicker.TabIndex = 1;
+            this.EndDatePicker.Value = new System.DateTime(2022, 3, 9, 16, 20, 0, 0);
             // 
             // label1
             // 
@@ -247,6 +260,8 @@
             // 
             // StartDatePicker
             // 
+            this.StartDatePicker.CustomFormat = "dd.MM.yyyy HH:mm:ss";
+            this.StartDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.StartDatePicker.Location = new System.Drawing.Point(119, 32);
             this.StartDatePicker.Name = "StartDatePicker";
             this.StartDatePicker.Size = new System.Drawing.Size(200, 20);
@@ -399,16 +414,6 @@
             this.button1.Text = "Arama Yap";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // TarihCheckBox
-            // 
-            this.TarihCheckBox.AutoSize = true;
-            this.TarihCheckBox.Location = new System.Drawing.Point(304, 79);
-            this.TarihCheckBox.Name = "TarihCheckBox";
-            this.TarihCheckBox.Size = new System.Drawing.Size(107, 17);
-            this.TarihCheckBox.TabIndex = 3;
-            this.TarihCheckBox.Text = "Tarih Kıstası Aktif";
-            this.TarihCheckBox.UseVisualStyleBackColor = true;
             // 
             // RaporController
             // 
