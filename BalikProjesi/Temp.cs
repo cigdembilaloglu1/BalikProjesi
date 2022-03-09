@@ -44,7 +44,7 @@ namespace BalikProjesi
             var kasalar = _fboxService.GetAllBoxes();
             int KasaCount = kasalar.Count() -1;
 
-            for(int i =0; i< 200; i++)
+            for(int i =0; i< 10000; i++)
             {
                 Random rnd = new Random();
                 int FiletocuIndex = rnd.Next(FiletoCount);
@@ -74,7 +74,7 @@ namespace BalikProjesi
                     ControllerID = Kontrolcu.Id,
                     ControllerOpeningDate = KontrolBaslangic,
                     ControlStatus = true,
-                    CreateDate = FiletoBaslangic.AddSeconds(-10),
+                    CreateDate = FiletoBaslangic.AddSeconds(0),
                     Defo = HasatDefo,
                     FishBone = Kilcik,
                     FilletCardId = Filetocu.CartId,
