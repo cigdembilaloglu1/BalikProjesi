@@ -85,9 +85,9 @@ namespace BalikProjesi
             //BaslangicDtP.Dock = DockStyle.Fill;
             //BitisDtP.Dock = DockStyle.Fill;
             StartDatePicker.Format = DateTimePickerFormat.Custom;
-            StartDatePicker.CustomFormat = "dd.MM.yyyy   HH:mm:ss";
+            StartDatePicker.CustomFormat = "yyyy-MM-ddTHH:mm:ss";
             EndDatePicker.Format = DateTimePickerFormat.Custom;
-            EndDatePicker.CustomFormat = "dd.MM.yyyy   HH:mm:ss";
+            EndDatePicker.CustomFormat = "yyyy-MM-ddTHH:mm:ss";
 
             var data = _recordingsService.Get().ToList().OrderBy(x => x.FilletOpeningDate).ToList();
             StartDatePicker.MaxDate = data.Last().FilletOpeningDate;
@@ -583,14 +583,253 @@ namespace BalikProjesi
             }
             else if (RBPersonel.Checked)
             {
+                if (TarihCheckBox.Checked)
+                {
+                    int RecordId = 1;
+                    var Results = _recordingsService.FiletoTarihArama(DetailSearchCb.SelectedValue.ToString(), StartDatePicker.Value, EndDatePicker.Value);
+                    Results.ForEach(x =>
+                    {
+                        int filetoSuresi = 0;
+                        var filetoFarki = x.FilletClosingDate - x.FilletOpeningDate;
+                        filetoSuresi = int.Parse(filetoFarki.TotalSeconds.ToString());
 
+                        int kontrolSuresi = 0;
+                        var kontrolFarki = x.ControllerClosingDate - x.ControllerOpeningDate;
+                        kontrolSuresi = int.Parse(kontrolFarki.TotalSeconds.ToString());
+
+
+                        var Filetocu = _personelService.GetFilletPersonnelByCardId(x.FilletCardId);
+                        var Kontrolcu = _personelService.GetControlPersonnelByCardId(x.ControllerCardId);
+                        var Kasa = _fboxService.Get(x.FishboxID);
+                        NewLvModel.Add(new RaporListviewModel
+                        {
+                            Id = RecordId,
+                            BicakDefo = x.Knife,
+                            FiletoPersonel = Filetocu.PersonelName + " " + Filetocu.PersonelSurname,
+                            KontrolPersonel = Kontrolcu.PersonelName + " " + Kontrolcu.PersonelSurname,
+                            OdLekesi = x.OdLekesi,
+                            KilcikDefo = x.FishBone,
+                            HasatDefo = x.Defo,
+                            FBasTar = x.FilletOpeningDate,
+                            FBitTar = x.FilletClosingDate,
+                            KBasTar = x.ControllerOpeningDate,
+                            KBitTar = x.ControllerClosingDate,
+                            KasaKod = Kasa.FishBoxCode,
+
+                            KİsSure = kontrolSuresi,
+                            FİsSure = filetoSuresi,
+                        })  ;
+                        RecordId++;
+                    });
+                }
+                else
+                {
+                    int RecordId = 1;
+                    var Results = _recordingsService.FiletoArama(DetailSearchCb.SelectedValue.ToString());
+                    Results.ForEach(x =>
+                     {
+                         int filetoSuresi = 0;
+                         var filetoFarki = x.FilletClosingDate - x.FilletOpeningDate;
+                         filetoSuresi = int.Parse(filetoFarki.TotalSeconds.ToString());
+
+                         int kontrolSuresi = 0;
+                         var kontrolFarki = x.ControllerClosingDate - x.ControllerOpeningDate;
+                         kontrolSuresi = int.Parse(kontrolFarki.TotalSeconds.ToString());
+
+
+                         var Filetocu = _personelService.GetFilletPersonnelByCardId(x.FilletCardId);
+                         var Kontrolcu = _personelService.GetControlPersonnelByCardId(x.ControllerCardId);
+                         var Kasa = _fboxService.Get(x.FishboxID);
+                         NewLvModel.Add(new RaporListviewModel
+                         {
+                             Id = RecordId,
+                             BicakDefo = x.Knife,
+                             FiletoPersonel = Filetocu.PersonelName + " " + Filetocu.PersonelSurname,
+                             KontrolPersonel = Kontrolcu.PersonelName + " " + Kontrolcu.PersonelSurname,
+                             OdLekesi = x.OdLekesi,
+                             KilcikDefo = x.FishBone,
+                             HasatDefo = x.Defo,
+                             FBasTar = x.FilletOpeningDate,
+                             FBitTar = x.FilletClosingDate,
+                             KBasTar = x.ControllerOpeningDate,
+                             KBitTar = x.ControllerClosingDate,
+                             KasaKod = Kasa.FishBoxCode,
+
+                             KİsSure = kontrolSuresi,
+                             FİsSure = filetoSuresi,
+                         });
+                         RecordId++;
+
+                     });
+
+                }
             }
+        
             else if (RBKontrol.Checked)
             {
+                if (TarihCheckBox.Checked)
+                {
+                    int RecordId = 1;
+                    var Results = _recordingsService.KontrolTarihArama(DetailSearchCb.SelectedValue.ToString(), StartDatePicker.Value, EndDatePicker.Value);
+                    Results.ForEach(x =>
+                    {
+                        int filetoSuresi = 0;
+                        var filetoFarki = x.FilletClosingDate - x.FilletOpeningDate;
+                        filetoSuresi = int.Parse(filetoFarki.TotalSeconds.ToString());
 
+                        int kontrolSuresi = 0;
+                        var kontrolFarki = x.ControllerClosingDate - x.ControllerOpeningDate;
+                        kontrolSuresi = int.Parse(kontrolFarki.TotalSeconds.ToString());
+
+
+                        var Filetocu = _personelService.GetFilletPersonnelByCardId(x.FilletCardId);
+                        var Kontrolcu = _personelService.GetControlPersonnelByCardId(x.ControllerCardId);
+                        var Kasa = _fboxService.Get(x.FishboxID);
+                        NewLvModel.Add(new RaporListviewModel
+                        {
+                            Id = RecordId,
+                            BicakDefo = x.Knife,
+                            FiletoPersonel = Filetocu.PersonelName + " " + Filetocu.PersonelSurname,
+                            KontrolPersonel = Kontrolcu.PersonelName + " " + Kontrolcu.PersonelSurname,
+                            OdLekesi = x.OdLekesi,
+                            KilcikDefo = x.FishBone,
+                            HasatDefo = x.Defo,
+                            FBasTar = x.FilletOpeningDate,
+                            FBitTar = x.FilletClosingDate,
+                            KBasTar = x.ControllerOpeningDate,
+                            KBitTar = x.ControllerClosingDate,
+                            KasaKod = Kasa.FishBoxCode,
+
+                            KİsSure = kontrolSuresi,
+                            FİsSure = filetoSuresi,
+                        });
+                        RecordId++;
+                    });
+                }
+                else
+                {
+                    int RecordId = 1;
+                    var Results = _recordingsService.KontrolArama(DetailSearchCb.SelectedValue.ToString());
+                    Results.ForEach(x =>
+                    {
+                        int filetoSuresi = 0;
+                        var filetoFarki = x.FilletClosingDate - x.FilletOpeningDate;
+                        filetoSuresi = int.Parse(filetoFarki.TotalSeconds.ToString());
+
+                        int kontrolSuresi = 0;
+                        var kontrolFarki = x.ControllerClosingDate - x.ControllerOpeningDate;
+                        kontrolSuresi = int.Parse(kontrolFarki.TotalSeconds.ToString());
+
+
+                        var Filetocu = _personelService.GetFilletPersonnelByCardId(x.FilletCardId);
+                        var Kontrolcu = _personelService.GetControlPersonnelByCardId(x.ControllerCardId);
+                        var Kasa = _fboxService.Get(x.FishboxID);
+                        NewLvModel.Add(new RaporListviewModel
+                        {
+                            Id = RecordId,
+                            BicakDefo = x.Knife,
+                            FiletoPersonel = Filetocu.PersonelName + " " + Filetocu.PersonelSurname,
+                            KontrolPersonel = Kontrolcu.PersonelName + " " + Kontrolcu.PersonelSurname,
+                            OdLekesi = x.OdLekesi,
+                            KilcikDefo = x.FishBone,
+                            HasatDefo = x.Defo,
+                            FBasTar = x.FilletOpeningDate,
+                            FBitTar = x.FilletClosingDate,
+                            KBasTar = x.ControllerOpeningDate,
+                            KBitTar = x.ControllerClosingDate,
+                            KasaKod = Kasa.FishBoxCode,
+
+                            KİsSure = kontrolSuresi,
+                            FİsSure = filetoSuresi,
+                        });
+                        RecordId++;
+
+                    });
+
+                }
             }
             else if (KasaBtn.Checked)
             {
+                if (TarihCheckBox.Checked)
+                {
+                    int RecordId = 1;
+                    var Results = _recordingsService.BoxTarihArama(DetailSearchCb.SelectedValue.ToString(), StartDatePicker.Value, EndDatePicker.Value);
+                    Results.ForEach(x =>
+                    {
+                        int filetoSuresi = 0;
+                        var filetoFarki = x.FilletClosingDate - x.FilletOpeningDate;
+                        filetoSuresi = int.Parse(filetoFarki.TotalSeconds.ToString());
+
+                        int kontrolSuresi = 0;
+                        var kontrolFarki = x.ControllerClosingDate - x.ControllerOpeningDate;
+                        kontrolSuresi = int.Parse(kontrolFarki.TotalSeconds.ToString());
+
+
+                        var Filetocu = _personelService.GetFilletPersonnelByCardId(x.FilletCardId);
+                        var Kontrolcu = _personelService.GetControlPersonnelByCardId(x.ControllerCardId);
+                        var Kasa = _fboxService.Get(x.FishboxID);
+                        NewLvModel.Add(new RaporListviewModel
+                        {
+                            Id = RecordId,
+                            BicakDefo = x.Knife,
+                            FiletoPersonel = Filetocu.PersonelName + " " + Filetocu.PersonelSurname,
+                            KontrolPersonel = Kontrolcu.PersonelName + " " + Kontrolcu.PersonelSurname,
+                            OdLekesi = x.OdLekesi,
+                            KilcikDefo = x.FishBone,
+                            HasatDefo = x.Defo,
+                            FBasTar = x.FilletOpeningDate,
+                            FBitTar = x.FilletClosingDate,
+                            KBasTar = x.ControllerOpeningDate,
+                            KBitTar = x.ControllerClosingDate,
+                            KasaKod = Kasa.FishBoxCode,
+
+                            KİsSure = kontrolSuresi,
+                            FİsSure = filetoSuresi,
+                        });
+                        RecordId++;
+                    });
+                }
+                else
+                {
+                    int RecordId = 1;
+                    var Results = _recordingsService.BoxArama(DetailSearchCb.SelectedValue.ToString());
+                    Results.ForEach(x =>
+                    {
+                        int filetoSuresi = 0;
+                        var filetoFarki = x.FilletClosingDate - x.FilletOpeningDate;
+                        filetoSuresi = int.Parse(filetoFarki.TotalSeconds.ToString());
+
+                        int kontrolSuresi = 0;
+                        var kontrolFarki = x.ControllerClosingDate - x.ControllerOpeningDate;
+                        kontrolSuresi = int.Parse(kontrolFarki.TotalSeconds.ToString());
+
+
+                        var Filetocu = _personelService.GetFilletPersonnelByCardId(x.FilletCardId);
+                        var Kontrolcu = _personelService.GetControlPersonnelByCardId(x.ControllerCardId);
+                        var Kasa = _fboxService.Get(x.FishboxID);
+                        NewLvModel.Add(new RaporListviewModel
+                        {
+                            Id = RecordId,
+                            BicakDefo = x.Knife,
+                            FiletoPersonel = Filetocu.PersonelName + " " + Filetocu.PersonelSurname,
+                            KontrolPersonel = Kontrolcu.PersonelName + " " + Kontrolcu.PersonelSurname,
+                            OdLekesi = x.OdLekesi,
+                            KilcikDefo = x.FishBone,
+                            HasatDefo = x.Defo,
+                            FBasTar = x.FilletOpeningDate,
+                            FBitTar = x.FilletClosingDate,
+                            KBasTar = x.ControllerOpeningDate,
+                            KBitTar = x.ControllerClosingDate,
+                            KasaKod = Kasa.FishBoxCode,
+
+                            KİsSure = kontrolSuresi,
+                            FİsSure = filetoSuresi,
+                        });
+                        RecordId++;
+
+                    });
+
+                }
 
             }
 

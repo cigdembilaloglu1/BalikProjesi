@@ -16,5 +16,11 @@ namespace BalikProjesi.Services
         List<Recordings> Get();
         Recordings Get(string _id);
         List<Recordings> TarihArama(DateTime Baslangic, DateTime Bitis, string Tip);
+        List<Recordings> FiletoArama(string Id);
+        List<Recordings> FiletoTarihArama(string Id, DateTime Baslangic, DateTime Bitis);
+        List<Recordings> KontrolArama(string Id);
+        List<Recordings> KontrolTarihArama(string Id, DateTime Baslangic, DateTime Bitis);
+        List<Recordings> BoxArama(string Id);
+        List<Recordings> BoxTarihArama(string Id, DateTime Baslangic, DateTime Bitis);
     }
 }

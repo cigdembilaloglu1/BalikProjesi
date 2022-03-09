@@ -66,6 +66,89 @@ namespace BalikProjesi.Services
 
             return records;
         }
+        public List<Recordings> FiletoArama(string Id)
+        {
+            var records = new List<Recordings>();
+            if (true) 
+            {
+                var filterBuilder = Builders<Recordings>.Filter;
+                var filter = filterBuilder.Eq(x => x.FilletID, Id);
+                             
+                records = db.Find(filter).ToList();
+
+            }
+            return records;
+        }
+        public List<Recordings> FiletoTarihArama(string Id, DateTime Baslangic, DateTime Bitis)
+        {
+            var records = new List<Recordings>();
+            if (true)
+            {
+                var filterBuilder = Builders<Recordings>.Filter;
+                var filter = filterBuilder.Eq(x => x.FilletID, Id) &
+                             filterBuilder.Gte(x => x.FilletOpeningDate, Baslangic) &
+                             filterBuilder.Lte(x => x.FilletClosingDate, Bitis);
+                  
+                records = db.Find(filter).ToList();
+
+            }
+            return records;
+        }
+        public List<Recordings> KontrolArama(string Id)
+        {
+            var records = new List<Recordings>();
+            if (true)
+            {
+                var filterBuilder = Builders<Recordings>.Filter;
+                var filter = filterBuilder.Eq(x => x.ControllerID, Id);
+
+                records = db.Find(filter).ToList();
+
+            }
+            return records;
+        }
+        public List<Recordings> KontrolTarihArama(string Id, DateTime Baslangic, DateTime Bitis)
+        {
+            var records = new List<Recordings>();
+            if (true)
+            {
+                var filterBuilder = Builders<Recordings>.Filter;
+                var filter = filterBuilder.Eq(x => x.ControllerID, Id) &
+                             filterBuilder.Gte(x => x.ControllerOpeningDate, Baslangic) &
+                             filterBuilder.Lte(x => x.ControllerClosingDate, Bitis);
+
+                records = db.Find(filter).ToList();
+
+            }
+            return records;
+        }
+        public List<Recordings> BoxArama(string Id)
+        {
+            var records = new List<Recordings>();
+            if (true)
+            {
+                var filterBuilder = Builders<Recordings>.Filter;
+                var filter = filterBuilder.Eq(x => x.FishboxID, Id);
+                records = db.Find(filter).ToList();
+
+            }
+            return records;
+        }
+        public List<Recordings> BoxTarihArama(string Id, DateTime Baslangic, DateTime Bitis)
+        {
+            var records = new List<Recordings>();
+            if (true)
+            {
+                var filterBuilder = Builders<Recordings>.Filter;
+                var filter = filterBuilder.Eq(x => x.FishboxID, Id) &
+                             filterBuilder.Gte(x => x.FilletOpeningDate, Baslangic) &
+                             filterBuilder.Lte(x => x.ControllerClosingDate, Bitis);
+
+                records = db.Find(filter).ToList();
+
+            }
+            return records;
+        }
         public Recordings Get(string _id)
         {
             var result = db.Find(x => x.Id == _id).FirstOrDefault();
@@ -216,6 +299,14 @@ namespace BalikProjesi.Services
             }
         }
 
+        public bool FiletoArama()
+        {
+            throw new NotImplementedException();
+        }
 
+        public bool FiletoArama(Recordings Record)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
