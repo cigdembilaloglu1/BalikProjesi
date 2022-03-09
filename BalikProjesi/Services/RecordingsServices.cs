@@ -82,13 +82,14 @@ namespace BalikProjesi.Services
         public List<Recordings> FiletoTarihArama(string Id, DateTime Baslangic, DateTime Bitis)
         {
             var records = new List<Recordings>();
+            var timesets = new BsonDateTime(Baslangic);
             if (true)
             {
                 var filterBuilder = Builders<Recordings>.Filter;
                 var filter = filterBuilder.Eq(x => x.FilletID, Id) &
-                             filterBuilder.Gte(x => x.FilletOpeningDate, Baslangic) &
-                             filterBuilder.Lte(x => x.FilletClosingDate, Bitis);
-                  
+                             filterBuilder.Gte(x => x.FilletOpeningDate, new BsonDateTime(Baslangic)) &
+                             filterBuilder.Lte(x => x.FilletClosingDate, new BsonDateTime(Bitis));
+
                 records = db.Find(filter).ToList();
 
             }
