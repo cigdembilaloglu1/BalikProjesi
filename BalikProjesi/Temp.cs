@@ -56,10 +56,10 @@ namespace BalikProjesi
                 int KasaIndex = rnd.Next(KasaCount);
                 var Kasa = kasalar[KasaIndex];
 
-                DateTime FiletoBaslangic = DateTime.Now.AddMinutes(rnd.Next(1, 10));
+                DateTime FiletoBaslangic = DateTime.Now.AddMinutes(rnd.Next(1, 1000));
                 DateTime FiletoBitis = FiletoBaslangic.AddMinutes(rnd.Next(5, 15));
 
-                DateTime KontrolBaslangic = FiletoBitis.AddMinutes(rnd.Next(1, 10));
+                DateTime KontrolBaslangic = FiletoBitis.AddMinutes(rnd.Next(1, 1000));
                 DateTime KontrolBitis = KontrolBaslangic.AddMinutes(rnd.Next(5, 15));
 
                 int HasatDefo = rnd.Next(0, 15);

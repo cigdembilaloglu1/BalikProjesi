@@ -34,8 +34,9 @@ namespace BalikProjesi.Services
         public List<Recordings> TarihArama(DateTime Baslangic, DateTime Bitis, string Tip)
         {
             var records = new List<Recordings>();
+            var timesets = new BsonDateTime(Baslangic);
             // TP : Kayit, Fileto, Kontrol
-            if(Tip == "Kayit")
+            if (Tip == "Kayit")
             {
                 var Query = new BsonDocument
                 {
@@ -52,15 +53,15 @@ namespace BalikProjesi.Services
             else if ( Tip == "Fileto")
             {
                 var filterBuilder = Builders<Recordings>.Filter;
-                var filter = filterBuilder.Gte("FilletOpeningDate", Baslangic) &
-                             filterBuilder.Lte("FilletClosingDate", Bitis);
+                var filter = filterBuilder.Gte("FilletOpeningDate", new BsonDateTime(Baslangic)) &
+                             filterBuilder.Lte("FilletClosingDate", new BsonDateTime(Bitis));
                 records = db.Find(filter).ToList();
             }
             else if(Tip == "Kontrol")
             {
                 var filterBuilder = Builders<Recordings>.Filter;
-                var filter = filterBuilder.Gte("ControllerOpeningDate", Baslangic) &
-                             filterBuilder.Lte("ControllerClosingDate", Bitis);
+                var filter = filterBuilder.Gte("ControllerOpeningDate", new BsonDateTime(Baslangic)) &
+                             filterBuilder.Lte("ControllerClosingDate", new BsonDateTime(Bitis));
                 records = db.Find(filter).ToList();
             }
 
@@ -111,12 +112,13 @@ namespace BalikProjesi.Services
         public List<Recordings> KontrolTarihArama(string Id, DateTime Baslangic, DateTime Bitis)
         {
             var records = new List<Recordings>();
+            var timesets = new BsonDateTime(Baslangic);
             if (true)
             {
                 var filterBuilder = Builders<Recordings>.Filter;
                 var filter = filterBuilder.Eq(x => x.ControllerID, Id) &
-                             filterBuilder.Gte(x => x.ControllerOpeningDate, Baslangic) &
-                             filterBuilder.Lte(x => x.ControllerClosingDate, Bitis);
+                             filterBuilder.Gte(x => x.ControllerOpeningDate, new BsonDateTime(Baslangic)) &
+                             filterBuilder.Lte(x => x.ControllerClosingDate, new BsonDateTime(Bitis));
 
                 records = db.Find(filter).ToList();
 
@@ -138,12 +140,13 @@ namespace BalikProjesi.Services
         public List<Recordings> BoxTarihArama(string Id, DateTime Baslangic, DateTime Bitis)
         {
             var records = new List<Recordings>();
+            var timesets = new BsonDateTime(Baslangic);
             if (true)
             {
                 var filterBuilder = Builders<Recordings>.Filter;
                 var filter = filterBuilder.Eq(x => x.FishboxID, Id) &
-                             filterBuilder.Gte(x => x.FilletOpeningDate, Baslangic) &
-                             filterBuilder.Lte(x => x.ControllerClosingDate, Bitis);
+                             filterBuilder.Gte(x => x.FilletOpeningDate, new BsonDateTime(Baslangic)) &
+                             filterBuilder.Lte(x => x.ControllerClosingDate, new BsonDateTime(Bitis));
 
                 records = db.Find(filter).ToList();
 
